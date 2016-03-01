@@ -161,12 +161,12 @@ class DeviceGroupController extends Controller
     }
 
 	/**
-	 * Functions to add/remove from group
+	 * Functions to add/remove from Device Group
 	 */
     private function doAction($group_id, $action)
     {
         $post = Yii::$app->request->post();
-        $devices = $post['devices'];
+        $devices = $post['items'];
 		$group = $this->findModel($group_id);
         $error = [];
 
@@ -183,8 +183,8 @@ class DeviceGroupController extends Controller
             }
         }
         Yii::$app->response->format = Response::FORMAT_JSON;
-        return [$this->actionDeviceSearch($group_id, 'outgroup',  $post['search_outgroup']),
-                $this->actionDeviceSearch($group_id, 'ingroup', $post['search_ingroup']),
+        return [$this->actionItemSearch($group_id, 'outgroup',  $post['search_outgroup']),
+                $this->actionItemSearch($group_id, 'ingroup', $post['search_ingroup']),
                 $error];
     }
 
@@ -198,7 +198,7 @@ class DeviceGroupController extends Controller
         return $this->doAction($group_id, 'remove');
     }
 
-    public function actionDeviceSearch($id, $target, $term = '')
+    public function actionItemSearch($id, $target, $term = '')
     {
 		$model = $this->findModel($id);
 

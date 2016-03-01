@@ -9,9 +9,9 @@ use yii\helpers\Html;
 
     <div class="col-lg-5">
         <?php
-		echo Yii::t('gip', 'Devices not in group');
-        echo Html::textInput('search_outgroup', '', ['class' => 'device-search', 'data-target' => 'outgroup']) . '<br>';
-        echo Html::listBox('devices', '', $outgroup, [
+		echo Yii::t('gip', 'Not in group');
+        echo Html::textInput('search_outgroup', '', ['class' => 'item-search', 'data-target' => 'outgroup']) . '<br>';
+        echo Html::listBox('items', '', $outgroup, [
             'id' => 'outgroup',
             'multiple' => true,
             'size' => 20,
@@ -27,10 +27,10 @@ use yii\helpers\Html;
     </div>
     <div class="col-lg-5">
         <?php
-		echo Yii::t('gip', 'Devices in group');
-        echo Html::textInput('search_ingroup', '', ['class' => 'device-search', 'data-target' => 'ingroups']) . '<br>';
-        echo Html::listBox('devices', '', $ingroup, [
-            'id' => 'ingroups',
+		echo Yii::t('gip', 'In group');
+        echo Html::textInput('search_ingroup', '', ['class' => 'item-search', 'data-target' => 'ingroup']) . '<br>';
+        echo Html::listBox('items', '', $ingroup, [
+            'id' => 'ingroup',
             'multiple' => true,
             'size' => 20,
             'style' => 'width:100%']);

@@ -3,6 +3,7 @@
 use common\models\Device;
 
 use yii\helpers\Html;
+use yii\data\ActiveDataProvider;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
 
@@ -46,11 +47,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'enableEditMode'=>true,
     ]) ?>
 
-	<?php if($model->device_type == '') {
-		echo $this->render('group', [
-			'model'		=> $model,
-            'outgroup'  => $outgroup,
-            'ingroup'   => $ingroup,
-		]);
-	} ?>
+	<?php 	if($model->device_type == '') {
+				echo $this->render('group', [
+					'model'		=> $model,
+		            'outgroup'  => $outgroup,
+		            'ingroup'   => $ingroup,
+				]);
+			} else {
+				echo $this->render('list', [
+					'dataProvider' => new ActiveDataProvider([
+						'query' => $model->getDevices()
+					])
+				]);
+			}
+	?>
 </div>

@@ -7,7 +7,7 @@ use yii\helpers\Url;
 yii.process = (function ($) {
     var _onSearch = false;
     var pub = {
-        golferSearch: function () {
+        itemSearch: function () {
             if (!_onSearch) {
                 _onSearch = true;
                 var $th = $(this);
@@ -19,7 +19,7 @@ yii.process = (function ($) {
                         term: $th.val(),
                     };
                     var target = '#' + $th.data('target');
-                    $.get('<?= Url::toRoute(['device-search']) ?>', data,
+                    $.get('<?= Url::toRoute(['item-search']) ?>', data,
                         function (html) {
                             $(target).html(html);
                         });
@@ -28,7 +28,7 @@ yii.process = (function ($) {
         },
         action: function () {
             var action = $(this).data('action');
-            var params = $((action == 'add' ? '#outgroup' : '#ingroup') + ', .device-search').serialize();
+            var params = $((action == 'add' ? '#outgroup' : '#ingroup') + ', .item-search').serialize();
             var urlRegister   = '<?= Url::toRoute(['add',   'group_id' => $id]) ?>';
             var urlDeregister = '<?= Url::toRoute(['remove', 'group_id' => $id]) ?>';
             $.post(action == 'add' ? urlRegister : urlDeregister,
@@ -46,7 +46,7 @@ yii.process = (function ($) {
 <?php $this->endBlock(); ?>
 
 <?php $this->beginBlock('JS_READY') ?>
-$('.device-search').keydown(yii.process.deviceSearch);
+$('.item-search').keydown(yii.process.itemSearch);
 $('a[data-action]').click(yii.process.action);
 <?php $this->endBlock(); ?>
 </script>
