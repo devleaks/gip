@@ -1,20 +1,20 @@
 <?php
 
 use yii\helpers\Html;
-use yii\data\ActiveDataProvider;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
+use yii\data\ActiveDataProvider;
 
 /**
  * @var yii\web\View $this
- * @var common\models\NotificationType $model
+ * @var common\models\NotificationGroup $model
  */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Notification Types'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Notification Groups'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="notification-type-view">
+<div class="notification-group-view">
     <div class="page-header">
         <h1><?= Html::encode($this->title) ?></h1>
     </div>
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'type'=>DetailView::TYPE_INFO,
         ],
         'attributes' => [
-           'name',
+            'name',
             'description',
         ],
         'deleteOptions'=>[
@@ -43,14 +43,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'enableEditMode'=>true,
     ]) ?>
 
-	<?php
-			$dataProvider = new ActiveDataProvider([
-				'query' => $model->getEntityAttributes()->orderBy('position'),
+	<?php 	echo $this->render('../group/group', [
+				'model'		=> $model,
+		        'outgroup'  => $outgroup,
+		        'ingroup'   => $ingroup,
 			]);
-
-	        echo $this->render('../../../common/views/entity-attribute/_list', [
-	            'dataProvider' => $dataProvider,
-				'model' => $model,
-	        ]);
 	?>
 </div>

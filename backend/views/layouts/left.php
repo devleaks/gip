@@ -61,6 +61,7 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER, User:
 			$subitems[] = ['label' => 'Lists of Values', 'icon' => 'fa fa-list', 'url' => ['/developer/list-of-values']],
 			$subitems[] = ['label' => 'Attribute Types', 'icon' => 'fa fa-font', 'url' => ['/developer/attribute-type']],
 			$subitems[] = ['label' => 'Attributes', 'icon' => 'fa fa-font', 'url' => ['/developer/attribute']],
+			$subitems[] = ['label' => 'Detection Types', 'icon' => 'fa fa-arrow-right', 'url' => ['/developer/detection-type']],
 			$subitems[] = ['label' => 'Event Types', 'icon' => 'fa fa-arrow-right', 'url' => ['/developer/event-type']],
 			$subitems[] = ['label' => 'Provider Types', 'icon' => 'fa fa-arrow-right', 'url' => ['/developer/provider-type']],
 			$subitems[] = ['label' => 'Output Targets', 'icon' => 'fa fa-list-ol', 'url' => ['/developer/target']],

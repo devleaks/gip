@@ -22,7 +22,7 @@ use yii\helpers\Url;
     </div>
 
 	<?php $form = ActiveForm::begin([
-			'action' => Url::to(['/developer/entity-attribute/create'])
+			'action' => Url::to(['/common/entity-attribute/create'])
           ]);
 	?>
 	

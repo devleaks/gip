@@ -15,7 +15,17 @@ trait Attribute {
      */
     public function getParameters()
     {
-        return $this->hasMany(\common\models\Attribute::className(), ['id' => 'attribute_id'])->viaTable('event_attribute', ['entity_id' => 'id']);
+        return Attribute::find()->where(['id' => $this->getEntityAttributes()->select('id')]);
+    }
+
+    /**
+     * @return boolean
+     */
+    public function hasParameters()
+    {
+		$cnt = $this->getEntityAttributes()->count();
+		Yii::trace('count '.$cnt, 'Attribute::hasParameters');
+        return $cnt > 0;
     }
 
     /**

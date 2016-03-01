@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'query' => $model->getEntityAttributes()->orderBy('position'),
 			]);
 
-	        echo $this->render('../../../developer/views/entity-attribute/_list', [
+	        echo $this->render('../../../common/views/entity-attribute/_list', [
 	            'dataProvider' => $dataProvider,
 				'model' => $model,
 	        ]);

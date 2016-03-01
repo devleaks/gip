@@ -14,13 +14,4 @@ class ProviderType extends BaseProviderType
 {
 	use Attribute;
 
-    /**
-     * @return boolean
-     */
-    public function hasParameters()
-    {
-		$cnt = $this->getParameters()->count();
-		Yii::trace('count '.$cnt, 'ProviderType::hasParameters');
-        return $cnt > 0;
-    }
 }

@@ -16,7 +16,7 @@ use yii\widgets\Pjax;
 ?>
 <div class="attribute-index">
 	
-	<?php $form = ActiveForm::begin(['action' => ['attribute-value/batch-update']]);
+	<?php $form = ActiveForm::begin(['action' => ['/common/attribute-value/batch-update']]);
 
     echo TabularForm::widget([
         'dataProvider' => $dataProvider,

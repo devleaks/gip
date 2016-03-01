@@ -1,7 +1,5 @@
 <?php
 
-use common\models\Device;
-
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
@@ -9,29 +7,48 @@ use yii\widgets\Pjax;
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var common\models\search\Device $searchModel
+ * @var common\models\search\Rule $searchModel
  */
 
-$this->title = Yii::t('gip', 'Devices');
+$this->title = Yii::t('gip', 'Rules');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="device-index">
+<div class="rule-index">
 
     <?php Pjax::begin(); echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'name',
-            'description',
+            ['class' => 'yii\grid\SerialColumn'],
+
+			'name',
+            'description', 
 			[
-				'attribute' => 'device_type',
-				'filter' => Device::getDeviceTypes(),
+				'attribute' => 'device_group_id',
+				'label' => Yii::t('gip', 'Device Group'),
+	            'value' => function ($model, $key, $index, $widget) {
+							return $model->deviceGroup ? $model->deviceGroup->name : '';
+	            		},
+			],
+			[
+				'attribute' => 'notification_group_id',
+				'label' => Yii::t('gip', 'Notification Group'),
+	            'value' => function ($model, $key, $index, $widget) {
+							return $model->notificationGroup ? $model->notificationGroup->name : '';
+	            		},
+			],
+			[
+				'attribute' => 'detection_type_id',
+				'label' => Yii::t('gip', 'Detection Type'),
+	            'value' => function ($model, $key, $index, $widget) {
+							return $model->detectionType ? $model->detectionType->name : '';
+	            		},
 			],
             [
                 'class' => 'yii\grid\ActionColumn',
                 'buttons' => [
                 'update' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['coreengine/device/view','id' => $model->id,'edit'=>'t']), [
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['coreengine/rule/view','id' => $model->id,'edit'=>'t']), [
                                                     'title' => Yii::t('yii', 'Edit'),
                                                   ]);}
 
@@ -42,6 +59,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'hover'=>true,
         'condensed'=>true,
         'floatHeader'=>true,
+
+
+
+
         'panel' => [
             'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> '.Html::encode($this->title).' </h3>',
             'type'=>'info',

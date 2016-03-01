@@ -1,7 +1,8 @@
 <?php
 
-use common\models\Device;
+use common\models\NotificationType;
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
@@ -9,29 +10,46 @@ use yii\widgets\Pjax;
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var common\models\search\Device $searchModel
+ * @var common\models\search\Notification $searchModel
  */
 
-$this->title = Yii::t('gip', 'Devices');
+$this->title = Yii::t('gip', 'Notifications');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="device-index">
+<div class="notification-index">
+    <div class="page-header">
+            <h1><?= Html::encode($this->title) ?></h1>
+    </div>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?php /* echo Html::a(Yii::t('gip', 'Create {modelClass}', [
+    'modelClass' => 'Notification',
+]), ['create'], ['class' => 'btn btn-success'])*/  ?>
+    </p>
 
     <?php Pjax::begin(); echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
             'name',
             'description',
 			[
-				'attribute' => 'device_type',
-				'filter' => Device::getDeviceTypes(),
+				'attribute' => 'notification_type_id',
+				'label' => Yii::t('gip', 'Notification Type'),
+				'filter' => ArrayHelper::map(NotificationType::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+	            'value' => function ($model, $key, $index, $widget) {
+							return $model->notificationType ? $model->notificationType->name : '';
+	            		},
 			],
+
             [
                 'class' => 'yii\grid\ActionColumn',
                 'buttons' => [
                 'update' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['coreengine/device/view','id' => $model->id,'edit'=>'t']), [
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['coreengine/notification/view','id' => $model->id,'edit'=>'t']), [
                                                     'title' => Yii::t('yii', 'Edit'),
                                                   ]);}
 
@@ -42,6 +60,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'hover'=>true,
         'condensed'=>true,
         'floatHeader'=>true,
+
+
+
+
         'panel' => [
             'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> '.Html::encode($this->title).' </h3>',
             'type'=>'info',

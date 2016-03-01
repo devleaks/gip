@@ -1,22 +1,26 @@
 <?php
 
-use common\models\Device;
+use common\models\Zone;
 
-use yii\helpers\Html;
-use yii\data\ActiveDataProvider;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
+use yii\data\ActiveDataProvider;
+use yii\helpers\Html;
 
 /**
  * @var yii\web\View $this
- * @var common\models\DeviceGroup $model
+ * @var common\models\ZoneGroup $model
  */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Device Groups'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Zone Groups'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="device-group-view">
+<div class="zone-group-view">
+    <div class="page-header">
+        <h1><?= Html::encode($this->title) ?></h1>
+    </div>
+
 
     <?= DetailView::widget([
             'model' => $model,
@@ -28,15 +32,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'type'=>DetailView::TYPE_INFO,
         ],
         'attributes' => [
-            'id',
             'name',
             'description',
 	        [
-	            'attribute'=>'device_type',
+	            'attribute'=>'zone_type',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => [''=>'']+Device::getDeviceTypes(),
+				'items' => [''=>'']+Zone::getZoneTypes(),
 	        ],
-        ],
+/*            'zone_group_type',
+            'schema_name',
+            'table_name',
+            'unique_id_column',
+            'geometry_column',
+            'where_clause',
+*/        ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],
             'data'=>[
@@ -47,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'enableEditMode'=>true,
     ]) ?>
 
-	<?php 	if($model->device_type == '') {
+	<?php 	if($model->zone_type == '') {
 				echo $this->render('../group/group', [
 					'model'		=> $model,
 		            'outgroup'  => $outgroup,
@@ -56,9 +65,9 @@ $this->params['breadcrumbs'][] = $this->title;
 			} else {
 				echo $this->render('../group/_list', [
 					'dataProvider' => new ActiveDataProvider([
-						'query' => $model->getDevices()
+						'query' => $model->getZones()
 					]),
-						'title' => Yii::t('gip', 'Devices in Group'),
+					'title' => Yii::t('gip', 'Zones in Group'),
 				]);
 			}
 	?>

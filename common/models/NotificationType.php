@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+use common\behaviors\Attribute;
+
 use Yii;
 use \common\models\base\NotificationType as BaseNotificationType;
 
@@ -10,12 +12,6 @@ use \common\models\base\NotificationType as BaseNotificationType;
  */
 class NotificationType extends BaseNotificationType
 {
+	use Attribute;
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getParameters()
-    {
-        return $this->hasMany(\common\models\Attribute::className(), ['id' => 'attribute_id'])->viaTable('notification_type_attribute', ['entity_id' => 'id']);
-    }
 }

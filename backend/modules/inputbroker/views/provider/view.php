@@ -81,7 +81,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'query' => $model->getParameters(true),
 			]);
 
-	        echo $this->render('../attribute-value/_list', [
+	        echo $this->render('../../../common/views/attribute-value/_list', [
 	            'dataProvider' => $dataProvider,
 				'model' => $model,
 	        ]);

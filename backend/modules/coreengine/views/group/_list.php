@@ -25,7 +25,7 @@ use yii\widgets\Pjax;
         'condensed'=>true,
         'floatHeader'=>true,
         'panel' => [
-            'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> '.Html::encode(Yii::t('gip', 'Devices in Group')).' </h3>',
+            'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> '.Html::encode($title).' </h3>',
             'type'=>'info',
             'showFooter'=>false
         ],

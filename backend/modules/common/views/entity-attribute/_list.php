@@ -18,14 +18,26 @@ use yii\widgets\Pjax;
         'columns' => [
 			'position',
 
-			'entityAttribute.name',
-			'entityAttribute.attributeType.name',
+			[
+				'attribute' => 'attribute_id',
+				'label' => Yii::t('gip', 'Attribute Name'),
+		        'value' => function ($model, $key, $index, $widget) {
+							return $model->entityAttribute ? $model->entityAttribute->name : '';
+		        		},
+			],
+			[
+				'attribute' => 'attribute_id',
+				'label' => Yii::t('gip', 'Attribute Type'),
+		        'value' => function ($model, $key, $index, $widget) {
+							return $model->entityAttribute ? ($model->entityAttribute->attributeType ? $model->entityAttribute->attributeType->name : '') : '';
+		        		},
+			],
 			'description',
 			'mandatory',
 			
             [
                 'class' => 'yii\grid\ActionColumn',
-				'controller' => 'entity-attribute',
+				'controller' => '/common/entity-attribute',
                 'buttons' => [
                 'update' => function ($url, $model) {
                                     return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['developer/entity-attribute/view','id' => $model->id,'edit'=>'t']), [

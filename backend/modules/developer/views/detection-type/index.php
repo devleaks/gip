@@ -1,7 +1,5 @@
 <?php
 
-use common\models\Device;
-
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
@@ -9,29 +7,38 @@ use yii\widgets\Pjax;
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var common\models\search\Device $searchModel
+ * @var common\models\search\DetectionType $searchModel
  */
 
-$this->title = Yii::t('gip', 'Devices');
+$this->title = Yii::t('gip', 'Detection Types');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="device-index">
+<div class="detection-type-index">
+    <div class="page-header">
+            <h1><?= Html::encode($this->title) ?></h1>
+    </div>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?php /* echo Html::a(Yii::t('gip', 'Create {modelClass}', [
+    'modelClass' => 'Detection Type',
+]), ['create'], ['class' => 'btn btn-success'])*/  ?>
+    </p>
 
     <?php Pjax::begin(); echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
             'name',
             'description',
-			[
-				'attribute' => 'device_type',
-				'filter' => Device::getDeviceTypes(),
-			],
+
             [
                 'class' => 'yii\grid\ActionColumn',
                 'buttons' => [
                 'update' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['coreengine/device/view','id' => $model->id,'edit'=>'t']), [
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['developer/detection-type/view','id' => $model->id,'edit'=>'t']), [
                                                     'title' => Yii::t('yii', 'Edit'),
                                                   ]);}
 
@@ -42,6 +49,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'hover'=>true,
         'condensed'=>true,
         'floatHeader'=>true,
+
+
+
+
         'panel' => [
             'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> '.Html::encode($this->title).' </h3>',
             'type'=>'info',
