@@ -7,40 +7,29 @@ use yii\widgets\Pjax;
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var common\models\search\Provider $searchModel
+ * @var common\models\search\DeviceGroup $searchModel
  */
 
-$this->title = Yii::t('gip', 'Providers');
+$this->title = Yii::t('gip', 'Device Groups');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="provider-index">
+<div class="device-group-index">
 
     <?php Pjax::begin(); echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'name',
             'description',
 			[
-				'attribute' => 'providerType.name',
-				'label' => Yii::t('gip', 'Provider Type'),
+				'attribute' => 'device_type',
+				'label' => Yii::t('gip', 'Dynamic Group'),
 			],
-			[
-				'attribute' => 'inputEvent.name',
-				'label' => Yii::t('gip', 'Source Event'),
-			],
-//            ['attribute'=>'created_at','format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
-//            ['attribute'=>'updated_at','format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
-//            'created_by', 
-//            'updated_by', 
-
             [
                 'class' => 'yii\grid\ActionColumn',
                 'buttons' => [
                 'update' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['inputbroker/provider/view','id' => $model->id,'edit'=>'t']), [
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['coreengine/device-group/view','id' => $model->id,'edit'=>'t']), [
                                                     'title' => Yii::t('yii', 'Edit'),
                                                   ]);}
 

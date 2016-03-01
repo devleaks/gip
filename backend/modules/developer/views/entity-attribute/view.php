@@ -6,6 +6,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
+use kartik\widgets\SwitchInput;
 
 /**
  * @var yii\web\View $this
@@ -35,7 +36,16 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
 			'position',
 			'description',
-			'mandatory',
+			[
+				'attribute' => 'mandatory',
+				'type' => DetailView::INPUT_SWITCH,
+				'widgetOptions' => [
+				    'pluginOptions' => [
+						'onText' => Yii::t('store', 'Yes'),
+						'offText' =>  Yii::t('store', 'No')
+					],
+				],
+			],
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'attribute_id' => $model->id],

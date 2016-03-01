@@ -1,20 +1,19 @@
 <?php
 
 use yii\helpers\Html;
-use yii\data\ActiveDataProvider;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
 
 /**
  * @var yii\web\View $this
- * @var common\models\ProviderType $model
+ * @var common\models\Processing $model
  */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Provider Types'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Processings'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="provider-type-view">
+<div class="processing-view">
 
     <?= DetailView::widget([
             'model' => $model,
@@ -28,6 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'name',
             'description',
+            'service_id',
+            'provider_id',
+            'event_id',
+            'status',
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],
@@ -38,17 +41,5 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'enableEditMode'=>true,
     ]) ?>
-
-
-	<?php
-			$dataProvider = new ActiveDataProvider([
-				'query' => $model->getEntityAttributes()->orderBy('position'),
-			]);
-
-	        echo $this->render('../../../developer/views/entity-attribute/_list', [
-	            'dataProvider' => $dataProvider,
-				'model' => $model,
-	        ]);
-	?>
 
 </div>

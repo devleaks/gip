@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "464093bc326cd6b04e8ed3fb20638a5c",
-    "content-hash": "2a33947332a677bd25e4d380618cb9db",
+    "hash": "3005b656269ca271f47d266e75cf5634",
+    "content-hash": "324df92e5e32f55c81550296b75a2da4",
     "packages": [
         {
             "name": "2amigos/yii2-gallery-widget",
@@ -1630,22 +1630,22 @@
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
-            "version": "v4.3.0",
+            "version": "v4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "cde72929649da55470e0a81a5e85921f80f28f29"
+                "reference": "32b0ccb2562b9c83f12222ddd1406986a45450d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/cde72929649da55470e0a81a5e85921f80f28f29",
-                "reference": "cde72929649da55470e0a81a5e85921f80f28f29",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/32b0ccb2562b9c83f12222ddd1406986a45450d1",
+                "reference": "32b0ccb2562b9c83f12222ddd1406986a45450d1",
                 "shasum": ""
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.2.x-dev"
+                    "dev-master": "4.3.x-dev"
                 }
             },
             "autoload": {
@@ -1679,7 +1679,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2016-01-25 16:55:20"
+            "time": "2016-02-28 02:23:49"
         },
         {
             "name": "kartik-v/bootstrap-popover-x",
@@ -1727,16 +1727,16 @@
         },
         {
             "name": "kartik-v/bootstrap-star-rating",
-            "version": "v4.0.0",
+            "version": "v4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-star-rating.git",
-                "reference": "c19be9f8bd6b29cee0110e048a2c04bb6f1c4761"
+                "reference": "d66083c14f9386ede23fccb76dea1a380db67ded"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-star-rating/zipball/c19be9f8bd6b29cee0110e048a2c04bb6f1c4761",
-                "reference": "c19be9f8bd6b29cee0110e048a2c04bb6f1c4761",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-star-rating/zipball/d66083c14f9386ede23fccb76dea1a380db67ded",
+                "reference": "d66083c14f9386ede23fccb76dea1a380db67ded",
                 "shasum": ""
             },
             "type": "library",
@@ -1767,7 +1767,7 @@
                 "star",
                 "svg"
             ],
-            "time": "2016-02-18 04:03:30"
+            "time": "2016-02-28 16:13:18"
         },
         {
             "name": "kartik-v/bootstrap-tabs-x",
@@ -3881,12 +3881,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mootensai/yii2-enhanced-gii.git",
-                "reference": "1ed3054e779b68316a5a9187baaac0cd0196dd0e"
+                "reference": "d7576d5ef3a229f98085d1f88e6d82b61c25581f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mootensai/yii2-enhanced-gii/zipball/1ed3054e779b68316a5a9187baaac0cd0196dd0e",
-                "reference": "1ed3054e779b68316a5a9187baaac0cd0196dd0e",
+                "url": "https://api.github.com/repos/mootensai/yii2-enhanced-gii/zipball/d7576d5ef3a229f98085d1f88e6d82b61c25581f",
+                "reference": "d7576d5ef3a229f98085d1f88e6d82b61c25581f",
                 "shasum": ""
             },
             "require": {
@@ -3933,7 +3933,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2016-02-27 05:07:40"
+            "time": "2016-03-01 01:25:21"
         },
         {
             "name": "mootensai/yii2-jsblock",
@@ -4793,16 +4793,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.0.2",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "5a02eaadaa285e2bb727eb6bbdfb8201fcd971b0"
+                "reference": "2ed5e2706ce92313d120b8fe50d1063bcfd12e04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/5a02eaadaa285e2bb727eb6bbdfb8201fcd971b0",
-                "reference": "5a02eaadaa285e2bb727eb6bbdfb8201fcd971b0",
+                "url": "https://api.github.com/repos/symfony/console/zipball/2ed5e2706ce92313d120b8fe50d1063bcfd12e04",
+                "reference": "2ed5e2706ce92313d120b8fe50d1063bcfd12e04",
                 "shasum": ""
             },
             "require": {
@@ -4849,20 +4849,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2016-02-02 13:44:19"
+            "time": "2016-02-28 16:24:34"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.0.2",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "064ac12afd2ceb8a2c1bfb7bed8e931c6dd1997f"
+                "reference": "23ae8f9648d0a7fe94a47c8e20e5bf37c489a451"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/064ac12afd2ceb8a2c1bfb7bed8e931c6dd1997f",
-                "reference": "064ac12afd2ceb8a2c1bfb7bed8e931c6dd1997f",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/23ae8f9648d0a7fe94a47c8e20e5bf37c489a451",
+                "reference": "23ae8f9648d0a7fe94a47c8e20e5bf37c489a451",
                 "shasum": ""
             },
             "require": {
@@ -4898,11 +4898,11 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2016-01-27 11:34:55"
+            "time": "2016-02-23 15:16:06"
         },
         {
             "name": "symfony/finder",
-            "version": "v3.0.2",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -5010,7 +5010,7 @@
         },
         {
             "name": "symfony/process",
-            "version": "v3.0.2",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -6034,6 +6034,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "yiisoft/yii2-jui": 20,
         "kartik-v/yii2-builder": 20,
         "kartik-v/yii2-datecontrol": 20,
         "kartik-v/yii2-detail-view": 20,
@@ -6041,11 +6042,10 @@
         "kartik-v/yii2-markdown": 20,
         "kartik-v/yii2-mpdf": 20,
         "kartik-v/yii2-widgets": 20,
-        "warrence/yii2-kartikgii": 20,
-        "yurkinx/yii2-image": 20,
         "composer/composer": 20,
-        "yiisoft/yii2-jui": 20,
-        "mootensai/yii2-enhanced-gii": 20
+        "mootensai/yii2-enhanced-gii": 20,
+        "warrence/yii2-kartikgii": 20,
+        "yurkinx/yii2-image": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

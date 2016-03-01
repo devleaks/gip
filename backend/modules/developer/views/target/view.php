@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	            'attribute'=>'event_type_id',
 				'label' => Yii::t('gip', 'Event Type'),
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => ArrayHelper::map(EventType::find()->asArray()->all(), 'id', 'name'),
+				'items' => ArrayHelper::map(EventType::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
 	            'value'=>isset($model->eventType) ? $model->eventType->name : '',
 	        ],
             'factory',

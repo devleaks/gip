@@ -1,18 +1,18 @@
 <?php
 
-namespace backend\modules\developer\controllers;
+namespace backend\modules\coreengine\controllers;
 
 use Yii;
-use common\models\EntityAttribute;
-use common\models\search\EntityAttribute as EntityAttributeSearch;
+use common\models\Device;
+use common\models\search\Device as DeviceSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * EntityAttributeController implements the CRUD actions for EntityAttribute model.
+ * DeviceController implements the CRUD actions for Device model.
  */
-class EntityAttributeController extends Controller
+class DeviceController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class EntityAttributeController extends Controller
     }
 
     /**
-     * Lists all EntityAttribute models.
+     * Lists all Device models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new EntityAttributeSearch;
+        $searchModel = new DeviceSearch;
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class EntityAttributeController extends Controller
     }
 
     /**
-     * Displays a single EntityAttribute model.
+     * Displays a single Device model.
      * @param integer $id
      * @return mixed
      */
@@ -58,16 +58,16 @@ class EntityAttributeController extends Controller
     }
 
     /**
-     * Creates a new EntityAttribute model.
+     * Creates a new Device model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new EntityAttribute;
+        $model = new Device;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(Yii::$app->request->referrer);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -76,7 +76,7 @@ class EntityAttributeController extends Controller
     }
 
     /**
-     * Updates an existing EntityAttribute model.
+     * Updates an existing Device model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -86,7 +86,7 @@ class EntityAttributeController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(Yii::$app->request->referrer);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -95,66 +95,31 @@ class EntityAttributeController extends Controller
     }
 
     /**
-     * Deletes an existing EntityAttribute model.
+     * Deletes an existing Device model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
-    public function actionDeleteSimple($id)
+    public function actionDelete($id)
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(Yii::$app->request->referrer);
+        return $this->redirect(['index']);
     }
 
     /**
-     * Finds the EntityAttribute model based on its primary key value.
+     * Finds the Device model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return EntityAttribute the loaded model
+     * @return Device the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = EntityAttribute::findOne($id)) !== null) {
+        if (($model = Device::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
-
-    /**
-     * Deletes an existing Test model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id) {
-    	$post = Yii::$app->request->post();
-    	Yii::trace('Entering delete action');
-    	if (Yii::$app->request->isAjax && isset($post['custom_param'])) {
-    		if ($this->findModel($id)->delete()) {
-    			echo Json::encode([
-    				'success' => true,
-    				'messages' => [
-    					'kv-detail-info' => 'The record # ' . $id . ' was successfully deleted. <a href="' .
-    					Url::to(['/test']) . '" class="btn btn-sm btn-info">' .
-    					'<i class="glyphicon glyphicon-hand-right"></i>  Click here</a> to proceed.'
-    				]
-    			]);
-    		} else {
-    			echo Json::encode([
-   					'success' => false,
-   					'messages' => [
-						'kv-detail-error' => 'Cannot delete the record # ' . $id . '.'
-   					]
-    			]);
-    		}
-    		return;
-    	} elseif (Yii::$app->request->post()) {
-    		$this->findModel($id)->delete();
-    		return $this->redirect(Yii::$app->request->referrer);
-    	}
-    	throw new InvalidCallException("You are not allowed to do this operation. Contact the administrator.");
     }
 }

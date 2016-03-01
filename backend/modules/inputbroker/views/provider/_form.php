@@ -30,9 +30,9 @@ use kartik\datecontrol\DateControl;
 
         	'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
 
-            'provider_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Provider...'], 'items' => ArrayHelper::map(ProviderType::find()->asArray()->all(), 'id', 'name')],
+            'provider_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Provider...'], 'items' => ArrayHelper::map(ProviderType::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
 
-            'input_event_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Source Event...'], 'items' => ArrayHelper::map(Event::find()->andWhere(['event_type_id' => EventType::getSourceEventID()])->asArray()->all(), 'id', 'name')],
+            'input_event_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Source Event...'], 'items' => ArrayHelper::map(Event::find()->andWhere(['event_type_id' => EventType::getSourceEventID()])->orderBy('name')->asArray()->all(), 'id', 'name')],
 
         ]
 

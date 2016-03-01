@@ -25,8 +25,7 @@ use yii\widgets\Pjax;
 			
             [
                 'class' => 'yii\grid\ActionColumn',
-				'controller' => 'entity_attribute',
-				'template' => '{update} {delete}',
+				'controller' => 'entity-attribute',
                 'buttons' => [
                 'update' => function ($url, $model) {
                                     return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['developer/entity-attribute/view','id' => $model->id,'edit'=>'t']), [

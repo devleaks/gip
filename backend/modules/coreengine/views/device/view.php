@@ -1,23 +1,19 @@
 <?php
 
-use common\models\AttributeType;
-use common\models\ListOfValues;
-
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
 
 /**
  * @var yii\web\View $this
- * @var common\models\AttributeType $model
+ * @var common\models\Device $model
  */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Attribute Types'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Devices'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="attribute-type-view">
+<div class="device-view">
     <div class="page-header">
         <h1><?= Html::encode($this->title) ?></h1>
     </div>
@@ -36,27 +32,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             'description',
-	        [
-				'attribute' => 'data_type',
-				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => AttributeType::getLocalizedConstants('DATA_TYPE_'),
-	        ],
-	        [
-	            'attribute'=>'list_of_values_id',
-				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => ArrayHelper::map(['' => ''] + ListOfValues::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
-				'label' => Yii::t('gip', 'List of Values'),
-	            'value'=>isset($model->listOfValues) ? $model->listOfValues->name : '',
-	        ],
-	        [
-	            'attribute'=>'created_at',
-	            'format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A'],
-	            'type'=>DetailView::INPUT_WIDGET,
-	            'widgetOptions'=> [
-	                'class'=>DateControl::classname(),
-	                'type'=>DateControl::FORMAT_DATETIME
-	            ]
-	        ],
+            'device_type',
+            [
+                'attribute'=>'created_at',
+                'format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A'],
+                'type'=>DetailView::INPUT_WIDGET,
+                'widgetOptions'=> [
+                    'class'=>DateControl::classname(),
+                    'type'=>DateControl::FORMAT_DATETIME
+                ]
+            ],
             [
                 'attribute'=>'updated_at',
                 'format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A'],

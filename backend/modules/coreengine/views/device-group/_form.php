@@ -1,8 +1,7 @@
 <?php
 
-use common\models\AttributeType;
+use common\models\Device;
 
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
 use kartik\builder\Form;
@@ -10,12 +9,12 @@ use kartik\datecontrol\DateControl;
 
 /**
  * @var yii\web\View $this
- * @var common\models\Attribute $model
+ * @var common\models\DeviceGroup $model
  * @var yii\widgets\ActiveForm $form
  */
 ?>
 
-<div class="attribute-form">
+<div class="device-group-form">
 
     <?php $form = ActiveForm::begin(['type'=>ActiveForm::TYPE_HORIZONTAL]); echo Form::widget([
 
@@ -26,9 +25,9 @@ use kartik\datecontrol\DateControl;
 
             'name'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Name...', 'maxlength'=>40]],
 
-            'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
+            'device_type'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Device Type for Dynamic Group...'], 'items' => [''=>'']+Device::getDeviceTypes()],
 
-            'attribute_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter List Of Values ID...'], 'items' => ArrayHelper::map(AttributeType::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
+            'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
 
         ]
 

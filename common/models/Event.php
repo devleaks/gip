@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+use common\behaviors\Attribute;
+
 use Yii;
 use \common\models\base\Event as BaseEvent;
 
@@ -10,22 +12,6 @@ use \common\models\base\Event as BaseEvent;
  */
 class Event extends BaseEvent
 {
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getParameters()
-    {
-        return $this->hasMany(\common\models\Attribute::className(), ['id' => 'attribute_id'])->viaTable('event_attribute', ['entity_id' => 'id']);
-    }
+	use Attribute;
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getEntityAttributes()
-    {
-        return EntityAttribute::find()->where([
-			'entity_type' => $this::className(),
-			'entity_id'   => $this->id
-		]);
-    }
 }

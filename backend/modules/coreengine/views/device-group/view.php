@@ -1,20 +1,21 @@
 <?php
 
+use common\models\Device;
+
 use yii\helpers\Html;
-use yii\data\ActiveDataProvider;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
 
 /**
  * @var yii\web\View $this
- * @var common\models\ProviderType $model
+ * @var common\models\DeviceGroup $model
  */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Provider Types'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Device Groups'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="provider-type-view">
+<div class="device-group-view">
 
     <?= DetailView::widget([
             'model' => $model,
@@ -26,8 +27,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'type'=>DetailView::TYPE_INFO,
         ],
         'attributes' => [
+            'id',
             'name',
             'description',
+	        [
+	            'attribute'=>'device_type',
+				'type' => DetailView::INPUT_DROPDOWN_LIST,
+				'items' => [''=>'']+Device::getDeviceTypes(),
+	        ],
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],
@@ -39,16 +46,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'enableEditMode'=>true,
     ]) ?>
 
-
-	<?php
-			$dataProvider = new ActiveDataProvider([
-				'query' => $model->getEntityAttributes()->orderBy('position'),
-			]);
-
-	        echo $this->render('../../../developer/views/entity-attribute/_list', [
-	            'dataProvider' => $dataProvider,
-				'model' => $model,
-	        ]);
-	?>
-
+	<?php if($model->device_type == '') {
+		echo $this->render('group', [
+			'model'		=> $model,
+            'outgroup'  => $outgroup,
+            'ingroup'   => $ingroup,
+		]);
+	} ?>
 </div>

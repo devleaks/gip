@@ -15,16 +15,30 @@ class Provider extends BaseProvider
      */
     public function createParameters()
     {
-		if($this->providerType->hasParameters() && !$this->hasParameters()) {
+		if($this->providerType->hasParameters()) {
+			$attribute_ids = [];
 			foreach(EntityAttribute::find()->where(['entity_id' => $this->provider_type_id,
 													'entity_type' => ProviderType::className()
 													])->each() as $ea) {
-				Yii::trace('adding'.$ea->id, 'Provider::createParameters');
-				$av = new AttributeValue();
-				$av->attribute_id = $ea->attribute_id;
-				$av->entity_id = $this->id;
-				$av->entity_type = $this::className();
-				$av->save();
+				$attribute_ids[] = $ea->attribute_id;
+				// add missing atributes
+				if(! AttributeValue::find()->where(['entity_id' => $this->id,
+													'entity_type' => $this::className(),
+													'attribute_id' => $ea->attribute_id
+													])->exists()) {
+					Yii::trace('adding'.$ea->id, 'Provider::createParameters');
+					$av = new AttributeValue();
+					$av->attribute_id = $ea->attribute_id;
+					$av->entity_id = $this->id;
+					$av->entity_type = $this::className();
+					$av->save();
+				}
+			}
+			// remove unused attributes
+			foreach(AttributeValue::find()->where(['entity_id' => $this->id, 'entity_type' => $this::className()])
+										  ->andWhere(['not', ['attribute_id' => $attribute_ids]])
+										  ->each() as $av) {
+				$av->delete();
 			}
 		}
     }
@@ -43,16 +57,11 @@ class Provider extends BaseProvider
 
     public function getParameters($create = false)
     {
-		$r = $this->getParameters_i();
-		$q = clone $r;
-		
-		if(($q->count() == 0) && $create) {
-			Yii::trace('no av', 'Provider::getParameters');
+		if($create) {
 			$this->createParameters();
-			$r = $this->getParameters(false);
 		}
-			
-		return $r;
+
+		return $this->getParameters_i();
     }
 
     /**

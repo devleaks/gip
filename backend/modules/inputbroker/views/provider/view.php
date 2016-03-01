@@ -20,10 +20,6 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Providers'), 'url' =
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="provider-view">
-    <div class="page-header">
-        <h1><?= Html::encode($this->title) ?></h1>
-    </div>
-
 
     <?= DetailView::widget([
             'model' => $model,
@@ -40,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	        [
 	            'attribute'=>'provider_type_id',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => ArrayHelper::map(ProviderType::find()->asArray()->all(), 'id', 'name'),
+				'items' => ArrayHelper::map(ProviderType::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
 				'label' => Yii::t('gip', 'Provider Type'),
 	            'value'=>isset($model->providerType) ? $model->providerType->name : '',
 	        ],

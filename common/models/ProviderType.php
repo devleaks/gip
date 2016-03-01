@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+use common\behaviors\Attribute;
+
 use Yii;
 use \common\models\base\ProviderType as BaseProviderType;
 
@@ -10,13 +12,7 @@ use \common\models\base\ProviderType as BaseProviderType;
  */
 class ProviderType extends BaseProviderType
 {
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getParameters()
-    {
-        return $this->hasMany(\common\models\Attribute::className(), ['id' => 'attribute_id'])->viaTable('provider_type_attribute', ['entity_id' => 'id']);
-    }
+	use Attribute;
 
     /**
      * @return boolean

@@ -7,30 +7,24 @@ use yii\widgets\Pjax;
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var common\models\search\Provider $searchModel
+ * @var common\models\search\Processing $searchModel
  */
 
-$this->title = Yii::t('gip', 'Providers');
+$this->title = Yii::t('gip', 'Processings');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="provider-index">
+<div class="processing-index">
 
     <?php Pjax::begin(); echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'name',
             'description',
-			[
-				'attribute' => 'providerType.name',
-				'label' => Yii::t('gip', 'Provider Type'),
-			],
-			[
-				'attribute' => 'inputEvent.name',
-				'label' => Yii::t('gip', 'Source Event'),
-			],
+            'service.name',
+            'provider.name',
+//            'event_id', 
+//            'status', 
 //            ['attribute'=>'created_at','format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
 //            ['attribute'=>'updated_at','format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
 //            'created_by', 
@@ -40,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'yii\grid\ActionColumn',
                 'buttons' => [
                 'update' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['inputbroker/provider/view','id' => $model->id,'edit'=>'t']), [
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['inputbroker/processing/view','id' => $model->id,'edit'=>'t']), [
                                                     'title' => Yii::t('yii', 'Edit'),
                                                   ]);}
 

@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'label' => Yii::t('gip', 'Attribute Type'),
 				'value'=>isset($model->attributeType) ? $model->attributeType->name : '',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => ArrayHelper::map(AttributeType::find()->asArray()->all(), 'id', 'name'),
+				'items' => ArrayHelper::map(AttributeType::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
 			],
         ],
         'deleteOptions'=>[

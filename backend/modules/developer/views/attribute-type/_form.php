@@ -31,7 +31,7 @@ use kartik\datecontrol\DateControl;
 
             'data_type'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Data Type...', 'maxlength'=>255], 'items' => AttributeType::getLocalizedConstants('DATA_TYPE_')],
 
-            'list_of_values_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter List Of Values ID...'], 'items' => ArrayHelper::map(['' => ''] + ListOfValues::find()->asArray()->all(), 'id', 'name')],
+            'list_of_values_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter List Of Values ID...'], 'items' => ArrayHelper::map(['' => ''] + ListOfValues::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
 
 
         ]
