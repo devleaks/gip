@@ -18,10 +18,6 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Target Events'), 'ur
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="event-view">
-    <div class="page-header">
-        <h1><?= Html::encode($this->title) ?></h1>
-    </div>
-
 
     <?= DetailView::widget([
             'model' => $model,

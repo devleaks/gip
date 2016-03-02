@@ -14,16 +14,6 @@ $this->title = Yii::t('gip', 'Lov Values');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lov-values-index">
-    <div class="page-header">
-            <h1><?= Html::encode($this->title) ?></h1>
-    </div>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?php /* echo Html::a(Yii::t('gip', 'Create {modelClass}', [
-    'modelClass' => 'Lov Values',
-]), ['create'], ['class' => 'btn btn-success'])*/  ?>
-    </p>
 
     <?php Pjax::begin(); echo GridView::widget([
         'dataProvider' => $dataProvider,

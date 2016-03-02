@@ -14,16 +14,6 @@ $this->title = Yii::t('gip', 'Source Events');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="event-index">
-    <div class="page-header">
-            <h1><?= Html::encode($this->title) ?></h1>
-    </div>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?php /* echo Html::a(Yii::t('gip', 'Create {modelClass}', [
-    'modelClass' => 'Event',
-]), ['create'], ['class' => 'btn btn-success'])*/  ?>
-    </p>
 
     <?php Pjax::begin(); echo GridView::widget([
         'dataProvider' => $dataProvider,

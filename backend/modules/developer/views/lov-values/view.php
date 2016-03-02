@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->listOfValues->name, 'url' =
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lov-values-view">
+
     <?= DetailView::widget([
             'model' => $model,
             'condensed'=>false,

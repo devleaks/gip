@@ -19,10 +19,6 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Subscriptions'), 'ur
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="subscription-view">
-    <div class="page-header">
-        <h1><?= Html::encode($this->title) ?></h1>
-    </div>
-
 
     <?= DetailView::widget([
             'model' => $model,

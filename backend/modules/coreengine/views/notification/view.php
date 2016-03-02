@@ -18,10 +18,6 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Notifications'), 'ur
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="notification-view">
-    <div class="page-header">
-        <h1><?= Html::encode($this->title) ?></h1>
-    </div>
-
 
     <?= DetailView::widget([
             'model' => $model,

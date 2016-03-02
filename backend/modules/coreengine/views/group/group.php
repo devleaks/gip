@@ -5,11 +5,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model yii\web\IdentityInterface */
 ?>
-<div class="group-index">
+<div class="group-index" style="min-height: 200px;">
 
     <div class="col-lg-5">
         <?php
-		echo Yii::t('gip', 'Not in group');
+		echo '<span class="pull-right">'.Yii::t('gip', 'Not in group').'</span>'.Yii::t('gip', 'Filter: ').' ';
         echo Html::textInput('search_outgroup', '', ['class' => 'item-search', 'data-target' => 'outgroup']) . '<br>';
         echo Html::listBox('items', '', $outgroup, [
             'id' => 'outgroup',
@@ -27,7 +27,7 @@ use yii\helpers\Html;
     </div>
     <div class="col-lg-5">
         <?php
-		echo Yii::t('gip', 'In group');
+		echo '<span class="pull-right">'.Yii::t('gip', 'In group').'</span>'.Yii::t('gip', 'Filter: ').' ';
         echo Html::textInput('search_ingroup', '', ['class' => 'item-search', 'data-target' => 'ingroup']) . '<br>';
         echo Html::listBox('items', '', $ingroup, [
             'id' => 'ingroup',
