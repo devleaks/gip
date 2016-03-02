@@ -10,4 +10,28 @@ use \common\models\base\AttributeValue as BaseAttributeValue;
  */
 class AttributeValue extends BaseAttributeValue
 {
+		public $attribute_value;
+		
+	    /**
+	     * @inheritdoc
+	     */
+	    public function attributeLabels()
+	    {
+	        return array_merge([
+	            'attribute_value' => Yii::t('gip', 'Value'),
+	        ], parent::attributeLabels());
+	    }
+
+
+		public function getListOfValues() {
+			if($ea = $this->getEntityAttribute()->one()) {
+				if($at = $ea->getAttributeType()->one()) {
+					if($lv = $at->getListOfValues()->one()) {
+						return $lv->getValues();
+					}
+				}
+			}
+			return null;
+		}
+		
 }

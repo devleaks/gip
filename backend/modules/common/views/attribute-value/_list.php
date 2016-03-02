@@ -30,9 +30,22 @@ use yii\widgets\Pjax;
 							return $model->entityAttribute->name;
 	            		},
 	        ],
+		    'value_text' => [
+		    	'type' => TabularForm::INPUT_RAW,
+				'value' => function ($model, $key, $index, $widget) {
+						if($items = $model->getListOfValues()) {
+							return Html::dropdownList('AttributeValue['.$model->id.'][value_text]', $model->value_text, $items,
+													 ['class' => 'form-control', 'id' => 'attributevalue-'.$model->id.'-value_text']);
+						} else {
+							return Html::textInput('AttributeValue['.$model->id.'][value_text]', $model->value_text, ['class' => 'form-control', 'id' => 'attributevalue-'.$model->id.'-value_text']);
+		        		}
+				},
+			],
+/*			<input type="text" id="attributevalue-5-value_text" class="form-control" name="AttributeValue[5][value_text]">
             'value_text' => [
             	'type' => TabularForm::INPUT_TEXT,
 			],
+*/
             'value_number' => [
             	'type' => TabularForm::INPUT_TEXT,
 			],
