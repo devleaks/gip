@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+use common\behaviors\Attribute;
+
 use Yii;
 use \common\models\base\DetectionType as BaseDetectionType;
 
@@ -10,4 +12,6 @@ use \common\models\base\DetectionType as BaseDetectionType;
  */
 class DetectionType extends BaseDetectionType
 {
+	use Attribute;
+
 }

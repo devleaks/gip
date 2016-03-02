@@ -1,5 +1,10 @@
 <?php
 
+use common\models\Provider;
+use common\models\Rule;
+use common\models\Service;
+
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
@@ -29,34 +34,49 @@ $this->params['breadcrumbs'][] = $this->title;
             'type'=>DetailView::TYPE_INFO,
         ],
         'attributes' => [
-            'id',
-            'service_id',
-            'rule_id',
-            'source_id',
-            'enabled',
-            'trusted',
             'name',
             'description',
-            [
-                'attribute'=>'created_at',
-                'format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A'],
-                'type'=>DetailView::INPUT_WIDGET,
-                'widgetOptions'=> [
-                    'class'=>DateControl::classname(),
-                    'type'=>DateControl::FORMAT_DATETIME
-                ]
-            ],
-            [
-                'attribute'=>'updated_at',
-                'format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A'],
-                'type'=>DetailView::INPUT_WIDGET,
-                'widgetOptions'=> [
-                    'class'=>DateControl::classname(),
-                    'type'=>DateControl::FORMAT_DATETIME
-                ]
-            ],
-            'created_by',
-            'updated_by',
+			[
+				'attribute' => 'service_id',
+				'type'  => DetailView::INPUT_DROPDOWN_LIST,
+				'label' => Yii::t('gip', 'Service'),
+				'items' => ArrayHelper::map(Service::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+	            'value' => isset($model->service) ? $model->service->name : '',
+			],
+			[
+				'attribute' => 'rule_id',
+				'type'  => DetailView::INPUT_DROPDOWN_LIST,
+				'label' => Yii::t('gip', 'Rule'),
+				'items' => ArrayHelper::map(Rule::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+	            'value' => isset($model->rule) ? $model->rule->name : '',
+			],
+			[
+				'attribute' => 'provider_id',
+				'type'  => DetailView::INPUT_DROPDOWN_LIST,
+				'label' => Yii::t('gip', 'Provider'),
+				'items' => ArrayHelper::map(Provider::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+	            'value' => isset($model->provider) ? $model->provider->name : '',
+			],
+			[
+				'attribute' => 'enabled',
+				'type' => DetailView::INPUT_SWITCH,
+				'widgetOptions' => [
+				    'pluginOptions' => [
+						'onText' => Yii::t('store', 'Yes'),
+						'offText' =>  Yii::t('store', 'No')
+					],
+				],
+			],
+			[
+				'attribute' => 'trusted',
+				'type' => DetailView::INPUT_SWITCH,
+				'widgetOptions' => [
+				    'pluginOptions' => [
+						'onText' => Yii::t('store', 'Yes'),
+						'offText' =>  Yii::t('store', 'No')
+					],
+				],
+			],
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],

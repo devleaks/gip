@@ -31,7 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn'],
 
-            //'id',
             'filename',
             'note',
             'created_at',

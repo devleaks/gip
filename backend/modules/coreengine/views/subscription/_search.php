@@ -23,7 +23,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'rule_id') ?>
 
-    <?= $form->field($model, 'source_id') ?>
+    <?= $form->field($model, 'provider_id') ?>
 
     <?= $form->field($model, 'enabled') ?>
 

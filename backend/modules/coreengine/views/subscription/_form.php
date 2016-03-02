@@ -1,5 +1,10 @@
 <?php
 
+use common\models\Provider;
+use common\models\Rule;
+use common\models\Service;
+
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
 use kartik\builder\Form;
@@ -21,27 +26,19 @@ use kartik\datecontrol\DateControl;
         'columns' => 1,
         'attributes' => [
 
-            'service_id'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Service ID...']],
-
-            'rule_id'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Rule ID...']],
-
-            'source_id'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Source ID...']],
-
-            'enabled'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Enabled...']],
-
-            'trusted'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Trusted...']],
-
             'name'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Name...', 'maxlength'=>40]],
 
-            'created_by'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Created By...']],
-
-            'updated_by'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Updated By...']],
-
-            'created_at'=>['type'=> Form::INPUT_WIDGET, 'widgetClass'=>DateControl::classname(),'options'=>['type'=>DateControl::FORMAT_DATETIME]],
-
-            'updated_at'=>['type'=> Form::INPUT_WIDGET, 'widgetClass'=>DateControl::classname(),'options'=>['type'=>DateControl::FORMAT_DATETIME]],
-
             'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
+
+            'service_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Service...'], 'items' => ArrayHelper::map(Service::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
+
+            'rule_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Rule...'], 'items' => ArrayHelper::map(Rule::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
+
+            'provider_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Provider...'], 'items' => ArrayHelper::map(Service::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
+
+            'enabled'=>['type'=> Form::INPUT_CHECKBOX, 'options'=>['placeholder'=>'Enter Enabled...']],
+
+            'trusted'=>['type'=> Form::INPUT_CHECKBOX, 'options'=>['placeholder'=>'Enter Trusted...']],
 
         ]
 

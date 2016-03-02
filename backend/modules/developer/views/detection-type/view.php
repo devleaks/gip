@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\data\ActiveDataProvider;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
 
@@ -42,5 +43,16 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'enableEditMode'=>true,
     ]) ?>
+
+	<?php
+			$dataProvider = new ActiveDataProvider([
+				'query' => $model->getEntityAttributes()->orderBy('position'),
+			]);
+
+	        echo $this->render('../../../common/views/entity-attribute/_list', [
+	            'dataProvider' => $dataProvider,
+				'model' => $model,
+	        ]);
+	?>
 
 </div>

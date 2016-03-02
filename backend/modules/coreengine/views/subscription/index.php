@@ -1,5 +1,10 @@
 <?php
 
+use common\models\Provider;
+use common\models\Rule;
+use common\models\Service;
+
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
@@ -14,35 +19,48 @@ $this->title = Yii::t('gip', 'Subscriptions');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="subscription-index">
-    <div class="page-header">
-            <h1><?= Html::encode($this->title) ?></h1>
-    </div>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?php /* echo Html::a(Yii::t('gip', 'Create {modelClass}', [
-    'modelClass' => 'Subscription',
-]), ['create'], ['class' => 'btn btn-success'])*/  ?>
-    </p>
 
     <?php Pjax::begin(); echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'service_id',
-            'rule_id',
-            'source_id',
-            'enabled',
-//            'trusted', 
-//            'name', 
-//            'description', 
-//            ['attribute'=>'created_at','format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
-//            ['attribute'=>'updated_at','format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
-//            'created_by', 
-//            'updated_by', 
+            'name', 
+            'description', 
+			[
+				'attribute' => 'service_id',
+				'label' => Yii::t('gip', 'Service'),
+				'filter' => ArrayHelper::map(Service::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+	            'value' => function ($model, $key, $index, $widget) {
+							return $model->service ? $model->service->name : '';
+	            		},
+			],
+			[
+				'attribute' => 'rule_id',
+				'label' => Yii::t('gip', 'Rule'),
+				'filter' => ArrayHelper::map(Rule::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+	            'value' => function ($model, $key, $index, $widget) {
+							return $model->rule ? $model->rule->name : '';
+	            		},
+			],
+			[
+				'attribute' => 'provider_id',
+				'label' => Yii::t('gip', 'Source'),
+				'filter' => ArrayHelper::map(Provider::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+	            'value' => function ($model, $key, $index, $widget) {
+							return $model->provider ? $model->provider->name : '';
+	            		},
+			],
+			[
+				'attribute' => 'enabled',
+				'filter' => [0 => Yii::t('gip', 'No'), 1 => Yii::t('gip', 'Yes')],
+				'format' => 'boolean',
+			],
+			[
+				'attribute' => 'trusted',
+				'filter' => [0 => Yii::t('gip', 'No'), 1 => Yii::t('gip', 'Yes')],
+				'format' => 'boolean',
+			],
 
             [
                 'class' => 'yii\grid\ActionColumn',

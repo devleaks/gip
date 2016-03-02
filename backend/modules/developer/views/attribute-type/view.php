@@ -33,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'type'=>DetailView::TYPE_INFO,
         ],
         'attributes' => [
-            'id',
             'name',
             'description',
 	        [

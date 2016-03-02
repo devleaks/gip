@@ -45,56 +45,6 @@ class DeviceGroupController extends Controller
     }
 
     /**
-     * Displays a single DeviceGroup model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-			$outgroup = [];
-			foreach(Device::find()->each() as $device) {
-				$outgroup[$device->id] = $device->name;
-			}
-
-	        $ingroup = [];
-	        foreach ($model->getDevices()->each() as $device) {
-	            $ingroup[$device->id] = $device->name;
-	            unset($outgroup[$device->id]);
-	        }
-
-	        return $this->render('view', [
-				'model'	    => $model,
-	            'outgroup'  => $outgroup,
-	            'ingroup'   => $ingroup,
-	        ]);
-
-        } else {
-
-			$outgroup = [];
-			foreach(Device::find()->each() as $device) {
-				$outgroup[$device->id] = $device->name;
-			}
-
-	        $ingroup = [];
-	        foreach ($model->getDevices()->each() as $device) {
-	            $ingroup[$device->id] = $device->name;
-	            unset($outgroup[$device->id]);
-	        }
-
-	        return $this->render('view', [
-				'model'	    => $model,
-	            'outgroup'  => $outgroup,
-	            'ingroup'   => $ingroup,
-	        ]);
-
-        }
-    }
-
-    /**
      * Creates a new DeviceGroup model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -163,6 +113,52 @@ class DeviceGroupController extends Controller
 	/**
 	 * Functions to add/remove from Device Group
 	 */
+	
+	/**
+	 * Build groups of items inside or outside of group supplied
+	 */
+	private function getGroups($group) {
+		$outgroup = [];
+		foreach(Device::find()->each() as $item) {
+			$outgroup[$item->id] = $item->name;
+		}
+
+        $ingroup = [];
+        foreach ($group->getDevices()->each() as $item) {
+            $ingroup[$item->id] = $item->name;
+            unset($outgroup[$item->id]);
+        }
+		return [$ingroup, $outgroup];
+	}
+
+    /**
+     * Displays a single DeviceGroup model and its Devices.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionView($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			list($ingroup, $outgroup) = $this->getGroups($model);
+	        return $this->render('view', [
+				'model'	    => $model,
+	            'outgroup'  => $outgroup,
+	            'ingroup'   => $ingroup,
+	        ]);
+
+        } else {
+			list($ingroup, $outgroup) = $this->getGroups($model);
+	        return $this->render('view', [
+				'model'	    => $model,
+	            'outgroup'  => $outgroup,
+	            'ingroup'   => $ingroup,
+	        ]);
+
+        }
+    }
+
     private function doAction($group_id, $action)
     {
         $post = Yii::$app->request->post();
@@ -201,18 +197,7 @@ class DeviceGroupController extends Controller
     public function actionItemSearch($id, $target, $term = '')
     {
 		$model = $this->findModel($id);
-
-		$outgroup = [];
-		foreach(Device::find()->each() as $device) {
-			$outgroup[$device->id] = $device->name;
-		}
-			
-        $ingroup = [];
-        foreach ($model->getDevices()->each() as $device) {
-            $ingroup[$device->id] = $device->name;
-            unset($outgroup[$device->id]);
-        }
-
+		list($ingroup, $outgroup) = $this->getGroups($model);
         $result = [];
         if (!empty($term)) {
             foreach (${$target} as $device) {

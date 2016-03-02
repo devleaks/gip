@@ -53,7 +53,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'enableEditMode'=>true,
     ]) ?>
 
-
 	<?php
 			$dataProvider = new ActiveDataProvider([
 				'query' => $model->getParameters(true),

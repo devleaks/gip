@@ -8,6 +8,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
+use yii\data\ActiveDataProvider;
 
 /**
  * @var yii\web\View $this
@@ -68,5 +69,16 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'enableEditMode'=>true,
     ]) ?>
+
+	<?php
+			$dataProvider = new ActiveDataProvider([
+				'query' => $model->getParameters(true),
+			]);
+
+	        echo $this->render('../../../common/views/attribute-value/_list', [
+	            'dataProvider' => $dataProvider,
+				'model' => $model,
+	        ]);
+	?>
 
 </div>

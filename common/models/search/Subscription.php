@@ -15,7 +15,7 @@ class Subscription extends SubscriptionModel
     public function rules()
     {
         return [
-            [['id', 'service_id', 'rule_id', 'source_id', 'enabled', 'trusted', 'created_by', 'updated_by'], 'integer'],
+            [['id', 'service_id', 'rule_id', 'provider_id', 'enabled', 'trusted', 'created_by', 'updated_by'], 'integer'],
             [['name', 'description', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -42,7 +42,7 @@ class Subscription extends SubscriptionModel
             'id' => $this->id,
             'service_id' => $this->service_id,
             'rule_id' => $this->rule_id,
-            'source_id' => $this->source_id,
+            'provider_id' => $this->provider_id,
             'enabled' => $this->enabled,
             'trusted' => $this->trusted,
             'created_at' => $this->created_at,
