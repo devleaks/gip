@@ -4,6 +4,7 @@ namespace common\behaviors;
 
 use Yii;
 use yii\base\Behavior;
+use yii\helpers\ArrayHelper;
 
 /**
  *	Attribute behavior/trait adds function to fetch linked attributes.
@@ -11,11 +12,13 @@ use yii\base\Behavior;
 trait Attribute {
 
     /**
+	 * Note: Should be called getAttributes but conflicts with Yii2 ActiveRecord Model.
+	 *
      * @return \yii\db\ActiveQuery
      */
     public function getParameters()
     {
-        return Attribute::find()->where(['id' => $this->getEntityAttributes()->select('id')]);
+        return \common\models\Attribute::find()->where(['id' => $this->getEntityAttributes()->select('attribute_id')]);
     }
 
     /**
@@ -37,6 +40,15 @@ trait Attribute {
 			'entity_type' => $this::className(),
 			'entity_id'   => $this->id
 		]);
+    }
+
+
+    /**
+     * @return array()[id] = name
+     */
+    public function getParametersList()
+    {
+		return ArrayHelper::map($this->getParameters()->all(), 'id', 'name');
     }
 
 }

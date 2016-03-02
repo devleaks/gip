@@ -1,7 +1,15 @@
 <?php
 
+use common\models\Event;
+use common\models\EventType;
+use common\models\Processing;
+use common\models\Provider;
+use common\models\Service;
+
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\detail\DetailView;
+use yii\data\ActiveDataProvider;
 use kartik\datecontrol\DateControl;
 
 /**
@@ -27,10 +35,32 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'name',
             'description',
-            'service_id',
-            'provider_id',
-            'event_id',
-            'status',
+	        [
+	            'attribute'=>'service_id',
+				'type' => DetailView::INPUT_DROPDOWN_LIST,
+				'items' => ArrayHelper::map(Service::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+				'label' => Yii::t('gip', 'Service'),
+	            'value'=>isset($model->service) ? $model->service->name : '',
+	        ],
+	        [
+	            'attribute'=>'provider_id',
+				'type' => DetailView::INPUT_DROPDOWN_LIST,
+				'items' => ArrayHelper::map(Provider::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+				'label' => Yii::t('gip', 'Provider'),
+	            'value'=>isset($model->provider) ? $model->provider->name : '',
+	        ],
+	        [
+	            'attribute'=>'event_id',
+				'type' => DetailView::INPUT_DROPDOWN_LIST,
+				'items' => ArrayHelper::map(Event::find()->andWhere(['event_type_id' => EventType::getTargetEventID()])->asArray()->all(), 'id', 'name'),
+				'label' => Yii::t('gip', 'Target Event'),
+	            'value'=>isset($model->event) ? $model->event->name : '',
+	        ],
+	        [
+	            'attribute'=>'status',
+				'type' => DetailView::INPUT_DROPDOWN_LIST,
+				'items' => Processing::getLocalizedConstants('STATUS_'),
+	        ],
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],
@@ -42,4 +72,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'enableEditMode'=>true,
     ]) ?>
 
+	<?php
+			$dataProvider = new ActiveDataProvider([
+				'query' => $model->getMappings(true),
+			]);
+
+	        echo $this->render('_mapping', [
+	            'dataProvider' => $dataProvider,
+				'model' => $model,
+	        ]);
+	?>
 </div>

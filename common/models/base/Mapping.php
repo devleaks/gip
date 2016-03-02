@@ -42,7 +42,7 @@ abstract class Mapping extends \yii\db\ActiveRecord
     {
         return [
             [['processing_id', 'attribute_in', 'attribute_out', 'created_by', 'updated_by'], 'integer'],
-            [['attribute_in', 'attribute_out'], 'required'],
+            [['attribute_out'], 'required'],
             [['created_at', 'updated_at'], 'safe']
         ];
     }

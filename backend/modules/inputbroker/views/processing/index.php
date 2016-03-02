@@ -23,12 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'description',
             'service.name',
             'provider.name',
-//            'event_id', 
-//            'status', 
-//            ['attribute'=>'created_at','format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
-//            ['attribute'=>'updated_at','format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
-//            'created_by', 
-//            'updated_by', 
+            'event.name', 
+            'status', 
 
             [
                 'class' => 'yii\grid\ActionColumn',

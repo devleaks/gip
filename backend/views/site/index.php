@@ -31,7 +31,7 @@ $this->title = 'GIP - Administration';
                 <h3>Processing</h3>
 
 				<ul style="list-style: none;padding-left:0;">
-                    <li>&raquo; <a href="<?= Url::to(['/engine/rule']) ?>">Rules</a></li>
+                    <li>&raquo; <a href="<?= Url::to(['/coreengine/rule']) ?>">Rules</a></li>
 				</ul>
             </div>
 

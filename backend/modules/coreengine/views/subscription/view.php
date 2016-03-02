@@ -60,6 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			[
 				'attribute' => 'enabled',
 				'type' => DetailView::INPUT_SWITCH,
+				'format' => 'boolean',
 				'widgetOptions' => [
 				    'pluginOptions' => [
 						'onText' => Yii::t('store', 'Yes'),
@@ -70,6 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			[
 				'attribute' => 'trusted',
 				'type' => DetailView::INPUT_SWITCH,
+				'format' => 'boolean',
 				'widgetOptions' => [
 				    'pluginOptions' => [
 						'onText' => Yii::t('store', 'Yes'),

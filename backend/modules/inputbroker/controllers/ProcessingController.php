@@ -4,6 +4,7 @@ namespace backend\modules\inputbroker\controllers;
 
 use Yii;
 use common\models\Processing;
+use common\models\Mapping;
 use common\models\search\Processing as ProcessingSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -122,4 +123,30 @@ class ProcessingController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+
+	public function actionMappings() {
+		if(isset($_POST['Mapping'])) {
+			$mpost = $_POST['Mapping'];
+			$mids = array_keys($mpost);
+			$models = Mapping::find()->where(['id' => $mids])->indexBy('id')->all();
+
+			if (Mapping::loadMultiple($models, Yii::$app->request->post()) && Mapping::validateMultiple($models)) {
+		        $count = 0;
+		        foreach ($models as $index => $model) {
+		            // populate and save records for each model
+					Yii::trace('doing '.$model->id, 'ProcessingController::actionBatchUpdate');
+		            if ($model->save()) {
+		                $count++;
+					}
+		        }
+		        Yii::$app->session->setFlash('success', "Updated {$count} attribute(s) successfully.");
+		    } else {
+		        Yii::$app->session->setFlash('danger', "Error while saving attributes.");
+		    }
+		} else {
+		    Yii::$app->session->setFlash('danger', "Mapping is not set.");
+		}
+		return $this->redirect(Yii::$app->request->referrer);
+ 	}
 }
