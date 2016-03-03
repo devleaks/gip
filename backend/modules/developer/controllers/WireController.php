@@ -42,6 +42,21 @@ class WireController extends Controller
     }
 
     /**
+     * Lists all Wire models.
+     * @return mixed
+     */
+    public function actionWire()
+    {
+        $searchModel = new WireSearch;
+        $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+
+        return $this->render('wire', [
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+        ]);
+    }
+
+    /**
      * Displays a single Wire model.
      * @param integer $id
      * @return mixed

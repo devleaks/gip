@@ -5,6 +5,7 @@
 namespace common\models\base;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the base-model class for table "wire".
@@ -73,6 +74,32 @@ abstract class Wire extends \yii\db\ActiveRecord
             'updated_by' => Yii::t('gip', 'Updated By'),
         ];
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+                'timestamp' => [
+                        'class' => 'yii\behaviors\TimestampBehavior',
+                        'attributes' => [
+                                ActiveRecord::EVENT_BEFORE_INSERT => ['created_at'],
+                            	ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                        ],
+                        'value' => function() { return date('Y-m-d H:i:s'); },
+                ],
+                'timestamp' => [
+                        'class' => 'yii\behaviors\BlameableBehavior',
+                        'attributes' => [
+                                'createdByAttribute' => ['created_by'],
+                            	'updatedByAttribute' => ['updated_by'],
+                        ],
+                        'value' => Yii::$app->user->id,
+                ],
+        ];
+    }
+
 
     /**
      * @return \yii\db\ActiveQuery
