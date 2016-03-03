@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3005b656269ca271f47d266e75cf5634",
-    "content-hash": "324df92e5e32f55c81550296b75a2da4",
+    "hash": "c3068be681a53cb7d00c8feac400d4a9",
+    "content-hash": "72076dff8747e689b09861216f766909",
     "packages": [
         {
             "name": "2amigos/yii2-gallery-widget",
@@ -1561,6 +1561,48 @@
                 "icon"
             ],
             "time": "2015-11-30 17:28:02"
+        },
+        {
+            "name": "insolita/yii2-iconpicker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Insolita/yii2-iconpicker.git",
+                "reference": "322d88aad8974903049f19d0bc0d53a5e11c8990"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Insolita/yii2-iconpicker/zipball/322d88aad8974903049f19d0bc0d53a5e11c8990",
+                "reference": "322d88aad8974903049f19d0bc0d53a5e11c8990",
+                "shasum": ""
+            },
+            "require": {
+                "fortawesome/font-awesome": "*",
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-bootstrap": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "insolita\\iconpicker\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "insolita",
+                    "email": "donnainsolita@gmail.com"
+                }
+            ],
+            "description": "Widget for bootstrap-iconpicker plugin http://victor-valencia.github.io/bootstrap-iconpicker/",
+            "keywords": [
+                "extension",
+                "yii2"
+            ],
+            "time": "2014-11-19 04:23:54"
         },
         {
             "name": "justinrainbow/json-schema",
