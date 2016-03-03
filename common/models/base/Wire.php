@@ -6,6 +6,8 @@ namespace common\models\base;
 
 use Yii;
 use yii\db\ActiveRecord;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the base-model class for table "wire".
@@ -82,20 +84,20 @@ abstract class Wire extends \yii\db\ActiveRecord
     {
         return [
                 'timestamp' => [
-                        'class' => 'yii\behaviors\TimestampBehavior',
+                        'class' => TimestampBehavior::className(),
                         'attributes' => [
-                                ActiveRecord::EVENT_BEFORE_INSERT => ['created_at'],
-                            	ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+							ActiveRecord::EVENT_BEFORE_INSERT => ['created_at'],
+							ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                         ],
                         'value' => function() { return date('Y-m-d H:i:s'); },
                 ],
-                'timestamp' => [
-                        'class' => 'yii\behaviors\BlameableBehavior',
+                'blameable' => [
+                        'class' => BlameableBehavior::className(),
                         'attributes' => [
-                                'createdByAttribute' => ['created_by'],
-                            	'updatedByAttribute' => ['updated_by'],
+							ActiveRecord::EVENT_BEFORE_INSERT => ['created_by'],
+							ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_by'],
                         ],
-                        'value' => Yii::$app->user->id,
+                        'value' => null,
                 ],
         ];
     }

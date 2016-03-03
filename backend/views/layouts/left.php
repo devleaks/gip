@@ -9,6 +9,8 @@ $display_role = Yii::$app->user->identity->role;
 
 $items = [];
 
+$items[] = ['label' => 'The Wire', 'icon' => 'fa fa-hashtag', 'url' => ['/developer/the/wire']];
+
 if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER])) {
 	$items[] = [
         'label' => 'Engine',
@@ -67,7 +69,7 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER, User:
 			$subitems[] = ['label' => 'Provider Types', 'icon' => 'fa fa-arrow-right', 'url' => ['/developer/provider-type']],
 			$subitems[] = ['label' => 'Output Targets', 'icon' => 'fa fa-list-ol', 'url' => ['/developer/target']],
 			$subitems[] = ['label' => 'Notification Types', 'icon' => 'fa fa-envelope', 'url' => ['/developer/notification-type']],
-			$subitems[] = ['label' => 'The Wire', 'icon' => 'fa fa-hashtag', 'url' => ['/developer/wire']],
+			$subitems[] = ['label' => 'Wires', 'icon' => 'fa fa-hashtag', 'url' => ['/developer/wire']],
 		],
 	];
 }

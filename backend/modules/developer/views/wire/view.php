@@ -37,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             	'type'=> DetailView::INPUT_TEXTAREA,
 				'options' => ['rows' => 10],
 			],
+           'link',
             [
 				'attribute' => 'type_id',
 				'items' => EntityType::getTypesList(EntityType::CATEGORY_WIRE),

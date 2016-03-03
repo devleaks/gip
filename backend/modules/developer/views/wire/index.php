@@ -27,11 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
 				'attribute' => 'subject',
+				'format' => 'raw',
 				'value' => function($model, $key, $index, $widget) {
-					return $model->link ?
-							Html::a($model->subject, $model->link)
-							:
-							$model->subject;
+					return $model->subject . ($model->link ? Html::a(' <i class="fa fa-link"></i>', $model->link, ['target' => '_blank']) : '');
 				},
 			],
             [
@@ -65,7 +63,8 @@ $this->params['breadcrumbs'][] = $this->title;
 				'filter' => Wire::getLocalizedConstants('STATUS_'),
 			],
             [
-                'class' => 'yii\grid\ActionColumn',
+                'class' => 'kartik\grid\ActionColumn',
+				'noWrap' => true,
                 'buttons' => [
                 'update' => function ($url, $model) {
                                     return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['developer/wire/view','id' => $model->id,'edit'=>'t']), [

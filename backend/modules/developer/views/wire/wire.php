@@ -23,8 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
 	    <?= ListView::widget([
 	        'dataProvider' => $dataProvider,
 			'summary' => false,
-			'itemOptions' => false,
-			'options' => false,
+			'id' => false,
+			'itemOptions'  => ['tag' => false],
+			'options' => ['tag' => false],
 			'itemView' => '_wire-timeline'
 	    ]); ?>
 	</ul>
