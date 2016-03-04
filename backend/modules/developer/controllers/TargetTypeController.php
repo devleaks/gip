@@ -3,16 +3,16 @@
 namespace backend\modules\developer\controllers;
 
 use Yii;
-use common\models\Target;
-use common\models\search\Target as TargetSearch;
+use common\models\TargetType;
+use common\models\search\TargetType as TargetTypeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TargetController implements the CRUD actions for Target model.
+ * TargetTypeController implements the CRUD actions for TargetType model.
  */
-class TargetController extends Controller
+class TargetTypeController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class TargetController extends Controller
     }
 
     /**
-     * Lists all Target models.
+     * Lists all TargetType models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TargetSearch;
+        $searchModel = new TargetTypeSearch;
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class TargetController extends Controller
     }
 
     /**
-     * Displays a single Target model.
+     * Displays a single TargetType model.
      * @param integer $id
      * @return mixed
      */
@@ -58,13 +58,13 @@ class TargetController extends Controller
     }
 
     /**
-     * Creates a new Target model.
+     * Creates a new TargetType model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Target;
+        $model = new TargetType;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class TargetController extends Controller
     }
 
     /**
-     * Updates an existing Target model.
+     * Updates an existing TargetType model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -95,7 +95,7 @@ class TargetController extends Controller
     }
 
     /**
-     * Deletes an existing Target model.
+     * Deletes an existing TargetType model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -108,15 +108,15 @@ class TargetController extends Controller
     }
 
     /**
-     * Finds the Target model based on its primary key value.
+     * Finds the TargetType model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Target the loaded model
+     * @return TargetType the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Target::findOne($id)) !== null) {
+        if (($model = TargetType::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

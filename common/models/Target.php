@@ -2,7 +2,7 @@
 
 namespace common\models;
 
-use common\behaviors\AttributeValueTrait;
+use common\behaviors\AttributeValue;
 
 use Yii;
 use \common\models\base\Provider as BaseProvider;
@@ -10,11 +10,13 @@ use \common\models\base\Provider as BaseProvider;
 /**
  * This is the model class for table "provider".
  */
-class Provider extends BaseProvider
+class Target extends Channel
 {
-	use AttributeValueTrait;
+	use AttributeValue;
+
+	const DIRECTION = ChannelType::DIRECTION_OUT;	
 	
 	public function getType() {
-		return 'common\\models\\ProviderType';
+		return TargetType::className();
 	}
 }

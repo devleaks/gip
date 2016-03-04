@@ -4,16 +4,16 @@ use yii\helpers\Html;
 
 /**
  * @var yii\web\View $this
- * @var common\models\Event $model
+ * @var common\models\Channel $model
  */
 
 $this->title = Yii::t('gip', 'Create {modelClass}', [
-    'modelClass' => 'Event',
+    'modelClass' => 'Channel',
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Source Events'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Channels'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="event-create">
+<div class="channel-create">
     <div class="page-header">
         <h1><?= Html::encode($this->title) ?></h1>
     </div>

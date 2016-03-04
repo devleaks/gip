@@ -7,22 +7,22 @@ namespace common\models\base;
 use Yii;
 
 /**
- * This is the base-model class for table "event".
+ * This is the base-model class for table "channel".
  *
  * @property integer $id
  * @property string $name
  * @property string $description
- * @property string $factory
+ * @property integer $channel_type_id
+ * @property integer $event_id
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_by
  * @property integer $updated_by
  *
- * @property \common\models\Channel[] $channels
- * @property \common\models\Processing[] $processings
- * @property \common\models\Provider[] $providers
+ * @property \common\models\Event $event
+ * @property \common\models\ChannelType $channelType
  */
-abstract class Event extends \yii\db\ActiveRecord
+abstract class Channel extends \yii\db\ActiveRecord
 {
 
 
@@ -32,7 +32,7 @@ abstract class Event extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'event';
+        return 'channel';
     }
 
     /**
@@ -41,12 +41,11 @@ abstract class Event extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'channel_type_id', 'event_id'], 'required'],
+            [['channel_type_id', 'event_id', 'created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['created_by', 'updated_by'], 'integer'],
             [['name'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
-            [['factory'], 'string', 'max' => 80],
             [['name'], 'unique']
         ];
     }
@@ -60,7 +59,8 @@ abstract class Event extends \yii\db\ActiveRecord
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
             'description' => Yii::t('gip', 'Description'),
-            'factory' => Yii::t('gip', 'Factory'),
+            'channel_type_id' => Yii::t('gip', 'Channel Type ID'),
+            'event_id' => Yii::t('gip', 'Event ID'),
             'created_at' => Yii::t('gip', 'Created At'),
             'updated_at' => Yii::t('gip', 'Updated At'),
             'created_by' => Yii::t('gip', 'Created By'),
@@ -71,25 +71,17 @@ abstract class Event extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getChannels()
+    public function getEvent()
     {
-        return $this->hasMany(\common\models\Channel::className(), ['event_id' => 'id']);
+        return $this->hasOne(\common\models\Event::className(), ['id' => 'event_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProcessings()
+    public function getChannelType()
     {
-        return $this->hasMany(\common\models\Processing::className(), ['event_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProviders()
-    {
-        return $this->hasMany(\common\models\Provider::className(), ['input_event_id' => 'id']);
+        return $this->hasOne(\common\models\ChannelType::className(), ['id' => 'channel_type_id']);
     }
 
 

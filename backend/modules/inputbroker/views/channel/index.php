@@ -7,13 +7,23 @@ use yii\widgets\Pjax;
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var common\models\search\Target $searchModel
+ * @var common\models\search\Channel $searchModel
  */
 
-$this->title = Yii::t('gip', 'Targets');
+$this->title = Yii::t('gip', 'Channels');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="provider-index">
+<div class="channel-index">
+    <div class="page-header">
+            <h1><?= Html::encode($this->title) ?></h1>
+    </div>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?php /* echo Html::a(Yii::t('gip', 'Create {modelClass}', [
+    'modelClass' => 'Channel',
+]), ['create'], ['class' => 'btn btn-success'])*/  ?>
+    </p>
 
     <?php Pjax::begin(); echo GridView::widget([
         'dataProvider' => $dataProvider,
@@ -21,16 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
+            'id',
             'name',
             'description',
-			[
-				'attribute' => 'providerType.name',
-				'label' => Yii::t('gip', 'Target Type'),
-			],
-			[
-				'attribute' => 'inputEvent.name',
-				'label' => Yii::t('gip', 'Source Event'),
-			],
+            'channel_type_id',
+            'event_id',
 //            ['attribute'=>'created_at','format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
 //            ['attribute'=>'updated_at','format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
 //            'created_by', 
@@ -40,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'yii\grid\ActionColumn',
                 'buttons' => [
                 'update' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['inputbroker/provider/view','id' => $model->id,'edit'=>'t']), [
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['inputbroker/channel/view','id' => $model->id,'edit'=>'t']), [
                                                     'title' => Yii::t('yii', 'Edit'),
                                                   ]);}
 

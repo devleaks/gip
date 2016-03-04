@@ -5,12 +5,12 @@ use yii\widgets\ActiveForm;
 
 /**
  * @var yii\web\View $this
- * @var common\models\search\Target $model
+ * @var common\models\search\Channel $model
  * @var yii\widgets\ActiveForm $form
  */
 ?>
 
-<div class="provider-search">
+<div class="channel-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -23,9 +23,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description') ?>
 
-    <?= $form->field($model, 'provider_type_id') ?>
+    <?= $form->field($model, 'channel_type_id') ?>
 
-    <?= $form->field($model, 'input_event_id') ?>
+    <?= $form->field($model, 'event_id') ?>
 
     <?php // echo $form->field($model, 'created_at') ?>
 

@@ -5,18 +5,18 @@ namespace common\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Event as EventModel;
+use common\models\Target as TargetModel;
 
 /**
- * Event represents the model behind the search form about `common\models\Event`.
+ * Target represents the model behind the search form about `common\models\Target`.
  */
-class Event extends EventModel
+class Target extends TargetModel
 {
     public function rules()
     {
         return [
-            [['id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'description', 'factory', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'provider_type_id', 'input_event_id', 'created_by', 'updated_by'], 'integer'],
+            [['name', 'description', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -28,7 +28,7 @@ class Event extends EventModel
 
     public function search($params)
     {
-        $query = EventModel::find();
+        $query = TargetModel::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -40,6 +40,8 @@ class Event extends EventModel
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'provider_type_id' => $this->provider_type_id,
+            'input_event_id' => $this->input_event_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'created_by' => $this->created_by,
@@ -47,9 +49,8 @@ class Event extends EventModel
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'factory', $this->factory]);
+            ->andFilterWhere(['like', 'description', $this->description]);
 
-        return $dataProvider;
+        return $dataTarget;
     }
 }

@@ -1,10 +1,7 @@
 <?php
 
-use common\models\Event;
-use common\models\EventType;
-use common\models\TargetType;
+use common\models\ChannelType;
 
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
 use kartik\builder\Form;
@@ -12,12 +9,12 @@ use kartik\datecontrol\DateControl;
 
 /**
  * @var yii\web\View $this
- * @var common\models\Target $model
+ * @var common\models\ChannelType $model
  * @var yii\widgets\ActiveForm $form
  */
 ?>
 
-<div class="provider-form">
+<div class="channel-type-form">
 
     <?php $form = ActiveForm::begin(['type'=>ActiveForm::TYPE_HORIZONTAL]); echo Form::widget([
 
@@ -30,9 +27,7 @@ use kartik\datecontrol\DateControl;
 
         	'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
 
-            'provider_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Target...'], 'items' => ArrayHelper::map(TargetType::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
-
-            'input_event_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Source Event...'], 'items' => ArrayHelper::map(Event::find()->andWhere(['event_type_id' => EventType::getSourceEventID()])->orderBy('name')->asArray()->all(), 'id', 'name')],
+            'direction'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Direction...', 'maxlength'=>255], 'items' => ChannelType::getLocalizedConstants('DIRECTION_')],
 
         ]
 

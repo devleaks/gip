@@ -1,6 +1,8 @@
 <?php
 
+use common\models\Event;
 use common\models\EventType;
+use common\models\TargetType;
 
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -10,14 +12,14 @@ use kartik\datecontrol\DateControl;
 
 /**
  * @var yii\web\View $this
- * @var common\models\Event $model
+ * @var common\models\Target $model
  */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Target Events'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Targets'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="event-view">
+<div class="provider-view">
 
     <?= DetailView::widget([
             'model' => $model,
@@ -32,13 +34,37 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'description',
 	        [
-	            'attribute'=>'event_type_id',
-				'label' => Yii::t('gip', 'Event Type'),
+	            'attribute'=>'provider_type_id',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => ArrayHelper::map(EventType::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
-	            'value'=>isset($model->eventType) ? $model->eventType->name : '',
+				'items' => ArrayHelper::map(TargetType::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+				'label' => Yii::t('gip', 'Target Type'),
+	            'value'=>isset($model->providerType) ? $model->providerType->name : '',
 	        ],
-            'factory',
+	        [
+	            'attribute'=>'input_event_id',
+				'type' => DetailView::INPUT_DROPDOWN_LIST,
+				'items' => ArrayHelper::map(Event::find()->andWhere(['event_type_id' => EventType::getSourceEventID()])->asArray()->all(), 'id', 'name'),
+				'label' => Yii::t('gip', 'Source Event'),
+	            'value'=>isset($model->inputEvent) ? $model->inputEvent->name : '',
+	        ],
+            [
+                'attribute'=>'created_at',
+                'format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A'],
+				'displayOnly' => true,
+            ],
+            [
+                'attribute'=>'updated_at',
+                'format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A'],
+				'displayOnly' => true,
+            ],
+            [
+                'attribute'=>'created_by',
+				'displayOnly' => true,
+            ],
+            [
+                'attribute'=>'updated_by',
+				'displayOnly' => true,
+            ],
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],
@@ -52,13 +78,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	<?php
 			$dataProvider = new ActiveDataProvider([
-				'query' => $model->getParameters(),
+				'query' => $model->getParameters(true),
 			]);
 
-	        echo $this->render('../attribute/_list', [
+	        echo $this->render('../../../common/views/attribute-value/_list', [
 	            'dataProvider' => $dataProvider,
 				'model' => $model,
 	        ]);
 	?>
-
 </div>

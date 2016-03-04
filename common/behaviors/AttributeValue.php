@@ -2,8 +2,7 @@
 
 namespace common\behaviors;
 
-use common\behaviors\Attribute;
-use common\models\AttributeValue;
+use common\models\AttributeValue as AttributeValueModel;
 use common\models\EntityAttribute;
 
 use Yii;
@@ -21,17 +20,19 @@ trait AttributeValue {
     {
 		if($this->getType()->hasParameters()) {
 			$attribute_ids = [];
+			$class = $this->getType();
+			Yii::trace('classname='.$class, 'AttributeValue::createParameters');
 			foreach(EntityAttribute::find()->where(['entity_id' => $this->getType()->id,
-													'entity_type' => $this->getType()::className()
+													'entity_type' => $class::className()
 													])->each() as $ea) {
 				$attribute_ids[] = $ea->attribute_id;
 				// add missing atributes
-				if(! AttributeValue::find()->where(['entity_id' => $this->id,
+				if(! AttributeValueModel::find()->where(['entity_id' => $this->id,
 													'entity_type' => $this::className(),
 													'attribute_id' => $ea->attribute_id
 													])->exists()) {
 					Yii::trace('adding'.$ea->id, 'Detection::createParameters');
-					$av = new AttributeValue();
+					$av = new AttributeValueModel();
 					$av->attribute_id = $ea->attribute_id;
 					$av->entity_id = $this->id;
 					$av->entity_type = $this::className();
@@ -39,7 +40,7 @@ trait AttributeValue {
 				}
 			}
 			// remove unused attributes
-			foreach(AttributeValue::find()->where(['entity_id' => $this->id, 'entity_type' => $this::className()])
+			foreach(AttributeValueModel::find()->where(['entity_id' => $this->id, 'entity_type' => $this::className()])
 										  ->andWhere(['not', ['attribute_id' => $attribute_ids]])
 										  ->each() as $av) {
 				$av->delete();
@@ -49,9 +50,10 @@ trait AttributeValue {
 
     protected function getParameters_i()
     {
-		return  AttributeValue::find()->andWhere([
+		$class = $this->getType();
+		return  AttributeValueModel::find()->andWhere([
 			'attribute_id' => EntityAttribute::find()->where(['entity_id' => $this->getType()->id,
-															  'entity_type' => $this->getType()::className()
+															  'entity_type' => $class::className()
 															 ])->select('attribute_id'),
 			'entity_type' => $this::className(),
 			'entity_id' => $this->id

@@ -1,18 +1,18 @@
 <?php
 
-namespace backend\modules\developer\controllers;
+namespace backend\modules\inputbroker\controllers;
 
 use Yii;
-use common\models\Target;
-use common\models\search\Target as TargetSearch;
+use common\models\Event;
+use common\models\search\Event as EventSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TargetController implements the CRUD actions for Target model.
+ * EventController implements the CRUD actions for Event model.
  */
-class TargetController extends Controller
+class EventController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class TargetController extends Controller
     }
 
     /**
-     * Lists all Target models.
+     * Lists all Event models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TargetSearch;
+        $searchModel = new EventSearch;
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class TargetController extends Controller
     }
 
     /**
-     * Displays a single Target model.
+     * Displays a single Event model.
      * @param integer $id
      * @return mixed
      */
@@ -58,13 +58,13 @@ class TargetController extends Controller
     }
 
     /**
-     * Creates a new Target model.
+     * Creates a new Event model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Target;
+        $model = new Event;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class TargetController extends Controller
     }
 
     /**
-     * Updates an existing Target model.
+     * Updates an existing Event model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -95,7 +95,7 @@ class TargetController extends Controller
     }
 
     /**
-     * Deletes an existing Target model.
+     * Deletes an existing Event model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -108,15 +108,15 @@ class TargetController extends Controller
     }
 
     /**
-     * Finds the Target model based on its primary key value.
+     * Finds the Event model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Target the loaded model
+     * @return Event the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Target::findOne($id)) !== null) {
+        if (($model = Event::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

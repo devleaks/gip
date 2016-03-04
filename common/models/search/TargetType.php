@@ -5,18 +5,18 @@ namespace common\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Event as EventModel;
+use common\models\TargetType as TargetTypeModel;
 
 /**
- * Event represents the model behind the search form about `common\models\Event`.
+ * TargetType represents the model behind the search form about `common\models\ChannelType::DIREC`.
  */
-class Event extends EventModel
+class TargetType extends TargetTypeModel
 {
     public function rules()
     {
         return [
             [['id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'description', 'factory', 'created_at', 'updated_at'], 'safe'],
+            [['name', 'description', 'direction', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -28,7 +28,7 @@ class Event extends EventModel
 
     public function search($params)
     {
-        $query = EventModel::find();
+        $query = TargetTypeModel::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -48,8 +48,9 @@ class Event extends EventModel
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'factory', $this->factory]);
+            ->andFilterWhere(['like', 'direction', $this->direction]);
 
         return $dataProvider;
-    }
+	}
+	
 }

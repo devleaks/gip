@@ -5,16 +5,16 @@ namespace common\models;
 use common\behaviors\Attribute;
 
 use Yii;
-use \common\models\base\ProviderType as BaseProviderType;
+use \common\models\base\TargetType as BaseTargetType;
 
 /**
- * This is the model class for table "channel_type::DIRECTION_IN".
+ * This is the model class for table "channel_type::DIRECTION_OUT".
  */
-class ProviderType extends ChannelType
+class TargetType extends ChannelType
 {
 	use Attribute;
 
-	const DIRECTION = ChannelType::DIRECTION_IN;	
+	const DIRECTION = ChannelType::DIRECTION_OUT;	
 
     /**
      * @inheritdoc

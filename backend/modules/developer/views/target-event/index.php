@@ -7,13 +7,13 @@ use yii\widgets\Pjax;
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var common\models\search\Target $searchModel
+ * @var common\models\search\Event $searchModel
  */
 
-$this->title = Yii::t('gip', 'Targets');
+$this->title = Yii::t('gip', 'Target Events');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="provider-index">
+<div class="event-index">
 
     <?php Pjax::begin(); echo GridView::widget([
         'dataProvider' => $dataProvider,
@@ -23,24 +23,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'name',
             'description',
-			[
-				'attribute' => 'providerType.name',
-				'label' => Yii::t('gip', 'Target Type'),
-			],
-			[
-				'attribute' => 'inputEvent.name',
-				'label' => Yii::t('gip', 'Source Event'),
-			],
-//            ['attribute'=>'created_at','format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
-//            ['attribute'=>'updated_at','format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
-//            'created_by', 
-//            'updated_by', 
-
+            'factory',
             [
                 'class' => 'yii\grid\ActionColumn',
                 'buttons' => [
                 'update' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['inputbroker/provider/view','id' => $model->id,'edit'=>'t']), [
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['developer/target/view','id' => $model->id,'edit'=>'t']), [
                                                     'title' => Yii::t('yii', 'Edit'),
                                                   ]);}
 

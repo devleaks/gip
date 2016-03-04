@@ -4,17 +4,17 @@ use yii\helpers\Html;
 
 /**
  * @var yii\web\View $this
- * @var common\models\Target $model
+ * @var common\models\ChannelType $model
  */
 
 $this->title = Yii::t('gip', 'Update {modelClass}: ', [
-    'modelClass' => 'Target',
+    'modelClass' => 'Channel Type',
 ]) . ' ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Targets'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Channel Types'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('gip', 'Update');
 ?>
-<div class="provider-update">
+<div class="channel-type-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

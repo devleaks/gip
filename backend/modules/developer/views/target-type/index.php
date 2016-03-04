@@ -7,13 +7,13 @@ use yii\widgets\Pjax;
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var common\models\search\Event $searchModel
+ * @var common\models\search\TargetType $searchModel
  */
 
-$this->title = Yii::t('gip', 'Source Events');
+$this->title = Yii::t('gip', 'Target Types');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="event-index">
+<div class="provider-type-index">
 
     <?php Pjax::begin(); echo GridView::widget([
         'dataProvider' => $dataProvider,
@@ -23,12 +23,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'name',
             'description',
-            'factory',
+
             [
                 'class' => 'yii\grid\ActionColumn',
                 'buttons' => [
                 'update' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['developer/target/view','id' => $model->id,'edit'=>'t']), [
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['developer/provider-type/view','id' => $model->id,'edit'=>'t']), [
                                                     'title' => Yii::t('yii', 'Edit'),
                                                   ]);}
 
@@ -39,6 +39,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'hover'=>true,
         'condensed'=>true,
         'floatHeader'=>true,
+
+
+
+
         'panel' => [
             'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> '.Html::encode($this->title).' </h3>',
             'type'=>'info',

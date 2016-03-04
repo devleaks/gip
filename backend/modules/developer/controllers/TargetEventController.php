@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\inputbroker\controllers;
+namespace backend\modules\developer\controllers;
 
 use Yii;
 use common\models\Event;
@@ -11,11 +11,11 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SourceController implements the CRUD actions for Event model.
+ * TargetEventController implements the CRUD actions for Event model.
  */
-class SourceController extends Controller
+class TargetEventController extends Controller
 {
-	const EVENT_TYPE = 'Source Event';
+	const EVENT_TYPE = 'Target Event';
 	
     public function behaviors()
     {
@@ -72,7 +72,6 @@ class SourceController extends Controller
         $model = new Event;
 		$event_type = $this->findType(self::EVENT_TYPE);
 		$model->event_type_id = $event_type->id;
-
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -131,6 +130,7 @@ class SourceController extends Controller
         }
     }
 
+
     protected function findType($name)
     {
         if (($model = EventType::findOne(['name' => $name])) !== null) {
@@ -139,5 +139,4 @@ class SourceController extends Controller
             throw new NotFoundHttpException('The requested type does not exist.');
         }
     }
-
 }

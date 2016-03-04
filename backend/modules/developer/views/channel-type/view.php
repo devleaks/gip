@@ -1,23 +1,25 @@
 <?php
 
-use common\models\EventType;
+use common\models\ChannelType;
 
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use yii\data\ActiveDataProvider;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
 
 /**
  * @var yii\web\View $this
- * @var common\models\Event $model
+ * @var common\models\ChannelType $model
  */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Source Events'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Channel Types'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="event-view">
+<div class="channel-type-view">
+    <div class="page-header">
+        <h1><?= Html::encode($this->title) ?></h1>
+    </div>
+
 
     <?= DetailView::widget([
             'model' => $model,
@@ -31,7 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'name',
             'description',
-            'factory',
+	        [
+	            'attribute'=>'direction',
+				'type' => DetailView::INPUT_DROPDOWN_LIST,
+				'items' => ChannelType::getLocalizedConstants('DIRECTION_'),
+	        ],
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],
@@ -42,16 +48,5 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'enableEditMode'=>true,
     ]) ?>
-
-	<?php
-			$dataProvider = new ActiveDataProvider([
-				'query' => $model->getEntityAttributes()->orderBy('position'),
-			]);
-
-	        echo $this->render('../../../common/views/entity-attribute/_list', [
-	            'dataProvider' => $dataProvider,
-				'model' => $model,
-	        ]);
-	?>
 
 </div>

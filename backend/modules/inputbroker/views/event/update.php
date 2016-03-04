@@ -10,7 +10,7 @@ use yii\helpers\Html;
 $this->title = Yii::t('gip', 'Update {modelClass}: ', [
     'modelClass' => 'Event',
 ]) . ' ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Source Events'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Events'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('gip', 'Update');
 ?>

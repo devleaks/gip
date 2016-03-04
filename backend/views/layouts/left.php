@@ -33,7 +33,7 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER])) {
         'icon' => 'fa fa-terminal',
         'url' => '#',
         'items' => [
-			$subitems[] = ['label' => 'Source Events', 'icon' => 'fa fa-list-ol', 'url' => ['/inputbroker/source']],
+			$subitems[] = ['label' => 'Provider Events', 'icon' => 'fa fa-list-ol', 'url' => ['/inputbroker/event']],
 			$subitems[] = ['label' => 'Providers', 'icon' => 'fa fa-arrow-right', 'url' => ['/inputbroker/provider']],
 			$subitems[] = ['label' => 'Processings', 'icon' => 'fa fa-cog', 'url' => ['/inputbroker/processing']],
 		],
@@ -42,12 +42,12 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER])) {
 if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER])) {
 	$items[] = [
         'label' => 'Viewer',
-        'icon' => 'fa fa-eye',
+        'icon' => 'fa fa-bar-chart',
         'url' => '#',
         'items' => [
-			$subitems[] = ['label' => 'The Wire', 'icon' => 'fa fa-history', 'url' => ['/developer/the/wire']],
 			$subitems[] = ['label' => 'Maps', 'icon' => 'fa fa-globe', 'url' => ['/viewer/map']],
-			$subitems[] = ['label' => 'Graphs', 'icon' => 'fa fa-bar-chart', 'url' => ['/viewer/chart']],
+			$subitems[] = ['label' => 'Wire', 'icon' => 'fa fa-history', 'url' => ['/viewer/wire']],
+			$subitems[] = ['label' => 'Graphs', 'icon' => 'fa fa-chart', 'url' => ['/viewer/chart']],
 			$subitems[] = ['label' => 'Dashboards', 'icon' => 'fa fa-dashboard', 'url' => ['/viewer/dashboard']],
 		],
 	];
@@ -58,16 +58,17 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER, User:
         'icon' => 'fa fa-code-fork',
         'url' => '#',
         'items' => [
-			$subitems[] = ['label' => 'Types', 'icon' => 'fa fa-file-o', 'url' => ['/developer/type']],
+			$subitems[] = ['label' => 'Entity Types', 'icon' => 'fa fa-file-o', 'url' => ['/developer/type']],
 			$subitems[] = ['label' => 'Lists of Values', 'icon' => 'fa fa-list', 'url' => ['/developer/list-of-values']],
 			$subitems[] = ['label' => 'Attribute Types', 'icon' => 'fa fa-font', 'url' => ['/developer/attribute-type']],
 			$subitems[] = ['label' => 'Attributes', 'icon' => 'fa fa-font', 'url' => ['/developer/attribute']],
-			$subitems[] = ['label' => 'Detection Types', 'icon' => 'fa fa-crosshairs', 'url' => ['/developer/detection-type']],
-			$subitems[] = ['label' => 'Event Types', 'icon' => 'fa fa-truck', 'url' => ['/developer/event-type']],
-			$subitems[] = ['label' => 'Provider Types', 'icon' => 'fa fa-arrow-right', 'url' => ['/developer/provider-type']],
-			$subitems[] = ['label' => 'Output Targets', 'icon' => 'fa fa-list-ol', 'url' => ['/developer/target']],
+			$subitems[] = ['label' => 'Detection Types', 'icon' => 'fa fa-gavel', 'url' => ['/developer/detection-type']],
 			$subitems[] = ['label' => 'Notification Types', 'icon' => 'fa fa-envelope', 'url' => ['/developer/notification-type']],
-			$subitems[] = ['label' => 'Wires', 'icon' => 'fa fa-hashtag', 'url' => ['/developer/wire']],
+			$subitems[] = ['label' => 'Provider Types', 'icon' => 'fa fa-arrow-right', 'url' => ['/developer/provider-type']],
+			$subitems[] = ['label' => 'Target Types', 'icon' => 'fa fa-arrow-left', 'url' => ['/developer/target-type']],
+			$subitems[] = ['label' => 'Target Events', 'icon' => 'fa fa-list-ol', 'url' => ['/inputbroker/event']],
+			$subitems[] = ['label' => 'Targets', 'icon' => 'fa fa-arrow-left', 'url' => ['/developer/target']],
+			$subitems[] = ['label' => 'The Wire', 'icon' => 'fa fa-hashtag', 'url' => ['/developer/wire']],
 		],
 	];
 }

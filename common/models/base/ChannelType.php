@@ -7,32 +7,36 @@ namespace common\models\base;
 use Yii;
 
 /**
- * This is the base-model class for table "event".
+ * This is the base-model class for table "channel_type".
  *
  * @property integer $id
  * @property string $name
  * @property string $description
- * @property string $factory
+ * @property string $direction
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_by
  * @property integer $updated_by
  *
  * @property \common\models\Channel[] $channels
- * @property \common\models\Processing[] $processings
- * @property \common\models\Provider[] $providers
  */
-abstract class Event extends \yii\db\ActiveRecord
+abstract class ChannelType extends \yii\db\ActiveRecord
 {
 
 
 
     /**
+    * ENUM field values
+    */
+    const DIRECTION_IN = 'IN';
+    const DIRECTION_OUT = 'OUT';
+    var $enum_labels = false;
+    /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'event';
+        return 'channel_type';
     }
 
     /**
@@ -41,13 +45,18 @@ abstract class Event extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'direction'], 'required'],
+            [['direction'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['created_by', 'updated_by'], 'integer'],
             [['name'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
-            [['factory'], 'string', 'max' => 80],
-            [['name'], 'unique']
+            [['name'], 'unique'],
+            ['direction', 'in', 'range' => [
+                    self::DIRECTION_IN,
+                    self::DIRECTION_OUT,
+                ]
+            ]
         ];
     }
 
@@ -60,7 +69,7 @@ abstract class Event extends \yii\db\ActiveRecord
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
             'description' => Yii::t('gip', 'Description'),
-            'factory' => Yii::t('gip', 'Factory'),
+            'direction' => Yii::t('gip', 'Direction'),
             'created_at' => Yii::t('gip', 'Created At'),
             'updated_at' => Yii::t('gip', 'Updated At'),
             'created_by' => Yii::t('gip', 'Created By'),
@@ -73,26 +82,35 @@ abstract class Event extends \yii\db\ActiveRecord
      */
     public function getChannels()
     {
-        return $this->hasMany(\common\models\Channel::className(), ['event_id' => 'id']);
+        return $this->hasMany(\common\models\Channel::className(), ['channel_type_id' => 'id']);
+    }
+
+
+
+
+    /**
+     * get column direction enum value label
+     * @param string $value
+     * @return string
+     */
+    public static function getDirectionValueLabel($value){
+        $labels = self::optsDirection();
+        if(isset($labels[$value])){
+            return $labels[$value];
+        }
+        return $value;
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * column direction ENUM value labels
+     * @return array
      */
-    public function getProcessings()
+    public static function optsDirection()
     {
-        return $this->hasMany(\common\models\Processing::className(), ['event_id' => 'id']);
+        return [
+            self::DIRECTION_IN => Yii::t('gip', 'In'),
+            self::DIRECTION_OUT => Yii::t('gip', 'Out'),
+        ];
     }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProviders()
-    {
-        return $this->hasMany(\common\models\Provider::className(), ['input_event_id' => 'id']);
-    }
-
-
-
 
 }

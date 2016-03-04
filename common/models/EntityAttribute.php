@@ -11,7 +11,8 @@ use \common\models\base\EntityAttribute as BaseEntityAttribute;
 class EntityAttribute extends BaseEntityAttribute
 {
 		public function getEntityName() {
-			if($model = $this->entity_type::findOne($this->entity_id))
+			$class = $this->entity_type;
+			if($model = $class::findOne($this->entity_id))
 				return $model->name;
 			else
 				return $this->entity_type.'('.$this->entity_id.')';
