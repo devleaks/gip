@@ -17,27 +17,18 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
     <?= $form->field($model, 'type_id') ?>
 
-    <?= $form->field($model, 'name') ?>
+    <?= $form->field($model, 'subject') ?>
 
-    <?= $form->field($model, 'description') ?>
+    <?= $form->field($model, 'body') ?>
 
     <?= $form->field($model, 'icon') ?>
 
-    <?php // echo $form->field($model, 'color') ?>
+    <?= $form->field($model, 'color') ?>
 
-    <?php // echo $form->field($model, 'status') ?>
+    <?= $form->field($model, 'status') ?>
 
-    <?php // echo $form->field($model, 'created_at') ?>
-
-    <?php // echo $form->field($model, 'created_by') ?>
-
-    <?php // echo $form->field($model, 'updated_at') ?>
-
-    <?php // echo $form->field($model, 'updated_by') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('gip', 'Search'), ['class' => 'btn btn-primary']) ?>

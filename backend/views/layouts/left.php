@@ -9,8 +9,6 @@ $display_role = Yii::$app->user->identity->role;
 
 $items = [];
 
-$items[] = ['label' => 'The Wire', 'icon' => 'fa fa-hashtag', 'url' => ['/developer/the/wire']];
-
 if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER])) {
 	$items[] = [
         'label' => 'Engine',
@@ -44,12 +42,12 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER])) {
 if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER])) {
 	$items[] = [
         'label' => 'Viewer',
-        'icon' => 'fa fa-bar-chart',
+        'icon' => 'fa fa-eye',
         'url' => '#',
         'items' => [
+			$subitems[] = ['label' => 'The Wire', 'icon' => 'fa fa-history', 'url' => ['/developer/the/wire']],
 			$subitems[] = ['label' => 'Maps', 'icon' => 'fa fa-globe', 'url' => ['/viewer/map']],
-			$subitems[] = ['label' => 'Wire', 'icon' => 'fa fa-history', 'url' => ['/viewer/wire']],
-			$subitems[] = ['label' => 'Graphs', 'icon' => 'fa fa-chart', 'url' => ['/viewer/chart']],
+			$subitems[] = ['label' => 'Graphs', 'icon' => 'fa fa-bar-chart', 'url' => ['/viewer/chart']],
 			$subitems[] = ['label' => 'Dashboards', 'icon' => 'fa fa-dashboard', 'url' => ['/viewer/dashboard']],
 		],
 	];
@@ -64,8 +62,8 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER, User:
 			$subitems[] = ['label' => 'Lists of Values', 'icon' => 'fa fa-list', 'url' => ['/developer/list-of-values']],
 			$subitems[] = ['label' => 'Attribute Types', 'icon' => 'fa fa-font', 'url' => ['/developer/attribute-type']],
 			$subitems[] = ['label' => 'Attributes', 'icon' => 'fa fa-font', 'url' => ['/developer/attribute']],
-			$subitems[] = ['label' => 'Detection Types', 'icon' => 'fa fa-arrow-right', 'url' => ['/developer/detection-type']],
-			$subitems[] = ['label' => 'Event Types', 'icon' => 'fa fa-arrow-right', 'url' => ['/developer/event-type']],
+			$subitems[] = ['label' => 'Detection Types', 'icon' => 'fa fa-crosshairs', 'url' => ['/developer/detection-type']],
+			$subitems[] = ['label' => 'Event Types', 'icon' => 'fa fa-truck', 'url' => ['/developer/event-type']],
 			$subitems[] = ['label' => 'Provider Types', 'icon' => 'fa fa-arrow-right', 'url' => ['/developer/provider-type']],
 			$subitems[] = ['label' => 'Output Targets', 'icon' => 'fa fa-list-ol', 'url' => ['/developer/target']],
 			$subitems[] = ['label' => 'Notification Types', 'icon' => 'fa fa-envelope', 'url' => ['/developer/notification-type']],

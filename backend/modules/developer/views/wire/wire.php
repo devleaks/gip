@@ -16,6 +16,8 @@ $last   = null;
 ?>
 <div class="wire-index">
 
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+
 	<ul class="timeline">
 		<?php
 			foreach($dataProvider->query->each() as $model) {

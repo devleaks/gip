@@ -18,7 +18,6 @@ $this->title = Yii::t('gip', 'Wires');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="wire-index">
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?php Pjax::begin(); echo GridView::widget([
         'dataProvider' => $dataProvider,
