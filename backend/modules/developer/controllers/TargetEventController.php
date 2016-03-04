@@ -4,7 +4,6 @@ namespace backend\modules\developer\controllers;
 
 use Yii;
 use common\models\Event;
-use common\models\EventType;
 use common\models\search\Event as EventSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -37,8 +36,6 @@ class TargetEventController extends Controller
     {
         $searchModel = new EventSearch;
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
-		$event_type = $this->findType(self::EVENT_TYPE);
-		$dataProvider->query->andWhere(['event_type_id' => $event_type->id]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
@@ -70,8 +67,6 @@ class TargetEventController extends Controller
     public function actionCreate()
     {
         $model = new Event;
-		$event_type = $this->findType(self::EVENT_TYPE);
-		$model->event_type_id = $event_type->id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -130,13 +125,4 @@ class TargetEventController extends Controller
         }
     }
 
-
-    protected function findType($name)
-    {
-        if (($model = EventType::findOne(['name' => $name])) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested type does not exist.');
-        }
-    }
 }

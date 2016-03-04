@@ -2,7 +2,7 @@
 
 namespace common\models;
 
-use common\behaviors\AttributeValueTrait;
+use common\behaviors\AttributeValue;
 
 use Yii;
 use \common\models\base\Notification as BaseNotification;
@@ -12,7 +12,7 @@ use \common\models\base\Notification as BaseNotification;
  */
 class Notification extends BaseNotification
 {
-	use AttributeValueTrait;
+	use AttributeValue;
 	
 	public function getType() {
 		return $this->notificationType;

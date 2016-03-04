@@ -1,7 +1,5 @@
 <?php
 
-use common\models\EventType;
-
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
@@ -27,8 +25,6 @@ use kartik\datecontrol\DateControl;
             'name'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Name...', 'maxlength'=>40]],
 
         	'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
-
-            'event_type_id'=>['type'=> Form::INPUT_TEXT, 'options'=>['readonly'=>true]],
 
             'factory'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Factory...', 'maxlength'=>80]],
 

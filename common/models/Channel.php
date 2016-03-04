@@ -17,13 +17,17 @@ class Channel extends BaseChannel
      */
 	public static function instantiate($row)
 	{
-	    switch ($row['direction']) {
-	        case Provider::DIRECTION:
-	            return new Provider();
-	        case Target::DIRECTION:
-	            return new Target();
-	        default:
-	           return new self;
-	    }
+		if($channel_type = ChannelType::findOne(['id' => $row['channel_type_id']])) {		
+		    switch ($channel_type->direction) {
+		        case Provider::DIRECTION:
+		            return new Provider();
+		        case Target::DIRECTION:
+		            return new Target();
+		        default:
+		           return new self;
+		    }
+		} else {
+           return new self;
+		}
 	}
 }

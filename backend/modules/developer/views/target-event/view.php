@@ -1,7 +1,5 @@
 <?php
 
-use common\models\EventType;
-
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\data\ActiveDataProvider;
@@ -31,13 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'name',
             'description',
-	        [
-	            'attribute'=>'event_type_id',
-				'label' => Yii::t('gip', 'Event Type'),
-				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => ArrayHelper::map(EventType::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
-	            'value'=>isset($model->eventType) ? $model->eventType->name : '',
-	        ],
             'factory',
         ],
         'deleteOptions'=>[

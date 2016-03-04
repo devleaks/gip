@@ -4,6 +4,7 @@ namespace backend\modules\inputbroker\controllers;
 
 use Yii;
 use common\models\Provider;
+use common\models\ProviderType;
 use common\models\search\Provider as ProviderSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -34,6 +35,10 @@ class ProviderController extends Controller
     {
         $searchModel = new ProviderSearch;
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+		$dir = [];
+		foreach(ProviderType::find()->each() as $pt)
+			$dir[] = $pt->id;
+		$dataProvider->query->andWhere(['channel_type_id' => $dir]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,

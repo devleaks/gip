@@ -1,7 +1,6 @@
 <?php
 
 use common\models\Event;
-use common\models\EventType;
 use common\models\TargetType;
 
 use yii\helpers\ArrayHelper;
@@ -43,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	        [
 	            'attribute'=>'input_event_id',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => ArrayHelper::map(Event::find()->andWhere(['event_type_id' => EventType::getSourceEventID()])->asArray()->all(), 'id', 'name'),
+				'items' => ArrayHelper::map(Event::find()->asArray()->all(), 'id', 'name'),
 				'label' => Yii::t('gip', 'Source Event'),
 	            'value'=>isset($model->inputEvent) ? $model->inputEvent->name : '',
 	        ],

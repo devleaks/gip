@@ -1,7 +1,6 @@
 <?php
 
 use common\models\Event;
-use common\models\EventType;
 use common\models\Provider;
 use common\models\Processing;
 use common\models\Service;
@@ -36,7 +35,7 @@ use kartik\datecontrol\DateControl;
 
         	'provider_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Service...', 'maxlength'=>255], 'items' => ArrayHelper::map(Provider::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
 
-        	'event_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Service...', 'maxlength'=>255], 'items' => ArrayHelper::map(Event::find()->andWhere(['event_type_id' => EventType::getSourceEventID()])->asArray()->all(), 'id', 'name')],
+        	'event_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Service...', 'maxlength'=>255], 'items' => ArrayHelper::map(Event::find()->asArray()->all(), 'id', 'name')],
 
             'status'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Data Type...', 'maxlength'=>255], 'items' => Processing::getLocalizedConstants('STATUS_')],
 

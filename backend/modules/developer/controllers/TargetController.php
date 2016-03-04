@@ -4,6 +4,7 @@ namespace backend\modules\developer\controllers;
 
 use Yii;
 use common\models\Target;
+use common\models\TargetType;
 use common\models\search\Target as TargetSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -34,6 +35,10 @@ class TargetController extends Controller
     {
         $searchModel = new TargetSearch;
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+		$dir = [];
+		foreach(TargetType::find()->each() as $pt)
+			$dir[] = $pt->id;
+		$dataProvider->query->andWhere(['channel_type_id' => $dir]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,

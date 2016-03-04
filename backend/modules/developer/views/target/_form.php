@@ -1,7 +1,6 @@
 <?php
 
 use common\models\Event;
-use common\models\EventType;
 use common\models\TargetType;
 
 use yii\helpers\ArrayHelper;
@@ -30,9 +29,9 @@ use kartik\datecontrol\DateControl;
 
         	'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
 
-            'provider_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Target...'], 'items' => ArrayHelper::map(TargetType::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
+            'channel_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Target...'], 'items' => ArrayHelper::map(TargetType::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
 
-            'input_event_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Source Event...'], 'items' => ArrayHelper::map(Event::find()->andWhere(['event_type_id' => EventType::getSourceEventID()])->orderBy('name')->asArray()->all(), 'id', 'name')],
+            'event_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Source Event...'], 'items' => ArrayHelper::map(Event::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
 
         ]
 

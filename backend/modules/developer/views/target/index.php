@@ -24,17 +24,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'description',
 			[
-				'attribute' => 'providerType.name',
+				'attribute' => 'channelType.name',
 				'label' => Yii::t('gip', 'Target Type'),
 			],
 			[
-				'attribute' => 'inputEvent.name',
-				'label' => Yii::t('gip', 'Source Event'),
+				'attribute' => 'event.name',
+				'label' => Yii::t('gip', 'Target Event'),
 			],
-//            ['attribute'=>'created_at','format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
-//            ['attribute'=>'updated_at','format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
-//            'created_by', 
-//            'updated_by', 
 
             [
                 'class' => 'yii\grid\ActionColumn',
