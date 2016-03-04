@@ -33,7 +33,7 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER])) {
         'icon' => 'fa fa-terminal',
         'url' => '#',
         'items' => [
-			$subitems[] = ['label' => 'Provider Events', 'icon' => 'fa fa-list-ol', 'url' => ['/inputbroker/event']],
+			$subitems[] = ['label' => 'Events', 'icon' => 'fa fa-list-ul', 'url' => ['/inputbroker/event']],
 			$subitems[] = ['label' => 'Providers', 'icon' => 'fa fa-arrow-right', 'url' => ['/inputbroker/provider']],
 			$subitems[] = ['label' => 'Processings', 'icon' => 'fa fa-cog', 'url' => ['/inputbroker/processing']],
 		],
@@ -66,7 +66,6 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER, User:
 			$subitems[] = ['label' => 'Notification Types', 'icon' => 'fa fa-envelope', 'url' => ['/developer/notification-type']],
 			$subitems[] = ['label' => 'Provider Types', 'icon' => 'fa fa-arrow-right', 'url' => ['/developer/provider-type']],
 			$subitems[] = ['label' => 'Target Types', 'icon' => 'fa fa-arrow-left', 'url' => ['/developer/target-type']],
-			$subitems[] = ['label' => 'Target Events', 'icon' => 'fa fa-list-ol', 'url' => ['/inputbroker/event']],
 			$subitems[] = ['label' => 'Targets', 'icon' => 'fa fa-arrow-left', 'url' => ['/developer/target']],
 			$subitems[] = ['label' => 'The Wire', 'icon' => 'fa fa-hashtag', 'url' => ['/developer/wire']],
 		],
