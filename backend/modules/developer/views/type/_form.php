@@ -1,7 +1,6 @@
 <?php
 
-use common\models\EntityType;
-use common\models\Wire;
+use common\models\Type;
 
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
@@ -11,31 +10,25 @@ use kartik\widgets\ColorInput
 
 /**
  * @var yii\web\View $this
- * @var common\models\Wire $model
+ * @var common\models\Type $model
  * @var yii\widgets\ActiveForm $form
  */
 ?>
 
-<div class="wire-form">
+<div class="type-form">
 
-    <?php $form = ActiveForm::begin(['type'=>ActiveForm::TYPE_HORIZONTAL]);
-
-		if($model->icon) $model->icon = 'fa-'.$model->icon;
-
-		echo Form::widget([
+    <?php $form = ActiveForm::begin(['type'=>ActiveForm::TYPE_HORIZONTAL]); echo Form::widget([
 
         'model' => $model,
         'form' => $form,
         'columns' => 1,
         'attributes' => [
 
-            'subject'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Wire Subject...', 'maxlength'=>160]],
+            'name'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Name...', 'maxlength'=>40]],
 
-        	'body'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Wire Body...', 'maxlength'=>2000]],
+            'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
 
-            'type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Wire Type...', 'maxlength'=>40], 'items' => EntityType::getTypesList(EntityType::CATEGORY_WIRE)],
-
-            'link'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Icon...', 'maxlength'=>200]],
+            'type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Type...', 'maxlength'=>40], 'items' => Type::forClass(Type::className())],
 
             'icon'=>['type'=> Form::INPUT_WIDGET,
 					 'widgetClass' => Iconpicker::className(),
@@ -53,8 +46,6 @@ use kartik\widgets\ColorInput
 						'options'=>['maxlength'=>40]
 					 ]
 			],
-
-            'status'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Status...', 'maxlength'=>40], 'items' => Wire::getLocalizedConstants('STATUS_')],
 
         ]
 

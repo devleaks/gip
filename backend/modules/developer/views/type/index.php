@@ -1,7 +1,6 @@
 <?php
 
-use common\models\EntityType;
-use common\models\Wire;
+use common\models\Type;
 
 use yii\helpers\Html;
 use kartik\grid\GridView;
@@ -11,14 +10,13 @@ use yii\widgets\Pjax;
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var common\models\search\Wire $searchModel
+ * @var common\models\search\Type $searchModel
  */
 
-$this->title = Yii::t('gip', 'Wires');
+$this->title = Yii::t('gip', 'Types');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="wire-index">
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+<div class="type-index">
 
     <?php Pjax::begin(); echo GridView::widget([
         'dataProvider' => $dataProvider,
@@ -26,17 +24,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            [
-				'attribute' => 'subject',
-				'format' => 'raw',
-				'value' => function($model, $key, $index, $widget) {
-					return $model->subject . ($model->link ? Html::a(' <i class="fa fa-link"></i>', $model->link, ['target' => '_blank']) : '');
-				},
-			],
-            [
+	        'name',
+	        'description',
+	        [
+				'label' => Yii::t('gip', 'Entity'),
 				'attribute' => 'type_id',
-				'filter' => EntityType::getTypesList(EntityType::CATEGORY_WIRE),
-				'value' => function ($model, $key, $index, $widget) {
+				'filter' => Type::forClass(Type::className()),
+	            'value' => function ($model, $key, $index, $widget) {
 							return $model->type->name;
 	            		},
 			],
@@ -59,16 +53,12 @@ $this->params['breadcrumbs'][] = $this->title;
 			    'format'=>'raw',
 				'filter' => false,
 			],
+
             [
-				'attribute' => 'status',
-				'filter' => Wire::getLocalizedConstants('STATUS_'),
-			],
-            [
-                'class' => 'kartik\grid\ActionColumn',
-				'noWrap' => true,
+                'class' => 'yii\grid\ActionColumn',
                 'buttons' => [
                 'update' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['developer/wire/view','id' => $model->id,'edit'=>'t']), [
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['developer/type/view','id' => $model->id,'edit'=>'t']), [
                                                     'title' => Yii::t('yii', 'Edit'),
                                                   ]);}
 
