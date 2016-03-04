@@ -1,6 +1,6 @@
 <?php
 
-use common\models\EntityType;
+use common\models\Type;
 use common\models\Wire;
 
 use yii\helpers\ArrayHelper;
@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
            'link',
             [
 				'attribute' => 'type_id',
-				'items' => EntityType::getTypesList(EntityType::CATEGORY_WIRE),
+				'items' => Type::forClass(Wire::className()),
             	'type'=> DetailView::INPUT_DROPDOWN_LIST,
 				'value' => $model->type->name,
 			],

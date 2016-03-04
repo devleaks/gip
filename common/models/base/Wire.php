@@ -25,7 +25,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $updated_at
  * @property integer $updated_by
  *
- * @property \common\models\EntityType $type
+ * @property \common\models\Type $type
  */
 abstract class Wire extends \yii\db\ActiveRecord
 {
@@ -89,7 +89,7 @@ abstract class Wire extends \yii\db\ActiveRecord
 							ActiveRecord::EVENT_BEFORE_INSERT => ['created_at'],
 							ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                         ],
-                        'value' => function() { return date('Y-m-d H:i:s'); },
+                        'value' => function() { return 'NOW()'; }, // mysql function
                 ],
                 'blameable' => [
                         'class' => BlameableBehavior::className(),
@@ -108,7 +108,7 @@ abstract class Wire extends \yii\db\ActiveRecord
      */
     public function getType()
     {
-        return $this->hasOne(\common\models\EntityType::className(), ['id' => 'type_id']);
+        return $this->hasOne(\common\models\Type::className(), ['id' => 'type_id']);
     }
 
 

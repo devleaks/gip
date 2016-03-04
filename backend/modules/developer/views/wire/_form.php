@@ -1,6 +1,6 @@
 <?php
 
-use common\models\EntityType;
+use common\models\Type;
 use common\models\Wire;
 
 use yii\helpers\Html;
@@ -33,7 +33,7 @@ use kartik\widgets\ColorInput
 
         	'body'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Wire Body...', 'maxlength'=>2000]],
 
-            'type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Wire Type...', 'maxlength'=>40], 'items' => EntityType::getTypesList(EntityType::CATEGORY_WIRE)],
+            'type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Wire Type...', 'maxlength'=>40], 'items' => Type::forClass(Wire::className())],
 
             'link'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Icon...', 'maxlength'=>200]],
 

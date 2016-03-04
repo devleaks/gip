@@ -16,7 +16,7 @@ class Wire extends WireModel
     {
         return [
             [['id', 'type_id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'description', 'icon', 'color', 'status', 'created_at', 'updated_at'], 'safe'],
+            [['subject', 'body', 'icon', 'color', 'status', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -47,8 +47,8 @@ class Wire extends WireModel
             'updated_by' => $this->updated_by,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description])
+        $query->andFilterWhere(['like', 'subject', $this->subject])
+            ->andFilterWhere(['like', 'body', $this->body])
             ->andFilterWhere(['like', 'icon', $this->icon])
             ->andFilterWhere(['like', 'color', $this->color])
             ->andFilterWhere(['like', 'status', $this->status]);

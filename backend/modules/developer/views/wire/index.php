@@ -1,6 +1,6 @@
 <?php
 
-use common\models\EntityType;
+use common\models\Type;
 use common\models\Wire;
 
 use yii\helpers\Html;
@@ -35,9 +35,9 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
             [
 				'attribute' => 'type_id',
-				'filter' => EntityType::getTypesList(EntityType::CATEGORY_WIRE),
+				'filter' => Type::forClass(Wire::className()),
 				'value' => function ($model, $key, $index, $widget) {
-							return $model->type->name;
+							return $model->type ? $model->type->name : $model->type_id;
 	            		},
 			],
 	        [
