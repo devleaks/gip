@@ -25,10 +25,10 @@ use yii\widgets\Pjax;
 					'label' => Yii::t('gip', 'Source Attribute'),
 					'type' => TabularForm::INPUT_DROPDOWN_LIST,
 					'items' => function ($model, $key, $index, $widget) {
-						return [''=>''] + $model->processing->provider->inputEvent->getParametersList();
+						return [''=>''] + $model->processing->provider->event->getParametersList();
 			        },
 					'value' => function ($model, $key, $index, $widget) {
-						return $model->processing->provider->inputEvent->name;
+						return $model->processing->provider->event->name;
 			        },
 				],
 				'attribute_out' => [

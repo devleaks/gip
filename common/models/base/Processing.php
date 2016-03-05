@@ -20,10 +20,12 @@ use Yii;
  * @property string $updated_at
  * @property integer $created_by
  * @property integer $updated_by
+ * @property integer $target_id
  *
  * @property \common\models\Mapping[] $mappings
  * @property \common\models\Service $service
- * @property \common\models\Provider $provider
+ * @property \common\models\Channel $provider
+ * @property \common\models\Channel $target
  * @property \common\models\Event $event
  */
 abstract class Processing extends \yii\db\ActiveRecord
@@ -45,8 +47,8 @@ abstract class Processing extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'service_id', 'provider_id', 'event_id'], 'required'],
-            [['service_id', 'provider_id', 'event_id', 'created_by', 'updated_by'], 'integer'],
+            [['name', 'service_id', 'provider_id', 'event_id', 'target_id'], 'required'],
+            [['service_id', 'provider_id', 'event_id', 'created_by', 'updated_by', 'target_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
@@ -72,6 +74,7 @@ abstract class Processing extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('gip', 'Updated At'),
             'created_by' => Yii::t('gip', 'Created By'),
             'updated_by' => Yii::t('gip', 'Updated By'),
+            'target_id' => Yii::t('gip', 'Target ID'),
         ];
     }
 
@@ -97,6 +100,14 @@ abstract class Processing extends \yii\db\ActiveRecord
     public function getProvider()
     {
         return $this->hasOne(\common\models\Provider::className(), ['id' => 'provider_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTarget()
+    {
+        return $this->hasOne(\common\models\Target::className(), ['id' => 'target_id']);
     }
 
     /**

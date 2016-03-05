@@ -1,6 +1,6 @@
 <?php
 
-use common\models\Event;
+use common\models\Target;
 use common\models\Processing;
 use common\models\Provider;
 use common\models\Service;
@@ -49,10 +49,10 @@ $this->params['breadcrumbs'][] = $this->title;
 	            'value'=>isset($model->provider) ? $model->provider->name : '',
 	        ],
 	        [
-	            'attribute'=>'event_id',
+	            'attribute'=>'target_id',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => ArrayHelper::map(Event::find()->asArray()->all(), 'id', 'name'),
-				'label' => Yii::t('gip', 'Target Event'),
+				'items' => ArrayHelper::map(Target::find()->asArray()->all(), 'id', 'name'),
+				'label' => Yii::t('gip', 'Target'),
 	            'value'=>isset($model->event) ? $model->event->name : '',
 	        ],
 	        [

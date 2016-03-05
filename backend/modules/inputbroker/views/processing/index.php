@@ -1,5 +1,7 @@
 <?php
 
+use common\models\Processing;
+
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
@@ -19,15 +21,29 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
+            ['class' => 'kartik\grid\SerialColumn'],
             'name',
             'description',
-            'service.name',
-            'provider.name',
-            'event.name', 
-            'status', 
+			[
+				'attribute' => 'service.name',
+				'label' => Yii::t('gip', 'Service'),
+			],
+			[
+				'attribute' => 'provider.name',
+				'label' => Yii::t('gip', 'Provider'),
+			],
+			[
+				'attribute' => 'target.name',
+				'label' => Yii::t('gip', 'Target'),
+			],
+            [
+				'attribute' => 'status',
+				'filter' => Processing::getLocalizedConstants('STATUS_'),
+			],
 
             [
-                'class' => 'yii\grid\ActionColumn',
+                'class' => 'kartik\grid\ActionColumn',
+				'noWrap' => true,
                 'buttons' => [
                 'update' => function ($url, $model) {
                                     return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['inputbroker/processing/view','id' => $model->id,'edit'=>'t']), [

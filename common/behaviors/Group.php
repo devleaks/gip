@@ -10,30 +10,31 @@ use yii\base\Behavior;
  */
 trait Group {
 	
-	public function getItems() {
+	public function getEntities() {
 		$class = $this::className();
 		if($this->getType() != '') {
-			return $class::find()->where(['device_type' => $this->device_type]);
+			return $class::find()->where(['type_id' => $this->type_id]);
 		} else {
-		    return $this->hasMany($class, ['id' => 'device_id'])->viaTable('device_device_group', ['device_group_id' => 'id']);
+			$via_table = 'entity_group_'.strtolower($this->getShortName()); // entity_group_zone = select from entity_group where entity_type=zone
+		    return $this->hasMany($class, ['id' => 'entity_id'])->viaTable($via_table, ['entity_group_id' => 'id']);
 		}
 	}
 	
-	public function add($device) {
-		if(! DeviceDeviceGroup::findOne(['device_group_id' => $this->id, 'device_id' => $device->id]) ) {
-			$ddg = new DeviceDeviceGroup([
-				'device_id' => $device->id,
-				'device_group_id' => $this->id,
+	public function add($entity) {
+		if(! EntityGroup::findOne(['entity_group_id' => $this->id, 'entity_id' => $entity->id, 'entity_type' => $this::className()]) ) {
+			$eg = new EntityGroup([
+				'entity_id' => $entity->id,
+				'entity_group_id' => $this->id,
+				'entity_type' => $this::className()
 			]);
-			$ddg->save();
-			//Yii::trace('errors '.print_r($model->errors, true), 'DeviceGroup::add');
+			$eg->save();
 		}
 		return false;
 	}
 
-	public function remove($device) {
-		if($ddg = DeviceDeviceGroup::findOne(['device_group_id' => $this->id, 'device_id' => $device->id])) {
-			return $ddg->delete();
+	public function remove($entity) {
+		if($eg = EntityGroup::findOne(['entity_group_id' => $this->id, 'entity_id' => $entity->id, 'entity_type' => $this::className()])) {
+			return $eg->delete();
 		}
 		return false;
 	}

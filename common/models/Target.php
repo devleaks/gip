@@ -16,7 +16,4 @@ class Target extends Channel
 
 	const DIRECTION = ChannelType::DIRECTION_OUT;	
 	
-	public function getType() {
-		return TargetType::className();
-	}
 }

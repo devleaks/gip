@@ -15,7 +15,7 @@ class Target extends TargetModel
     public function rules()
     {
         return [
-            [['id', 'provider_type_id', 'input_event_id', 'created_by', 'updated_by'], 'integer'],
+            [['id', 'channel_type_id', 'input_event_id', 'created_by', 'updated_by'], 'integer'],
             [['name', 'description', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -40,7 +40,7 @@ class Target extends TargetModel
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'provider_type_id' => $this->provider_type_id,
+            'channel_type_id' => $this->channel_type_id,
             'input_event_id' => $this->input_event_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

@@ -21,7 +21,7 @@ class Processing extends BaseProcessing
      */
     protected function createMappings()
     {
-		if($oe = $this->getEvent()->one()) {
+		if($oe = $this->getTarget()->one()->getEvent()->one()) {
 			Yii::trace('event out='.$oe->id, 'Processing::createMappings');
 			$attribute_ids = [];
 			foreach($oe->getEntityAttributes()->each() as $ea) {

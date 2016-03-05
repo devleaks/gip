@@ -30,4 +30,8 @@ class Channel extends BaseChannel
            return new self;
 		}
 	}
+
+	public function getType() {
+		return $this->channelType;
+	}
 }

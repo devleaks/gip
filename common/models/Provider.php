@@ -16,7 +16,4 @@ class Provider extends Channel
 
 	const DIRECTION = ChannelType::DIRECTION_IN;	
 	
-	public function getType() {
-		return ProvderType::classname();
-	}
 }

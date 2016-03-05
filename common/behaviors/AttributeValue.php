@@ -21,16 +21,16 @@ trait AttributeValue {
 		if($this->getType()->hasParameters()) {
 			$attribute_ids = [];
 			$class = $this->getType();
-			Yii::trace('classname='.$class, 'AttributeValue::createParameters');
+			//Yii::trace('classname='.$class::className(), 'AttributeValue::createParameters');
 			foreach(EntityAttribute::find()->where(['entity_id' => $this->getType()->id,
 													'entity_type' => $class::className()
 													])->each() as $ea) {
 				$attribute_ids[] = $ea->attribute_id;
 				// add missing atributes
 				if(! AttributeValueModel::find()->where(['entity_id' => $this->id,
-													'entity_type' => $this::className(),
-													'attribute_id' => $ea->attribute_id
-													])->exists()) {
+														 'entity_type' => $this::className(),
+														 'attribute_id' => $ea->attribute_id
+														])->exists()) {
 					Yii::trace('adding'.$ea->id, 'Detection::createParameters');
 					$av = new AttributeValueModel();
 					$av->attribute_id = $ea->attribute_id;
@@ -41,8 +41,8 @@ trait AttributeValue {
 			}
 			// remove unused attributes
 			foreach(AttributeValueModel::find()->where(['entity_id' => $this->id, 'entity_type' => $this::className()])
-										  ->andWhere(['not', ['attribute_id' => $attribute_ids]])
-										  ->each() as $av) {
+										  	   ->andWhere(['not', ['attribute_id' => $attribute_ids]])
+										  	   ->each() as $av) {
 				$av->delete();
 			}
 		}
@@ -76,7 +76,7 @@ trait AttributeValue {
     public function hasParameters()
     {
 		$cnt = $this->getParameters_i()->count();
-		Yii::trace('count '.$cnt, 'Detection::hasParameters');
+		//Yii::trace('count '.$cnt, 'Detection::hasParameters');
         return $cnt > 0;
     }
 

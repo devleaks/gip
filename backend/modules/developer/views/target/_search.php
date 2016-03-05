@@ -23,7 +23,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description') ?>
 
-    <?= $form->field($model, 'provider_type_id') ?>
+    <?= $form->field($model, 'channel_type_id') ?>
 
     <?= $form->field($model, 'input_event_id') ?>
 

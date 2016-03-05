@@ -247,13 +247,13 @@ use yii\helpers\Html;
                         <!-- Menu Body -->
                         <li class="user-body">
                             <div class="col-xs-4 text-center">
-                                <a href="#">Registrations</a>
+                                <a href="#">To Dos</a>
                             </div>
                             <div class="col-xs-4 text-center">
-                                <a href="#">Scores</a>
+                                <a href="#">Calendar</a>
                             </div>
                             <div class="col-xs-4 text-center">
-                                <a href="#">Handicap</a>
+                                <a href="#">Mail</a>
                             </div>
                         </li>
                         <!-- Menu Footer-->
