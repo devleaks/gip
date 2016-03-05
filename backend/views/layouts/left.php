@@ -42,12 +42,12 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER])) {
 if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER])) {
 	$items[] = [
         'label' => 'Viewer',
-        'icon' => 'fa fa-bar-chart',
+        'icon' => 'fa fa-eye',
         'url' => '#',
         'items' => [
 			$subitems[] = ['label' => 'Maps', 'icon' => 'fa fa-globe', 'url' => ['/viewer/map']],
 			$subitems[] = ['label' => 'Wire', 'icon' => 'fa fa-history', 'url' => ['/viewer/wire']],
-			$subitems[] = ['label' => 'Graphs', 'icon' => 'fa fa-chart', 'url' => ['/viewer/chart']],
+			$subitems[] = ['label' => 'Graphs', 'icon' => 'fa fa-bar-chart', 'url' => ['/viewer/chart']],
 			$subitems[] = ['label' => 'Dashboards', 'icon' => 'fa fa-dashboard', 'url' => ['/viewer/dashboard']],
 		],
 	];
@@ -55,7 +55,7 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER])) {
 if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER, User::ROLE_INTERNAL])) {
 	$items[] = [
         'label' => 'Developer',
-        'icon' => 'fa fa-code-fork',
+        'icon' => 'fa fa-code',
         'url' => '#',
         'items' => [
 			$subitems[] = ['label' => 'Entity Types', 'icon' => 'fa fa-file-o', 'url' => ['/developer/type']],
