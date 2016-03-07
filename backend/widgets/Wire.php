@@ -7,7 +7,6 @@
 
 namespace backend\widgets;
 
-use common\models\Wire;
 use common\models\search\Wire as WireSearch;
 
 use Yii;

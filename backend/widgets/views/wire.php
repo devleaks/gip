@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ListView;
 
+use devleaks\sieve\Sieve;
+
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
@@ -18,7 +20,14 @@ $last   = null;
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-	<ul class="timeline">
+	<?= Sieve::widget([
+		'id' => 'the-wire',
+		'pluginOptions' => [
+			'itemSelector' => '.timeline-item'
+		]
+	]) ?>
+
+	<ul id="the-wire" class="timeline">
 		<?php
 			foreach($dataProvider->query->each() as $model) {
 				if(!$last) {
