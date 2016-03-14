@@ -69,7 +69,11 @@
         "insolita/yii2-iconpicker": "*",
         "kop/yii2-scroll-pager": "dev-master",
         "insolita/yii2-migration-generator": "*",
-        "devleaks/yii2-sieve": "*"
+        "devleaks/yii2-sieve": "*",
+        "devleaks/yii2-weather": "dev-master",
+        "bower-asset/weather-widget": "*",
+        "morozovsk/yii2-websocket": "^1.0",
+        "morozovsk/websocket-examples": "^1.1"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

@@ -12,6 +12,7 @@ use Yii;
  * @property integer $id
  * @property string $name
  * @property string $description
+ * @property integer $type_id
  * @property string $factory
  * @property string $created_at
  * @property string $updated_at
@@ -19,8 +20,8 @@ use Yii;
  * @property integer $updated_by
  *
  * @property \common\models\Channel[] $channels
+ * @property \common\models\Type $type
  * @property \common\models\Processing[] $processings
- * @property \common\models\Provider[] $providers
  */
 abstract class Event extends \yii\db\ActiveRecord
 {
@@ -42,8 +43,8 @@ abstract class Event extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
+            [['type_id', 'created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['created_by', 'updated_by'], 'integer'],
             [['name'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
             [['factory'], 'string', 'max' => 80],
@@ -60,6 +61,7 @@ abstract class Event extends \yii\db\ActiveRecord
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
             'description' => Yii::t('gip', 'Description'),
+            'type_id' => Yii::t('gip', 'Type ID'),
             'factory' => Yii::t('gip', 'Factory'),
             'created_at' => Yii::t('gip', 'Created At'),
             'updated_at' => Yii::t('gip', 'Updated At'),
@@ -79,17 +81,17 @@ abstract class Event extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProcessings()
+    public function getType()
     {
-        return $this->hasMany(\common\models\Processing::className(), ['event_id' => 'id']);
+        return $this->hasOne(\common\models\Type::className(), ['id' => 'type_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProviders()
+    public function getProcessings()
     {
-        return $this->hasMany(\common\models\Provider::className(), ['input_event_id' => 'id']);
+        return $this->hasMany(\common\models\Processing::className(), ['event_id' => 'id']);
     }
 
 

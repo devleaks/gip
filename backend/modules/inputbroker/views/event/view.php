@@ -1,5 +1,8 @@
 <?php
 
+use common\models\Type;
+use common\models\Event;
+
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\data\ActiveDataProvider;
@@ -30,6 +33,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'description',
             'factory',
+            [
+				'attribute' => 'type_id',
+				'items' => Type::forClass(Event::className()),
+            	'type'=> DetailView::INPUT_DROPDOWN_LIST,
+				'value' => $model->type->name,
+			],
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],

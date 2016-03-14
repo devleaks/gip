@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f49c15db2d93ea2453c398ba910572f9",
-    "content-hash": "0980c995adc935d464fba2da56c00b1c",
+    "hash": "7c00a36937a69a283b7599d260c4c9f2",
+    "content-hash": "8f5e9b7734b27db71693e05911828b25",
     "packages": [
         {
             "name": "2amigos/yii2-gallery-widget",
@@ -406,6 +406,39 @@
             ]
         },
         {
+            "name": "bower-asset/geolocate-lite",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BlueBiteLLC/service-geolocate-lite-js.git",
+                "reference": "36e5943dac63c9124d9ecedf78d2e1d48f64661d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BlueBiteLLC/service-geolocate-lite-js/zipball/36e5943dac63c9124d9ecedf78d2e1d48f64661d",
+                "reference": "36e5943dac63c9124d9ecedf78d2e1d48f64661d",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "geo-lite.js",
+                "branch-alias": {
+                    "dev-master": "0.0.0-dev"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Lightweight Geolocation Plugin",
+            "keywords": [
+                "geo",
+                "geolocate",
+                "geolocation",
+                "html5"
+            ],
+            "time": "2016-02-23 16:16:01"
+        },
+        {
             "name": "bower-asset/gridstack",
             "version": "v0.2.5",
             "source": {
@@ -553,6 +586,38 @@
             ]
         },
         {
+            "name": "bower-asset/local-storage-lite",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BlueBiteLLC/service-local-storage-lite-js.git",
+                "reference": "db4d16abdf9065de7f24c3d7ff530942354c6d9f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BlueBiteLLC/service-local-storage-lite-js/zipball/db4d16abdf9065de7f24c3d7ff530942354c6d9f",
+                "reference": "db4d16abdf9065de7f24c3d7ff530942354c6d9f",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "ls-lite.js",
+                "branch-alias": {
+                    "dev-master": "0.0.0-dev"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Local Storage Utility",
+            "keywords": [
+                "local",
+                "localstorage",
+                "storage"
+            ],
+            "time": "2015-12-11 21:00:50"
+        },
+        {
             "name": "bower-asset/lodash",
             "version": "4.6.1",
             "source": {
@@ -570,16 +635,16 @@
         },
         {
             "name": "bower-asset/moment",
-            "version": "2.11.2",
+            "version": "2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moment/moment.git",
-                "reference": "dd9cff0104c0dc3f114f54107397c59920e764cc"
+                "reference": "b135bf1a6d58ff94287f0a21455bfa6a1ddc7226"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moment/moment/zipball/dd9cff0104c0dc3f114f54107397c59920e764cc",
-                "reference": "dd9cff0104c0dc3f114f54107397c59920e764cc",
+                "url": "https://api.github.com/repos/moment/moment/zipball/b135bf1a6d58ff94287f0a21455bfa6a1ddc7226",
+                "reference": "b135bf1a6d58ff94287f0a21455bfa6a1ddc7226",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -659,6 +724,47 @@
             "extra": {
                 "bower-asset-main": "dist/typeahead.bundle.js"
             }
+        },
+        {
+            "name": "bower-asset/weather-widget",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BlueBiteLLC/service-weather-js.git",
+                "reference": "f93fc9e891b01c1c514a8eb360cdae0275ee8146"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BlueBiteLLC/service-weather-js/zipball/f93fc9e891b01c1c514a8eb360cdae0275ee8146",
+                "reference": "f93fc9e891b01c1c514a8eb360cdae0275ee8146",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/geolocate-lite": "*",
+                "bower-asset/jquery": ">=1.9.0",
+                "bower-asset/local-storage-lite": "*"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components"
+                ],
+                "branch-alias": {
+                    "dev-master": "0.0.1-dev"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Weather Widget",
+            "keywords": [
+                "jquery",
+                "weather",
+                "widget"
+            ],
+            "time": "2016-01-22 17:17:28"
         },
         {
             "name": "bower-asset/yii2-pjax",
@@ -939,16 +1045,16 @@
         },
         {
             "name": "components/flag-icon-css",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lipis/flag-icon-css.git",
-                "reference": "fa5ed396e360c996b6c75f5c78d4bded4a12ca9b"
+                "reference": "f13b77e0323a674e6a56ac4284128ff73a39e115"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lipis/flag-icon-css/zipball/fa5ed396e360c996b6c75f5c78d4bded4a12ca9b",
-                "reference": "fa5ed396e360c996b6c75f5c78d4bded4a12ca9b",
+                "url": "https://api.github.com/repos/lipis/flag-icon-css/zipball/f13b77e0323a674e6a56ac4284128ff73a39e115",
+                "reference": "f13b77e0323a674e6a56ac4284128ff73a39e115",
                 "shasum": ""
             },
             "type": "component",
@@ -973,7 +1079,7 @@
                 }
             ],
             "description": "CSS for vector based country flags",
-            "time": "2016-02-25 07:34:02"
+            "time": "2016-03-06 17:05:22"
         },
         {
             "name": "composer/composer",
@@ -1282,6 +1388,52 @@
             "time": "2016-03-07 10:52:54"
         },
         {
+            "name": "devleaks/yii2-weather",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/devleaks/yii2-weather.git",
+                "reference": "d7e41fbd2ded43f290d9cceba233101fecaaad72"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/devleaks/yii2-weather/zipball/d7e41fbd2ded43f290d9cceba233101fecaaad72",
+                "reference": "d7e41fbd2ded43f290d9cceba233101fecaaad72",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/weather-widget": "*",
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-bootstrap": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "devleaks\\weather\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pierre M",
+                    "email": "devleaks.be@gmail.com"
+                }
+            ],
+            "description": "Widget displays weather information for current location if allowed.",
+            "keywords": [
+                "extension",
+                "weather",
+                "yii2"
+            ],
+            "support": {
+                "source": "https://github.com/devleaks/yii2-weather/tree/master",
+                "issues": "https://github.com/devleaks/yii2-weather/issues"
+            },
+            "time": "2016-03-07 18:32:07"
+        },
+        {
             "name": "dmstr/yii2-adminlte-asset",
             "version": "2.2.4",
             "source": {
@@ -1418,16 +1570,16 @@
         },
         {
             "name": "dmstr/yii2-helpers",
-            "version": "0.2.0",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmstr/yii2-helpers.git",
-                "reference": "1951d90ae9926b6aa64ad38a585ccdfa20a9b4f9"
+                "reference": "034af22a34645d89baf6cc2dace9fffe2c37fe55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmstr/yii2-helpers/zipball/1951d90ae9926b6aa64ad38a585ccdfa20a9b4f9",
-                "reference": "1951d90ae9926b6aa64ad38a585ccdfa20a9b4f9",
+                "url": "https://api.github.com/repos/dmstr/yii2-helpers/zipball/034af22a34645d89baf6cc2dace9fffe2c37fe55",
+                "reference": "034af22a34645d89baf6cc2dace9fffe2c37fe55",
                 "shasum": ""
             },
             "require": {
@@ -1458,7 +1610,7 @@
                 "extension",
                 "yii2"
             ],
-            "time": "2016-01-07 13:03:59"
+            "time": "2016-03-07 08:57:01"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -4310,6 +4462,182 @@
             "time": "2015-06-22 02:06:14"
         },
         {
+            "name": "morozovsk/websocket",
+            "version": "4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/morozovsk/websocket.git",
+                "reference": "8dbc716a089bb1bebef14acf03fd4785e259d84d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/morozovsk/websocket/zipball/8dbc716a089bb1bebef14acf03fd4785e259d84d",
+                "reference": "8dbc716a089bb1bebef14acf03fd4785e259d84d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "morozovsk\\websocket\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "simple chat (single daemon)",
+                    "homepage": "http://sharoid.ru/chat.html"
+                },
+                {
+                    "name": "pro chat (master + worker)",
+                    "homepage": "http://sharoid.ru/chat2.html"
+                },
+                {
+                    "name": "simple game",
+                    "homepage": "http://sharoid.ru/game.html"
+                }
+            ],
+            "description": "simple php websocket server with examples and demo: simple chat (single daemon) - http://sharoid.ru/chat.html , pro chat (master + worker) - http://sharoid.ru/chat2.html , simple game - http://sharoid.ru/game.html",
+            "homepage": "http://sharoid.ru/game.html",
+            "keywords": [
+                "chat",
+                "demo",
+                "event",
+                "examle",
+                "game",
+                "laravel",
+                "libevent",
+                "server",
+                "socket_select",
+                "websocket",
+                "yii"
+            ],
+            "time": "2016-03-02 21:36:38"
+        },
+        {
+            "name": "morozovsk/websocket-examples",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/morozovsk/websocket-examples.git",
+                "reference": "3a3e3e1ba591dc0c1b1449ce3e00ec0a942b9e94"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/morozovsk/websocket-examples/zipball/3a3e3e1ba591dc0c1b1449ce3e00ec0a942b9e94",
+                "reference": "3a3e3e1ba591dc0c1b1449ce3e00ec0a942b9e94",
+                "shasum": ""
+            },
+            "require": {
+                "morozovsk/websocket": ">=3.0",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "morozovsk\\websocket\\examples\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "simple chat (single daemon)",
+                    "homepage": "http://sharoid.ru/chat.html"
+                },
+                {
+                    "name": "pro chat (master + worker)",
+                    "homepage": "http://sharoid.ru/chat2.html"
+                },
+                {
+                    "name": "simple game",
+                    "homepage": "http://sharoid.ru/game.html"
+                }
+            ],
+            "description": "examples for simple php websocket server: simple chat (single daemon) - http://sharoid.ru/chat.html , pro chat (master + worker) - http://sharoid.ru/chat2.html , simple game - http://sharoid.ru/game.html",
+            "homepage": "http://sharoid.ru/game.html",
+            "keywords": [
+                "chat",
+                "demo",
+                "event",
+                "examle",
+                "game",
+                "laravel",
+                "libevent",
+                "server",
+                "socket_select",
+                "websocket",
+                "yii"
+            ],
+            "time": "2015-09-06 17:29:54"
+        },
+        {
+            "name": "morozovsk/yii2-websocket",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/morozovsk/yii2-websocket.git",
+                "reference": "561151728f5baf03f5fb5a8babf8bec2b846bcb1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/morozovsk/yii2-websocket/zipball/561151728f5baf03f5fb5a8babf8bec2b846bcb1",
+                "reference": "561151728f5baf03f5fb5a8babf8bec2b846bcb1",
+                "shasum": ""
+            },
+            "require": {
+                "morozovsk/websocket": ">=3.0",
+                "yiisoft/yii2": "2.*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "morozovsk\\yii2websocket\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "simple chat (single daemon)",
+                    "homepage": "http://sharoid.ru/chat.html"
+                },
+                {
+                    "name": "pro chat (master + worker)",
+                    "homepage": "http://sharoid.ru/chat2.html"
+                },
+                {
+                    "name": "simple game",
+                    "homepage": "http://sharoid.ru/game.html"
+                }
+            ],
+            "description": "simple php websocket server with examples and demo: simple chat (single daemon) - http://sharoid.ru/chat.html , pro chat (master + worker) - http://sharoid.ru/chat2.html , simple game - http://sharoid.ru/game.html",
+            "homepage": "http://sharoid.ru/game.html",
+            "keywords": [
+                "chat",
+                "demo",
+                "event",
+                "examle",
+                "game",
+                "laravel",
+                "libevent",
+                "server",
+                "socket_select",
+                "websocket",
+                "yii"
+            ],
+            "time": "2015-09-06 13:46:42"
+        },
+        {
             "name": "nikic/php-parser",
             "version": "v0.9.5",
             "source": {
@@ -4737,16 +5065,16 @@
         },
         {
             "name": "schmunk42/yii2-giiant",
-            "version": "0.7.0",
+            "version": "0.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmunk42/yii2-giiant.git",
-                "reference": "2679e3d81b6518c33c44c5fc679b35d2c52f4572"
+                "reference": "8930e42d38c2c9aac056c791f11a58f46e68079f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmunk42/yii2-giiant/zipball/2679e3d81b6518c33c44c5fc679b35d2c52f4572",
-                "reference": "2679e3d81b6518c33c44c5fc679b35d2c52f4572",
+                "url": "https://api.github.com/repos/schmunk42/yii2-giiant/zipball/8930e42d38c2c9aac056c791f11a58f46e68079f",
+                "reference": "8930e42d38c2c9aac056c791f11a58f46e68079f",
                 "shasum": ""
             },
             "require": {
@@ -4759,7 +5087,11 @@
             },
             "type": "yii2-extension",
             "extra": {
-                "bootstrap": "schmunk42\\giiant\\Bootstrap"
+                "bootstrap": "schmunk42\\giiant\\Bootstrap",
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
             },
             "autoload": {
                 "psr-4": {
@@ -4784,7 +5116,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2016-01-01 15:52:42"
+            "time": "2016-03-09 15:43:57"
         },
         {
             "name": "seld/cli-prompt",
@@ -4979,26 +5311,26 @@
         },
         {
             "name": "symfony/console",
-            "version": "v2.8.3",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "56cc5caf051189720b8de974e4746090aaa10d44"
+                "reference": "2ed5e2706ce92313d120b8fe50d1063bcfd12e04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/56cc5caf051189720b8de974e4746090aaa10d44",
-                "reference": "56cc5caf051189720b8de974e4746090aaa10d44",
+                "url": "https://api.github.com/repos/symfony/console/zipball/2ed5e2706ce92313d120b8fe50d1063bcfd12e04",
+                "reference": "2ed5e2706ce92313d120b8fe50d1063bcfd12e04",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9",
+                "php": ">=5.5.9",
                 "symfony/polyfill-mbstring": "~1.0"
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/event-dispatcher": "~2.1|~3.0.0",
-                "symfony/process": "~2.1|~3.0.0"
+                "symfony/event-dispatcher": "~2.8|~3.0",
+                "symfony/process": "~2.8|~3.0"
             },
             "suggest": {
                 "psr/log": "For using the console logger",
@@ -5008,7 +5340,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8-dev"
+                    "dev-master": "3.0-dev"
                 }
             },
             "autoload": {
@@ -5035,29 +5367,29 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2016-02-28 16:20:50"
+            "time": "2016-02-28 16:24:34"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v2.8.3",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "65cb36b6539b1d446527d60457248f30d045464d"
+                "reference": "23ae8f9648d0a7fe94a47c8e20e5bf37c489a451"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/65cb36b6539b1d446527d60457248f30d045464d",
-                "reference": "65cb36b6539b1d446527d60457248f30d045464d",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/23ae8f9648d0a7fe94a47c8e20e5bf37c489a451",
+                "reference": "23ae8f9648d0a7fe94a47c8e20e5bf37c489a451",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9"
+                "php": ">=5.5.9"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8-dev"
+                    "dev-master": "3.0-dev"
                 }
             },
             "autoload": {
@@ -5084,29 +5416,29 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2016-02-22 15:02:30"
+            "time": "2016-02-23 15:16:06"
         },
         {
             "name": "symfony/finder",
-            "version": "v2.8.3",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "877bb4b16ea573cc8c024e9590888fcf7eb7e0f7"
+                "reference": "623bda0abd9aa29e529c8e9c08b3b84171914723"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/877bb4b16ea573cc8c024e9590888fcf7eb7e0f7",
-                "reference": "877bb4b16ea573cc8c024e9590888fcf7eb7e0f7",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/623bda0abd9aa29e529c8e9c08b3b84171914723",
+                "reference": "623bda0abd9aa29e529c8e9c08b3b84171914723",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9"
+                "php": ">=5.5.9"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8-dev"
+                    "dev-master": "3.0-dev"
                 }
             },
             "autoload": {
@@ -5133,11 +5465,11 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2016-02-22 16:12:45"
+            "time": "2016-01-27 05:14:46"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
@@ -5196,25 +5528,25 @@
         },
         {
             "name": "symfony/process",
-            "version": "v2.8.3",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "7dedd5b60550f33dca16dd7e94ef8aca8b67bbfe"
+                "reference": "dfecef47506179db2501430e732adbf3793099c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/7dedd5b60550f33dca16dd7e94ef8aca8b67bbfe",
-                "reference": "7dedd5b60550f33dca16dd7e94ef8aca8b67bbfe",
+                "url": "https://api.github.com/repos/symfony/process/zipball/dfecef47506179db2501430e732adbf3793099c8",
+                "reference": "dfecef47506179db2501430e732adbf3793099c8",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9"
+                "php": ">=5.5.9"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8-dev"
+                    "dev-master": "3.0-dev"
                 }
             },
             "autoload": {
@@ -5241,7 +5573,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2016-02-02 13:33:15"
+            "time": "2016-02-02 13:44:19"
         },
         {
             "name": "thomaspark/bootswatch",
@@ -6272,7 +6604,8 @@
         "mootensai/yii2-enhanced-gii": 20,
         "warrence/yii2-kartikgii": 20,
         "yurkinx/yii2-image": 20,
-        "kop/yii2-scroll-pager": 20
+        "kop/yii2-scroll-pager": 20,
+        "devleaks/yii2-weather": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

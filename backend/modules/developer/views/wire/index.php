@@ -65,12 +65,20 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => 'kartik\grid\ActionColumn',
 				'noWrap' => true,
+				'template' => '{view} {update} {delete} {publish}',
                 'buttons' => [
-                'update' => function ($url, $model) {
+                	'update' => function ($url, $model) {
                                     return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['developer/wire/view','id' => $model->id,'edit'=>'t']), [
                                                     'title' => Yii::t('yii', 'Edit'),
-                                                  ]);}
+                                    ]);
+								},
+                	'publish' => function ($url, $model) {
+                                    return Html::a('<span class="glyphicon glyphicon-bullhorn"></span>', Yii::$app->urlManager->createUrl(['developer/wire/publish','id' => $model->id]), [
+                                                    'title' => Yii::t('yii', 'Publish'),
+                                    ]);
+								}
 
+							
                 ],
             ],
         ],

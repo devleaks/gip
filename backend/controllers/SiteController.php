@@ -25,7 +25,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['help', 'index', 'search'],
+                        'actions' => ['help', 'index', 'search', 'wire'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -58,6 +58,14 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    /**
+     * Default action
+     */
+    public function actionWire()
+    {
+        return $this->render('wire');
     }
 
     /**

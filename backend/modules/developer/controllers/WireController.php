@@ -2,9 +2,12 @@
 
 namespace backend\modules\developer\controllers;
 
-use Yii;
 use common\models\Wire;
 use common\models\search\Wire as WireSearch;
+
+use backend\models\WebsocketClient;
+
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -137,4 +140,31 @@ class WireController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+	public function actionPublish($id) {
+        $model = $this->findModel($id);
+
+
+		$client = new WebsocketClient;
+		if( $client->connect('imac.local', 8051, '/gipadmin/site/wire/', 'index.php') ) {
+			$payload = json_encode(['message' => $model->body]) . "\n\r";
+			$client->sendData($payload);
+			return $payload;
+		} else {
+			return 'Error connecting...';
+		}
+/*
+		$client = stream_socket_client('tcp://imac.local:8051/', $errorNumber, $errorString);
+        if ($client) {
+			stream_set_blocking($client, 0);
+            fwrite($client, json_encode(['message' => $model->body]) . "\n\r");
+			fclose($client);
+			$feedback = 'Message '.$model->body.' sent.';
+        } else {
+			$feedback = 'Error: '.$errorNumber.': '.$errorString.'.';
+        }
+*/
+		return $feedback;
+	}
+
 }

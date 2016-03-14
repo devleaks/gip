@@ -12,7 +12,6 @@ use common\models\search\Wire as WireSearch;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\bootstrap\Widget;
-use common\models\Message;
 
 class Wire extends Widget {
 	/** number of recent message to display */

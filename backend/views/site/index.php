@@ -1,4 +1,8 @@
 <?php
+
+use devleaks\weather\Weather;
+
+
 use yii\helpers\Html;
 use yii\helpers\Url;
 /* @var $this yii\web\View */
@@ -44,5 +48,27 @@ $this->title = 'GIP - Administration';
             </div>
         </div>
 
+		<hr />
+
+        <div class="row">
+	
+            <div class="col-lg-6 col-lg-offset-3">
+				<?php if($this->beginCache('weather-widget', ['duration' => 60])) {
+						echo '<div id="weather"></div>';
+						echo Weather::widget([
+							'id' => 'weather',
+							'pluginOptions' => [
+								'celsius' => true,
+								'imgPath' => '/gipadmin/images/weather-widget/',
+								'key' => Yii::$app->params['FORECAST_APIKEY'],
+								'lat' => Yii::$app->params['FORECAST_DEFAULT_LAT'],
+								'lon' => Yii::$app->params['FORECAST_DEFAULT_LON'],
+							]
+						]);
+						$this->endCache();
+					}
+				?>
+            </div>
+		</div>
     </div>
 </div>
