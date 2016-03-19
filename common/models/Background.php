@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+use common\behaviors\AttributeValue;
+
 use Yii;
 use \common\models\base\Background as BaseBackground;
 
@@ -10,4 +12,9 @@ use \common\models\base\Background as BaseBackground;
  */
 class Background extends BaseBackground
 {
+	use AttributeValue;
+
+	public function getType() {
+		return $this->backgroundType;
+	}
 }

@@ -1,6 +1,10 @@
 <?php
 
+use common\models\BackgroundType;
+
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\data\ActiveDataProvider;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
 
@@ -14,10 +18,6 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Backgrounds'), 'url'
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="background-view">
-    <div class="page-header">
-        <h1><?= Html::encode($this->title) ?></h1>
-    </div>
-
 
     <?= DetailView::widget([
             'model' => $model,
@@ -29,31 +29,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'type'=>DetailView::TYPE_INFO,
         ],
         'attributes' => [
-            'id',
             'name',
             'description',
-            'background_id',
+	        [
+	            'attribute'=>'background_type_id',
+				'type' => DetailView::INPUT_DROPDOWN_LIST,
+				'items' => ArrayHelper::map(BackgroundType::find()->asArray()->all(), 'id', 'name'),
+				'label' => Yii::t('gip', 'Background Type'),
+	            'value'=>isset($model->backgroundType) ? $model->backgroundType->name : '',
+	        ],
             'status',
-            [
-                'attribute'=>'created_at',
-                'format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A'],
-                'type'=>DetailView::INPUT_WIDGET,
-                'widgetOptions'=> [
-                    'class'=>DateControl::classname(),
-                    'type'=>DateControl::FORMAT_DATETIME
-                ]
-            ],
-            [
-                'attribute'=>'updated_at',
-                'format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A'],
-                'type'=>DetailView::INPUT_WIDGET,
-                'widgetOptions'=> [
-                    'class'=>DateControl::classname(),
-                    'type'=>DateControl::FORMAT_DATETIME
-                ]
-            ],
-            'created_by',
-            'updated_by',
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],
@@ -64,5 +49,16 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'enableEditMode'=>true,
     ]) ?>
+
+	<?php
+			$dataProvider = new ActiveDataProvider([
+				'query' => $model->getParameters(true),
+			]);
+
+	        echo $this->render('../../../common/views/attribute-value/_list', [
+	            'dataProvider' => $dataProvider,
+				'model' => $model,
+	        ]);
+	?>
 
 </div>

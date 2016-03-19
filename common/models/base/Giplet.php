@@ -102,6 +102,14 @@ abstract class Giplet extends \yii\db\ActiveRecord
     }
 
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGipletType()
+    {
+        return $this->hasOne(\common\models\GipletType::className(), ['id' => 'giplet_type_id']);
+    }
+
 
 
 }

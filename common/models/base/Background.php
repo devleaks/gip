@@ -12,12 +12,12 @@ use Yii;
  * @property integer $id
  * @property string $name
  * @property string $description
- * @property integer $background_id
  * @property string $status
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_by
  * @property integer $updated_by
+ * @property integer $background_type_id
  * @property string $aliasModel
  */
 abstract class Background extends \yii\db\ActiveRecord
@@ -53,13 +53,13 @@ abstract class Background extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'background_id'], 'required'],
-            [['background_id', 'created_by', 'updated_by'], 'integer'],
+            [['name', 'background_type_id'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
+            [['created_by', 'updated_by', 'background_type_id'], 'integer'],
             [['name', 'status'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
             [['name'], 'unique'],
-            [['background_id'], 'exist', 'skipOnError' => true, 'targetClass' => BackgroundType::className(), 'targetAttribute' => ['background_id' => 'id']]
+            [['background_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => BackgroundType::className(), 'targetAttribute' => ['background_type_id' => 'id']]
         ];
     }
 
@@ -72,12 +72,12 @@ abstract class Background extends \yii\db\ActiveRecord
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
             'description' => Yii::t('gip', 'Description'),
-            'background_id' => Yii::t('gip', 'Background ID'),
             'status' => Yii::t('gip', 'Status'),
             'created_at' => Yii::t('gip', 'Created At'),
             'updated_at' => Yii::t('gip', 'Updated At'),
             'created_by' => Yii::t('gip', 'Created By'),
             'updated_by' => Yii::t('gip', 'Updated By'),
+            'background_type_id' => Yii::t('gip', 'Background Type ID'),
         ];
     }
 
@@ -92,14 +92,23 @@ abstract class Background extends \yii\db\ActiveRecord
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
             'description' => Yii::t('gip', 'Description'),
-            'background_id' => Yii::t('gip', 'Background Id'),
             'status' => Yii::t('gip', 'Status'),
             'created_at' => Yii::t('gip', 'Created At'),
             'updated_at' => Yii::t('gip', 'Updated At'),
             'created_by' => Yii::t('gip', 'Created By'),
             'updated_by' => Yii::t('gip', 'Updated By'),
+            'background_type_id' => Yii::t('gip', 'Background Type Id'),
             ]);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBackgroundType()
+    {
+        return $this->hasOne(\common\models\BackgroundType::className(), ['id' => 'background_type_id']);
+    }
+
 
 
 

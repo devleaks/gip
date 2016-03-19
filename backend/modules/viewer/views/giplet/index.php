@@ -1,4 +1,5 @@
 <?php
+use common\models\Giplet;
 
 use yii\helpers\Html;
 use kartik\grid\GridView;
@@ -14,35 +15,30 @@ $this->title = Yii::t('gip', 'Giplets');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="giplet-index">
-    <div class="page-header">
-            <h1><?= Html::encode($this->title) ?></h1>
-    </div>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?php /* echo Html::a(Yii::t('gip', 'Create {modelClass}', [
-    'modelClass' => 'Giplet',
-]), ['create'], ['class' => 'btn btn-success'])*/  ?>
-    </p>
 
     <?php Pjax::begin(); echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'kartik\grid\SerialColumn'],
 
-            'id',
             'name',
             'description',
-            'giplet_type_id',
-            'status',
-//            ['attribute'=>'created_at','format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
-//            ['attribute'=>'updated_at','format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
-//            'created_by', 
-//            'updated_by', 
+			[
+				'attribute' => 'giplet_type_id',
+				'label' => Yii::t('gip', 'Giplet Type'),
+	            'value' => function ($model, $key, $index, $widget) {
+							return $model->giplet_type_id;
+	            		},
+			],
+            [
+				'attribute' => 'status',
+				'filter' => Giplet::getLocalizedConstants('STATUS_'),
+			],
 
             [
-                'class' => 'yii\grid\ActionColumn',
+                'class' => 'kartik\grid\ActionColumn',
+				'noWrap' => true,
                 'buttons' => [
                 'update' => function ($url, $model) {
                                     return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['viewer/giplet/view','id' => $model->id,'edit'=>'t']), [
