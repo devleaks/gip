@@ -88,4 +88,52 @@ class SiteController extends Controller
 			'query' => $q,
         ]);
 	}
+
+    /**
+     * Default action
+     */
+    public function actionMotd()
+    {
+        return $this->render('motd');
+    }
+
+	/**
+	 * Add access rules if needed for getMessage
+	 */
+    public function actionGetMotd() {
+        header('Content-Type: text/event-stream');
+        header('Cache-Control: no-cache');
+        echo "retry: 10000\n\n"; // Optional. We tell the browser to retry after 10 seconds
+        foreach(Motd::find()->where(['new' => true])->orderBy('created_at desc')->each() as $message) {
+            echo "data: <p>" . $message->message . "</p>\n";
+			// $message->new = 0;
+			// $message->save();
+        }
+        flush();
+    }
+
+	public function actionMessage() {
+        $sse = new \common\components\SSE();
+        $counter = rand(1, 10);
+        $t = time();
+
+        //$sse->retry(3000);
+        while ((time() - $t) < 15) {
+            // Every second, sent a "ping" event.
+
+            $curDate = date(DATE_ISO8601);
+            $sse->event('ping',['time' => $curDate]);
+
+            // Send a simple message at random intervals.
+            $counter--;
+            if (!$counter) {
+                $sse->message("This is a message at time $curDate");
+                $counter = rand(1, 10);
+            }
+
+            $sse->flush();
+            sleep(1);
+        }
+        exit();
+    }
 }

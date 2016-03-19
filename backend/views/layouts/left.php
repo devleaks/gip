@@ -45,10 +45,11 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER])) {
         'icon' => 'fa fa-eye',
         'url' => '#',
         'items' => [
-			$subitems[] = ['label' => 'Maps', 'icon' => 'fa fa-globe', 'url' => ['/viewer/map']],
-			$subitems[] = ['label' => 'Wire', 'icon' => 'fa fa-history', 'url' => ['/viewer/wire']],
-			$subitems[] = ['label' => 'Graphs', 'icon' => 'fa fa-bar-chart', 'url' => ['/viewer/chart']],
 			$subitems[] = ['label' => 'Dashboards', 'icon' => 'fa fa-dashboard', 'url' => ['/viewer/dashboard']],
+			$subitems[] = ['label' => 'GIPlets', 'icon' => 'fa fa-bar-chart', 'url' => ['/viewer/giplet']],
+			$subitems[] = ['label' => 'Maps', 'icon' => 'fa fa-map', 'url' => ['/viewer/map']],
+			$subitems[] = ['label' => 'Backgrounds', 'icon' => 'fa fa-globe', 'url' => ['/viewer/background']],
+			$subitems[] = ['label' => 'Layers', 'icon' => 'fa fa-car', 'url' => ['/viewer/layer']],
 		],
 	];
 }
@@ -67,6 +68,9 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER, User:
 			$subitems[] = ['label' => 'Provider Types', 'icon' => 'fa fa-arrow-right', 'url' => ['/developer/provider-type']],
 			$subitems[] = ['label' => 'Target Types', 'icon' => 'fa fa-arrow-left', 'url' => ['/developer/target-type']],
 			$subitems[] = ['label' => 'Targets', 'icon' => 'fa fa-arrow-left', 'url' => ['/developer/target']],
+			$subitems[] = ['label' => 'GIPlet Types', 'icon' => 'fa fa-bar-chart', 'url' => ['/developer/giplet-type']],
+			$subitems[] = ['label' => 'Map Tools', 'icon' => 'fa fa-wrench', 'url' => ['/developer/tool']],
+			$subitems[] = ['label' => 'Map Background Types', 'icon' => 'fa fa-globe', 'url' => ['/developer/background-type']],
 			$subitems[] = ['label' => 'The Wire', 'icon' => 'fa fa-hashtag', 'url' => ['/developer/wire']],
 		],
 	];

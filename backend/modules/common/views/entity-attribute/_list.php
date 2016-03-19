@@ -33,7 +33,7 @@ use yii\widgets\Pjax;
 		        		},
 			],
 			'description',
-			'mandatory',
+			'mandatory:boolean',
 			
             [
                 'class' => 'yii\grid\ActionColumn',
