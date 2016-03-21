@@ -2,6 +2,9 @@
 
 namespace common\models;
 
+use common\behaviors\AttributeValue;
+use common\behaviors\Constant;
+
 use Yii;
 use \common\models\base\Layer as BaseLayer;
 
@@ -10,4 +13,14 @@ use \common\models\base\Layer as BaseLayer;
  */
 class Layer extends BaseLayer
 {
+	use AttributeValue;
+	use Constant;
+
+	const STATUS_ENABLED = 'ENABLED';
+	const STATUS_DISABLED = 'DISABLED';
+	
+
+	public function getType() {
+		return $this->layerType;
+	}
 }

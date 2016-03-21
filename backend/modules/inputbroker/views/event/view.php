@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'attribute' => 'type_id',
 				'items' => Type::forClass(Event::className()),
             	'type'=> DetailView::INPUT_DROPDOWN_LIST,
-				'value' => $model->type->name,
+				'value' => $model->type ? $model->type->name : '',
 			],
         ],
         'deleteOptions'=>[

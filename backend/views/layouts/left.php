@@ -50,6 +50,7 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER])) {
 			$subitems[] = ['label' => 'Maps', 'icon' => 'fa fa-map', 'url' => ['/viewer/map']],
 			$subitems[] = ['label' => 'Backgrounds', 'icon' => 'fa fa-globe', 'url' => ['/viewer/background']],
 			$subitems[] = ['label' => 'Layers', 'icon' => 'fa fa-car', 'url' => ['/viewer/layer']],
+			$subitems[] = ['label' => 'Tool Sets', 'icon' => 'fa fa-wrench', 'url' => ['/viewer/tool-group']],
 		],
 	];
 }
@@ -70,6 +71,7 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER, User:
 			$subitems[] = ['label' => 'Targets', 'icon' => 'fa fa-arrow-left', 'url' => ['/developer/target']],
 			$subitems[] = ['label' => 'GIPlet Types', 'icon' => 'fa fa-bar-chart', 'url' => ['/developer/giplet-type']],
 			$subitems[] = ['label' => 'Map Tools', 'icon' => 'fa fa-wrench', 'url' => ['/developer/tool']],
+			$subitems[] = ['label' => 'Map Layer Types', 'icon' => 'fa fa-bar-chart', 'url' => ['/developer/layer-type']],
 			$subitems[] = ['label' => 'Map Background Types', 'icon' => 'fa fa-globe', 'url' => ['/developer/background-type']],
 			$subitems[] = ['label' => 'The Wire', 'icon' => 'fa fa-hashtag', 'url' => ['/developer/wire']],
 		],

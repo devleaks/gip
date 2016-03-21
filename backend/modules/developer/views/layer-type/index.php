@@ -1,7 +1,5 @@
 <?php
 
-use common\models\ChannelType;
-
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
@@ -9,32 +7,30 @@ use yii\widgets\Pjax;
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var common\models\search\ChannelType $searchModel
+ * @var common\models\search\LayerType $searchModel
  */
 
-$this->title = Yii::t('gip', 'Channel Types');
+$this->title = Yii::t('gip', 'Layer Types');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="layer-type-index">
 
     <?php Pjax::begin(); echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'kartik\grid\SerialColumn'],
 
             'name',
+            'display_name',
             'description',
-			[
-				'attribute' => 'direction',
-				'filter' => ChannelType::getLocalizedConstants('DIRECTION_'),
-				'hAlign' => 'center',
-			],
+
             [
                 'class' => 'kartik\grid\ActionColumn',
 				'noWrap' => true,
                 'buttons' => [
                 'update' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['developer/channel-type/view','id' => $model->id,'edit'=>'t']), [
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['developer/layer-type/view','id' => $model->id,'edit'=>'t']), [
                                                     'title' => Yii::t('yii', 'Edit'),
                                                   ]);}
 

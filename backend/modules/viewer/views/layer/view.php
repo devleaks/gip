@@ -1,6 +1,11 @@
 <?php
 
+use common\models\Layer;
+use common\models\LayerType;
+
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\data\ActiveDataProvider;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
 
@@ -30,6 +35,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'theme',
             'highlight',
             'icon',
+	        [
+	            'attribute'=>'layer_type_id',
+				'type' => DetailView::INPUT_DROPDOWN_LIST,
+				'items' => ArrayHelper::map(LayerType::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+				'label' => Yii::t('gip', 'Layer Type'),
+	            'value'=>isset($model->layerType) ? $model->layerType->name : '',
+	        ],
+	        [
+	            'attribute'=>'status',
+				'type' => DetailView::INPUT_DROPDOWN_LIST,
+				'items' => Layer::getLocalizedConstants('STATUS_'),
+	        ],
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],
@@ -40,5 +57,16 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'enableEditMode'=>true,
     ]) ?>
+
+	<?php
+			$dataProvider = new ActiveDataProvider([
+				'query' => $model->getParameters(true),
+			]);
+
+	        echo $this->render('../../../common/views/attribute-value/_list', [
+	            'dataProvider' => $dataProvider,
+				'model' => $model,
+	        ]);
+	?>
 
 </div>

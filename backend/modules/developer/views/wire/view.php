@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'attribute' => 'type_id',
 				'items' => Type::forClass(Wire::className()),
             	'type'=> DetailView::INPUT_DROPDOWN_LIST,
-				'value' => $model->type->name,
+				'value' => $model->type ? $model->type->name : '',
 			],
             [
 				'attribute' => 'icon',

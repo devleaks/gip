@@ -8,23 +8,20 @@ use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
 /**
- * This is the base model class for table "tool".
+ * This is the base model class for table "tool_tool_group".
  *
  * @property integer $id
- * @property string $name
- * @property string $description
+ * @property integer $tool_group_id
+ * @property integer $tool_id
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_by
  * @property integer $updated_by
- * @property string $icon
- * @property string $display_name
- * @property integer $type_id
  *
- * @property \common\models\Type $type
- * @property \common\models\ToolToolGroup[] $toolToolGroups
+ * @property \common\models\ToolGroup $toolGroup
+ * @property \common\models\Tool $tool
  */
-class Tool extends \yii\db\ActiveRecord
+class ToolToolGroup extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -32,12 +29,9 @@ class Tool extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['created_at', 'updated_at'], 'safe'],
-            [['created_by', 'updated_by', 'type_id'], 'integer'],
-            [['name', 'icon', 'display_name'], 'string', 'max' => 40],
-            [['description'], 'string', 'max' => 2000],
-            [['name'], 'unique']
+            [['tool_group_id', 'tool_id'], 'required'],
+            [['tool_group_id', 'tool_id', 'created_by', 'updated_by'], 'integer'],
+            [['created_at', 'updated_at'], 'safe']
         ];
     }
     
@@ -46,7 +40,7 @@ class Tool extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'tool';
+        return 'tool_tool_group';
     }
 
     /**
@@ -56,28 +50,25 @@ class Tool extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('gip', 'ID'),
-            'name' => Yii::t('gip', 'Name'),
-            'description' => Yii::t('gip', 'Description'),
-            'icon' => Yii::t('gip', 'Icon'),
-            'display_name' => Yii::t('gip', 'Display Name'),
-            'type_id' => Yii::t('gip', 'Type ID'),
+            'tool_group_id' => Yii::t('gip', 'Tool Group ID'),
+            'tool_id' => Yii::t('gip', 'Tool ID'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getType()
+    public function getToolGroup()
     {
-        return $this->hasOne(\common\models\Type::className(), ['id' => 'type_id']);
+        return $this->hasOne(\common\models\ToolGroup::className(), ['id' => 'tool_group_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getToolToolGroups()
+    public function getTool()
     {
-        return $this->hasMany(\common\models\ToolToolGroup::className(), ['tool_id' => 'id']);
+        return $this->hasOne(\common\models\Tool::className(), ['id' => 'tool_id']);
     }
 
 /**
@@ -103,10 +94,10 @@ class Tool extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \common\models\query\ToolQuery the active query used by this AR class.
+     * @return \common\models\query\ToolToolGroupQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\ToolQuery(get_called_class());
+        return new \common\models\query\ToolToolGroupQuery(get_called_class());
     }
 }

@@ -8,7 +8,7 @@ use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
 /**
- * This is the base model class for table "tool".
+ * This is the base model class for table "tool_group".
  *
  * @property integer $id
  * @property string $name
@@ -17,14 +17,14 @@ use yii\behaviors\BlameableBehavior;
  * @property string $updated_at
  * @property integer $created_by
  * @property integer $updated_by
- * @property string $icon
  * @property string $display_name
  * @property integer $type_id
  *
+ * @property \common\models\MapTool[] $mapTools
  * @property \common\models\Type $type
  * @property \common\models\ToolToolGroup[] $toolToolGroups
  */
-class Tool extends \yii\db\ActiveRecord
+class ToolGroup extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -35,7 +35,7 @@ class Tool extends \yii\db\ActiveRecord
             [['name'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
             [['created_by', 'updated_by', 'type_id'], 'integer'],
-            [['name', 'icon', 'display_name'], 'string', 'max' => 40],
+            [['name', 'display_name'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
             [['name'], 'unique']
         ];
@@ -46,7 +46,7 @@ class Tool extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'tool';
+        return 'tool_group';
     }
 
     /**
@@ -58,10 +58,17 @@ class Tool extends \yii\db\ActiveRecord
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
             'description' => Yii::t('gip', 'Description'),
-            'icon' => Yii::t('gip', 'Icon'),
             'display_name' => Yii::t('gip', 'Display Name'),
             'type_id' => Yii::t('gip', 'Type ID'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMapTools()
+    {
+        return $this->hasMany(\common\models\MapTool::className(), ['tool_group_id' => 'id']);
     }
 
     /**
@@ -77,7 +84,7 @@ class Tool extends \yii\db\ActiveRecord
      */
     public function getToolToolGroups()
     {
-        return $this->hasMany(\common\models\ToolToolGroup::className(), ['tool_id' => 'id']);
+        return $this->hasMany(\common\models\ToolToolGroup::className(), ['tool_group_id' => 'id']);
     }
 
 /**
@@ -103,10 +110,10 @@ class Tool extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \common\models\query\ToolQuery the active query used by this AR class.
+     * @return \common\models\query\ToolGroupQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\ToolQuery(get_called_class());
+        return new \common\models\query\ToolGroupQuery(get_called_class());
     }
 }

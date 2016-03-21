@@ -5,21 +5,20 @@ use common\models\Type;
 
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\data\ActiveDataProvider;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
-use kartik\icons\Icon;
-use insolita\iconpicker\Iconpicker;
 
 /**
  * @var yii\web\View $this
- * @var common\models\Tool $model
+ * @var common\models\ToolGroup $model
  */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Tools'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Tool Groups'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="tool-view">
+<div class="tool-group-view">
 
     <?= DetailView::widget([
             'model' => $model,
@@ -33,18 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'name',
             'description',
-            [
-				'attribute' => 'icon',
-				'value' => Icon::show(str_replace('fa-', '', $model->icon)),
-				'format' => 'raw',
-            	'type'=> DetailView::INPUT_WIDGET,
-				'widgetOptions' => [
-					'class' => Iconpicker::className(),
-					'rows' => 6,
-					'columns' => 8,
-					'iconset'=> 'fontawesome',
-				],
-			],
+            'display_name',
             [
 				'attribute' => 'type_id',
 				'items' => Type::forClass(Tool::className()),
@@ -62,4 +50,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'enableEditMode'=>true,
     ]) ?>
 
+
+	<?php 	if($model->type_id == '') {
+				echo $this->render('@backend/modules/coreengine/views/group/group', [
+					'model'		=> $model,
+		            'outgroup'  => $outgroup,
+		            'ingroup'   => $ingroup,
+				]);
+			} else {
+				echo $this->render('@backend/modules/coreengine/views/group/_list', [
+					'dataProvider' => new ActiveDataProvider([
+						'query' => $model->getTools()
+					]),
+						'title' => Yii::t('gip', 'Tools in Group'),
+				]);
+			}
+	?>
 </div>

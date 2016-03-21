@@ -5,18 +5,18 @@ namespace common\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Layer as LayerModel;
+use common\models\LayerType as LayerTypeModel;
 
 /**
- * Layer represents the model behind the search form about `common\models\Layer`.
+ * LayerType represents the model behind the search form about `common\models\LayerType`.
  */
-class Layer extends LayerModel
+class LayerType extends LayerTypeModel
 {
     public function rules()
     {
         return [
             [['id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'description', 'created_at', 'updated_at', 'theme', 'highlight', 'icon'], 'safe'],
+            [['name', 'display_name', 'description', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -28,7 +28,7 @@ class Layer extends LayerModel
 
     public function search($params)
     {
-        $query = LayerModel::find();
+        $query = LayerTypeModel::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -40,7 +40,6 @@ class Layer extends LayerModel
 
         $query->andFilterWhere([
             'id' => $this->id,
-			'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'created_by' => $this->created_by,
@@ -48,11 +47,8 @@ class Layer extends LayerModel
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'theme', $this->theme])
-            ->andFilterWhere(['like', 'highlight', $this->highlight])
-            ->andFilterWhere(['like', 'icon', $this->icon]);
+            ->andFilterWhere(['like', 'display_name', $this->display_name])
+            ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }
