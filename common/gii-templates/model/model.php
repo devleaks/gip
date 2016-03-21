@@ -19,6 +19,9 @@ echo "<?php\n";
 namespace <?= $generator->nsModel ?>\base;
 
 use Yii;
+<?php if ($generator->createdAt || $generator->updatedAt || $generator->createdBy || $generator->updatedBy): ?>
+use yii\db\ActiveRecord;
+<?php endif; ?>
 <?php if ($generator->createdAt || $generator->updatedAt): ?>
 use yii\behaviors\TimestampBehavior;
 <?php endif; ?>
@@ -44,9 +47,6 @@ use mootensai\behaviors\UUIDBehavior;
  */
 class <?= $className ?> extends <?= '\\' . ltrim($generator->baseModelClass, '\\') . "\n" ?>
 {
-
-    use \mootensai\relation\RelationTrait;
-
     /**
      * @inheritdoc
      */

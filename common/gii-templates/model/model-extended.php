@@ -33,6 +33,19 @@ class <?= $className ?> extends Base<?= $className . "\n" ?>
         return array_replace_recursive(parent::rules(),
 	    [<?= "\n            " . implode(",\n            ", $rules) . "\n        " ?>]);
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+<?php foreach ($labels as $name => $label): ?>
+            <?= "'$name' => " . $generator->generateString($label) . ",\n" ?>
+<?php endforeach; ?>
+        ];
+    }
+
 	
 <?php if ($generator->generateAttributeHints): ?>
     /**
