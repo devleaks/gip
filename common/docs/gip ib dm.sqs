@@ -3477,11 +3477,7 @@
         </location>
         <size>
             <width>256.00</width>
-<<<<<<< HEAD
-            <height>280.00</height>
-=======
             <height>260.00</height>
->>>>>>> origin/master
         </size>
         <zorder>42</zorder>
         <SQLField>
@@ -4384,15 +4380,9 @@
         <snapToGrid><![CDATA[1]]></snapToGrid>
         <SourceSidebarWidth><![CDATA[276.000000]]></SourceSidebarWidth>
         <uid><![CDATA[E5818989-9506-4B01-B94A-D27BEDD111DB]]></uid>
-<<<<<<< HEAD
-        <windowHeight><![CDATA[1024.000000]]></windowHeight>
-        <windowLocationX><![CDATA[298.000000]]></windowLocationX>
-        <windowLocationY><![CDATA[289.000000]]></windowLocationY>
-=======
         <windowHeight><![CDATA[969.000000]]></windowHeight>
         <windowLocationX><![CDATA[0.000000]]></windowLocationX>
         <windowLocationY><![CDATA[58.000000]]></windowLocationY>
->>>>>>> origin/master
         <windowScrollOrigin><![CDATA[{66, 1978}]]></windowScrollOrigin>
         <windowWidth><![CDATA[1680.000000]]></windowWidth>
     </SQLDocumentInfo>
