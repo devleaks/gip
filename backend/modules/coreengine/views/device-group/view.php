@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'attributes' => [
             'name',
+        	'display_name',
             'description',
 	        [
 	            'attribute'=>'device_type',
@@ -57,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					'dataProvider' => new ActiveDataProvider([
 						'query' => $model->getDevices()
 					]),
-						'title' => Yii::t('gip', 'Devices in Group'),
+						'title' => Yii::t('gip', 'Devices in Dynamic Group'),
 				]);
 			}
 	?>

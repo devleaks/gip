@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\data\ActiveDataProvider;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
 
@@ -25,6 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'attributes' => [
             'name',
+        	'display_name',
             'description',
         ],
         'deleteOptions'=>[
@@ -36,5 +38,36 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'enableEditMode'=>true,
     ]) ?>
+
+
+	<?php
+			$dataProvider = new ActiveDataProvider([
+				'query' => $model->getBackgrounds(),
+			]);
+	        echo $this->render('_background-list', [
+	            'dataProvider' => $dataProvider,
+				'model' => $model,
+	        ]);
+	?>
+
+	<?php
+			$dataProvider = new ActiveDataProvider([
+				'query' => $model->getLayers(),
+			]);
+	        echo $this->render('_layer-list', [
+	            'dataProvider' => $dataProvider,
+				'model' => $model,
+	        ]);
+	?>
+
+	<?php
+			$dataProvider = new ActiveDataProvider([
+				'query' => $model->getToolGroups(),
+			]);
+	        echo $this->render('_tool-group-list', [
+	            'dataProvider' => $dataProvider,
+				'model' => $model,
+	        ]);
+	?>
 
 </div>

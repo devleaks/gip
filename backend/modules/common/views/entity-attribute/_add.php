@@ -36,7 +36,7 @@ use yii\helpers\Url;
 			    'attributes' => [				
 					'attribute_id' => [
 						'type' => Form::INPUT_DROPDOWN_LIST,
-						'items' => ArrayHelper::map(Attribute::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+						'items' => ArrayHelper::map(Attribute::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
 						'label' => Yii::t('gip', 'Attribute'),
 			            'columnOptions' => ['colspan' => 3],
 					],

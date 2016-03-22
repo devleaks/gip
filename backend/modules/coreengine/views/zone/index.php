@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             'name',
+        	'display_name',
             'description',
 			[
 				'attribute' => 'zone_type',

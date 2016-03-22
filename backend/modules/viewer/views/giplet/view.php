@@ -31,13 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'attributes' => [
             'name',
+        	'display_name',
             'description',
 	        [
 	            'attribute'=>'giplet_type_id',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => ArrayHelper::map(GipletType::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+				'items' => ArrayHelper::map(GipletType::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
 				'label' => Yii::t('gip', 'Giplet Type'),
-	            'value'=>isset($model->gipletType) ? $model->gipletType->name : '',
+	            'value'=>isset($model->gipletType) ? $model->gipletType->display_name : '',
 	        ],
 	        [
 	            'attribute'=>'status',

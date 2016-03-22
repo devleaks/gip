@@ -8,22 +8,21 @@ use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
 /**
- * This is the base model class for table "map".
+ * This is the base model class for table "map_tool_group".
  *
  * @property integer $id
- * @property string $name
- * @property string $description
+ * @property integer $map_id
+ * @property integer $tool_group_id
+ * @property integer $position
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_by
  * @property integer $updated_by
- * @property string $display_name
  *
- * @property \common\models\MapBackground[] $mapBackgrounds
- * @property \common\models\MapLayer[] $mapLayers
- * @property \common\models\MapTool[] $mapTools
+ * @property \common\models\Map $map
+ * @property \common\models\ToolGroup $toolGroup
  */
-class Map extends \yii\db\ActiveRecord
+class MapToolGroup extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -31,12 +30,9 @@ class Map extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['created_at', 'updated_at'], 'safe'],
-            [['created_by', 'updated_by'], 'integer'],
-            [['name', 'display_name'], 'string', 'max' => 40],
-            [['description'], 'string', 'max' => 2000],
-            [['name'], 'unique']
+            [['map_id', 'tool_group_id'], 'required'],
+            [['map_id', 'tool_group_id', 'position', 'created_by', 'updated_by'], 'integer'],
+            [['created_at', 'updated_at'], 'safe']
         ];
     }
     
@@ -45,7 +41,7 @@ class Map extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'map';
+        return 'map_tool_group';
     }
 
     /**
@@ -55,34 +51,26 @@ class Map extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('gip', 'ID'),
-            'name' => Yii::t('gip', 'Name'),
-            'description' => Yii::t('gip', 'Description'),
-            'display_name' => Yii::t('gip', 'Display Name'),
+            'map_id' => Yii::t('gip', 'Map ID'),
+            'tool_group_id' => Yii::t('gip', 'Tool Group ID'),
+            'position' => Yii::t('gip', 'Position'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMapBackgrounds()
+    public function getMap()
     {
-        return $this->hasMany(\common\models\MapBackground::className(), ['map_id' => 'id']);
+        return $this->hasOne(\common\models\Map::className(), ['id' => 'map_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMapLayers()
+    public function getToolGroup()
     {
-        return $this->hasMany(\common\models\MapLayer::className(), ['map_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getMapTools()
-    {
-        return $this->hasMany(\common\models\MapTool::className(), ['map_id' => 'id']);
+        return $this->hasOne(\common\models\ToolGroup::className(), ['id' => 'tool_group_id']);
     }
 
 /**
@@ -108,10 +96,10 @@ class Map extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \common\models\query\MapQuery the active query used by this AR class.
+     * @return \common\models\query\MapToolGroupQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\MapQuery(get_called_class());
+        return new \common\models\query\MapToolGroupQuery(get_called_class());
     }
 }

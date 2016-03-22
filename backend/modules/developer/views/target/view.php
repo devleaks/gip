@@ -31,20 +31,21 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'attributes' => [
             'name',
+        	'display_name',
             'description',
 	        [
 	            'attribute'=>'channel_type_id',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => ArrayHelper::map(TargetType::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+				'items' => ArrayHelper::map(TargetType::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
 				'label' => Yii::t('gip', 'Target Type'),
-	            'value'=>isset($model->providerType) ? $model->providerType->name : '',
+	            'value'=>isset($model->providerType) ? $model->providerType->display_name : '',
 	        ],
 	        [
 	            'attribute'=>'event_id',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
 				'items' => ArrayHelper::map(Event::find()->asArray()->all(), 'id', 'name'),
 				'label' => Yii::t('gip', 'Target Event'),
-	            'value'=>isset($model->event) ? $model->event->name : '',
+	            'value'=>isset($model->event) ? $model->event->display_name : '',
 	        ],
             [
                 'attribute'=>'created_at',

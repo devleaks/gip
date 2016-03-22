@@ -40,11 +40,11 @@ $this->params['breadcrumbs'][] = $this->title;
         ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'hidden' => true],
         [
-                'attribute' => 'deviceGroup.name',
+                'attribute' => 'deviceGroup.display_name',
                 'label' => Yii::t('gip', 'Device Group')
         ],
         [
-                'attribute' => 'device.name',
+                'attribute' => 'device.display_name',
                 'label' => Yii::t('gip', 'Device')
         ],
     ];

@@ -30,13 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'attributes' => [
             'name',
+        	'display_name',
             'description',
 			[
 				'attribute' => 'notification_type_id',
 				'type'  => DetailView::INPUT_DROPDOWN_LIST,
 				'label' => Yii::t('gip', 'Notification Type'),
-				'items' => ArrayHelper::map(NotificationType::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
-	            'value' => isset($model->notificationType) ? $model->notificationType->name : '',
+				'items' => ArrayHelper::map(NotificationType::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
+	            'value' => isset($model->notificationType) ? $model->notificationType->display_name : '',
 			],
         ],
         'deleteOptions'=>[

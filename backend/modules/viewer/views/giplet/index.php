@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'kartik\grid\SerialColumn'],
 
             'name',
+        	'display_name',
             'description',
 			[
 				'attribute' => 'giplet_type_id',

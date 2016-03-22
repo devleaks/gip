@@ -77,26 +77,6 @@ abstract class MapBackground extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeHints()
-    {
-        return array_merge(
-            parent::attributeHints(),
-            [
-            'id' => Yii::t('gip', 'ID'),
-            'map_id' => Yii::t('gip', 'Map Id'),
-            'background_id' => Yii::t('gip', 'Background Id'),
-            'position' => Yii::t('gip', 'Position'),
-            'created_at' => Yii::t('gip', 'Created At'),
-            'updated_at' => Yii::t('gip', 'Updated At'),
-            'created_by' => Yii::t('gip', 'Created By'),
-            'updated_by' => Yii::t('gip', 'Updated By'),
-            ]);
-    }
-
-
 
 
 }

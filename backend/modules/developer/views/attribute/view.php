@@ -29,13 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'attributes' => [
             'name',
+        	'display_name',
             'description',
 			[
 				'attribute' => 'attribute_type_id',
 				'label' => Yii::t('gip', 'Attribute Type'),
-				'value'=>isset($model->attributeType) ? $model->attributeType->name : '',
+				'value'=>isset($model->attributeType) ? $model->attributeType->display_name : '',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => ArrayHelper::map(AttributeType::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+				'items' => ArrayHelper::map(AttributeType::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
 			],
         ],
         'deleteOptions'=>[

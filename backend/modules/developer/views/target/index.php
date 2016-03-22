@@ -22,13 +22,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'name',
+        	'display_name',
             'description',
 			[
-				'attribute' => 'channelType.name',
+				'attribute' => 'channelType.display_name',
 				'label' => Yii::t('gip', 'Target Type'),
 			],
 			[
-				'attribute' => 'event.name',
+				'attribute' => 'event.display_name',
 				'label' => Yii::t('gip', 'Target Event'),
 			],
 

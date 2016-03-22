@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'attributes' => [
             'name',
+        	'display_name',
             'description',
 	        [
 	            'attribute'=>'zone_type',
@@ -63,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					'dataProvider' => new ActiveDataProvider([
 						'query' => $model->getZones()
 					]),
-					'title' => Yii::t('gip', 'Zones in Group'),
+					'title' => Yii::t('gip', 'Zones in Dynamic Group'),
 				]);
 			}
 	?>

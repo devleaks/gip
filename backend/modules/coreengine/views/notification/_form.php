@@ -30,7 +30,7 @@ use kartik\datecontrol\DateControl;
 
             'notification_type_id'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Notification Type ID...']],
 
-            'notification_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Notification Type...'], 'items' => ArrayHelper::map(NotificationType::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
+            'notification_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Notification Type...'], 'items' => ArrayHelper::map(NotificationType::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name')],
 
         ]
 

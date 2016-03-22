@@ -23,17 +23,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn'],
             'name',
+        	'display_name',
             'description',
 			[
-				'attribute' => 'service.name',
+				'attribute' => 'service.display_name',
 				'label' => Yii::t('gip', 'Service'),
 			],
 			[
-				'attribute' => 'provider.name',
+				'attribute' => 'provider.display_name',
 				'label' => Yii::t('gip', 'Provider'),
 			],
 			[
-				'attribute' => 'target.name',
+				'attribute' => 'target.display_name',
 				'label' => Yii::t('gip', 'Target'),
 			],
             [

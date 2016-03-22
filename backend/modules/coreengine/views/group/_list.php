@@ -18,6 +18,7 @@ use yii\widgets\Pjax;
         'dataProvider' => $dataProvider,
         'columns' => [
             'name',
+        	'display_name',
             'description',
         ],
         'responsive'=>true,

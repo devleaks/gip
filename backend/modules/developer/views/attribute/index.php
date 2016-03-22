@@ -22,9 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'name',
+        	'display_name',
             'description',
 			[
-				'attribute' => 'attributeType.name',
+				'attribute' => 'attributeType.display_name',
 				'label' => Yii::t('gip', 'Attribute Type')
 			],
             [

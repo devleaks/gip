@@ -30,12 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'attributes' => [
             'name',
+        	'display_name',
             'description',
             [
 				'attribute' => 'type_id',
 				'items' => Type::forClass(Type::className()),
             	'type'=> DetailView::INPUT_DROPDOWN_LIST,
-				'value' => $model->type ? $model->type->name : '',
+				'value' => $model->type ? $model->type->display_name : '',
 			],
             [
 				'attribute' => 'icon',

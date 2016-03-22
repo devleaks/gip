@@ -32,28 +32,29 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'attributes' => [
             'name',
+        	'display_name',
             'description',
 
 			[
 				'attribute' => 'device_group_id',
 				'type'  => DetailView::INPUT_DROPDOWN_LIST,
 				'label' => Yii::t('gip', 'Notification Type'),
-				'items' => ArrayHelper::map(DeviceGroup::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
-	            'value' => isset($model->deviceGroup) ? $model->deviceGroup->name : '',
+				'items' => ArrayHelper::map(DeviceGroup::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
+	            'value' => isset($model->deviceGroup) ? $model->deviceGroup->display_name : '',
 			],
 			[
 				'attribute' => 'notification_group_id',
 				'type'  => DetailView::INPUT_DROPDOWN_LIST,
 				'label' => Yii::t('gip', 'Notification Type'),
-				'items' => ArrayHelper::map(NotificationGroup::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
-	            'value' => isset($model->notificationGroup) ? $model->notificationGroup->name : '',
+				'items' => ArrayHelper::map(NotificationGroup::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
+	            'value' => isset($model->notificationGroup) ? $model->notificationGroup->display_name : '',
 			],
 			[
 				'attribute' => 'detection_type_id',
 				'type'  => DetailView::INPUT_DROPDOWN_LIST,
 				'label' => Yii::t('gip', 'Notification Type'),
-				'items' => ArrayHelper::map(DetectionType::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
-	            'value' => isset($model->detectionType) ? $model->detectionType->name : '',
+				'items' => ArrayHelper::map(DetectionType::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
+	            'value' => isset($model->detectionType) ? $model->detectionType->display_name : '',
 			],
         ],
         'deleteOptions'=>[

@@ -30,11 +30,11 @@ use kartik\datecontrol\DateControl;
 
             'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
 
-            'device_group_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Device Group...'], 'items' => ArrayHelper::map(DeviceGroup::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
+            'device_group_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Device Group...'], 'items' => ArrayHelper::map(DeviceGroup::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name')],
 
-            'notification_group_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Notification Group...'], 'items' => ArrayHelper::map(NotificationGroup::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
+            'notification_group_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Notification Group...'], 'items' => ArrayHelper::map(NotificationGroup::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name')],
 
-            'detection_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Notification Group...'], 'items' => ArrayHelper::map(DetectionType::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
+            'detection_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Notification Group...'], 'items' => ArrayHelper::map(DetectionType::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name')],
 
         ]
 

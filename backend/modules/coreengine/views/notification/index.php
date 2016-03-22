@@ -25,11 +25,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'name',
+        	'display_name',
             'description',
 			[
 				'attribute' => 'notification_type_id',
 				'label' => Yii::t('gip', 'Notification Type'),
-				'filter' => ArrayHelper::map(NotificationType::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+				'filter' => ArrayHelper::map(NotificationType::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
 	            'value' => function ($model, $key, $index, $widget) {
 							return $model->notificationType ? $model->notificationType->name : '';
 	            		},

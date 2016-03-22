@@ -28,7 +28,7 @@ use kartik\datecontrol\DateControl;
 
         	'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
 
-        	'giplet_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Giplet Type...'], 'items' => ArrayHelper::map(GipletType::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
+        	'giplet_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Giplet Type...'], 'items' => ArrayHelper::map(GipletType::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name')],
 
         ]
 

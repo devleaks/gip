@@ -31,9 +31,9 @@ use kartik\datecontrol\DateControl;
 
         	'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
 
-        	'service_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Service...', 'maxlength'=>255], 'items' => ArrayHelper::map(Service::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
+        	'service_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Service...', 'maxlength'=>255], 'items' => ArrayHelper::map(Service::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name')],
 
-        	'provider_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Service...', 'maxlength'=>255], 'items' => ArrayHelper::map(Provider::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
+        	'provider_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Service...', 'maxlength'=>255], 'items' => ArrayHelper::map(Provider::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name')],
 
         	'event_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Service...', 'maxlength'=>255], 'items' => ArrayHelper::map(Event::find()->asArray()->all(), 'id', 'name')],
 

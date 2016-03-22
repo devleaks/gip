@@ -7,25 +7,23 @@ use yii\widgets\Pjax;
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var common\models\search\ToolGroup $searchModel
+ * @var common\models\search\Background $searchModel
  */
-
-$this->title = Yii::t('gip', 'Tool Groups');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tool-group-index">
 
     <?php Pjax::begin(); echo GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn'],
 
             'name',
         	'display_name',
             'description',
-            'display_name',
-            'type_id',
+			[
+				'attribute' => 'name',
+				'label' => Yii::t('gip', 'Tool Group'),
+			],
 
             [
                 'class' => 'kartik\grid\ActionColumn',
@@ -44,9 +42,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'condensed'=>true,
         'floatHeader'=>true,
         'panel' => [
-            'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> '.Html::encode($this->title).' </h3>',
+            'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> '.Html::encode(Yii::t('gip', 'Tool Set')).' </h3>',
             'type'=>'info',
-            'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Add', ['create'], ['class' => 'btn btn-success']),                                                                                                                                                          'after'=>Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset List', ['index'], ['class' => 'btn btn-info']),
+			'after'=>$this->render('_tool-group-add', ['map'=>$model]),
             'showFooter'=>false
         ],
     ]); Pjax::end(); ?>

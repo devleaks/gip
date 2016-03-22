@@ -30,11 +30,11 @@ use kartik\datecontrol\DateControl;
 
             'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
 
-            'service_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Service...'], 'items' => ArrayHelper::map(Service::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
+            'service_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Service...'], 'items' => ArrayHelper::map(Service::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name')],
 
-            'rule_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Rule...'], 'items' => ArrayHelper::map(Rule::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
+            'rule_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Rule...'], 'items' => ArrayHelper::map(Rule::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name')],
 
-            'provider_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Provider...'], 'items' => ArrayHelper::map(Service::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
+            'provider_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Provider...'], 'items' => ArrayHelper::map(Service::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name')],
 
             'enabled'=>['type'=> Form::INPUT_CHECKBOX, 'options'=>['placeholder'=>'Enter Enabled...']],
 

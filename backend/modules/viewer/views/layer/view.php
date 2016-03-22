@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'attributes' => [
             'name',
+        	'display_name',
             'description',
             'theme',
             'highlight',
@@ -38,9 +39,9 @@ $this->params['breadcrumbs'][] = $this->title;
 	        [
 	            'attribute'=>'layer_type_id',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => ArrayHelper::map(LayerType::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+				'items' => ArrayHelper::map(LayerType::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
 				'label' => Yii::t('gip', 'Layer Type'),
-	            'value'=>isset($model->layerType) ? $model->layerType->name : '',
+	            'value'=>isset($model->layerType) ? $model->layerType->display_name : '',
 	        ],
 	        [
 	            'attribute'=>'status',

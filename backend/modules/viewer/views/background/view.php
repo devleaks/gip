@@ -30,13 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'attributes' => [
             'name',
+        	'display_name',
             'description',
 	        [
 	            'attribute'=>'background_type_id',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
 				'items' => ArrayHelper::map(BackgroundType::find()->asArray()->all(), 'id', 'name'),
 				'label' => Yii::t('gip', 'Background Type'),
-	            'value'=>isset($model->backgroundType) ? $model->backgroundType->name : '',
+	            'value'=>isset($model->backgroundType) ? $model->backgroundType->display_name : '',
 	        ],
             'status',
         ],

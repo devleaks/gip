@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			[
 				'attribute' => 'service_id',
 				'label' => Yii::t('gip', 'Service'),
-				'filter' => ArrayHelper::map(Service::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+				'filter' => ArrayHelper::map(Service::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
 	            'value' => function ($model, $key, $index, $widget) {
 							return $model->service ? $model->service->name : '';
 	            		},
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			[
 				'attribute' => 'rule_id',
 				'label' => Yii::t('gip', 'Rule'),
-				'filter' => ArrayHelper::map(Rule::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+				'filter' => ArrayHelper::map(Rule::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
 	            'value' => function ($model, $key, $index, $widget) {
 							return $model->rule ? $model->rule->name : '';
 	            		},
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			[
 				'attribute' => 'provider_id',
 				'label' => Yii::t('gip', 'Source'),
-				'filter' => ArrayHelper::map(Provider::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+				'filter' => ArrayHelper::map(Provider::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
 	            'value' => function ($model, $key, $index, $widget) {
 							return $model->provider ? $model->provider->name : '';
 	            		},

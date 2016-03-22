@@ -4,6 +4,9 @@ namespace backend\modules\viewer\controllers;
 
 use Yii;
 use common\models\Map;
+use common\models\MapBackground;
+use common\models\MapLayer;
+use common\models\MapToolGroup;
 use common\models\search\Map as MapSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -122,4 +125,41 @@ class MapController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+
+	public function actionBackgroundAdd() {
+		$model = new MapBackground();
+		
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			Yii::$app->session->setFlash('success', Yii::t('gip', 'Background added.'));
+            return $this->redirect(Yii::$app->request->referrer);
+        } else {
+			Yii::$app->session->setFlash('danger', Yii::t('gip', 'Could not add background.'));
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+	}
+
+	public function actionLayerAdd() {
+		$model = new MapLayer();
+		
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			Yii::$app->session->setFlash('success', Yii::t('gip', 'Layer added.'));
+            return $this->redirect(Yii::$app->request->referrer);
+        } else {
+			Yii::$app->session->setFlash('danger', Yii::t('gip', 'Could not add layer.'));
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+	}
+
+	public function actionToolGroupAdd() {
+		$model = new MapToolGroup();
+		
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			Yii::$app->session->setFlash('success', Yii::t('gip', 'Tool set added.'));
+            return $this->redirect(Yii::$app->request->referrer);
+        } else {
+			Yii::$app->session->setFlash('danger', Yii::t('gip', 'Could not add tool set.'));
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+	}
 }

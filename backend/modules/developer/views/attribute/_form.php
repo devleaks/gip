@@ -28,7 +28,7 @@ use kartik\datecontrol\DateControl;
 
             'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
 
-            'attribute_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter List Of Values ID...'], 'items' => ArrayHelper::map(AttributeType::find()->orderBy('name')->asArray()->all(), 'id', 'name')],
+            'attribute_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter List Of Values ID...'], 'items' => ArrayHelper::map(AttributeType::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name')],
 
         ]
 

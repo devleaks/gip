@@ -33,27 +33,28 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'attributes' => [
             'name',
+        	'display_name',
             'description',
 	        [
 	            'attribute'=>'service_id',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => ArrayHelper::map(Service::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+				'items' => ArrayHelper::map(Service::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
 				'label' => Yii::t('gip', 'Service'),
-	            'value'=>isset($model->service) ? $model->service->name : '',
+	            'value'=>isset($model->service) ? $model->service->display_name : '',
 	        ],
 	        [
 	            'attribute'=>'provider_id',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => ArrayHelper::map(Provider::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+				'items' => ArrayHelper::map(Provider::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
 				'label' => Yii::t('gip', 'Provider'),
-	            'value'=>isset($model->provider) ? $model->provider->name : '',
+	            'value'=>isset($model->provider) ? $model->provider->display_name : '',
 	        ],
 	        [
 	            'attribute'=>'target_id',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
 				'items' => ArrayHelper::map(Target::find()->asArray()->all(), 'id', 'name'),
 				'label' => Yii::t('gip', 'Target'),
-	            'value'=>isset($model->event) ? $model->event->name : '',
+	            'value'=>isset($model->event) ? $model->event->display_name : '',
 	        ],
 	        [
 	            'attribute'=>'status',

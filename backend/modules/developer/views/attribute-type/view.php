@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'attributes' => [
             'name',
+        	'display_name',
             'description',
 	        [
 				'attribute' => 'data_type',
@@ -39,9 +40,9 @@ $this->params['breadcrumbs'][] = $this->title;
 	        [
 	            'attribute'=>'list_of_values_id',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => ArrayHelper::map(['' => ''] + ListOfValues::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+				'items' => ArrayHelper::map(['' => ''] + ListOfValues::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
 				'label' => Yii::t('gip', 'List of Values'),
-	            'value'=>isset($model->listOfValues) ? $model->listOfValues->name : '',
+	            'value'=>isset($model->listOfValues) ? $model->listOfValues->display_name : '',
 	        ],
 	        [
 	            'attribute'=>'created_at',

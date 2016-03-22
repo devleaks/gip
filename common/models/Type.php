@@ -15,6 +15,6 @@ class Type extends BaseType
 		static public function forClass($classname) {
 			$root_id = Type::findOne(['name' => Type::className()])->id;
 			$type_id = Type::findOne(['type_id' => $root_id, 'name' => $classname])->id;
-			return ArrayHelper::map(Type::find()->where(['type_id' => $type_id])->orderBy('name')->asArray()->all(), 'id', 'name');
+			return ArrayHelper::map(Type::find()->where(['type_id' => $type_id])->orderBy('display_name')->asArray()->all(), 'id', 'display_name');
 		}
 }

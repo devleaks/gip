@@ -27,7 +27,7 @@ echo TabularForm::widget([
             'type' => TabularForm::INPUT_WIDGET,
             'widgetClass' => \kartik\widgets\Select2::className(),
             'options' => [
-                'data' => \yii\helpers\ArrayHelper::map(\common\models\DeviceGroup::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+                'data' => \yii\helpers\ArrayHelper::map(\common\models\DeviceGroup::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
                 'options' => ['placeholder' => Yii::t('gip', 'Choose Device group')],
             ],
             'columnOptions' => ['width' => '200px']

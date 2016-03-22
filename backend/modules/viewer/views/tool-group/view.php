@@ -31,13 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'attributes' => [
             'name',
+        	'display_name',
             'description',
-            'display_name',
             [
 				'attribute' => 'type_id',
-				'items' => Type::forClass(Tool::className()),
+				'items' => ['' => ''] + Type::forClass(Tool::className()),
             	'type'=> DetailView::INPUT_DROPDOWN_LIST,
-				'value' => $model->type ? $model->type->name : '',
+				'value' => $model->type ? $model->type->display_name : '',
+				'label' => Yii::t('gip', 'Type')
 			],
         ],
         'deleteOptions'=>[
@@ -62,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					'dataProvider' => new ActiveDataProvider([
 						'query' => $model->getTools()
 					]),
-						'title' => Yii::t('gip', 'Tools in Group'),
+						'title' => Yii::t('gip', 'Tools in Dynamic Group'),
 				]);
 			}
 	?>

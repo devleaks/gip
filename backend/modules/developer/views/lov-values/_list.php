@@ -13,6 +13,7 @@ use yii\widgets\Pjax;
             ['class' => 'yii\grid\SerialColumn'],
 
             'name',
+        	'display_name',
             'description',
             [
                 'class' => 'yii\grid\ActionColumn',

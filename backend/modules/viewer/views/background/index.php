@@ -22,9 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'kartik\grid\SerialColumn'],
 
             'name',
+        	'display_name',
             'description',
 			[
-				'attribute' => 'backgroundType.name',
+				'attribute' => 'backgroundType.display_name',
 				'label' => Yii::t('gip', 'Background Type'),
 			],
             'status',
