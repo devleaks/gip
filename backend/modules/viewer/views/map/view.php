@@ -10,7 +10,7 @@ use kartik\datecontrol\DateControl;
  * @var common\models\Map $model
  */
 
-$this->title = $model->name;
+$this->title = $model->display_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Maps'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -44,9 +44,9 @@ $this->params['breadcrumbs'][] = $this->title;
 			$dataProvider = new ActiveDataProvider([
 				'query' => $model->getBackgrounds(),
 			]);
-	        echo $this->render('_background-list', [
+	        echo $this->render('../map-background/_list', [
 	            'dataProvider' => $dataProvider,
-				'model' => $model,
+				'map' => $model,
 	        ]);
 	?>
 
@@ -54,9 +54,9 @@ $this->params['breadcrumbs'][] = $this->title;
 			$dataProvider = new ActiveDataProvider([
 				'query' => $model->getLayers(),
 			]);
-	        echo $this->render('_layer-list', [
+	        echo $this->render('../map-layer/_list', [
 	            'dataProvider' => $dataProvider,
-				'model' => $model,
+				'map' => $model,
 	        ]);
 	?>
 
@@ -64,9 +64,9 @@ $this->params['breadcrumbs'][] = $this->title;
 			$dataProvider = new ActiveDataProvider([
 				'query' => $model->getToolGroups(),
 			]);
-	        echo $this->render('_tool-group-list', [
+	        echo $this->render('../map-tool-group/_list', [
 	            'dataProvider' => $dataProvider,
-				'model' => $model,
+				'map' => $model,
 	        ]);
 	?>
 

@@ -10,7 +10,7 @@ use yii\data\ActiveDataProvider;
  * @var common\models\NotificationGroup $model
  */
 
-$this->title = $model->name;
+$this->title = $model->display_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Notification Groups'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

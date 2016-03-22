@@ -13,7 +13,7 @@ use kartik\datecontrol\DateControl;
  * @var common\models\AttributeType $model
  */
 
-$this->title = $model->name;
+$this->title = $model->display_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Attribute Types'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

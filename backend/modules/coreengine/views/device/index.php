@@ -29,7 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
 				'filter' => Device::getDeviceTypes(),
 			],
             [
-                'class' => 'yii\grid\ActionColumn',
+                'class' => 'kartik\grid\ActionColumn',
+				'noWrap' => true,
                 'buttons' => [
                 'update' => function ($url, $model) {
                                     return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['coreengine/device/view','id' => $model->id,'edit'=>'t']), [

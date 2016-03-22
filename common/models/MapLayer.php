@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+use common\behaviors\Constant;
+
 use Yii;
 use \common\models\base\MapLayer as BaseMapLayer;
 
@@ -10,4 +12,8 @@ use \common\models\base\MapLayer as BaseMapLayer;
  */
 class MapLayer extends BaseMapLayer
 {
+	use Constant;
+	const STATUS_ENABLED = 'ENABLED';
+	const STATUS_DISABLED = 'DISABLED';
+	
 }

@@ -10,7 +10,7 @@ use kartik\datecontrol\DateControl;
  * @var common\models\NotificationType $model
  */
 
-$this->title = $model->name;
+$this->title = $model->display_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Notification Types'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

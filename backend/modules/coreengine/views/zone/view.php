@@ -11,7 +11,7 @@ use kartik\datecontrol\DateControl;
  * @var common\models\Zone $model
  */
 
-$this->title = $model->name;
+$this->title = $model->display_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Zones'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

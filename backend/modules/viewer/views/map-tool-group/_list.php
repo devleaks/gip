@@ -1,5 +1,7 @@
 <?php
 
+use common\models\MapToolGroup;
+
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
@@ -28,12 +30,19 @@ use yii\widgets\Pjax;
             [
                 'class' => 'kartik\grid\ActionColumn',
 				'noWrap' => true,
+				'controller' => 'map-tool-group',
+				'template' => '{update} {delete}',
                 'buttons' => [
-                'update' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['viewer/tool-group/view','id' => $model->id,'edit'=>'t']), [
-                                                    'title' => Yii::t('yii', 'Edit'),
-                                                  ]);}
-
+                	'update' => function ($url, $model) use ($map) {
+                            	return Html::a('<span class="glyphicon glyphicon-pencil"></span>',
+									Yii::$app->urlManager->createUrl(['/viewer/map-tool-group/view','id' => MapToolGroup::findOne(['map_id'=>$map->id, 'tool_group_id'=>$model->id])->id,'edit'=>'t']),
+									['title' => Yii::t('yii', 'Edit'),]);
+							},
+                	'delete' => function ($url, $model) use ($map) {
+                            	return Html::a('<span class="glyphicon glyphicon-trash"></span>',
+									Yii::$app->urlManager->createUrl(['/viewer/map-tool-group/delete','id' => MapToolGroup::findOne(['map_id'=>$map->id, 'tool_group_id'=>$model->id])->id]),
+									['title' => Yii::t('yii', 'Remove'),'data-confirm' => Yii::t('gip', 'Remove tool set?')]);
+							},
                 ],
             ],
         ],
@@ -44,7 +53,7 @@ use yii\widgets\Pjax;
         'panel' => [
             'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> '.Html::encode(Yii::t('gip', 'Tool Set')).' </h3>',
             'type'=>'info',
-			'after'=>$this->render('_tool-group-add', ['map'=>$model]),
+			'after'=>$this->render('_add', ['map'=>$map]),
             'showFooter'=>false
         ],
     ]); Pjax::end(); ?>

@@ -1,25 +1,19 @@
 <?php
 
-use common\models\ChannelType;
-
 use yii\helpers\Html;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
 
 /**
  * @var yii\web\View $this
- * @var common\models\ChannelType $model
+ * @var common\models\MapToolGroup $model
  */
 
-$this->title = $model->display_name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Channel Types'), 'url' => ['index']];
+$this->title = $model->toolGroup->display_name;
+$this->params['breadcrumbs'][] = ['label' => $model->map->display_name, 'url' => ['map/view', 'id' => $model->map_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="channel-type-view">
-    <div class="page-header">
-        <h1><?= Html::encode($this->title) ?></h1>
-    </div>
-
+<div class="map-tool-group-view">
 
     <?= DetailView::widget([
             'model' => $model,
@@ -31,14 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'type'=>DetailView::TYPE_INFO,
         ],
         'attributes' => [
-            'name',
-        	'display_name',
-            'description',
-	        [
-	            'attribute'=>'direction',
-				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => ChannelType::getLocalizedConstants('DIRECTION_'),
-	        ],
+            'position',
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],

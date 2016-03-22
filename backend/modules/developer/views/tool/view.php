@@ -15,7 +15,7 @@ use insolita\iconpicker\Iconpicker;
  * @var common\models\Tool $model
  */
 
-$this->title = $model->name;
+$this->title = $model->display_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Tools'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

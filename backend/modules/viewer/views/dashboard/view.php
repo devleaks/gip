@@ -9,7 +9,7 @@ use kartik\datecontrol\DateControl;
  * @var common\models\Dashboard $model
  */
 
-$this->title = $model->name;
+$this->title = $model->display_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Dashboards'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

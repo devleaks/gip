@@ -14,17 +14,20 @@ class AttributeType extends BaseAttributeType
 {
 	use Constant;
 	
-	const DATA_TYPE_STRING  = 'String';
+	// CORE
+	const DATA_TYPE_ARRAY  = 'Array';
+	const DATA_TYPE_BOOLEAN  = 'Boolean';
+	const DATA_TYPE_INTEGER = 'Integer';
 	const DATA_TYPE_NUMBER  = 'Number';
+	const DATA_TYPE_OBJECT  = 'Object';
+	const DATA_TYPE_STRING  = 'String';
+	// EXTRA
 	const DATA_TYPE_FLOAT   = 'Float';
 	const DATA_TYPE_DOUBLE  = 'Double';
-	const DATA_TYPE_INTEGER = 'Int';
 	const DATA_TYPE_DATE    = 'Date';
 	const DATA_TYPE_TIME    = 'Time';
 	const DATA_TYPE_DATETIME = 'DateTime';
 	const DATA_TYPE_TIMESTAMP = 'DateTime';
-	const DATA_TYPE_OBJECT  = 'Object';
 	const DATA_TYPE_PAYLOAD = 'Payload';
-
 
 }

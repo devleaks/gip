@@ -1,25 +1,20 @@
 <?php
 
-use common\models\ChannelType;
-
 use yii\helpers\Html;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
+use kartik\widgets\SwitchInput;
 
 /**
  * @var yii\web\View $this
- * @var common\models\ChannelType $model
+ * @var common\models\MapLayer $model
  */
 
-$this->title = $model->display_name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Channel Types'), 'url' => ['index']];
+$this->title = $model->layer->display_name;
+$this->params['breadcrumbs'][] = ['label' => $model->map->display_name, 'url' => ['map/view', 'id' => $model->map_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="channel-type-view">
-    <div class="page-header">
-        <h1><?= Html::encode($this->title) ?></h1>
-    </div>
-
+<div class="map-layer-view">
 
     <?= DetailView::widget([
             'model' => $model,
@@ -31,14 +26,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'type'=>DetailView::TYPE_INFO,
         ],
         'attributes' => [
-            'name',
-        	'display_name',
-            'description',
-	        [
-	            'attribute'=>'direction',
-				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => ChannelType::getLocalizedConstants('DIRECTION_'),
-	        ],
+            'position',
+            'group',
+			[
+		        'attribute' => 'default',
+				'type' => DetailView::INPUT_SWITCH,
+				'format' => 'boolean',
+				'options' => [
+				    'pluginOptions' => [
+						'onText' => Yii::t('store', 'Yes'),
+						'offText' =>  Yii::t('store', 'No')
+					],
+				],
+			],
+            'status',
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],

@@ -14,7 +14,7 @@ use kartik\datecontrol\DateControl;
  * @var common\models\Target $model
  */
 
-$this->title = $model->name;
+$this->title = $model->display_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Targets'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

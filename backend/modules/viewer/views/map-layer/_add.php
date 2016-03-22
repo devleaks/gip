@@ -44,6 +44,27 @@ $model->map_id = $map->id;
 						'type' => Form::INPUT_TEXT,
 			            'columnOptions' => ['colspan' => 1],
 					],
+			        'group' => [
+						'type' => Form::INPUT_TEXT,
+			            'columnOptions' => ['colspan' => 2],
+					],
+					'default' => [
+						'type' => Form::INPUT_WIDGET,
+						'widgetClass'=> SwitchInput::className(),
+						'options' => [
+						    'pluginOptions' => [
+								'onText' => Yii::t('store', 'Yes'),
+								'offText' =>  Yii::t('store', 'No')
+							],
+						],
+			            'columnOptions' => ['colspan' => 1],
+					],
+					'status' => [
+						'type' => Form::INPUT_DROPDOWN_LIST,
+						'items' => MapLayer::getLocalizedConstants('STATUS_'),
+			            'columnOptions' => ['colspan' => 2],
+					],
+		            
 				],
 			])
 	?>

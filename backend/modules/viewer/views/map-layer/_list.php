@@ -1,5 +1,7 @@
 <?php
 
+use common\models\MapLayer;
+
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
@@ -29,12 +31,19 @@ use yii\widgets\Pjax;
             [
                 'class' => 'kartik\grid\ActionColumn',
 				'noWrap' => true,
+				'controller' => 'map-layer',
+				'template' => '{update} {delete}',
                 'buttons' => [
-                'update' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['viewer/background/view','id' => $model->id,'edit'=>'t']), [
-                                                    'title' => Yii::t('yii', 'Edit'),
-                                                  ]);}
-
+                	'update' => function ($url, $model) use ($map) {
+                            	return Html::a('<span class="glyphicon glyphicon-pencil"></span>',
+									Yii::$app->urlManager->createUrl(['/viewer/map-layer/view','id' => MapLayer::findOne(['map_id'=>$map->id, 'layer_id'=>$model->id])->id,'edit'=>'t']),
+									['title' => Yii::t('yii', 'Edit'),]);
+							},
+                	'delete' => function ($url, $model) use ($map) {
+                            	return Html::a('<span class="glyphicon glyphicon-trash"></span>',
+									Yii::$app->urlManager->createUrl(['/viewer/map-layer/delete','id' => MapLayer::findOne(['map_id'=>$map->id, 'layer_id'=>$model->id])->id,'edit'=>'t']),
+									['title' => Yii::t('yii', 'Remove'),]);
+							},
                 ],
             ],
         ],
@@ -45,7 +54,7 @@ use yii\widgets\Pjax;
         'panel' => [
             'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> '.Html::encode(Yii::t('gip', 'Layers')).' </h3>',
             'type'=>'info',
-			'after'=>$this->render('_layer-add', ['map'=>$model]),
+			'after'=>$this->render('_add', ['map'=>$map]),
             'showFooter'=>false
         ],
     ]); Pjax::end(); ?>
