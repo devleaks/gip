@@ -19,7 +19,6 @@ use yii\widgets\Pjax;
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn'],
 
-            'name',
         	'display_name',
             'description',
 			[

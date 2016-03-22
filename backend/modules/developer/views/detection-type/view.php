@@ -15,10 +15,6 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Detection Types'), '
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="detection-type-view">
-    <div class="page-header">
-        <h1><?= Html::encode($this->title) ?></h1>
-    </div>
-
 
     <?= DetailView::widget([
             'model' => $model,
