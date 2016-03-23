@@ -45,6 +45,7 @@ abstract class AttributeType extends \yii\db\ActiveRecord
             [['list_of_values_id', 'created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 40],
+            [['display_name'], 'string', 'max' => 80],
             [['data_type'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 200],
             [['name'], 'unique']
@@ -59,6 +60,7 @@ abstract class AttributeType extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'data_type' => Yii::t('gip', 'Data Type'),
             'list_of_values_id' => Yii::t('gip', 'List Of Values ID'),
             'description' => Yii::t('gip', 'Description'),

@@ -34,6 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
             [
 				'attribute' => 'status',
 				'filter' => Giplet::getLocalizedConstants('STATUS_'),
+				'value' => function ($model, $key, $index, $widget) {
+							return $model->makeLabel('status');
+	            		},
+				'format' => 'raw',
+				'hAlign' => Gridview::ALIGN_CENTER,
 			],
 
             [

@@ -47,6 +47,7 @@ abstract class ListOfValues extends \yii\db\ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['created_by', 'updated_by'], 'integer'],
             [['name'], 'string', 'max' => 40],
+            [['display_name'], 'string', 'max' => 80],
             [['data_type'], 'string', 'max' => 255],
             [['description', 'table_name'], 'string', 'max' => 200],
             [['value_column_name', 'display_column_name'], 'string', 'max' => 80],
@@ -62,6 +63,7 @@ abstract class ListOfValues extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'data_type' => Yii::t('gip', 'Data Type'),
             'description' => Yii::t('gip', 'Description'),
             'table_name' => Yii::t('gip', 'Table Name'),

@@ -1,5 +1,8 @@
 <?php
 
+use common\models\LayerType;
+
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
 use kartik\builder\Form;
@@ -26,6 +29,8 @@ use kartik\datecontrol\DateControl;
         	'display_name'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Display Name...', 'maxlength'=>80]],
 
             'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
+
+        	'layer_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Layer Type...'], 'items' => ArrayHelper::map(LayerType::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name')],
 
             'theme'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Theme...', 'maxlength'=>40]],
 

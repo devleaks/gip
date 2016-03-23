@@ -21,6 +21,8 @@ class Service extends BaseService
 	 * returns associative array of status, color for all possible status values
 	 * Bootstrap colors are: default  primary  success  info  warning  danger
 	 *
+	 * @param $what Attribute to get color for.
+	 *
 	 * @return array()
 	 */
 	public static function getLabelColors($what) {

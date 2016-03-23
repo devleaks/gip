@@ -12,8 +12,9 @@ use kartik\widgets\SwitchInput;
  * @var yii\web\View $this
  * @var common\models\Attribute $model
  */
-
+$controller = '/developer/'.$model->getEntityController().'/view';
 $this->title = $model->getEntityName(); // Yii::t('gip', 'Entity Attribute');
+$this->params['breadcrumbs'][] = ['label' => $model->getEntityName(), 'url' => [$controller, 'id' => $model->entity_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="attribute-view">
@@ -32,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'attribute' => 'attribute_id',
 				'displayOnly' => true,
 				'label' => 'Attribute',
-				'value' => $model->entityAttribute->name,
+				'value' => $model->entityAttribute->display_name,
 			],
 			'position',
 			'description',

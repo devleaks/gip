@@ -22,14 +22,14 @@ use yii\widgets\Pjax;
 				'attribute' => 'attribute_id',
 				'label' => Yii::t('gip', 'Attribute Name'),
 		        'value' => function ($model, $key, $index, $widget) {
-							return $model->entityAttribute ? $model->entityAttribute->name : '';
+							return $model->entityAttribute ? $model->entityAttribute->display_name : '';
 		        		},
 			],
 			[
 				'attribute' => 'attribute_id',
 				'label' => Yii::t('gip', 'Attribute Type'),
 		        'value' => function ($model, $key, $index, $widget) {
-							return $model->entityAttribute ? ($model->entityAttribute->attributeType ? $model->entityAttribute->attributeType->name : '') : '';
+							return $model->entityAttribute ? ($model->entityAttribute->attributeType ? $model->entityAttribute->attributeType->display_name : '') : '';
 		        		},
 			],
 			'description',

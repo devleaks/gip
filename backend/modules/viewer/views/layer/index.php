@@ -23,6 +23,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
         	'display_name',
             'description',
+			[
+				'attribute' => 'layer_type_id',
+				'label' => Yii::t('gip', 'Layer Type'),
+	            'value' => function ($model, $key, $index, $widget) {
+							return $model->layerType->display_name;
+	            		},
+			],
             'theme', 
             'highlight', 
             'icon', 

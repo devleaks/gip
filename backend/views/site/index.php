@@ -26,7 +26,9 @@ $this->title = 'GIP - Administration';
                 <h3>Input</h3>
 
 				<ul style="list-style: none;padding-left:0;">
-                    <li>&raquo; <a href="<?= Url::to(['/inputbroker/processing']) ?>">Devices</a></li>
+                    <li>&raquo; <a href="<?= Url::to(['/inputbroker/provider']) ?>">Provider</a></li>
+                    <li>&raquo; <a href="<?= Url::to(['/developer/target']) ?>">Target</a></li>
+                    <li>&raquo; <a href="<?= Url::to(['/inputbroker/processing']) ?>">Processing</a></li>
                 </ul>
 
             </div>
@@ -35,6 +37,8 @@ $this->title = 'GIP - Administration';
                 <h3>Processing</h3>
 
 				<ul style="list-style: none;padding-left:0;">
+                    <li>&raquo; <a href="<?= Url::to(['/coreengine/device']) ?>">Device</a></li>
+                    <li>&raquo; <a href="<?= Url::to(['/coreengine/zone']) ?>">Zone</a></li>
                     <li>&raquo; <a href="<?= Url::to(['/coreengine/rule']) ?>">Rules</a></li>
 				</ul>
             </div>
@@ -44,6 +48,7 @@ $this->title = 'GIP - Administration';
 
 				<ul style="list-style: none;padding-left:0;">
                     <li>&raquo; <a href="<?= Url::to(['/viewer/dashboard']) ?>">Dashboards</a></li>
+                    <li>&raquo; <a href="<?= Url::to(['/viewer/map']) ?>">Maps</a></li>
 				</ul>
             </div>
         </div>

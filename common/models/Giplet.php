@@ -13,6 +13,7 @@ use \common\models\base\Giplet as BaseGiplet;
  */
 class Giplet extends BaseGiplet
 {
+	use \common\behaviors\ListAll;
 	use AttributeValue;
 	use Constant;
 
@@ -20,6 +21,32 @@ class Giplet extends BaseGiplet
 	const STATUS_DISABLED = 'DISABLED';
 	
 
+	/**
+	 * returns associative array of status, color for all possible status values
+	 * Bootstrap colors are: default  primary  success  info  warning  danger
+	 *
+	 * @param $what Attribute to get color for.
+	 *
+	 * @return array()
+	 */
+	public static function getLabelColors($what) {
+		$colors = [];
+		switch($what) {
+			case 'status':
+				$colors = [
+					self::STATUS_ENABLED => 'success',
+					self::STATUS_DISABLED => 'warning',
+				];
+				break;
+		}
+		return $colors;
+	}
+	
+	/**
+	 * returns type of current instance
+	 *
+	 * @return string
+	 */
 	public function getType() {
 		return $this->gipletType;
 	}
