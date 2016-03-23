@@ -1,5 +1,7 @@
 <?php
 
+use common\models\Service;
+
 use yii\helpers\Html;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
@@ -28,28 +30,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
         	'display_name',
             'description',
-            'status',
-            [
-                'attribute'=>'created_at',
-                'format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A'],
-                'type'=>DetailView::INPUT_WIDGET,
-                'widgetOptions'=> [
-                    'class'=>DateControl::classname(),
-                    'type'=>DateControl::FORMAT_DATETIME
-                ]
-            ],
-            [
-                'attribute'=>'updated_at',
-                'format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A'],
-                'type'=>DetailView::INPUT_WIDGET,
-                'widgetOptions'=> [
-                    'class'=>DateControl::classname(),
-                    'type'=>DateControl::FORMAT_DATETIME
-                ]
-            ],
-            'created_by',
-            'updated_by',
-        ],
+	        [
+	            'attribute'=>'status',
+				'type' => DetailView::INPUT_DROPDOWN_LIST,
+				'items' => Service::getLocalizedConstants('STATUS_'),
+	        ],
+         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],
             'data'=>[

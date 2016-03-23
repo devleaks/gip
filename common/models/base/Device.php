@@ -57,6 +57,7 @@ abstract class Device extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'device_type' => Yii::t('gip', 'Device Type'),
             'created_at' => Yii::t('gip', 'Created At'),

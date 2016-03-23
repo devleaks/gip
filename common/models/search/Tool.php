@@ -16,7 +16,7 @@ class Tool extends ToolModel
     {
         return [
             [['id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'description', 'created_at', 'updated_at', 'icon'], 'safe'],
+            [['name', 'display_name', 'description', 'created_at', 'updated_at', 'icon'], 'safe'],
         ];
     }
 
@@ -47,6 +47,7 @@ class Tool extends ToolModel
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'display_name', $this->display_name])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'icon', $this->icon]);
 

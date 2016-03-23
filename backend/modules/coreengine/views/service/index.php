@@ -1,5 +1,6 @@
 <?php
 
+use common\models\Service;
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
@@ -23,11 +24,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
         	'display_name',
             'description',
-            'status',
-            ['attribute'=>'updated_at','format'=>['datetime',(isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A']], 
-//            'created_by', 
-//            'updated_by', 
-
+            [
+				'attribute' => 'status',
+				'filter' => Service::getLocalizedConstants('STATUS_'),
+				'value' => function ($model, $key, $index, $widget) {
+							return $model->makeLabel('status');
+	            		},
+				'format' => 'raw',
+				'hAlign' => Gridview::ALIGN_CENTER,
+			],
             [
                 'class' => 'kartik\grid\ActionColumn',
 				'noWrap' => true,
@@ -47,7 +52,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'panel' => [
             'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> '.Html::encode($this->title).' </h3>',
             'type'=>'info',
-            'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Add', ['create'], ['class' => 'btn btn-success']),                                                                                                                                                          'after'=>Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset List', ['index'], ['class' => 'btn btn-info']),
+            'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Add', ['create'], ['class' => 'btn btn-success']),
+            'after'=>Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset List', ['index'], ['class' => 'btn btn-info']),
             'showFooter'=>false
         ],
     ]); Pjax::end(); ?>

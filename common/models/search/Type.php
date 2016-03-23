@@ -16,7 +16,7 @@ class Type extends TypeModel
     {
         return [
             [['id', 'type_id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'description', 'icon', 'color', 'created_at', 'updated_at'], 'safe'],
+            [['name', 'display_name', 'description', 'icon', 'color', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -48,6 +48,7 @@ class Type extends TypeModel
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'display_name', $this->display_name])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'icon', $this->icon])
             ->andFilterWhere(['like', 'color', $this->color]);

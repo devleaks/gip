@@ -53,13 +53,13 @@ $this->title = 'GIP - Administration';
         <div class="row">
 	
             <div class="col-lg-6 col-lg-offset-3">
-				<?php if($this->beginCache('weather-widget', ['duration' => 60])) {
-						echo '<div id="weather"></div>';
+				<?php   echo '<div id="weather"></div>';
 						if(isset(Yii::$app->params['FORECAST_APIKEY'])) {
 							echo Weather::widget([
 								'id' => 'weather',
 								'pluginOptions' => [
 									'celsius' => true,
+									'cacheTime' => 60,
 									'imgPath' => '/gipadmin/images/weather-widget/',
 									'key' => Yii::$app->params['FORECAST_APIKEY'],
 									'lat' => Yii::$app->params['FORECAST_DEFAULT_LAT'],
@@ -69,8 +69,6 @@ $this->title = 'GIP - Administration';
 						} else {
 							Yii::$app->session->setFlash('error', 'Weather: No API key.');
 						}
-						$this->endCache();
-					}
 				?>
             </div>
 		</div>

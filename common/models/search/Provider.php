@@ -16,7 +16,7 @@ class Provider extends ProviderModel
     {
         return [
             [['id', 'channel_type_id', 'input_event_id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'description', 'created_at', 'updated_at'], 'safe'],
+            [['name', 'display_name', 'description', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 

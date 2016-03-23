@@ -47,6 +47,7 @@ abstract class Attribute extends \yii\db\ActiveRecord
             [['name'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 40],
+            [['display_name'], 'string', 'max' => 80],
             [['description'], 'string', 'max' => 2000],
             [['name'], 'unique']
         ];
@@ -61,6 +62,7 @@ abstract class Attribute extends \yii\db\ActiveRecord
             'id' => Yii::t('gip', 'ID'),
             'attribute_type_id' => Yii::t('gip', 'Attribute Type ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'created_at' => Yii::t('gip', 'Created At'),
             'updated_at' => Yii::t('gip', 'Updated At'),

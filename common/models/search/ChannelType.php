@@ -16,7 +16,7 @@ class ChannelType extends ChannelTypeModel
     {
         return [
             [['id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'description', 'direction', 'created_at', 'updated_at'], 'safe'],
+            [['name', 'display_name', 'description', 'direction', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -47,6 +47,7 @@ class ChannelType extends ChannelTypeModel
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'display_name', $this->display_name])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'direction', $this->direction]);
 

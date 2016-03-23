@@ -23,7 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'floatHeader'=>true,
         'panel' => [
             'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-user"></i> '.Html::encode($this->title).' </h3>',
-            'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Add', ['create'], ['class' => 'btn btn-success']),                                                                                                                                                          	
+            'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Add', ['create'], ['class' => 'btn btn-success']),
+            	
             'showFooter'=>false
         ],
         'columns' => [

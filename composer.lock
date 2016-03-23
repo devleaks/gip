@@ -1435,16 +1435,16 @@
         },
         {
             "name": "dmstr/yii2-adminlte-asset",
-            "version": "2.2.4",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmstr/yii2-adminlte-asset.git",
-                "reference": "c842a15ceef4e903f70ac927ec3246e6d53e1148"
+                "reference": "73eca05cf04d70f169a88b430d2c03c3b54d623a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmstr/yii2-adminlte-asset/zipball/c842a15ceef4e903f70ac927ec3246e6d53e1148",
-                "reference": "c842a15ceef4e903f70ac927ec3246e6d53e1148",
+                "url": "https://api.github.com/repos/dmstr/yii2-adminlte-asset/zipball/73eca05cf04d70f169a88b430d2c03c3b54d623a",
+                "reference": "73eca05cf04d70f169a88b430d2c03c3b54d623a",
                 "shasum": ""
             },
             "require": {
@@ -1485,7 +1485,7 @@
                 "extension",
                 "yii2"
             ],
-            "time": "2015-11-06 10:35:36"
+            "time": "2016-03-23 04:18:15"
         },
         {
             "name": "dmstr/yii2-bootstrap",

@@ -71,6 +71,7 @@ abstract class Giplet extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'giplet_type_id' => Yii::t('gip', 'Giplet Type ID'),
             'status' => Yii::t('gip', 'Status'),
@@ -91,6 +92,7 @@ abstract class Giplet extends \yii\db\ActiveRecord
             [
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'giplet_type_id' => Yii::t('gip', 'Giplet Type Id'),
             'status' => Yii::t('gip', 'Status'),

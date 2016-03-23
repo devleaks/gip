@@ -71,6 +71,7 @@ abstract class Background extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'status' => Yii::t('gip', 'Status'),
             'created_at' => Yii::t('gip', 'Created At'),
@@ -91,6 +92,7 @@ abstract class Background extends \yii\db\ActiveRecord
             [
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'status' => Yii::t('gip', 'Status'),
             'created_at' => Yii::t('gip', 'Created At'),

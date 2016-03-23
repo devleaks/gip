@@ -61,6 +61,7 @@ class Layer extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'theme' => Yii::t('gip', 'Theme'),
             'highlight' => Yii::t('gip', 'Highlight'),

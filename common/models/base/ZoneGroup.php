@@ -76,6 +76,7 @@ abstract class ZoneGroup extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'zone_group_type' => Yii::t('gip', 'Zone Group Type'),
             'schema_name' => Yii::t('gip', 'Schema Name'),

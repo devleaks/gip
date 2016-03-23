@@ -16,7 +16,7 @@ class Rule extends RuleModel
     {
         return [
             [['id', 'device_group_id', 'notification_group_id', 'detection_type_id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'description', 'created_at', 'updated_at'], 'safe'],
+            [['name', 'display_name', 'description', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 

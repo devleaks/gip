@@ -44,6 +44,7 @@ abstract class Notification extends \yii\db\ActiveRecord
             [['notification_type_id', 'created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 40],
+            [['display_name'], 'string', 'max' => 80],
             [['description'], 'string', 'max' => 2000],
             [['name'], 'unique']
         ];
@@ -57,6 +58,7 @@ abstract class Notification extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'notification_type_id' => Yii::t('gip', 'Notification Type ID'),
             'created_at' => Yii::t('gip', 'Created At'),

@@ -16,7 +16,7 @@ class Event extends EventModel
     {
         return [
             [['id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'description', 'factory', 'created_at', 'updated_at'], 'safe'],
+            [['name', 'display_name', 'description', 'factory', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -47,6 +47,7 @@ class Event extends EventModel
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'display_name', $this->display_name])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'factory', $this->factory]);
 

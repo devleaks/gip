@@ -30,25 +30,25 @@ $this->params['breadcrumbs'][] = $this->title;
 			[
 				'attribute' => 'service_id',
 				'label' => Yii::t('gip', 'Service'),
-				'filter' => ArrayHelper::map(Service::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
+				'filter' => Service::getList(),
 	            'value' => function ($model, $key, $index, $widget) {
-							return $model->service ? $model->service->name : '';
+							return $model->service ? $model->service->display_name : '';
 	            		},
 			],
 			[
 				'attribute' => 'rule_id',
 				'label' => Yii::t('gip', 'Rule'),
-				'filter' => ArrayHelper::map(Rule::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
+				'filter' => Rule::getList(),
 	            'value' => function ($model, $key, $index, $widget) {
-							return $model->rule ? $model->rule->name : '';
+							return $model->rule ? $model->rule->display_name : '';
 	            		},
 			],
 			[
 				'attribute' => 'provider_id',
 				'label' => Yii::t('gip', 'Source'),
-				'filter' => ArrayHelper::map(Provider::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
+				'filter' => Provider::getList(),
 	            'value' => function ($model, $key, $index, $widget) {
-							return $model->provider ? $model->provider->name : '';
+							return $model->provider ? $model->provider->display_name : '';
 	            		},
 			],
 			[
@@ -67,10 +67,10 @@ $this->params['breadcrumbs'][] = $this->title;
 				'noWrap' => true,
                 'buttons' => [
                 'update' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['coreengine/subscription/view','id' => $model->id,'edit'=>'t']), [
-                                                    'title' => Yii::t('yii', 'Edit'),
-                                                  ]);}
-
+					return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['coreengine/subscription/view','id' => $model->id,'edit'=>'t']), [
+                                   'title' => Yii::t('yii', 'Edit'),
+                    ]);
+				}
                 ],
             ],
         ],
@@ -81,7 +81,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'panel' => [
             'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> '.Html::encode($this->title).' </h3>',
             'type'=>'info',
-            'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Add', ['create'], ['class' => 'btn btn-success']),                                                                                                                                                          'after'=>Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset List', ['index'], ['class' => 'btn btn-info']),
+            'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Add', ['create'], ['class' => 'btn btn-success']),
+            'after'=>Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset List', ['index'], ['class' => 'btn btn-info']),
             'showFooter'=>false
         ],
     ]); Pjax::end(); ?>

@@ -16,7 +16,7 @@ class ToolGroup extends ToolGroupModel
     {
         return [
             [['id', 'created_by', 'updated_by', 'type_id'], 'integer'],
-            [['name', 'description', 'created_at', 'updated_at', 'display_name'], 'safe'],
+            [['name', 'display_name', 'description', 'created_at', 'updated_at', 'display_name'], 'safe'],
         ];
     }
 
@@ -48,6 +48,7 @@ class ToolGroup extends ToolGroupModel
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'display_name', $this->display_name])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'display_name', $this->display_name]);
 

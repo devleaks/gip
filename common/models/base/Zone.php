@@ -68,6 +68,7 @@ abstract class Zone extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'zone_type' => Yii::t('gip', 'Zone Type'),
             'zone_dimension' => Yii::t('gip', 'Zone Dimension'),

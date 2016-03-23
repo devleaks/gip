@@ -12,6 +12,7 @@ use \common\models\base\Provider as BaseProvider;
  */
 class Provider extends Channel
 {
+	use \common\behaviors\ListAll;
 	use AttributeValue;
 
 	const DIRECTION = ChannelType::DIRECTION_IN;	

@@ -12,7 +12,7 @@ use yii\widgets\Pjax;
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn'],
 
-        	'display_name',
+        	'name',
             'description',
             [
                 'class' => 'yii\grid\ActionColumn',
@@ -33,7 +33,8 @@ use yii\widgets\Pjax;
         'panel' => [
             'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> '.Html::encode(Yii::t('gip', 'Values')).' </h3>',
             'type'=>'info',
-            'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Add', ['lov-values/create', 'id' => $list_of_values->id], ['class' => 'btn btn-success']),                                                                                                                                                          'after'=>Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset List', ['index'], ['class' => 'btn btn-info']),
+            'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Add', ['lov-values/create', 'id' => $list_of_values->id], ['class' => 'btn btn-success']),
+            'after'=>Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset List', ['index'], ['class' => 'btn btn-info']),
             'showFooter'=>false
         ],
     ]); Pjax::end(); ?>

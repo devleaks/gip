@@ -45,6 +45,7 @@ abstract class Channel extends \yii\db\ActiveRecord
             [['channel_type_id', 'event_id', 'created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 40],
+            [['display_name'], 'string', 'max' => 80],
             [['description'], 'string', 'max' => 2000],
             [['name'], 'unique']
         ];
@@ -58,6 +59,7 @@ abstract class Channel extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'channel_type_id' => Yii::t('gip', 'Channel Type ID'),
             'event_id' => Yii::t('gip', 'Event ID'),

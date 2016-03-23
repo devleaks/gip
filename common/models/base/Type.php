@@ -61,6 +61,7 @@ abstract class Type extends \yii\db\ActiveRecord
             'id' => Yii::t('gip', 'ID'),
             'type_id' => Yii::t('gip', 'Type ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'icon' => Yii::t('gip', 'Icon'),
             'color' => Yii::t('gip', 'Color'),

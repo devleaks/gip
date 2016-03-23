@@ -16,7 +16,7 @@ class Subscription extends SubscriptionModel
     {
         return [
             [['id', 'service_id', 'rule_id', 'provider_id', 'enabled', 'trusted', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'description', 'created_at', 'updated_at'], 'safe'],
+            [['name', 'display_name', 'description', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 

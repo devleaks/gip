@@ -16,7 +16,7 @@ class Layer extends LayerModel
     {
         return [
             [['id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'description', 'created_at', 'updated_at', 'theme', 'highlight', 'icon'], 'safe'],
+            [['name', 'display_name', 'description', 'created_at', 'updated_at', 'theme', 'highlight', 'icon'], 'safe'],
         ];
     }
 
@@ -48,6 +48,7 @@ class Layer extends LayerModel
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'display_name', $this->display_name])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'theme', $this->theme])

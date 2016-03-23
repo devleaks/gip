@@ -16,7 +16,7 @@ class Processing extends ProcessingModel
     {
         return [
             [['id', 'service_id', 'provider_id', 'event_id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'description', 'status', 'created_at', 'updated_at'], 'safe'],
+            [['name', 'display_name', 'description', 'status', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -50,6 +50,7 @@ class Processing extends ProcessingModel
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'display_name', $this->display_name])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'status', $this->status]);
 

@@ -51,6 +51,7 @@ abstract class Processing extends \yii\db\ActiveRecord
             [['service_id', 'provider_id', 'event_id', 'created_by', 'updated_by', 'target_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 40],
+            [['display_name'], 'string', 'max' => 80],
             [['description'], 'string', 'max' => 2000],
             [['status'], 'string', 'max' => 20],
             [['name'], 'unique']
@@ -65,6 +66,7 @@ abstract class Processing extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'service_id' => Yii::t('gip', 'Service ID'),
             'provider_id' => Yii::t('gip', 'Provider ID'),

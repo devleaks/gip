@@ -44,6 +44,7 @@ abstract class Service extends \yii\db\ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['created_by', 'updated_by'], 'integer'],
             [['name'], 'string', 'max' => 40],
+            [['display_name'], 'string', 'max' => 80],
             [['description'], 'string', 'max' => 2000],
             [['status'], 'string', 'max' => 20],
             [['name'], 'unique']
@@ -58,6 +59,7 @@ abstract class Service extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'status' => Yii::t('gip', 'Status'),
             'created_at' => Yii::t('gip', 'Created At'),

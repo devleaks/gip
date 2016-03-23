@@ -57,6 +57,7 @@ class Tool extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'icon' => Yii::t('gip', 'Icon'),
             'display_name' => Yii::t('gip', 'Display Name'),

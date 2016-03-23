@@ -34,6 +34,7 @@ class ToolGroup extends BaseToolGroup
         return [
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'created_at' => Yii::t('gip', 'Created At'),
             'updated_at' => Yii::t('gip', 'Updated At'),

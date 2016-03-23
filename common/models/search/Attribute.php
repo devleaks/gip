@@ -16,7 +16,7 @@ class Attribute extends AttributeModel
     {
         return [
             [['id', 'attribute_type_id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'description', 'created_at', 'updated_at'], 'safe'],
+            [['name', 'display_name', 'description', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 

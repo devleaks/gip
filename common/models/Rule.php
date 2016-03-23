@@ -12,6 +12,7 @@ use \common\models\base\Rule as BaseRule;
  */
 class Rule extends BaseRule
 {
+	use \common\behaviors\ListAll;
 	use AttributeValue;
 	
 	public function getType() {

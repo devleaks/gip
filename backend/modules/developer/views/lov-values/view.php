@@ -9,9 +9,9 @@ use kartik\datecontrol\DateControl;
  * @var common\models\LovValues $model
  */
 
-$this->title = $model->display_name;
+$this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'List of Values'), 'url' => ['list-of-values/index']];
-$this->params['breadcrumbs'][] = ['label' => $model->listOfValues->name, 'url' => ['list-of-values/view', 'id' => $model->list_of_values_id]];
+$this->params['breadcrumbs'][] = ['label' => $model->listOfValues->display_name, 'url' => ['list-of-values/view', 'id' => $model->list_of_values_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lov-values-view">
@@ -27,7 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'attributes' => [
             'name',
-        	'display_name',
             'description',
             [
                 'attribute'=>'created_at',

@@ -57,6 +57,7 @@ abstract class LovValues extends \yii\db\ActiveRecord
             'id' => Yii::t('gip', 'ID'),
             'list_of_values_id' => Yii::t('gip', 'List Of Values ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'created_at' => Yii::t('gip', 'Created At'),
             'updated_at' => Yii::t('gip', 'Updated At'),

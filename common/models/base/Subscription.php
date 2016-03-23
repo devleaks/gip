@@ -49,6 +49,7 @@ abstract class Subscription extends \yii\db\ActiveRecord
             [['service_id', 'rule_id', 'enabled', 'trusted', 'created_by', 'updated_by', 'provider_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 40],
+            [['display_name'], 'string', 'max' => 80],
             [['description'], 'string', 'max' => 2000],
             [['name'], 'unique']
         ];
@@ -66,6 +67,7 @@ abstract class Subscription extends \yii\db\ActiveRecord
             'enabled' => Yii::t('gip', 'Enabled'),
             'trusted' => Yii::t('gip', 'Trusted'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'created_at' => Yii::t('gip', 'Created At'),
             'updated_at' => Yii::t('gip', 'Updated At'),

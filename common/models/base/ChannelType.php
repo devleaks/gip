@@ -50,6 +50,7 @@ abstract class ChannelType extends \yii\db\ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['created_by', 'updated_by'], 'integer'],
             [['name'], 'string', 'max' => 40],
+            [['display_name'], 'string', 'max' => 80],
             [['description'], 'string', 'max' => 2000],
             [['name'], 'unique'],
             ['direction', 'in', 'range' => [
@@ -68,6 +69,7 @@ abstract class ChannelType extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('gip', 'ID'),
             'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'direction' => Yii::t('gip', 'Direction'),
             'created_at' => Yii::t('gip', 'Created At'),

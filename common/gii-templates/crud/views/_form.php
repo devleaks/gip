@@ -42,7 +42,7 @@ use kartik\datecontrol\DateControl;
         'attributes' => [
 
 <?php 	foreach ($safeAttributes as $attribute) {
-			if(in_array($attribute, ['id','created_at','created_by','updated_at','updated_by'])) continue;
+			if(in_array($attribute, ['created_at','created_by','updated_at','updated_by'])) continue;
 		    echo $generator->generateActiveField($attribute) . "\n\n";
 		} ?>
         ]
