@@ -39,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			'description',
 			[
 				'attribute' => 'mandatory',
+				'format' => 'boolean',
 				'type' => DetailView::INPUT_SWITCH,
 				'widgetOptions' => [
 				    'pluginOptions' => [

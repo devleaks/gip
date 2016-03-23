@@ -102,9 +102,11 @@ class MapBackgroundController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+		$map_id = $model->map_id;
+		$model->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['map/view', 'id' => $map_id]);
     }
 
     /**

@@ -40,7 +40,7 @@ use yii\widgets\Pjax;
                 	'delete' => function ($url, $model) use ($map) {
                             	return Html::a('<span class="glyphicon glyphicon-trash"></span>',
 									Yii::$app->urlManager->createUrl(['/viewer/map-tool-group/delete','id' => MapToolGroup::findOne(['map_id'=>$map->id, 'tool_group_id'=>$model->id])->id]),
-									['title' => Yii::t('yii', 'Remove'),'data-confirm' => Yii::t('gip', 'Remove tool set?')]);
+									['title' => Yii::t('yii', 'Remove'),'data-confirm' => Yii::t('gip', 'Remove tool set?'),'data-method' => 'post']);
 							},
                 ],
             ],

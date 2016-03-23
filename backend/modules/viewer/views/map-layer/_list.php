@@ -40,8 +40,8 @@ use yii\widgets\Pjax;
 							},
                 	'delete' => function ($url, $model) use ($map) {
                             	return Html::a('<span class="glyphicon glyphicon-trash"></span>',
-									Yii::$app->urlManager->createUrl(['/viewer/map-layer/delete','id' => MapLayer::findOne(['map_id'=>$map->id, 'layer_id'=>$model->id])->id,'edit'=>'t']),
-									['title' => Yii::t('yii', 'Remove'),]);
+									Yii::$app->urlManager->createUrl(['/viewer/map-layer/delete','id' => MapLayer::findOne(['map_id'=>$map->id, 'layer_id'=>$model->id])->id]),
+									['title' => Yii::t('yii', 'Remove'),'data-confirm' => Yii::t('gip', 'Remove background?'),'data-method' => 'post']);
 							},
                 ],
             ],

@@ -41,7 +41,7 @@ use yii\widgets\Pjax;
                 	'delete' => function ($url, $model) use ($map) {
                             	return Html::a('<span class="glyphicon glyphicon-trash"></span>',
 									Yii::$app->urlManager->createUrl(['/viewer/map-background/delete','id' => MapBackground::findOne(['map_id'=>$map->id, 'background_id'=>$model->id])->id]),
-									['title' => Yii::t('yii', 'Remove'),'data-confirm' => Yii::t('gip', 'Remove background?')]);
+									['title' => Yii::t('yii', 'Remove'),'data-confirm' => Yii::t('gip', 'Remove background?'),'data-method' => 'post']);
 							},
                 ],
             ],

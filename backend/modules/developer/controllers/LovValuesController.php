@@ -68,7 +68,7 @@ class LovValuesController extends Controller
 		$model->list_of_values_id = $id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['list-of-values', 'id' => $id]);
+            return $this->redirect(['list-of-values/view', 'id' => $id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -103,9 +103,11 @@ class LovValuesController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+		$id = $model->list_of_values_id;
+		$model->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['list-of-values/view', 'id' => $id]);
     }
 
     /**
