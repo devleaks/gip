@@ -14,14 +14,14 @@ class AttributeType extends BaseAttributeType
 {
 	use Constant;
 	
-	// CORE
-	const DATA_TYPE_ARRAY  = 'Array';
-	const DATA_TYPE_BOOLEAN  = 'Boolean';
-	const DATA_TYPE_INTEGER = 'Integer';
-	const DATA_TYPE_NUMBER  = 'Number';
-	const DATA_TYPE_OBJECT  = 'Object';
-	const DATA_TYPE_STRING  = 'String';
-	// EXTRA
+	// Core Types							# Stored in:
+	const DATA_TYPE_ARRAY  = 'Array';		# varchar2, clob
+	const DATA_TYPE_BOOLEAN  = 'Boolean';	# varchar2
+	const DATA_TYPE_INTEGER = 'Integer';	# number
+	const DATA_TYPE_NUMBER  = 'Number';		# number
+	const DATA_TYPE_OBJECT  = 'Object';		# varchar2, clob
+	const DATA_TYPE_STRING  = 'String';		# varchar2
+	// Extra Types / Derived Types			#
 	const DATA_TYPE_FLOAT   = 'Float';
 	const DATA_TYPE_DOUBLE  = 'Double';
 	const DATA_TYPE_DATE    = 'Date';
