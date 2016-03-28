@@ -10,7 +10,7 @@
 
 	<div class="info-box-content">
 		<span class="info-box-text"><?= $widget->item ?></span>
-		<span class="info-box-number"><?= $widget->count ?></span>
+		<span class="info-box-number"><?= $widget->value ?></span>
 
 	<?php if($widget->progress): ?>
 		<div class="progress">

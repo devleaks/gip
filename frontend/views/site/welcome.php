@@ -26,15 +26,17 @@ $this->title = 'GIP Application Dashboard';
 	
 		<?= $gridstack->beginWidget([
 				'class'=>'grid-stack-item',
-				'data-gs-width'=>"3",
+				'data-gs-width'=>"2",
 				'data-gs-height'=>"2",
 		    ]);
 		?>
 		<div class="grid-stack-item-content">
 			<span class="drag fa"></span>
 			<?= Indicator::widget([
-					'item' => "I'm an indicator!",
-					'icon' => 'fa-cog'
+					'color' => 'green',
+					'item' => "Seconds",
+					'icon' => 'fa-clock-o',
+					'value' => date('s', time())
 				  ]);
 			?>
 		</div>
@@ -44,7 +46,7 @@ $this->title = 'GIP Application Dashboard';
 		
 		<?= $gridstack->beginWidget([
 				'class'=>'grid-stack-item',
-				'data-gs-width'=>"3",
+				'data-gs-width'=>"2",
 				'data-gs-height'=>"2",
 		    ]);
 		?>
@@ -55,13 +57,27 @@ $this->title = 'GIP Application Dashboard';
 					'colorBG' => true,
 					'icon' => 'fa-envelope-o',
 					'progress' => 60,
+					'item' => 'Mail',
 					'progressDescription' => '62% done.'
 				  ]);
 			?>
 		</div>
 		<?=$gridstack->endWidget();?>
+
 		
 
+		<?= $gridstack->beginWidget([
+				'class'=>'grid-stack-item',
+				'data-gs-width'=>"2",
+				'data-gs-height'=>"2",
+		    ]);
+		?>
+		<div class="grid-stack-item-content">
+			<span class="drag fa"></span>
+			<?= Indicator::widget(); ?>
+		</div>
+		<?=$gridstack->endWidget();?>
+		
 
 
 	<?php $gridstack->end(); ?>

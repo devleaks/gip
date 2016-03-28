@@ -15,7 +15,11 @@
 		    "type": "vcs",
 		    "url": "https://github.com/devleaks/yii2-sieve"
 		},
-{
+		{
+		    "type": "vcs",
+		    "url": "https://github.com/fetus-hina/yii2-flot"
+		},
+		{
 		    "type": "vcs",
 		    "url": "https://github.com/devleaks/yii2-metafizzy"
 		},

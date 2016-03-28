@@ -10,12 +10,13 @@ $display_role = Yii::$app->user->identity->role;
 $items = [];
 
 if(Yii::$app->user->identity->isA([User::ROLE_ADMIN])) {
+	$subitems = [];
+	$subitems[] = ['label' => 'Welcome', 'icon' => 'fa fa-dashboard', 'url' => ['/site/index']];
 	$items[] = [
         'label' => 'Create',
         'icon' => 'fa fa-list',
         'url' => '#',
-        'items' => [
-		],
+        'items' => $subitems,
 	];
 }
 if(Yii::$app->user->identity->isA([User::ROLE_ADMIN])) {
@@ -38,11 +39,7 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN])) {
 }
 if(in_array(Yii::$app->user->identity->role, [User::ROLE_ADMIN])) {
 	$subitems = [];
-	$subitems[] = ['label' => 'User Profiles', 'icon' => 'fa fa-user', 'url' => ['/admin/user']];
-	if(Yii::$app->user->identity->isA([User::ROLE_ADMIN])) {
-		$subitems[] = ['label' => 'User Accounts', 'icon' => 'fa fa-user', 'url' => ['/user/admin']];
-		$subitems[] = ['label' => 'Backup', 'icon' => 'fa fa-download', 'url' => ['/admin/backup']];
-	}
+	$subitems[] = ['label' => 'My Profile', 'icon' => 'fa fa-user', 'url' => ['/user/settings']];
 	$items[] = [
         'label' => 'Site',
         'icon' => 'fa fa-dashboard',

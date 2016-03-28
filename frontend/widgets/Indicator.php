@@ -8,24 +8,18 @@
 namespace frontend\widgets;
 
 /**
- * Indicator widget renders a single indicator
+ * Indicator widget renders a single value indicator (title + icon + value)
  *
  */
 class Indicator extends \yii\bootstrap\Widget
 {
-    /**
-     * @var array the alert types configuration for the flash messages.
-     * This array is setup as $key => $value, where:
-     * - $key is the name of the session flash variable
-     * - $value is the bootstrap alert type (i.e. danger, success, info, warning)
-     */
     public $color = 'aqua';
     public $colorBG = false;
 	public $title = 'Title';
-	public $titleIcon = 'fa-envelope-o';
-	public $count = 0;
-	public $item = 'Mail';
-	public $icon = 'fa-envelope-o';
+	public $titleIcon = 'fa-info-circle';
+	public $value = 0;
+	public $item = 'Item';
+	public $icon = 'fa-info';
 	public $progress = 0;
 	public $progressDescription = '% done';
 	
