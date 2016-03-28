@@ -2,7 +2,6 @@
 
 use devleaks\weather\Weather;
 
-
 use yii\helpers\Html;
 use yii\helpers\Url;
 /* @var $this yii\web\View */
@@ -65,7 +64,6 @@ $this->title = 'GIP - Administration';
 								'pluginOptions' => [
 									'celsius' => true,
 									'cacheTime' => 60,
-									'imgPath' => '/gipadmin/images/weather-widget/',
 									'key' => Yii::$app->params['FORECAST_APIKEY'],
 									'lat' => Yii::$app->params['FORECAST_DEFAULT_LAT'],
 									'lon' => Yii::$app->params['FORECAST_DEFAULT_LON'],

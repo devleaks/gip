@@ -1409,12 +1409,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/devleaks/yii2-weather.git",
-                "reference": "70f740e820a59bc45ad60de2aaaa983ba8e6ecbf"
+                "reference": "44161c70869e6d5ee3bd3c298ba9b379ea628762"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/devleaks/yii2-weather/zipball/70f740e820a59bc45ad60de2aaaa983ba8e6ecbf",
-                "reference": "70f740e820a59bc45ad60de2aaaa983ba8e6ecbf",
+                "url": "https://api.github.com/repos/devleaks/yii2-weather/zipball/44161c70869e6d5ee3bd3c298ba9b379ea628762",
+                "reference": "44161c70869e6d5ee3bd3c298ba9b379ea628762",
                 "shasum": ""
             },
             "require": {
@@ -1447,7 +1447,7 @@
                 "source": "https://github.com/devleaks/yii2-weather/tree/master",
                 "issues": "https://github.com/devleaks/yii2-weather/issues"
             },
-            "time": "2016-03-23 07:44:39"
+            "time": "2016-03-28 16:55:11"
         },
         {
             "name": "dmstr/yii2-adminlte-asset",
