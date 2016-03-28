@@ -33,8 +33,7 @@ class AttributeValueController extends Controller
      * @return mixed
      */
     public function actionBatchUpdate() {
-		if(isset($_POST['AttributeValue'])) {
-			$avpost = $_POST['AttributeValue'];
+		if($avpost = Yii::$app->request->post('AttributeValue')) {
 			$avids = array_keys($avpost);
 			$models = AttributeValue::find()->where(['id' => $avids])->indexBy('id')->all();
 	//	    $sourceModel = new AttributeValueSearch;
@@ -45,7 +44,7 @@ class AttributeValueController extends Controller
 		        $count = 0;
 		        foreach ($models as $index => $model) {
 		            // populate and save records for each model
-					Yii::trace('doing '.$model->id, 'AttributeValueController::actionBatchUpdate');
+					// Yii::trace('doing '.$model->id, 'AttributeValueController::actionBatchUpdate');
 		            if ($model->save()) {
 		                $count++;
 					}

@@ -126,8 +126,7 @@ class ProcessingController extends Controller
 
 
 	public function actionMappings() {
-		if(isset($_POST['Mapping'])) {
-			$mpost = $_POST['Mapping'];
+		if($mpost = Yii::$app->request->post('Mapping')) {
 			$mids = array_keys($mpost);
 			$models = Mapping::find()->where(['id' => $mids])->indexBy('id')->all();
 
@@ -135,7 +134,7 @@ class ProcessingController extends Controller
 		        $count = 0;
 		        foreach ($models as $index => $model) {
 		            // populate and save records for each model
-					Yii::trace('doing '.$model->id, 'ProcessingController::actionBatchUpdate');
+					// Yii::trace('doing '.$model->id, 'ProcessingController::actionMappings');
 		            if ($model->save()) {
 		                $count++;
 					}

@@ -149,3 +149,37 @@ ul.flight2 li:before {
   -webkit-box-shadow: -1px 1px 0 rgba(0,0,0,0.8);
   -webkit-transform: rotate(-45deg);
 }
+
+/* Gridstack Grid and Surface Visualization */
+.grid-stack {
+	border: 1px dotted lightgrey;
+}
+
+.grid-stack-item-content {
+    text-align: center;
+	border: 1px dotted #ddd;
+/*  background-color: lightgrey;*/
+}
+.grid-stack-item-content .drag {
+    display: none;
+    cursor: move;
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 2px;
+    color: #999;
+}
+
+.grid-stack-item-content:hover .drag {
+    display: block;
+}
+
+.grid-stack-item-content .drag:before {
+    content: "\f047";
+}
+
+.grid-stack-item-content .drag:hover {
+    background-color: #eee;
+    color: #999;
+}

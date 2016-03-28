@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7c00a36937a69a283b7599d260c4c9f2",
-    "content-hash": "8f5e9b7734b27db71693e05911828b25",
+    "hash": "a4462b8f9168535cc92428bd2efadee4",
+    "content-hash": "f9c2043e7e03d326ab733fbd8721b65e",
     "packages": [
         {
             "name": "2amigos/yii2-gallery-widget",
@@ -482,6 +482,22 @@
                 "jquery",
                 "layout"
             ]
+        },
+        {
+            "name": "bower-asset/gridster.js",
+            "version": "v0.5.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ducksboard/gridster.js.git",
+                "reference": "314037471fac083626f5140845a9d471a54e0bee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ducksboard/gridster.js/zipball/314037471fac083626f5140845a9d471a54e0bee",
+                "reference": "314037471fac083626f5140845a9d471a54e0bee",
+                "shasum": ""
+            },
+            "type": "bower-asset-library"
         },
         {
             "name": "bower-asset/jquery",
@@ -1397,7 +1413,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/devleaks/yii2-weather/zipball/d7e41fbd2ded43f290d9cceba233101fecaaad72",
+                "url": "https://api.github.com/repos/devleaks/yii2-weather/zipball/70f740e820a59bc45ad60de2aaaa983ba8e6ecbf",
                 "reference": "d7e41fbd2ded43f290d9cceba233101fecaaad72",
                 "shasum": ""
             },
@@ -1712,6 +1728,60 @@
                 "yii2"
             ],
             "time": "2015-05-04 14:38:56"
+        },
+        {
+            "name": "fedemotta/yii2-gridster",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fedemotta/yii2-gridster.git",
+                "reference": "6f69dbb8ebb4255b39f285d8f7463b0f8f9cd77a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fedemotta/yii2-gridster/zipball/6f69dbb8ebb4255b39f285d8f7463b0f8f9cd77a",
+                "reference": "6f69dbb8ebb4255b39f285d8f7463b0f8f9cd77a",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/gridster.js": "*",
+                "bower-asset/jquery": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "fedemotta\\gridster\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Federico Nicolás Motta",
+                    "email": "fedemotta@gmail.com"
+                }
+            ],
+            "description": "Gridster.js widget for Yii2",
+            "keywords": [
+                "drag-and-drop",
+                "extension",
+                "grid",
+                "gridster",
+                "gridster.js",
+                "jquery",
+                "multi-column",
+                "plugin",
+                "yii2"
+            ],
+            "time": "2015-04-28 02:51:54"
         },
         {
             "name": "fortawesome/font-awesome",

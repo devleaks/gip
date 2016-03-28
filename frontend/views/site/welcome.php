@@ -1,50 +1,69 @@
 <?php
+
 use frontend\widgets\Indicator;
+
+use fedemotta\gridstack\Gridstack;
 
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-
 /* @var $this yii\web\View */
-$this->title = 'GIP Application';
+$this->title = 'GIP Application Dashboard';
 ?>
-<div class="site-index">
+<div class="site-welcome body-content">
 
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-12">
-                <h2><?= Yii::t('gip', 'Dashboard Elements') ?></h2>
-
-
-            </div>
-
-        </div>
-
-        <div class="row">
-
-			<div class="col-md-3 col-sm-6 col-xs-12">
+	<?php $gridstack = Gridstack::begin([
+	    'options' =>[
+			'class'=>'grid-stack'
+		],
+	    'clientOptions'=>[
+	        'verticalMargin'=> 10,
+			'cellHeight' => 50,
+			'float' => true,
+			'handle' => '.drag'
+	    ]
+	]);?>
+	
+		<?= $gridstack->beginWidget([
+				'class'=>'grid-stack-item',
+				'data-gs-width'=>"3",
+				'data-gs-height'=>"2",
+		    ]);
+		?>
+		<div class="grid-stack-item-content">
+			<span class="drag fa"></span>
 			<?= Indicator::widget([
 					'item' => "I'm an indicator!",
 					'icon' => 'fa-cog'
 				  ]);
 			?>
-			</div>
-
-			<div class="col-md-3 col-sm-6 col-xs-12">
+		</div>
+		<?=$gridstack->endWidget();?>
+		
+		
+		
+		<?= $gridstack->beginWidget([
+				'class'=>'grid-stack-item',
+				'data-gs-width'=>"3",
+				'data-gs-height'=>"2",
+		    ]);
+		?>
+		<div class="grid-stack-item-content">
+			<span class="drag fa"></span>
 			<?= Indicator::widget([
 					'color' => 'red',
 					'colorBG' => true,
-					'icon' => 'fa-envelop-o',
+					'icon' => 'fa-envelope-o',
 					'progress' => 60,
 					'progressDescription' => '62% done.'
 				  ]);
 			?>
-			</div>
-
 		</div>
-    </div>
+		<?=$gridstack->endWidget();?>
+		
 
-    </div>
 
-</div>
+
+	<?php $gridstack->end(); ?>
+
+</div><!-- .site-welcome -->
