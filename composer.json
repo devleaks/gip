@@ -73,7 +73,10 @@
         "devleaks/yii2-weather": "dev-master",
         "bower-asset/weather-widget": "*",
         "morozovsk/yii2-websocket": "^1.0",
-        "morozovsk/websocket-examples": "^1.1"
+        "morozovsk/websocket-examples": "^1.1",
+        "cboden/ratchet": "0.3.*",
+        "yiisoft/yii2-mongodb": "*",
+        "joni-jones/yii2-wschat": "1.0.0-beta"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

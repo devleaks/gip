@@ -13,6 +13,7 @@ $this->title = 'GIP Application';
     <div class="body-content">
 
         <div class="row">
+	
             <div class="col-lg-12">
                 <h2><?= Yii::t('gip', 'Dashboard Elements') ?></h2>
 
@@ -43,8 +44,7 @@ $this->title = 'GIP Application';
 			</div>
 
 		</div>
-    </div>
-
+		
     </div>
 
 </div>

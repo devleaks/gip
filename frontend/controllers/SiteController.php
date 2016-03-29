@@ -74,4 +74,16 @@ class SiteController extends Controller
 			'query' => $q,
         ]);
 	}
+	
+	public function actionChat()
+    {
+		if(Yii::$app->user->isGuest) {
+	        return $this->render('index');
+		}
+		$this->layout = '//main';
+		$now = date('Y-m-d H:i:s');
+        return $this->render('chat');
+    }
+
+    
 }
