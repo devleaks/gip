@@ -17,10 +17,8 @@ class ServerController extends \yii\console\Controller
 	
     public function actionRun()
     {
-		$manager = Yii::configure(new ChatManager(), [
-		        'userClassName' => User::className()
-		]);
-        $server = IoServer::factory(new HttpServer(new WsServer(new Chat( /*new ChatManager()*/ $manager ))), self::PORT);
+        $server = IoServer::factory(new HttpServer(new WsServer(new Chat(new ChatManager(['userClassName' => User::className()])))), self::PORT);
+        echo 'Starting server ...'.PHP_EOL;
         $server->run();
         echo 'Server was started successfully. Setup logging to get more details.'.PHP_EOL;
     }
