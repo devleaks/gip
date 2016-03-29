@@ -3188,16 +3188,16 @@
         },
         {
             "name": "kartik-v/yii2-widget-datepicker",
-            "version": "v1.3.8",
+            "version": "v1.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-datepicker.git",
-                "reference": "af32eeee557fa12e1b362e24fd8d0bc14713e361"
+                "reference": "3f7b38886e334a2c8c4262f155d98812461efd36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-datepicker/zipball/af32eeee557fa12e1b362e24fd8d0bc14713e361",
-                "reference": "af32eeee557fa12e1b362e24fd8d0bc14713e361",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-datepicker/zipball/3f7b38886e334a2c8c4262f155d98812461efd36",
+                "reference": "3f7b38886e334a2c8c4262f155d98812461efd36",
                 "shasum": ""
             },
             "require": {
@@ -3238,7 +3238,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-03-25 08:49:17"
+            "time": "2016-03-29 09:44:50"
         },
         {
             "name": "kartik-v/yii2-widget-datetimepicker",
@@ -3957,21 +3957,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kop/yii2-scroll-pager.git",
-                "reference": "08b19abb2139ff18c91d5178f17891ab2fa14316"
+                "reference": "3dedbd3203e5a05123e1a024dff2dbbce4cfca19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kop/yii2-scroll-pager/zipball/08b19abb2139ff18c91d5178f17891ab2fa14316",
-                "reference": "08b19abb2139ff18c91d5178f17891ab2fa14316",
+                "url": "https://api.github.com/repos/kop/yii2-scroll-pager/zipball/3dedbd3203e5a05123e1a024dff2dbbce4cfca19",
+                "reference": "3dedbd3203e5a05123e1a024dff2dbbce4cfca19",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0",
-                "webcreate/jquery-ias": "~2.2.0",
+                "webcreate/jquery-ias": "^2.2.1",
                 "yiisoft/yii2": "*"
-            },
-            "require-dev": {
-                "codeception/codeception": "~2.0"
             },
             "type": "yii2-extension",
             "autoload": {
@@ -4000,7 +3997,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2015-10-19 12:44:33"
+            "time": "2016-03-29 02:46:33"
         },
         {
             "name": "machour/yii2-sparkline",
