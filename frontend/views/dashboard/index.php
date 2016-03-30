@@ -1,6 +1,7 @@
 <?php
 
 use frontend\widgets\Indicator;
+use frontend\widgets\Metar;
 
 use fedemotta\gridstack\Gridstack;
 
@@ -75,6 +76,23 @@ $this->title = 'GIP Application Dashboard';
 		<div class="grid-stack-item-content">
 			<span class="drag fa"></span>
 			<?= Indicator::widget(); ?>
+		</div>
+		<?=$gridstack->endWidget();?>
+		
+
+
+		<?= $gridstack->beginWidget([
+				'class'=>'grid-stack-item',
+				'data-gs-width'=>"4",
+				'data-gs-height'=>"6",
+		    ]);
+		?>
+		<div class="grid-stack-item-content">
+			<span class="drag fa"></span>
+			<?= Metar::widget([
+					'location' => 'EBLG'
+				]);
+			?>
 		</div>
 		<?=$gridstack->endWidget();?>
 		
