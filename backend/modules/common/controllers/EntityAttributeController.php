@@ -8,6 +8,7 @@ use common\models\search\EntityAttribute as EntityAttributeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
 
 /**
  * EntityAttributeController implements the CRUD actions for EntityAttribute model.
