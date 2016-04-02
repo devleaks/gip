@@ -36,6 +36,12 @@ class DashboardController extends Controller
     /**
      * Update widget action
      */
+	protected function getTextBetweenTags($string) {
+	    $pattern = '/<FONT FACE="Monospace,Courier">(.*?)<\/FONT>/';
+	    preg_match($pattern, $string, $matches);
+	    return $matches[1];
+	}
+	
 	protected function getHtml($url, $post = null) {
 	    $ch = curl_init();
 	    curl_setopt($ch, CURLOPT_URL, $url);
@@ -55,9 +61,10 @@ class DashboardController extends Controller
 	public function actionMetar() {
 		$icao = Yii::$app->request->post('icao', 'EBBR');
 		$url = str_replace('XXXX', $icao, $this->metar_url);
-		$value = $this->getHtml($url);
+		$html = $this->getHtml($url);
+		$metar = $this->getTextBetweenTags($html);
 		
 		Yii::$app->response->format = Response::FORMAT_JSON;
-        return Json::encode(['r' => $value]);
+        return Json::encode(['metar' => $metar]);
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 use frontend\assets\AppAsset;
-use frontend\widgets\Alert;
+use dmstr\widgets\Alert;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;

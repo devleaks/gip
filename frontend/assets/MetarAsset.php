@@ -9,7 +9,7 @@ class MetarAsset extends AssetBundle
     public $sourcePath = '@frontend/assets';
 
     public $css = [
-		'css/metar',
+		'css/metar/metar.css',
     ];
 
     public $js = [

@@ -47,7 +47,7 @@ $this->title = 'GIP Application Dashboard';
 		
 		<?= $gridstack->beginWidget([
 				'class'=>'grid-stack-item',
-				'data-gs-width'=>"2",
+				'data-gs-width'=>"3",
 				'data-gs-height'=>"2",
 		    ]);
 		?>
@@ -83,7 +83,7 @@ $this->title = 'GIP Application Dashboard';
 
 		<?= $gridstack->beginWidget([
 				'class'=>'grid-stack-item',
-				'data-gs-width'=>"4",
+				'data-gs-width'=>"6",
 				'data-gs-height'=>"6",
 		    ]);
 		?>

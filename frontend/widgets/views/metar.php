@@ -1,9 +1,5 @@
 <?php
 
-use frontend\assets\MetarAsset;
-
-MetarAsset::register($this);
-
 /**
  * @var yii\web\View $this
  * @var \yii\bootstrap\Widget $widget
@@ -16,8 +12,9 @@ MetarAsset::register($this);
 	<span class="info-box-icon bg-info"><i class="fa fa-cloud update-metar"></i></span>
 
 	<div class="info-box-content">
-		<div class="raw">
+		<div class="raw" style="text-align: left;">
 		</div>
+		<span class="last-updated"></span>
 
 	</div><!-- /.info-box-content -->
 </div><!-- /.info-box -->
@@ -31,14 +28,16 @@ $('.update-metar').click(function () {
 	console.log('giplet '+ vname + ':' + vid);
 	
 	$.post(
-		'dashboard/metar',
+		'metar',
 	    {icao: 'EBLG'},
 		function (r) {
 			s = JSON.parse(r);
-			t = $(s.r).find('font').html();
+			t = s.metar;
+			console.log(t);
 			u = metar_decode(t);
-			giplet.find('.raw').html(u);
-			console.log(u);
+			str = u.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+			giplet.find('.raw').html(str);
+			giplet.find('.last-updated').html(new Date());
 	    }
 	);
 	//console.log('giplet updated');
