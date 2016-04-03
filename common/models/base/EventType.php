@@ -8,22 +8,20 @@ use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
 /**
- * This is the base model class for table "dashboard_giplet".
+ * This is the base model class for table "event_type".
  *
  * @property integer $id
- * @property integer $dashboard_id
- * @property integer $giplet_id
- * @property integer $row_number
- * @property integer $position
+ * @property string $name
+ * @property string $display_name
+ * @property string $description
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_by
  * @property integer $updated_by
  *
- * @property \common\models\Dashboard $dashboard
- * @property \common\models\Giplet $giplet
+ * @property \common\models\Event[] $events
  */
-class DashboardGiplet extends \yii\db\ActiveRecord
+class EventType extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -31,9 +29,13 @@ class DashboardGiplet extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['dashboard_id', 'giplet_id'], 'required'],
-            [['dashboard_id', 'giplet_id', 'row_number', 'position', 'created_by', 'updated_by'], 'integer'],
-            [['created_at', 'updated_at'], 'safe']
+            [['name', 'display_name'], 'required'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['created_by', 'updated_by'], 'integer'],
+            [['name', 'display_name'], 'string', 'max' => 40],
+            [['description'], 'string', 'max' => 2000],
+            [['name'], 'unique'],
+            [['display_name'], 'unique']
         ];
     }
     
@@ -42,7 +44,7 @@ class DashboardGiplet extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'dashboard_giplet';
+        return 'event_type';
     }
 
     /**
@@ -52,27 +54,18 @@ class DashboardGiplet extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('gip', 'ID'),
-            'dashboard_id' => Yii::t('gip', 'Dashboard ID'),
-            'giplet_id' => Yii::t('gip', 'Giplet ID'),
-            'row_number' => Yii::t('gip', 'Row Number'),
-            'position' => Yii::t('gip', 'Position'),
+            'name' => Yii::t('gip', 'Name'),
+            'display_name' => Yii::t('gip', 'Display Name'),
+            'description' => Yii::t('gip', 'Description'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDashboard()
+    public function getEvents()
     {
-        return $this->hasOne(\common\models\Dashboard::className(), ['id' => 'dashboard_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getGiplet()
-    {
-        return $this->hasOne(\common\models\Giplet::className(), ['id' => 'giplet_id']);
+        return $this->hasMany(\common\models\Event::className(), ['event_type_id' => 'id']);
     }
 
 /**
@@ -98,10 +91,10 @@ class DashboardGiplet extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \common\models\query\DashboardGipletQuery the active query used by this AR class.
+     * @return \common\models\query\EventTypeQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\DashboardGipletQuery(get_called_class());
+        return new \common\models\query\EventTypeQuery(get_called_class());
     }
 }

@@ -1,18 +1,18 @@
 <?php
 
-namespace backend\modules\viewer\controllers;
+namespace backend\modules\developer\controllers;
 
 use Yii;
-use common\models\Giplet;
-use common\models\search\Giplet as GipletSearch;
+use common\models\EventType;
+use common\models\search\EventType as EventTypeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * GipletController implements the CRUD actions for Giplet model.
+ * EventTypeController implements the CRUD actions for EventType model.
  */
-class GipletController extends Controller
+class EventTypeController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class GipletController extends Controller
     }
 
     /**
-     * Lists all Giplet models.
+     * Lists all EventType models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new GipletSearch;
+        $searchModel = new EventTypeSearch;
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class GipletController extends Controller
     }
 
     /**
-     * Displays a single Giplet model.
+     * Displays a single EventType model.
      * @param integer $id
      * @return mixed
      */
@@ -58,26 +58,25 @@ class GipletController extends Controller
     }
 
     /**
-     * Creates a new Giplet model.
+     * Creates a new EventType model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Giplet;
+        $model = new EventType;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-			Yii::trace('errors '.print_r($model->errors, true), 'Giplet::actionCreate');
-			return $this->render('create', [
+            return $this->render('create', [
                 'model' => $model,
             ]);
         }
     }
 
     /**
-     * Updates an existing Giplet model.
+     * Updates an existing EventType model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +95,7 @@ class GipletController extends Controller
     }
 
     /**
-     * Deletes an existing Giplet model.
+     * Deletes an existing EventType model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -109,15 +108,15 @@ class GipletController extends Controller
     }
 
     /**
-     * Finds the Giplet model based on its primary key value.
+     * Finds the EventType model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Giplet the loaded model
+     * @return EventType the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Giplet::findOne($id)) !== null) {
+        if (($model = EventType::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

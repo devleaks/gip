@@ -37,7 +37,8 @@ $this->title = 'GIP Application Dashboard';
 					'color' => 'green',
 					'item' => "Seconds",
 					'icon' => 'fa-clock-o',
-					'value' => date('s', time())
+					'value' => date('s', time()),
+					'autoUpdate' => 5,
 				  ]);
 			?>
 		</div>

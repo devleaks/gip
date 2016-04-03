@@ -1,5 +1,7 @@
 <?php
 
+use yii\helpers\Url;
+
 /**
  * @var yii\web\View $this
  * @var \yii\bootstrap\Widget $widget
@@ -28,7 +30,7 @@ $('.update-metar').click(function () {
 	console.log('giplet '+ vname + ':' + vid);
 	
 	$.post(
-		'metar',
+		"<?= Url::to(['dashboard/metar'])?>",
 	    {icao: 'EBLG'},
 		function (r) {
 			s = JSON.parse(r);

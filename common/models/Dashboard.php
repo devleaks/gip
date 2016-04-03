@@ -10,4 +10,13 @@ use \common\models\base\Dashboard as BaseDashboard;
  */
 class Dashboard extends BaseDashboard
 {
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGiplets()
+    {
+	    return $this->hasMany(Giplet::className(), ['id' => 'giplet_id'])->viaTable(DashboardGiplet::tableName(), ['dashboard_id' => 'id']);
+    }
+
 }

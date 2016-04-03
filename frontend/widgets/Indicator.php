@@ -22,6 +22,7 @@ class Indicator extends \yii\bootstrap\Widget
 	public $icon = 'fa-info';
 	public $progress = 0;
 	public $progressDescription = '% done';
+	public $autoUpdate = 0;
 	
 	public function run() {		
         return $this->render('indicator', [

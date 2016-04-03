@@ -1,5 +1,4 @@
 <?php
-use common\models\Giplet;
 
 use yii\helpers\Html;
 use kartik\grid\GridView;
@@ -8,13 +7,13 @@ use yii\widgets\Pjax;
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var common\models\search\Giplet $searchModel
+ * @var common\models\search\EventType $searchModel
  */
 
-$this->title = Yii::t('gip', 'Giplets');
+$this->title = Yii::t('gip', 'Event Types');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="giplet-index">
+<div class="event-type-index">
 
     <?php Pjax::begin(); echo GridView::widget([
         'dataProvider' => $dataProvider,
@@ -22,34 +21,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn'],
 
-        	'display_name',
+            'name',
+            'display_name',
             'description',
-			[
-				'attribute' => 'giplet_type_id',
-				'label' => Yii::t('gip', 'Giplet Type'),
-	            'value' => function ($model, $key, $index, $widget) {
-							return $model->gipletType->display_name;
-	            		},
-			],
-            [
-				'attribute' => 'status',
-				'filter' => Giplet::getLocalizedConstants('STATUS_'),
-				'value' => function ($model, $key, $index, $widget) {
-							return $model->makeLabel('status');
-	            		},
-				'format' => 'raw',
-				'hAlign' => Gridview::ALIGN_CENTER,
-			],
 
             [
                 'class' => 'kartik\grid\ActionColumn',
 				'noWrap' => true,
                 'buttons' => [
                 'update' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['viewer/giplet/view','id' => $model->id,'edit'=>'t']), [
+                                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['developer/event-type/view','id' => $model->id,'edit'=>'t']), [
                                                     'title' => Yii::t('yii', 'Edit'),
-                                                  ]);}
-
+                                ]);
+							}
                 ],
             ],
         ],

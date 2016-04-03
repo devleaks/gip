@@ -1,20 +1,20 @@
 <?php
 
 use yii\helpers\Html;
-use yii\data\ActiveDataProvider;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
 
 /**
  * @var yii\web\View $this
- * @var common\models\GipletType $model
+ * @var common\models\DashboardGiplet $model
  */
 
-$this->title = $model->display_name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Giplet Types'), 'url' => ['index']];
+$this->title = $model->giplet->display_name;
+$this->params['breadcrumbs'][] = ['label' => $model->dashboard->display_name, 'url' => ['dashboard/view', 'id' => $model->dashboard_id]];
+
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="giplet-type-view">
+<div class="dashboard-giplet-view">
 
     <?= DetailView::widget([
             'model' => $model,
@@ -26,10 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'type'=>DetailView::TYPE_INFO,
         ],
         'attributes' => [
-            'name',
-        	'display_name',
-            'description',
-			'factory'
+            'position',
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],
@@ -40,16 +37,5 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'enableEditMode'=>true,
     ]) ?>
-
-	<?php
-			$dataProvider = new ActiveDataProvider([
-				'query' => $model->getEntityAttributes()->orderBy('position'),
-			]);
-
-	        echo $this->render('../../../common/views/entity-attribute/_list', [
-	            'dataProvider' => $dataProvider,
-				'model' => $model,
-	        ]);
-	?>
 
 </div>

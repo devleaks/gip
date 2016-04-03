@@ -3,16 +3,16 @@
 namespace backend\modules\viewer\controllers;
 
 use Yii;
-use common\models\Giplet;
-use common\models\search\Giplet as GipletSearch;
+use common\models\DashboardGiplet;
+use common\models\search\DashboardGiplet as DashboardGipletSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * GipletController implements the CRUD actions for Giplet model.
+ * DashboardGipletController implements the CRUD actions for DashboardGiplet model.
  */
-class GipletController extends Controller
+class DashboardGipletController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class GipletController extends Controller
     }
 
     /**
-     * Lists all Giplet models.
+     * Lists all DashboardGiplet models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new GipletSearch;
+        $searchModel = new DashboardGipletSearch;
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class GipletController extends Controller
     }
 
     /**
-     * Displays a single Giplet model.
+     * Displays a single DashboardGiplet model.
      * @param integer $id
      * @return mixed
      */
@@ -58,26 +58,25 @@ class GipletController extends Controller
     }
 
     /**
-     * Creates a new Giplet model.
+     * Creates a new DashboardGiplet model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Giplet;
+        $model = new DashboardGiplet;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-			Yii::trace('errors '.print_r($model->errors, true), 'Giplet::actionCreate');
-			return $this->render('create', [
+            return $this->render('create', [
                 'model' => $model,
             ]);
         }
     }
 
     /**
-     * Updates an existing Giplet model.
+     * Updates an existing DashboardGiplet model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,28 +95,30 @@ class GipletController extends Controller
     }
 
     /**
-     * Deletes an existing Giplet model.
+     * Deletes an existing DashboardGiplet model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+		$dashboard_id = $model->dashboard_id;
+		$model->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['dashboard/view', 'id' => $dashboard_id]);
     }
 
     /**
-     * Finds the Giplet model based on its primary key value.
+     * Finds the DashboardGiplet model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Giplet the loaded model
+     * @return DashboardGiplet the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Giplet::findOne($id)) !== null) {
+        if (($model = DashboardGiplet::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

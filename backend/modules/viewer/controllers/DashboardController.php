@@ -5,6 +5,7 @@ namespace backend\modules\viewer\controllers;
 use Yii;
 use common\models\Dashboard;
 use common\models\search\Dashboard as DashboardSearch;
+use common\models\DashboardGiplet;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -55,6 +56,17 @@ class DashboardController extends Controller
         } else {
             return $this->render('view', ['model' => $model]);
         }
+    }
+
+    /**
+     * Displays a single Dashboard model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionRender($id)
+    {
+        $model = $this->findModel($id);
+        return $this->redirect('/gip/dashboard/view?id='.$model->id);
     }
 
     /**
@@ -122,4 +134,19 @@ class DashboardController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+
+	public function actionGipletAdd() {
+		$model = new DashboardGiplet();
+		
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			Yii::$app->session->setFlash('success', Yii::t('gip', 'Giplet added.'));
+            return $this->redirect(Yii::$app->request->referrer);
+        } else {
+			Yii::$app->session->setFlash('danger', Yii::t('gip', 'Could not add giplet.'));
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+	}
+
+
 }

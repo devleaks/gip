@@ -41,6 +41,80 @@ $this->params['breadcrumbs'][] = $this->title;
 	            'value'=>isset($model->gipletType) ? $model->gipletType->display_name : '',
 	        ],
 	        [
+	            'attribute'=>'parameters',
+				'type' => DetailView::INPUT_TEXTAREA,
+	        ],
+			'width_min',
+			'width_max',
+			'height_min',
+			'height_max',
+			[
+				'attribute' => 'can_move',
+				'type' => DetailView::INPUT_SWITCH,
+				'format' => 'boolean',
+				'widgetOptions' => [
+				    'pluginOptions' => [
+						'onText' => Yii::t('store', 'Yes'),
+						'offText' =>  Yii::t('store', 'No')
+					],
+				],
+			],
+			[
+				'attribute' => 'can_resize',
+				'type' => DetailView::INPUT_SWITCH,
+				'format' => 'boolean',
+				'widgetOptions' => [
+				    'pluginOptions' => [
+						'onText' => Yii::t('store', 'Yes'),
+						'offText' =>  Yii::t('store', 'No')
+					],
+				],
+			],
+			[
+				'attribute' => 'can_minimize',
+				'type' => DetailView::INPUT_SWITCH,
+				'format' => 'boolean',
+				'widgetOptions' => [
+				    'pluginOptions' => [
+						'onText' => Yii::t('store', 'Yes'),
+						'offText' =>  Yii::t('store', 'No')
+					],
+				],
+			],
+			[
+				'attribute' => 'can_remove',
+				'type' => DetailView::INPUT_SWITCH,
+				'format' => 'boolean',
+				'widgetOptions' => [
+				    'pluginOptions' => [
+						'onText' => Yii::t('store', 'Yes'),
+						'offText' =>  Yii::t('store', 'No')
+					],
+				],
+			],
+			[
+				'attribute' => 'can_spawn',
+				'type' => DetailView::INPUT_SWITCH,
+				'format' => 'boolean',
+				'widgetOptions' => [
+				    'pluginOptions' => [
+						'onText' => Yii::t('store', 'Yes'),
+						'offText' =>  Yii::t('store', 'No')
+					],
+				],
+			],
+			[
+				'attribute' => 'has_options',
+				'type' => DetailView::INPUT_SWITCH,
+				'format' => 'boolean',
+				'widgetOptions' => [
+				    'pluginOptions' => [
+						'onText' => Yii::t('store', 'Yes'),
+						'offText' =>  Yii::t('store', 'No')
+					],
+				],
+			],
+	        [
 	            'attribute'=>'status',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
 				'items' => Giplet::getLocalizedConstants('STATUS_'),
