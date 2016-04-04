@@ -52,8 +52,8 @@ abstract class ZoneZoneGroup extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('gip', 'ID'),
-            'zone_group_id' => Yii::t('gip', 'Zone Group ID'),
-            'zone_id' => Yii::t('gip', 'Zone ID'),
+            'zone_group_id' => Yii::t('gip', 'Zone Group'),
+            'zone_id' => Yii::t('gip', 'Zone'),
             'created_at' => Yii::t('gip', 'Created At'),
             'updated_at' => Yii::t('gip', 'Updated At'),
             'created_by' => Yii::t('gip', 'Created By'),

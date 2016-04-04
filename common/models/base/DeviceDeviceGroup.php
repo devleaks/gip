@@ -52,8 +52,8 @@ abstract class DeviceDeviceGroup extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('gip', 'ID'),
-            'device_group_id' => Yii::t('gip', 'Device Group ID'),
-            'device_id' => Yii::t('gip', 'Device ID'),
+            'device_group_id' => Yii::t('gip', 'Device Group'),
+            'device_id' => Yii::t('gip', 'Device'),
             'created_at' => Yii::t('gip', 'Created At'),
             'updated_at' => Yii::t('gip', 'Updated At'),
             'created_by' => Yii::t('gip', 'Created By'),

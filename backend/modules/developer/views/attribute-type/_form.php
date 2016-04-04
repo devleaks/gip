@@ -27,9 +27,13 @@ use kartik\datecontrol\DateControl;
 
             'name'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Name...', 'maxlength'=>40]],
 
+        	'display_name'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Display Name...', 'maxlength'=>80]],
+
         	'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>200]],
 
             'data_type'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Data Type...', 'maxlength'=>255], 'items' => AttributeType::getLocalizedConstants('DATA_TYPE_')],
+
+            'attribute_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Sub Attribute Type...'], 'items' => ArrayHelper::map(['' => ''] + AttributeType::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),'label'=>Yii::t('gip', 'Sub Attribute Type')],
 
             'list_of_values_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter List Of Values ID...'], 'items' => ArrayHelper::map(['' => ''] + ListOfValues::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name')],
 

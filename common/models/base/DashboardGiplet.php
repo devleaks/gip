@@ -52,8 +52,8 @@ class DashboardGiplet extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('gip', 'ID'),
-            'dashboard_id' => Yii::t('gip', 'Dashboard ID'),
-            'giplet_id' => Yii::t('gip', 'Giplet ID'),
+            'dashboard_id' => Yii::t('gip', 'Dashboard'),
+            'giplet_id' => Yii::t('gip', 'Giplet'),
             'row_number' => Yii::t('gip', 'Row Number'),
             'position' => Yii::t('gip', 'Position'),
         ];

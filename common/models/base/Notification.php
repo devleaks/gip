@@ -60,7 +60,7 @@ abstract class Notification extends \yii\db\ActiveRecord
             'name' => Yii::t('gip', 'Name'),
             'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
-            'notification_type_id' => Yii::t('gip', 'Notification Type ID'),
+            'notification_type_id' => Yii::t('gip', 'Notification Type'),
             'created_at' => Yii::t('gip', 'Created At'),
             'updated_at' => Yii::t('gip', 'Updated At'),
             'created_by' => Yii::t('gip', 'Created By'),

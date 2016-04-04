@@ -21,7 +21,8 @@ class AttributeType extends BaseAttributeType
 	const DATA_TYPE_NUMBER  = 'Number';		# number
 	const DATA_TYPE_OBJECT  = 'Object';		# varchar2, clob
 	const DATA_TYPE_STRING  = 'String';		# varchar2
-	// Extra Types / Derived Types			#
+
+	/** Extra Types / Derived Types
 	const DATA_TYPE_FLOAT   = 'Float';
 	const DATA_TYPE_DOUBLE  = 'Double';
 	const DATA_TYPE_DATE    = 'Date';
@@ -29,5 +30,5 @@ class AttributeType extends BaseAttributeType
 	const DATA_TYPE_DATETIME = 'DateTime';
 	const DATA_TYPE_TIMESTAMP = 'DateTime';
 	const DATA_TYPE_PAYLOAD = 'Payload';
-
+	*/
 }

@@ -52,8 +52,8 @@ abstract class NotificationNotificationGroup extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('gip', 'ID'),
-            'notification_group_id' => Yii::t('gip', 'Notification Group ID'),
-            'notification_id' => Yii::t('gip', 'Notification ID'),
+            'notification_group_id' => Yii::t('gip', 'Notification Group'),
+            'notification_id' => Yii::t('gip', 'Notification'),
             'created_at' => Yii::t('gip', 'Created At'),
             'updated_at' => Yii::t('gip', 'Updated At'),
             'created_by' => Yii::t('gip', 'Created By'),

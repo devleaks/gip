@@ -69,7 +69,7 @@ class Media extends base\Media
             'name' => Yii::t('gip', 'Name'),
             'size' => Yii::t('gip', 'Size'),
             'type' => Yii::t('gip', 'Type'),
-            'related_id' => Yii::t('gip', 'Related ID'),
+            'related_id' => Yii::t('gip', 'Related'),
             'related_class' => Yii::t('gip', 'Related Class'),
             'related_attribute' => Yii::t('gip', 'Related Attribute'),
             'name_hash' => Yii::t('gip', 'Name Hash'),

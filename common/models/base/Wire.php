@@ -65,7 +65,7 @@ abstract class Wire extends \yii\db\ActiveRecord
             'id' => Yii::t('gip', 'ID'),
             'subject' => Yii::t('gip', 'Subject'),
             'body' => Yii::t('gip', 'Body'),
-            'type_id' => Yii::t('gip', 'Type ID'),
+            'type_id' => Yii::t('gip', 'Type'),
             'link' => Yii::t('gip', 'Link'),
             'icon' => Yii::t('gip', 'Icon'),
             'color' => Yii::t('gip', 'Color'),

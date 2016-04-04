@@ -51,8 +51,8 @@ class MapBackground extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('gip', 'ID'),
-            'map_id' => Yii::t('gip', 'Map ID'),
-            'background_id' => Yii::t('gip', 'Background ID'),
+            'map_id' => Yii::t('gip', 'Map'),
+            'background_id' => Yii::t('gip', 'Background'),
             'position' => Yii::t('gip', 'Position'),
         ];
     }

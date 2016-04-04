@@ -62,8 +62,8 @@ abstract class Subscription extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('gip', 'ID'),
-            'service_id' => Yii::t('gip', 'Service ID'),
-            'rule_id' => Yii::t('gip', 'Rule ID'),
+            'service_id' => Yii::t('gip', 'Service'),
+            'rule_id' => Yii::t('gip', 'Rule'),
             'enabled' => Yii::t('gip', 'Enabled'),
             'trusted' => Yii::t('gip', 'Trusted'),
             'name' => Yii::t('gip', 'Name'),
@@ -73,7 +73,7 @@ abstract class Subscription extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('gip', 'Updated At'),
             'created_by' => Yii::t('gip', 'Created By'),
             'updated_by' => Yii::t('gip', 'Updated By'),
-            'provider_id' => Yii::t('gip', 'Provider ID'),
+            'provider_id' => Yii::t('gip', 'Provider'),
         ];
     }
 

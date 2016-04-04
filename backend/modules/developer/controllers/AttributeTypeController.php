@@ -8,6 +8,7 @@ use common\models\search\AttributeType as AttributeTypeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\VarDumper;
 
 /**
  * AttributeTypeController implements the CRUD actions for AttributeType model.
@@ -69,6 +70,7 @@ class AttributeTypeController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+			Yii::$app->session->setFlash('error', Yii::t('gip', 'There was an error saving the model: {0}.', VarDumper::dumpAsString($model->errors, 4, true))); 			
             return $this->render('create', [
                 'model' => $model,
             ]);

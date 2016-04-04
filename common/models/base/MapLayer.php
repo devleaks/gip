@@ -55,8 +55,8 @@ class MapLayer extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('gip', 'ID'),
-            'map_id' => Yii::t('gip', 'Map ID'),
-            'layer_id' => Yii::t('gip', 'Layer ID'),
+            'map_id' => Yii::t('gip', 'Map'),
+            'layer_id' => Yii::t('gip', 'Layer'),
             'position' => Yii::t('gip', 'Position'),
             'group' => Yii::t('gip', 'Group'),
             'default' => Yii::t('gip', 'Default'),

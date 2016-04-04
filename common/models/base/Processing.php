@@ -68,15 +68,15 @@ abstract class Processing extends \yii\db\ActiveRecord
             'name' => Yii::t('gip', 'Name'),
             'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
-            'service_id' => Yii::t('gip', 'Service ID'),
-            'provider_id' => Yii::t('gip', 'Provider ID'),
-            'event_id' => Yii::t('gip', 'Event ID'),
+            'service_id' => Yii::t('gip', 'Service'),
+            'provider_id' => Yii::t('gip', 'Provider'),
+            'event_id' => Yii::t('gip', 'Event'),
             'status' => Yii::t('gip', 'Status'),
             'created_at' => Yii::t('gip', 'Created At'),
             'updated_at' => Yii::t('gip', 'Updated At'),
             'created_by' => Yii::t('gip', 'Created By'),
             'updated_by' => Yii::t('gip', 'Updated By'),
-            'target_id' => Yii::t('gip', 'Target ID'),
+            'target_id' => Yii::t('gip', 'Target'),
         ];
     }
 

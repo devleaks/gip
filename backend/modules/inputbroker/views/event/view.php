@@ -2,6 +2,7 @@
 
 use common\models\Type;
 use common\models\Event;
+use common\models\EventType;
 
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -35,10 +36,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'description',
             'factory',
             [
-				'attribute' => 'type_id',
-				'items' => Type::forClass(Event::className()),
+				'attribute' => 'event_type_id',
+				'items' => ArrayHelper::map(EventType::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
             	'type'=> DetailView::INPUT_DROPDOWN_LIST,
-				'value' => $model->type ? $model->type->display_name : '',
+				'value' => $model->eventType ? $model->eventType->display_name : '',
 			],
         ],
         'deleteOptions'=>[

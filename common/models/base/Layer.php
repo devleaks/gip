@@ -66,7 +66,7 @@ class Layer extends \yii\db\ActiveRecord
             'theme' => Yii::t('gip', 'Theme'),
             'highlight' => Yii::t('gip', 'Highlight'),
             'icon' => Yii::t('gip', 'Icon'),
-            'layer_type_id' => Yii::t('gip', 'Layer Type ID'),
+            'layer_type_id' => Yii::t('gip', 'Layer Type'),
             'display_name' => Yii::t('gip', 'Display Name'),
             'status' => Yii::t('gip', 'Status'),
         ];

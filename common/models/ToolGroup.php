@@ -41,7 +41,7 @@ class ToolGroup extends BaseToolGroup
             'created_by' => Yii::t('gip', 'Created By'),
             'updated_by' => Yii::t('gip', 'Updated By'),
             'display_name' => Yii::t('gip', 'Display Name'),
-            'type_id' => Yii::t('gip', 'Type ID'),
+            'type_id' => Yii::t('gip', 'Type'),
         ];
     }
 

@@ -78,7 +78,7 @@ abstract class Background extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('gip', 'Updated At'),
             'created_by' => Yii::t('gip', 'Created By'),
             'updated_by' => Yii::t('gip', 'Updated By'),
-            'background_type_id' => Yii::t('gip', 'Background Type ID'),
+            'background_type_id' => Yii::t('gip', 'Background Type'),
         ];
     }
 

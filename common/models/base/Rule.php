@@ -61,9 +61,9 @@ abstract class Rule extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('gip', 'ID'),
-            'device_group_id' => Yii::t('gip', 'Device Group ID'),
-            'notification_group_id' => Yii::t('gip', 'Notification Group ID'),
-            'detection_type_id' => Yii::t('gip', 'Detection Type ID'),
+            'device_group_id' => Yii::t('gip', 'Device Group'),
+            'notification_group_id' => Yii::t('gip', 'Notification Group'),
+            'detection_type_id' => Yii::t('gip', 'Detection Type'),
             'name' => Yii::t('gip', 'Name'),
             'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),

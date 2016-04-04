@@ -51,8 +51,8 @@ class MapToolGroup extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('gip', 'ID'),
-            'map_id' => Yii::t('gip', 'Map ID'),
-            'tool_group_id' => Yii::t('gip', 'Tool Group ID'),
+            'map_id' => Yii::t('gip', 'Map'),
+            'tool_group_id' => Yii::t('gip', 'Tool Group'),
             'position' => Yii::t('gip', 'Position'),
         ];
     }

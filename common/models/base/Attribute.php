@@ -60,7 +60,7 @@ abstract class Attribute extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('gip', 'ID'),
-            'attribute_type_id' => Yii::t('gip', 'Attribute Type ID'),
+            'attribute_type_id' => Yii::t('gip', 'Attribute Type'),
             'name' => Yii::t('gip', 'Name'),
             'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),

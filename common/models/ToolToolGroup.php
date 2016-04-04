@@ -30,8 +30,8 @@ class ToolToolGroup extends BaseToolToolGroup
     {
         return [
             'id' => Yii::t('gip', 'ID'),
-            'tool_group_id' => Yii::t('gip', 'Tool Group ID'),
-            'tool_id' => Yii::t('gip', 'Tool ID'),
+            'tool_group_id' => Yii::t('gip', 'Tool Group'),
+            'tool_id' => Yii::t('gip', 'Tool'),
             'created_at' => Yii::t('gip', 'Created At'),
             'updated_at' => Yii::t('gip', 'Updated At'),
             'created_by' => Yii::t('gip', 'Created By'),

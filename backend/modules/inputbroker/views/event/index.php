@@ -1,5 +1,8 @@
 <?php
 
+use common\models\EventType;
+
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
@@ -20,9 +23,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
 
+			[
+				'attribute' => 'event_type_id',
+				'label' => Yii::t('gip', 'Event Type'),
+				'filter' => ArrayHelper::map(EventType::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
+	            'value' => function ($model, $key, $index, $widget) {
+							return $model->eventType ? $model->eventType->display_name : '';
+	            		},
+			],
 	        'display_name',
 	        'description',
-	        'factory',
 
             [
                 'class' => 'kartik\grid\ActionColumn',

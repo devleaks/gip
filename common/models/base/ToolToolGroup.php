@@ -50,8 +50,8 @@ class ToolToolGroup extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('gip', 'ID'),
-            'tool_group_id' => Yii::t('gip', 'Tool Group ID'),
-            'tool_id' => Yii::t('gip', 'Tool ID'),
+            'tool_group_id' => Yii::t('gip', 'Tool Group'),
+            'tool_id' => Yii::t('gip', 'Tool'),
         ];
     }
 

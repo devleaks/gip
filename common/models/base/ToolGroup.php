@@ -60,7 +60,7 @@ class ToolGroup extends \yii\db\ActiveRecord
             'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'display_name' => Yii::t('gip', 'Display Name'),
-            'type_id' => Yii::t('gip', 'Type ID'),
+            'type_id' => Yii::t('gip', 'Type'),
         ];
     }
 

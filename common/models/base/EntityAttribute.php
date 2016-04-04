@@ -57,8 +57,8 @@ abstract class EntityAttribute extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('gip', 'ID'),
-            'attribute_id' => Yii::t('gip', 'Attribute ID'),
-            'entity_id' => Yii::t('gip', 'Entity ID'),
+            'attribute_id' => Yii::t('gip', 'Attribute'),
+            'entity_id' => Yii::t('gip', 'Entity'),
             'entity_type' => Yii::t('gip', 'Entity Type'),
             'description' => Yii::t('gip', 'Description'),
             'position' => Yii::t('gip', 'Position'),

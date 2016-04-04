@@ -1,9 +1,12 @@
 <?php
 
-use common\models\Type;
 use common\models\Event;
+use common\models\EventType;
+use common\models\Type;
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+
 use kartik\widgets\ActiveForm;
 use kartik\builder\Form;
 use kartik\datecontrol\DateControl;
@@ -30,7 +33,7 @@ use kartik\datecontrol\DateControl;
 
             'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
 
-            'type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Event Type...', 'maxlength'=>40], 'items' => Type::forClass(Event::className())],
+            'event_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Event Type...', 'maxlength'=>40], 'items' => ArrayHelper::map(EventType::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name')],
 
             'factory'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Factory...', 'maxlength'=>80]],
 

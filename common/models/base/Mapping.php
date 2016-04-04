@@ -54,7 +54,7 @@ abstract class Mapping extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('gip', 'ID'),
-            'processing_id' => Yii::t('gip', 'Processing ID'),
+            'processing_id' => Yii::t('gip', 'Processing'),
             'attribute_in' => Yii::t('gip', 'Attribute In'),
             'attribute_out' => Yii::t('gip', 'Attribute Out'),
             'created_at' => Yii::t('gip', 'Created At'),
