@@ -74,6 +74,7 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER, User:
 			$subitems[] = ['label' => 'Map Layer Types', 'icon' => 'fa fa-bar-chart', 'url' => ['/developer/layer-type']],
 			$subitems[] = ['label' => 'Map Background Types', 'icon' => 'fa fa-globe', 'url' => ['/developer/background-type']],
 			$subitems[] = ['label' => 'The Wire', 'icon' => 'fa fa-hashtag', 'url' => ['/developer/wire']],
+			$subitems[] = ['label' => 'Dashboards', 'icon' => 'fa fa-dashboard', 'url' => ['/dashboard']],
 		],
 	];
 }

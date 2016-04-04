@@ -3,6 +3,7 @@
 use fedemotta\gridstack\Gridstack;
 
 /* @var $this yii\web\View */
+
 $this->title = $model->display_name;
 ?>
 <div class="dashboard-view body-content">
@@ -24,9 +25,9 @@ $this->title = $model->display_name;
 				'gridstack' => $gridstack,
 				'giplet' => $dg->giplet
 			]);
-		}
+		  }
 	?>
 
 	<?php $gridstack->end(); ?>
 
-</div><!-- .site-welcome -->
+</div><!-- .dashboard-view -->

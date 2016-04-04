@@ -28,6 +28,7 @@ use yii\helpers\Url;
 
 	</div><!-- /.info-box-content -->
 </div><!-- /.info-box -->
+
 <script type="text/javascript">
 <?php $this->beginBlock('JS_UPDATE'); ?>
 $('.update-me').click(function () {

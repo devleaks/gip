@@ -30,16 +30,21 @@ $('.update-metar').click(function () {
 	console.log('giplet '+ vname + ':' + vid);
 	
 	$.post(
-		"<?= Url::to(['dashboard/metar'])?>",
-	    {icao: 'EBLG'},
+		"<?= Url::to(['dashboard/update'])?>",
+	    {icao: 'EBLG', name: vname},
 		function (r) {
 			s = JSON.parse(r);
-			t = s.metar;
-			console.log(t);
-			u = metar_decode(t);
-			str = u.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-			giplet.find('.raw').html(str);
-			giplet.find('.last-updated').html(new Date());
+			if(s.errors != '') {
+				giplet.find('.raw').html(s.errors);
+				giplet.find('.last-updated').html(new Date());
+			} else {
+				t = s.metar;
+				console.log(t);
+				u = metar_decode(t);
+				str = u.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+				giplet.find('.raw').html(str);
+				giplet.find('.last-updated').html(new Date());
+			}
 	    }
 	);
 	//console.log('giplet updated');

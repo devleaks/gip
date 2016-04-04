@@ -7,6 +7,10 @@
 
 namespace frontend\widgets;
 
+use Yii;
+use yii\web\Response;
+use yii\helpers\Json;
+
 /**
  * Indicator widget renders a single value indicator (title + icon + value)
  *
@@ -29,4 +33,16 @@ class Indicator extends \yii\bootstrap\Widget
             'widget' => $this,
         ]);
 	}
+	
+	/**
+     * Update widget action
+     */
+	static public function update() {
+		$value = date('s', time());
+		Yii::$app->response->format = Response::FORMAT_JSON;
+        return Json::encode(['r' => $value]);
+	}
+
+
+    
 }

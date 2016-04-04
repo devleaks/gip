@@ -12,7 +12,6 @@ use devleaks\sieve\Sieve;
  */
 
 $this->title = Yii::t('gip', 'The Wire');
-$this->params['breadcrumbs'][] = $this->title;
 $repeat = 120; // minutes
 $last   = null;
 ?>
