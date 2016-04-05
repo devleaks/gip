@@ -10,6 +10,9 @@ use \common\models\base\ZoneGroup as BaseZoneGroup;
  */
 class ZoneGroup extends BaseZoneGroup
 {
+	use \common\behaviors\ListAll;
+
+
 	public function getZones() {
 		if($this->zone_type != '') {
 			return Zone::find()->where(['zone_type' => $this->zone_type]);

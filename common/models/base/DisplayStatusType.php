@@ -8,27 +8,22 @@ use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
 /**
- * This is the base model class for table "device_group".
+ * This is the base model class for table "display_status_type".
  *
  * @property integer $id
  * @property string $name
  * @property string $display_name
  * @property string $description
- * @property integer $display_status_type_id
- * @property string $group_type
- * @property string $device_type
- * @property integer $type_id
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_by
  * @property integer $updated_by
  *
- * @property \common\models\DeviceDeviceGroup[] $deviceDeviceGroups
- * @property \common\models\Type $type
- * @property \common\models\DisplayStatusType $displayStatusType
- * @property \common\models\Rule[] $rules
+ * @property \common\models\DeviceGroup[] $deviceGroups
+ * @property \common\models\DisplayStatus[] $displayStatuses
+ * @property \common\models\ZoneGroup[] $zoneGroups
  */
-class DeviceGroup extends \yii\db\ActiveRecord
+class DisplayStatusType extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -37,10 +32,9 @@ class DeviceGroup extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'display_name'], 'required'],
-            [['display_status_type_id', 'type_id', 'created_by', 'updated_by'], 'integer'],
-            [['group_type'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'display_name', 'device_type'], 'string', 'max' => 40],
+            [['created_by', 'updated_by'], 'integer'],
+            [['name', 'display_name'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
             [['name'], 'unique'],
             [['display_name'], 'unique']
@@ -52,7 +46,7 @@ class DeviceGroup extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'device_group';
+        return 'display_status_type';
     }
 
     /**
@@ -65,43 +59,31 @@ class DeviceGroup extends \yii\db\ActiveRecord
             'name' => Yii::t('gip', 'Name'),
             'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
-            'display_status_type_id' => Yii::t('gip', 'Display Status Type ID'),
-            'group_type' => Yii::t('gip', 'Group Type'),
-            'device_type' => Yii::t('gip', 'Device Type'),
-            'type_id' => Yii::t('gip', 'Type ID'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDeviceDeviceGroups()
+    public function getDeviceGroups()
     {
-        return $this->hasMany(\common\models\DeviceDeviceGroup::className(), ['device_group_id' => 'id']);
+        return $this->hasMany(\common\models\DeviceGroup::className(), ['display_status_type_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getType()
+    public function getDisplayStatuses()
     {
-        return $this->hasOne(\common\models\Type::className(), ['id' => 'type_id']);
+        return $this->hasMany(\common\models\DisplayStatus::className(), ['display_status_type_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDisplayStatusType()
+    public function getZoneGroups()
     {
-        return $this->hasOne(\common\models\DisplayStatusType::className(), ['id' => 'display_status_type_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRules()
-    {
-        return $this->hasMany(\common\models\Rule::className(), ['device_group_id' => 'id']);
+        return $this->hasMany(\common\models\ZoneGroup::className(), ['display_status_type_id' => 'id']);
     }
 
 /**
@@ -127,10 +109,10 @@ class DeviceGroup extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \common\models\query\DeviceGroupQuery the active query used by this AR class.
+     * @return \common\models\query\DisplayStatusTypeQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\DeviceGroupQuery(get_called_class());
+        return new \common\models\query\DisplayStatusTypeQuery(get_called_class());
     }
 }

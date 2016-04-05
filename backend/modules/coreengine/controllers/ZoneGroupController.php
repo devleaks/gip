@@ -6,11 +6,13 @@ use Yii;
 use common\models\Zone;
 use common\models\ZoneGroup;
 use common\models\search\ZoneGroup as ZoneGroupSearch;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\helpers\Html;
+use yii\helpers\VarDumper;
 
 /**
  * ZoneGroupController implements the CRUD actions for ZoneGroup model.
@@ -85,6 +87,9 @@ class ZoneGroupController extends Controller
 	            unset($outgroup[$zone->id]);
 	        }
 
+			Yii::$app->session->setFlash('error', Yii::t('gip', 'There was an error saving the model: {0}.', VarDumper::dumpAsString($model->errors, 4, true))); 			
+			Yii::trace('errors '.print_r($model->errors, true), 'ZoneGroupController::actionView');
+
 	        return $this->render('view', [
 				'model'	    => $model,
 	            'outgroup'  => $outgroup,
@@ -125,7 +130,7 @@ class ZoneGroupController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('update', [
+           return $this->render('update', [
                 'model' => $model,
             ]);
         }

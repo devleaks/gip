@@ -1,6 +1,7 @@
 <?php
 
 use common\models\Zone;
+use common\models\DisplayStatusType;
 
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
@@ -28,6 +29,8 @@ use kartik\datecontrol\DateControl;
         	'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
 
             'zone_type'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Zone Type for Dynamic Group...'], 'items' => [''=>'']+Zone::getZoneTypes()],
+
+			'display_status_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Display Status Type...'], 'items' => [''=>'']+DisplayStatusType::getList()],
 /*
             'zone_group_type'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Zone Group Type...']],
 

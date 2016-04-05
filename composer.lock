@@ -635,16 +635,16 @@
         },
         {
             "name": "bower-asset/lodash",
-            "version": "4.7.0",
+            "version": "4.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lodash/lodash.git",
-                "reference": "252ea445cab947c6e762b1d99a29ad08806e3b7d"
+                "reference": "c084e358bdbc530e53afa547872e90502e4474b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lodash/lodash/zipball/252ea445cab947c6e762b1d99a29ad08806e3b7d",
-                "reference": "252ea445cab947c6e762b1d99a29ad08806e3b7d",
+                "url": "https://api.github.com/repos/lodash/lodash/zipball/c084e358bdbc530e53afa547872e90502e4474b7",
+                "reference": "c084e358bdbc530e53afa547872e90502e4474b7",
                 "shasum": ""
             },
             "type": "bower-asset-library"
@@ -1099,16 +1099,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "1.0.0-beta2",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "91d92c4ff80e4c6573a4dc91aee08e50d2617d30"
+                "reference": "32df3aa8cdbdaa16df9491b5e672e81c87f94c78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/91d92c4ff80e4c6573a4dc91aee08e50d2617d30",
-                "reference": "91d92c4ff80e4c6573a4dc91aee08e50d2617d30",
+                "url": "https://api.github.com/repos/composer/composer/zipball/32df3aa8cdbdaa16df9491b5e672e81c87f94c78",
+                "reference": "32df3aa8cdbdaa16df9491b5e672e81c87f94c78",
                 "shasum": ""
             },
             "require": {
@@ -1170,7 +1170,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2016-03-27 15:00:34"
+            "time": "2016-04-05 12:27:26"
         },
         {
             "name": "composer/semver",

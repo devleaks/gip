@@ -19,6 +19,7 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER])) {
 			$subitems[] = ['label' => 'Device Groups', 'icon' => 'fa fa-truck', 'url' => ['/coreengine/device-group']],
 			$subitems[] = ['label' => 'Zones', 'icon' => 'fa fa-square-o', 'url' => ['/coreengine/zone']],
 			$subitems[] = ['label' => 'Zone Groups', 'icon' => 'fa fa-cog', 'url' => ['/coreengine/zone-group']],
+			$subitems[] = ['label' => 'Display Statuses', 'icon' => 'fa fa-info', 'url' => ['/coreengine/display-status-type']],
 			$subitems[] = ['label' => 'Notifications', 'icon' => 'fa fa-rss', 'url' => ['/coreengine/notification']],
 			$subitems[] = ['label' => 'Notification Groups', 'icon' => 'fa fa-share-alt', 'url' => ['/coreengine/notification-group']],
 			$subitems[] = ['label' => 'Services', 'icon' => 'fa fa-inbox', 'url' => ['/coreengine/service']],

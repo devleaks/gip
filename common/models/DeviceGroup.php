@@ -10,6 +10,7 @@ use \common\models\base\DeviceGroup as BaseDeviceGroup;
  */
 class DeviceGroup extends BaseDeviceGroup
 {
+	use \common\behaviors\ListAll;
 	
 	public function getDevices() {
 		if($this->device_type != '') {

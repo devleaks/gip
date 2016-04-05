@@ -1,6 +1,7 @@
 <?php
 
 use common\models\Device;
+use common\models\DisplayStatusType;
 
 use yii\helpers\Html;
 use yii\data\ActiveDataProvider;
@@ -35,6 +36,12 @@ $this->params['breadcrumbs'][] = $this->title;
 	            'attribute'=>'device_type',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
 				'items' => [''=>'']+Device::getDeviceTypes(),
+	        ],
+	        [
+	            'attribute'=>'display_status_type_id',
+				'type' => DetailView::INPUT_DROPDOWN_LIST,
+				'items' => [''=>'']+DisplayStatusType::getList(),
+				'value' => $model->displayStatusType ? $model->displayStatusType->display_name : '',
 	        ],
         ],
         'deleteOptions'=>[

@@ -1,6 +1,7 @@
 <?php
 
 use common\models\Device;
+use common\models\DisplayStatusType;
 
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
@@ -25,11 +26,15 @@ use kartik\datecontrol\DateControl;
 
             'name'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Name...', 'maxlength'=>40]],
 
+        	'display_name'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Name...', 'maxlength'=>40]],
+
+        	'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
+
             'device_type'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Device Type for Dynamic Group...'], 'items' => [''=>'']+Device::getDeviceTypes()],
 
-            'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
+            'display_status_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Display Status Type...'], 'items' => [''=>'']+DisplayStatusType::getList()],
 
-        ]
+       ]
 
     ]);
 

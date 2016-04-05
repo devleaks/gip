@@ -8,27 +8,28 @@ use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
 /**
- * This is the base model class for table "device_group".
+ * This is the base model class for table "display_status".
  *
  * @property integer $id
+ * @property integer $display_status_type_id
  * @property string $name
  * @property string $display_name
  * @property string $description
- * @property integer $display_status_type_id
- * @property string $group_type
- * @property string $device_type
- * @property integer $type_id
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_by
  * @property integer $updated_by
+ * @property string $style_name
+ * @property string $marker
+ * @property integer $stroke_width
+ * @property integer $stroke_style
+ * @property string $stroke_color
+ * @property string $fill_pattern
+ * @property string $fill_color
  *
- * @property \common\models\DeviceDeviceGroup[] $deviceDeviceGroups
- * @property \common\models\Type $type
  * @property \common\models\DisplayStatusType $displayStatusType
- * @property \common\models\Rule[] $rules
  */
-class DeviceGroup extends \yii\db\ActiveRecord
+class DisplayStatus extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -36,11 +37,10 @@ class DeviceGroup extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'display_name'], 'required'],
-            [['display_status_type_id', 'type_id', 'created_by', 'updated_by'], 'integer'],
-            [['group_type'], 'string'],
+            [['display_status_type_id', 'name', 'display_name'], 'required'],
+            [['display_status_type_id', 'created_by', 'updated_by', 'stroke_width', 'stroke_style'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'display_name', 'device_type'], 'string', 'max' => 40],
+            [['name', 'display_name', 'style_name', 'marker', 'stroke_color', 'fill_pattern', 'fill_color'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
             [['name'], 'unique'],
             [['display_name'], 'unique']
@@ -52,7 +52,7 @@ class DeviceGroup extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'device_group';
+        return 'display_status';
     }
 
     /**
@@ -62,30 +62,18 @@ class DeviceGroup extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('gip', 'ID'),
+            'display_status_type_id' => Yii::t('gip', 'Display Status Type ID'),
             'name' => Yii::t('gip', 'Name'),
             'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
-            'display_status_type_id' => Yii::t('gip', 'Display Status Type ID'),
-            'group_type' => Yii::t('gip', 'Group Type'),
-            'device_type' => Yii::t('gip', 'Device Type'),
-            'type_id' => Yii::t('gip', 'Type ID'),
+            'style_name' => Yii::t('gip', 'Style Name'),
+            'marker' => Yii::t('gip', 'Marker'),
+            'stroke_width' => Yii::t('gip', 'Stroke Width'),
+            'stroke_style' => Yii::t('gip', 'Stroke Style'),
+            'stroke_color' => Yii::t('gip', 'Stroke Color'),
+            'fill_pattern' => Yii::t('gip', 'Fill Pattern'),
+            'fill_color' => Yii::t('gip', 'Fill Color'),
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getDeviceDeviceGroups()
-    {
-        return $this->hasMany(\common\models\DeviceDeviceGroup::className(), ['device_group_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getType()
-    {
-        return $this->hasOne(\common\models\Type::className(), ['id' => 'type_id']);
     }
 
     /**
@@ -94,14 +82,6 @@ class DeviceGroup extends \yii\db\ActiveRecord
     public function getDisplayStatusType()
     {
         return $this->hasOne(\common\models\DisplayStatusType::className(), ['id' => 'display_status_type_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRules()
-    {
-        return $this->hasMany(\common\models\Rule::className(), ['device_group_id' => 'id']);
     }
 
 /**
@@ -127,10 +107,10 @@ class DeviceGroup extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \common\models\query\DeviceGroupQuery the active query used by this AR class.
+     * @return \common\models\query\DisplayStatusQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\DeviceGroupQuery(get_called_class());
+        return new \common\models\query\DisplayStatusQuery(get_called_class());
     }
 }

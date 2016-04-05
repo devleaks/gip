@@ -1,6 +1,7 @@
 <?php
 
 use common\models\Zone;
+use common\models\DisplayStatusType;
 
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
@@ -35,6 +36,12 @@ $this->params['breadcrumbs'][] = $this->title;
 	            'attribute'=>'zone_type',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
 				'items' => [''=>'']+Zone::getZoneTypes(),
+	        ],
+	        [
+	            'attribute'=>'display_status_type_id',
+				'type' => DetailView::INPUT_DROPDOWN_LIST,
+				'items' => [''=>'']+DisplayStatusType::getList(),
+				'value' => $model->displayStatusType ? $model->displayStatusType->display_name : '',
 	        ],
 /*            'zone_group_type',
             'schema_name',
