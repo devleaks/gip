@@ -59,17 +59,6 @@ class DashboardController extends Controller
     }
 
     /**
-     * Displays a single Dashboard model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionRender($id)
-    {
-        $model = $this->findModel($id);
-        return $this->redirect('/gip/dashboard/view?id='.$model->id);
-    }
-
-    /**
      * Creates a new Dashboard model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed

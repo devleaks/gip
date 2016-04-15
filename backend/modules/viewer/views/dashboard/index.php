@@ -30,11 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
 				'template' => '{view} {update} {delete} {render}',
                 'buttons' => [
                 	'update' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['viewer/dashboard/view','id' => $model->id,'edit'=>'t']), [
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['/viewer/dashboard/view','id' => $model->id,'edit'=>'t']), [
                                                     'title' => Yii::t('yii', 'Edit'),
                                                   ]);},
                 	'render' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-picture"></span>', Yii::$app->urlManager->createUrl(['viewer/dashboard/render','id' => $model->id]), [
+                                    return Html::a('<span class="glyphicon glyphicon-picture"></span>', Yii::$app->urlManager->createUrl(['/dashboard/view','id' => $model->id]), [
                                                     'title' => Yii::t('yii', 'Render'),
                                                   ]);}
                 ],

@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'items' => [''=>'']+DisplayStatusType::getList(),
 				'value' => $model->displayStatusType ? $model->displayStatusType->display_name : '',
 	        ],
-/*            'zone_group_type',
+/*          'zone_group_type',
             'schema_name',
             'table_name',
             'unique_id_column',
