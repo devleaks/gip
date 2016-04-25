@@ -3,7 +3,6 @@
 namespace common\models\base;
 
 use Yii;
-use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
@@ -19,18 +18,14 @@ use yii\behaviors\BlameableBehavior;
  * @property string $updated_at
  * @property integer $created_by
  * @property integer $updated_by
- * @property string $style_name
- * @property string $marker
- * @property integer $stroke_width
- * @property integer $stroke_style
- * @property string $stroke_color
- * @property string $fill_pattern
- * @property string $fill_color
+ * @property integer $style_id
  *
  * @property \common\models\DisplayStatusType $displayStatusType
+ * @property \common\models\Style $style
  */
 class DisplayStatus extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
@@ -38,9 +33,9 @@ class DisplayStatus extends \yii\db\ActiveRecord
     {
         return [
             [['display_status_type_id', 'name', 'display_name'], 'required'],
-            [['display_status_type_id', 'created_by', 'updated_by', 'stroke_width', 'stroke_style'], 'integer'],
+            [['display_status_type_id', 'created_by', 'updated_by', 'style_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'display_name', 'style_name', 'marker', 'stroke_color', 'fill_pattern', 'fill_color'], 'string', 'max' => 40],
+            [['name', 'display_name'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
             [['name'], 'unique'],
             [['display_name'], 'unique']
@@ -66,13 +61,7 @@ class DisplayStatus extends \yii\db\ActiveRecord
             'name' => Yii::t('gip', 'Name'),
             'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
-            'style_name' => Yii::t('gip', 'Style Name'),
-            'marker' => Yii::t('gip', 'Marker'),
-            'stroke_width' => Yii::t('gip', 'Stroke Width'),
-            'stroke_style' => Yii::t('gip', 'Stroke Style'),
-            'stroke_color' => Yii::t('gip', 'Stroke Color'),
-            'fill_pattern' => Yii::t('gip', 'Fill Pattern'),
-            'fill_color' => Yii::t('gip', 'Fill Color'),
+            'style_id' => Yii::t('gip', 'Style ID'),
         ];
     }
 
@@ -82,6 +71,14 @@ class DisplayStatus extends \yii\db\ActiveRecord
     public function getDisplayStatusType()
     {
         return $this->hasOne(\common\models\DisplayStatusType::className(), ['id' => 'display_status_type_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStyle()
+    {
+        return $this->hasOne(\common\models\Style::className(), ['id' => 'style_id']);
     }
 
 /**

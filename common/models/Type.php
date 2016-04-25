@@ -13,8 +13,13 @@ use \common\models\base\Type as BaseType;
 class Type extends BaseType
 {
 		static public function forClass($classname) {
-			$root_id = Type::findOne(['name' => Type::className()])->id;
-			$type_id = Type::findOne(['type_id' => $root_id, 'name' => $classname])->id;
-			return ArrayHelper::map(Type::find()->where(['type_id' => $type_id])->orderBy('display_name')->asArray()->all(), 'id', 'display_name');
+			if($root = Type::findOne(['name' => Type::className()])) {
+				if($type = Type::findOne(['type_id' => $root->id, 'name' => $classname])) {
+						if($types = Type::find()->where(['type_id' => $type->id])->orderBy('display_name')->asArray()->all()) {
+							return ArrayHelper::map($types, 'id', 'display_name');
+						}
+				}
+			}
+			return [];
 		}
 }

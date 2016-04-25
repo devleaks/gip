@@ -62,6 +62,7 @@ if(Yii::$app->user->identity->isA([User::ROLE_ADMIN, User::ROLE_DEVELOPER, User:
         'url' => '#',
         'items' => [
 			$subitems[] = ['label' => 'Entity Types', 'icon' => 'fa fa-file-o', 'url' => ['/developer/type']],
+			$subitems[] = ['label' => 'Styles', 'icon' => 'fa fa-pencil', 'url' => ['/developer/style']],
 			$subitems[] = ['label' => 'Lists of Values', 'icon' => 'fa fa-list', 'url' => ['/developer/list-of-values']],
 			$subitems[] = ['label' => 'Attribute Types', 'icon' => 'fa fa-font', 'url' => ['/developer/attribute-type']],
 			$subitems[] = ['label' => 'Attributes', 'icon' => 'fa fa-font', 'url' => ['/developer/attribute']],

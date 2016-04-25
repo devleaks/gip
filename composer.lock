@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b800d1de0a3f744faa869dd5002cfd2c",
-    "content-hash": "8aed4e174c7c22f0a8c37941bba9b4b6",
+    "hash": "0e509e7571fc7e23b184d20a093e231e",
+    "content-hash": "b7c90f8e05fed2e3b3ea5015b0ac8a18",
     "packages": [
         {
             "name": "2amigos/yii2-gallery-widget",
@@ -276,6 +276,56 @@
             ]
         },
         {
+            "name": "bower-asset/bootstrap3-dialog",
+            "version": "v1.35.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nakupanda/bootstrap3-dialog.git",
+                "reference": "d2a240e776951bcf61ecebc0c358a7db801ca931"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nakupanda/bootstrap3-dialog/zipball/d2a240e776951bcf61ecebc0c358a7db801ca931",
+                "reference": "d2a240e776951bcf61ecebc0c358a7db801ca931",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/bootstrap": ">=3.1.0",
+                "bower-asset/jquery": ">=1.9.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "dist/less/bootstrap-dialog.less",
+                    "dist/css/bootstrap-dialog.min.css",
+                    "dist/js/bootstrap-dialog.min.js"
+                ],
+                "bower-asset-ignore": [
+                    "source",
+                    "spec",
+                    ".bowerrc",
+                    ".gitignore",
+                    ".jshintignore",
+                    ".jshintrc",
+                    "bower.json",
+                    "gruntfile.js",
+                    "package.json",
+                    "README.md"
+                ]
+            },
+            "description": "Make use of Bootstrap Modal more monkey-friendly. http://nakupanda.github.io/bootstrap3-dialog/",
+            "keywords": [
+                "css",
+                "framework",
+                "front-end",
+                "js",
+                "less",
+                "mobile-first",
+                "responsive",
+                "web"
+            ]
+        },
+        {
             "name": "bower-asset/bower-jquery-sparkline",
             "version": "2.1.3",
             "source": {
@@ -368,16 +418,16 @@
         },
         {
             "name": "bower-asset/fontawesome",
-            "version": "v4.5.0",
+            "version": "v4.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FortAwesome/Font-Awesome.git",
-                "reference": "fddd2c240452e6c8990c4ef75e0265b455aa7968"
+                "reference": "6535013c330e801ecf0b23c437865a7fb344486d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/fddd2c240452e6c8990c4ef75e0265b455aa7968",
-                "reference": "fddd2c240452e6c8990c4ef75e0265b455aa7968",
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/6535013c330e801ecf0b23c437865a7fb344486d",
+                "reference": "6535013c330e801ecf0b23c437865a7fb344486d",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -405,16 +455,16 @@
         },
         {
             "name": "bower-asset/fullcalendar",
-            "version": "v2.6.1",
+            "version": "v2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fullcalendar/fullcalendar.git",
-                "reference": "4a15df42d12edd56b6b9df24e18c90349c649f53"
+                "reference": "27547a3a9671692a77fe0a3221b2af5a0be12618"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fullcalendar/fullcalendar/zipball/4a15df42d12edd56b6b9df24e18c90349c649f53",
-                "reference": "4a15df42d12edd56b6b9df24e18c90349c649f53",
+                "url": "https://api.github.com/repos/fullcalendar/fullcalendar/zipball/27547a3a9671692a77fe0a3221b2af5a0be12618",
+                "reference": "27547a3a9671692a77fe0a3221b2af5a0be12618",
                 "shasum": ""
             },
             "require": {
@@ -688,32 +738,106 @@
         },
         {
             "name": "bower-asset/lodash",
-            "version": "4.10.0",
+            "version": "4.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lodash/lodash.git",
-                "reference": "a20b88d114c2871b5f1abc12a71c4b1fb8529188"
+                "reference": "b83c5a8233e3ba44e277b75f3e36cd86376321d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lodash/lodash/zipball/a20b88d114c2871b5f1abc12a71c4b1fb8529188",
-                "reference": "a20b88d114c2871b5f1abc12a71c4b1fb8529188",
+                "url": "https://api.github.com/repos/lodash/lodash/zipball/b83c5a8233e3ba44e277b75f3e36cd86376321d9",
+                "reference": "b83c5a8233e3ba44e277b75f3e36cd86376321d9",
                 "shasum": ""
             },
             "type": "bower-asset-library"
         },
         {
-            "name": "bower-asset/moment",
-            "version": "2.12.0",
+            "name": "bower-asset/materialize",
+            "version": "v0.97.6",
             "source": {
                 "type": "git",
-                "url": "https://github.com/moment/moment.git",
-                "reference": "b135bf1a6d58ff94287f0a21455bfa6a1ddc7226"
+                "url": "https://github.com/Dogfalo/materialize.git",
+                "reference": "793e5716040cb133041b55be75b1fae51debb9f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moment/moment/zipball/b135bf1a6d58ff94287f0a21455bfa6a1ddc7226",
-                "reference": "b135bf1a6d58ff94287f0a21455bfa6a1ddc7226",
+                "url": "https://api.github.com/repos/Dogfalo/materialize/zipball/793e5716040cb133041b55be75b1fae51debb9f3",
+                "reference": "793e5716040cb133041b55be75b1fae51debb9f3",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=2.1.1"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "bin/materialize.css",
+                    "bin/materialize.js",
+                    "fonts/roboto/Roboto-Bold.ttf",
+                    "fonts/roboto/Roboto-Bold.woff",
+                    "fonts/roboto/Roboto-Bold.woff2",
+                    "fonts/roboto/Roboto-Light.ttf",
+                    "fonts/roboto/Roboto-Light.woff",
+                    "fonts/roboto/Roboto-Light.woff2",
+                    "fonts/roboto/Roboto-Medium.ttf",
+                    "fonts/roboto/Roboto-Medium.woff",
+                    "fonts/roboto/Roboto-Medium.woff2",
+                    "fonts/roboto/Roboto-Regular.ttf",
+                    "fonts/roboto/Roboto-Regular.woff",
+                    "fonts/roboto/Roboto-Regular.woff2",
+                    "fonts/roboto/Roboto-Thin.ttf",
+                    "fonts/roboto/Roboto-Thin.woff",
+                    "fonts/roboto/Roboto-Thin.woff2"
+                ],
+                "bower-asset-ignore": [
+                    "jade/",
+                    ".gitignore",
+                    "CNAME",
+                    "css/",
+                    "bower.json",
+                    "README.md",
+                    "images/",
+                    "js/jquery.timeago.js",
+                    "js/init.js",
+                    "js/prism.js",
+                    "res/",
+                    "sass/style.scss",
+                    "sass/ghpages-materialize.scss",
+                    "**/*.html",
+                    "**/*.zip",
+                    "**/*.txt",
+                    "sitemap.xml",
+                    "package.json",
+                    "Gruntfile.js"
+                ]
+            },
+            "description": "A modern responsive front-end framework based on Material Design",
+            "keywords": [
+                "css",
+                "design",
+                "framework",
+                "front-end",
+                "js",
+                "material",
+                "mobile-first",
+                "responsive",
+                "sass",
+                "ux"
+            ]
+        },
+        {
+            "name": "bower-asset/moment",
+            "version": "2.13.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/moment/moment.git",
+                "reference": "d6651c21c6131fbb5db891b60971357739015688"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/moment/moment/zipball/d6651c21c6131fbb5db891b60971357739015688",
+                "reference": "d6651c21c6131fbb5db891b60971357739015688",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -1152,16 +1276,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "1.0.0",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "32df3aa8cdbdaa16df9491b5e672e81c87f94c78"
+                "reference": "a083aa5e0c9b8ad989c622638aa380c1f88a68ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/32df3aa8cdbdaa16df9491b5e672e81c87f94c78",
-                "reference": "32df3aa8cdbdaa16df9491b5e672e81c87f94c78",
+                "url": "https://api.github.com/repos/composer/composer/zipball/a083aa5e0c9b8ad989c622638aa380c1f88a68ec",
+                "reference": "a083aa5e0c9b8ad989c622638aa380c1f88a68ec",
                 "shasum": ""
             },
             "require": {
@@ -1223,7 +1347,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2016-04-05 12:27:26"
+            "time": "2016-04-21 11:30:19"
         },
         {
             "name": "composer/semver",
@@ -1558,20 +1682,20 @@
         },
         {
             "name": "dmstr/yii2-bootstrap",
-            "version": "0.1.2",
+            "version": "0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmstr/yii2-bootstrap.git",
-                "reference": "c0fb26c0259b3c5fb42f2c0df852db2b3494c739"
+                "reference": "df2afef6509390e6d754c16b72f3c5a980169e19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmstr/yii2-bootstrap/zipball/c0fb26c0259b3c5fb42f2c0df852db2b3494c739",
-                "reference": "c0fb26c0259b3c5fb42f2c0df852db2b3494c739",
+                "url": "https://api.github.com/repos/dmstr/yii2-bootstrap/zipball/df2afef6509390e6d754c16b72f3c5a980169e19",
+                "reference": "df2afef6509390e6d754c16b72f3c5a980169e19",
                 "shasum": ""
             },
             "require": {
-                "yiisoft/yii2": "2.0.*"
+                "yiisoft/yii2-bootstrap": "^2.0.6"
             },
             "type": "yii2-extension",
             "autoload": {
@@ -1595,7 +1719,7 @@
                 "extension",
                 "yii2"
             ],
-            "time": "2016-04-13 00:33:37"
+            "time": "2016-04-22 18:33:17"
         },
         {
             "name": "dmstr/yii2-db",
@@ -1838,16 +1962,16 @@
         },
         {
             "name": "fortawesome/font-awesome",
-            "version": "v4.5.0",
+            "version": "v4.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FortAwesome/Font-Awesome.git",
-                "reference": "fddd2c240452e6c8990c4ef75e0265b455aa7968"
+                "reference": "6535013c330e801ecf0b23c437865a7fb344486d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/fddd2c240452e6c8990c4ef75e0265b455aa7968",
-                "reference": "fddd2c240452e6c8990c4ef75e0265b455aa7968",
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/6535013c330e801ecf0b23c437865a7fb344486d",
+                "reference": "6535013c330e801ecf0b23c437865a7fb344486d",
                 "shasum": ""
             },
             "require-dev": {
@@ -1882,7 +2006,7 @@
                 "font",
                 "icon"
             ],
-            "time": "2015-11-30 17:28:02"
+            "time": "2016-04-12 14:51:54"
         },
         {
             "name": "insolita/yii2-iconpicker",
@@ -2459,15 +2583,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-detail-view.git",
-                "reference": "8815787fb7953f8e12bcde52d2b11930381d464b"
+                "reference": "3c60008431786329affef144f360ba57d02fc9bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-detail-view/zipball/8815787fb7953f8e12bcde52d2b11930381d464b",
-                "reference": "8815787fb7953f8e12bcde52d2b11930381d464b",
+                "url": "https://api.github.com/repos/kartik-v/yii2-detail-view/zipball/3c60008431786329affef144f360ba57d02fc9bc",
+                "reference": "3c60008431786329affef144f360ba57d02fc9bc",
                 "shasum": ""
             },
             "require": {
+                "kartik-v/yii2-dialog": "~1.0",
                 "kartik-v/yii2-helpers": "~1.3.5",
                 "kartik-v/yii2-krajee-base": "~1.7"
             },
@@ -2504,20 +2629,72 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-04-07 11:58:57"
+            "time": "2016-04-23 12:41:39"
         },
         {
-            "name": "kartik-v/yii2-export",
-            "version": "v1.2.4",
+            "name": "kartik-v/yii2-dialog",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/kartik-v/yii2-export.git",
-                "reference": "5366c8da6cddc8173feb878c4c115fbc1746cb7b"
+                "url": "https://github.com/kartik-v/yii2-dialog.git",
+                "reference": "c0f83291c050fb05a1dc66a90ad6151de2d1e982"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-export/zipball/5366c8da6cddc8173feb878c4c115fbc1746cb7b",
-                "reference": "5366c8da6cddc8173feb878c4c115fbc1746cb7b",
+                "url": "https://api.github.com/repos/kartik-v/yii2-dialog/zipball/c0f83291c050fb05a1dc66a90ad6151de2d1e982",
+                "reference": "c0f83291c050fb05a1dc66a90ad6151de2d1e982",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/bootstrap3-dialog": "~1.34",
+                "kartik-v/yii2-krajee-base": "~1.7"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\dialog\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An asset bundle for bootstrap3-dialog for Yii 2.0 framework.",
+            "homepage": "https://github.com/kartik-v/yii2-dialog",
+            "keywords": [
+                "alert",
+                "bootstrap",
+                "dialog",
+                "extension",
+                "modal",
+                "yii2"
+            ],
+            "time": "2016-02-22 10:58:46"
+        },
+        {
+            "name": "kartik-v/yii2-export",
+            "version": "v1.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-export.git",
+                "reference": "2a77907a7eb6885573ca3871241e3394b33e39ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-export/zipball/2a77907a7eb6885573ca3871241e3394b33e39ea",
+                "reference": "2a77907a7eb6885573ca3871241e3394b33e39ea",
                 "shasum": ""
             },
             "require": {
@@ -2563,7 +2740,7 @@
                 "xlsx",
                 "yii2"
             ],
-            "time": "2016-02-04 02:23:32"
+            "time": "2016-04-18 16:54:14"
         },
         {
             "name": "kartik-v/yii2-grid",
@@ -4020,6 +4197,51 @@
             "time": "2016-04-03 01:27:47"
         },
         {
+            "name": "macgyer/yii2-materializecss",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MacGyer/yii2-materializecss.git",
+                "reference": "6fb19a8535d491627148fd2b4493d9fcb6b7fa47"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MacGyer/yii2-materializecss/zipball/6fb19a8535d491627148fd2b4493d9fcb6b7fa47",
+                "reference": "6fb19a8535d491627148fd2b4493d9fcb6b7fa47",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/materialize": "0.97.*",
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "~2.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "macgyer\\yii2materializecss\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Erdmann",
+                    "homepage": "http://www.medienpol.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Materialize CSS implementation for Yii2",
+            "keywords": [
+                "material design",
+                "materialize",
+                "widgets",
+                "yii2"
+            ],
+            "time": "2016-04-23 21:26:30"
+        },
+        {
             "name": "machour/yii2-sparkline",
             "version": "1.0.0",
             "source": {
@@ -4311,12 +4533,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mootensai/yii2-enhanced-gii.git",
-                "reference": "d32830808acf0e5e54f3653947e67af1a464390d"
+                "reference": "2bfdaaf981ddea0f4b21b713856eead524233776"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/mootensai/yii2-enhanced-gii/zipball/2bfdaaf981ddea0f4b21b713856eead524233776",
-                "reference": "d32830808acf0e5e54f3653947e67af1a464390d",
+                "reference": "2bfdaaf981ddea0f4b21b713856eead524233776",
                 "shasum": ""
             },
             "require": {
@@ -4363,7 +4585,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2016-03-05 04:36:16"
+            "time": "2016-04-14 02:55:39"
         },
         {
             "name": "mootensai/yii2-jsblock",
@@ -4820,16 +5042,16 @@
         },
         {
             "name": "philippfrenzel/yii2fullcalendar",
-            "version": "2.5.1",
+            "version": "2.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/philippfrenzel/yii2fullcalendar.git",
-                "reference": "73d77df600bea79f72a8dae9260d60c3f1cbd77c"
+                "reference": "a00862648a8cc81ddd8175b7b6f3ca6f09bde7c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/philippfrenzel/yii2fullcalendar/zipball/73d77df600bea79f72a8dae9260d60c3f1cbd77c",
-                "reference": "73d77df600bea79f72a8dae9260d60c3f1cbd77c",
+                "url": "https://api.github.com/repos/philippfrenzel/yii2fullcalendar/zipball/a00862648a8cc81ddd8175b7b6f3ca6f09bde7c3",
+                "reference": "a00862648a8cc81ddd8175b7b6f3ca6f09bde7c3",
                 "shasum": ""
             },
             "require": {
@@ -4865,7 +5087,7 @@
                 "fullcalendar",
                 "yii2"
             ],
-            "time": "2016-04-12 21:58:08"
+            "time": "2016-04-23 15:30:06"
         },
         {
             "name": "phpdocumentor/reflection",
@@ -5153,20 +5375,20 @@
         },
         {
             "name": "rmrevin/yii2-fontawesome",
-            "version": "2.13.0",
+            "version": "2.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rmrevin/yii2-fontawesome.git",
-                "reference": "2efbfacb22be59f373d11a7e3dfa9213e2ba18a9"
+                "reference": "baac28412963974940cbfb6b83940b3aa179b0ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rmrevin/yii2-fontawesome/zipball/2efbfacb22be59f373d11a7e3dfa9213e2ba18a9",
-                "reference": "2efbfacb22be59f373d11a7e3dfa9213e2ba18a9",
+                "url": "https://api.github.com/repos/rmrevin/yii2-fontawesome/zipball/baac28412963974940cbfb6b83940b3aa179b0ee",
+                "reference": "baac28412963974940cbfb6b83940b3aa179b0ee",
                 "shasum": ""
             },
             "require": {
-                "bower-asset/fontawesome": "4.5.*",
+                "bower-asset/fontawesome": "4.6.*",
                 "php": ">=5.4.0",
                 "yiisoft/yii2": "2.0.*"
             },
@@ -5201,7 +5423,7 @@
                 "font",
                 "yii"
             ],
-            "time": "2015-11-26 15:24:53"
+            "time": "2016-04-21 11:55:25"
         },
         {
             "name": "romdim/yii2-bootstrap-material",
@@ -5339,16 +5561,16 @@
         },
         {
             "name": "seld/cli-prompt",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/cli-prompt.git",
-                "reference": "b27db1514f7d7bb7a366ad95d4eb2b17140a0691"
+                "reference": "8cbe10923cae5bcd7c5a713f6703fc4727c8c1b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/cli-prompt/zipball/b27db1514f7d7bb7a366ad95d4eb2b17140a0691",
-                "reference": "b27db1514f7d7bb7a366ad95d4eb2b17140a0691",
+                "url": "https://api.github.com/repos/Seldaek/cli-prompt/zipball/8cbe10923cae5bcd7c5a713f6703fc4727c8c1b4",
+                "reference": "8cbe10923cae5bcd7c5a713f6703fc4727c8c1b4",
                 "shasum": ""
             },
             "require": {
@@ -5383,7 +5605,7 @@
                 "input",
                 "prompt"
             ],
-            "time": "2016-01-09 17:55:27"
+            "time": "2016-04-18 09:31:41"
         },
         {
             "name": "seld/jsonlint",

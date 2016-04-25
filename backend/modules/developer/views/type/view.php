@@ -3,6 +3,7 @@
 use common\models\Type;
 
 use yii\helpers\Html;
+use yii\data\ActiveDataProvider;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
 use kartik\icons\Icon;
@@ -67,5 +68,18 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'enableEditMode'=>true,
     ]) ?>
+
+	<?php
+		if($model->getTypes()->exists()) { // list of values based on table:
+			$dataProvider = new ActiveDataProvider([
+				'query' => $model->getTypes(),
+			]);
+
+	        echo $this->render('_list', [
+	            'dataProvider' => $dataProvider,
+				'type' => $model,
+	        ]);
+		}
+	?>
 
 </div>

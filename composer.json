@@ -79,7 +79,8 @@
         "morozovsk/yii2-websocket": "^1.0",
         "morozovsk/websocket-examples": "^1.1",
         "fedemotta/yii2-gridster": "*",
-        "romdim/yii2-bootstrap-material": "dev-master"
+        "romdim/yii2-bootstrap-material": "dev-master",
+        "macgyer/yii2-materializecss": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
