@@ -1,18 +1,24 @@
 <?php
 use frontend\assets\AppAsset;
-use dmstr\widgets\Alert;
+use app\models\User;
+use devleaks\chardinjs\ChardinJSAsset;
+use devleaks\introjs\IntroJSAsset;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\widgets\ActiveForm;
 use yii\widgets\Breadcrumbs;
 
+if(isset(Yii::$app->params['BootswatchTheme'])) {
+	raoul2000\bootswatch\BootswatchAsset::$theme = Yii::$app->params['BootswatchTheme'];
+	raoul2000\bootswatch\BootswatchAsset::register($this);
+}
+
+AppAsset::register($this);
+$apphomedir = Yii::getAlias('@app');
 /* @var $this \yii\web\View */
 /* @var $content string */
-if(isset(Yii::$app->params['BootswatchTheme']))
-	raoul2000\bootswatch\BootswatchAsset::$theme = Yii::$app->params['BootswatchTheme'];
-
-$asset = AppAsset::register($this);
-
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -20,97 +26,126 @@ $asset = AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="<?= Yii::$app->homeUrl ?>favicon.ico">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode(Yii::$app->name) ?></title>
+    <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-
-	<link rel="apple-touch-icon" sizes="57x57" href="/golfleague/images/favicon/apple-touch-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="/golfleague/images/favicon/apple-touch-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="/golfleague/images/favicon/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="/golfleague/images/favicon/apple-touch-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="/golfleague/images/favicon/apple-touch-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="/golfleague/images/favicon/apple-touch-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="/golfleague/images/favicon/apple-touch-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="/golfleague/images/favicon/apple-touch-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="/golfleague/images/favicon/apple-touch-icon-180x180.png">
-	<link rel="icon" type="image/png" href="/golfleague/images/favicon/favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="/golfleague/images/favicon/android-chrome-192x192.png" sizes="192x192">
-	<link rel="icon" type="image/png" href="/golfleague/images/favicon/favicon-96x96.png" sizes="96x96">
-	<link rel="icon" type="image/png" href="/golfleague/images/favicon/favicon-16x16.png" sizes="16x16">
-	<link rel="manifest" href="/golfleague/images/favicon/manifest.json">
-	<link rel="shortcut icon" href="/golfleague/images/favicon/favicon.ico">
-	<meta name="msapplication-TileColor" content="#00aba9">
-	<meta name="msapplication-TileImage" content="/golfleague/images/favicon/mstile-144x144.png">
-	<meta name="msapplication-config" content="/golfleague/images/favicon/browserconfig.xml">
-	<meta name="theme-color" content="#ffffff">
-	
 </head>
 <body>
-    <?php $this->beginBody() ?>
+<?php $this->beginBody() ?>
     <div class="wrap">
         <?php
-			$name = Yii::$app->name . (YII_ENV_DEV ? '-DEV' : '') . (YII_DEBUG ? '-DEBUG' : '');
+			$name = Yii::$app->name . (YII_ENV_DEV ? ' –DEV='.`cd $apphomedir ; git describe --tags` : '') . (YII_DEBUG ? '–DEBUG' : '') ;
             NavBar::begin([
-                'brandLabel' => Html::img($asset->baseUrl . '/images/logo.png', ['width'=>68, 'height'=>46, 'title' => $name]),
+                'brandLabel' => $name,
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
-                    'class' => 'navbar-inverse navbar-fixed-top',
+                    'class' => 'navbar-inverse navbar-fixed-top'
                 ],
             ]);
 
-            $menuItems = [
-                ['label' => 'Home', 'url' => ['/site/index']],
-                ['label' => 'About', 'url' => ['/site/about']],
-                ['label' => 'Contact', 'url' => ['/site/contact']],
-            ];
-
-            // golf league stuff
-
+			$menu = [];
+			$menu[] = ['label' => Yii::$app->formatter->asDate(date('c')), 'url' => "javascript:do_introjs();"];
+				
             if(!Yii::$app->user->isGuest) {
-                $who = Yii::$app->user->identity->username;
+				$menu[] = ['label' => Yii::t('store', 'Cash'), 'url' => ['/accnt/cash/list']];
+
+				$work_menu = [];
+				if(defined('YII_DEVLEAKS')) {
+					$dev_menu = [];
+                	$dev_menu[] = ['label' => Yii::t('store', 'All documents'), 'url' => ['/order/document/', 'sort' => '-updated_at']];
+					$dev_menu[] = ['label' => Yii::t('store', 'Accounting'), 'url' => ['/accnt']];
+					$dev_menu[] = ['label' => Yii::t('store', 'History'), 'url' => ['/admin/history', 'sort' => '-created_at']];
+					$dev_menu[] = ['label' => Yii::t('store', 'Gii'), 'url' => ['/gii']];
+					$menu[] = ['label' => Yii::t('store', 'Development'), 'items' => $dev_menu];
+				}
+
+				if(User::hasRole(['admin', 'manager', 'compta', 'frontdesk', 'employee']))
+                	$work_menu[] = ['label' => Yii::t('store', 'Cash'), 'url' => ['/accnt/cash/list']];
+				if(User::hasRole(['admin', 'manager', 'compta', 'frontdesk', 'employee']))
+                	$work_menu[] = ['label' => Yii::t('store', 'Orders'), 'url' => ['/order']];
+				if(User::hasRole(['admin', 'manager', 'employee', 'worker']))
+                	$work_menu[] = ['label' => Yii::t('store', 'Works'), 'url' => ['/work']];
+				if(User::hasRole(['admin', 'manager']))
+                	$work_menu[] = ['label' => Yii::t('store', 'Management'), 'url' => ['/store']];
+				if(User::hasRole(['admin']))
+                	$work_menu[] = ['label' => Yii::t('store', 'Administration'), 'url' => ['/admin']];
+				if(User::hasRole(['admin', 'compta']))
+                	$work_menu[] = ['label' => Yii::t('store', 'Accounting'), 'url' => ['/accnt']];
+
+               	$work_menu[] = ['label' => Yii::t('store', 'Calculator'), 'url' => ['/assets/calculator/'], 'linkOptions' => ['target' => '_blank']];
+
+			$menu[] = ['label' => Yii::t('store', 'Menu'), 'items' => $work_menu];
+
+
+				$help_menu = [];
+				// $help_menu[] = ['label' => 'Chardin',		'url' => "javascript:do_chardinjs();"];
+				$help_menu[] = ['label' => 'Intro',			'url' => "javascript:do_introjs();"];
+				$help_menu[] = ['label' => 'Documentation',	'url' => ['/help/guide-README.html']];
+
+			$menu[] = ['label' => Yii::t('store', 'Help'), 'items' => $help_menu/*'url' => ['/help/guide-README.html']*/];
+
 
 				$user_menu = [];
-				$user_menu[] = ['label' => Yii::t('gip', 'Profile'), 'url' => ['/user/settings']];
-				$user_menu[] = ['label' => Yii::t('gip', 'Logout'), 'url' => ['/user/security/logout'], 'linkOptions' => ['data-method' => 'post']];
+                $user_menu[] = ['label' => Yii::t('store', 'Profile'), 'url' => ['/user/settings']];
+                $user_menu[] = ['label' => Yii::t('store', 'Logout'), 'url' => ['/user/security/logout'], 'linkOptions' => ['data-method' => 'post']];
 
-            	$menuItems[] = ['label' => $who, 'items' => $user_menu];
-            } else {
-                $menuItems[] = ['label' => 'Signup', 'url' => ['/user/register']];
-            	$menuItems[] = ['label' => 'Login', 'url' => ['/user/security/login']];
-			}
+            $menu[] = ['label' => Yii::$app->user->identity->username, 'items' => $user_menu];
+
+            } else
+				$menu[] = ['label' => 'Login', 'url' => ['/user/security/login']];
 
             echo Nav::widget([
-                'options' => ['class' => 'navbar-nav navbar-right'],
-                'items' => $menuItems,
+                'options' => [
+					'class' => 'navbar-nav navbar-right',
+					'data-intro' => 'Menus vers écrans principaux, connexion ou déconnexion, et modification du profil (mot de passe, adresse email, etc.)'
+				],
+                'items' => $menu
             ]);
+
             NavBar::end();
         ?>
 
-        <div class="container">
-        <?= Breadcrumbs::widget([
-            'homeLink' => ['label' => Yii::$app->name, 'url' => Yii::$app->homeUrl],
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
+        <div class="container-fluid" style="margin-top: 60px;">
+            <?= Breadcrumbs::widget([
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+				'options' => [
+					'class' => 'breadcrumb',
+					'data-intro' => 'Menu hiérarchique'
+				]
+            ]) ?>
+            <?= $content ?>
         </div>
     </div>
 
     <footer class="footer">
-        <div class="container">
-        <p class="pull-left">&copy; <?= Yii::$app->name . ' ' . date('Y') ?>
-			<small><?php $apphomedir = Yii::getAlias('@app'); echo ' — Version '.`cd $apphomedir ; git describe --tags`;
-				if(YII_DEBUG) {
-					echo ' — Last commit: '.`git log -1 --format=%cd --relative-date`;
-					echo ' — '.`hostname`;
-					echo ' — '.Yii::$app->getDb()->dsn;
-				}
-			?></small></p>
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <div class="container-fluid">
+            <p class="pull-left">&copy; Labo JJ Micheli <?= date('Y') ?>
+				<small><?php echo ' — Version '.`cd $apphomedir ; git describe --tags`;
+					if(YII_DEBUG) {
+						echo ' — Last commit: '.`git log -1 --format=%cd --relative-date`;
+						echo ' — '.`hostname`;
+						echo ' — '.Yii::$app->getDb()->dsn;
+					}
+				?></small>
+			</p>
         </div>
     </footer>
+<script type="text/javascript">
+<?php
+$this->beginBlock('PRINT_LAYOUT_HELP_JS'); ?>
+function do_introjs() {
+	introJs().setOptions({ 'nextLabel': 'Suivant', 'prevLabel': 'Précédent', 'doneLabel': 'Terminé', 'skipLabel': 'Sortir' }).start();
+}
+function do_chardinjs() {
+	$('body').chardinJs('start');
+}
+<?php $this->endBlock(); ?>
+</script>
+<?php
+$this->registerJs($this->blocks['PRINT_LAYOUT_HELP_JS'], yii\web\View::POS_END);
 
-    <?php $this->endBody() ?>
+$this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>

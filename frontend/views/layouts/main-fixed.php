@@ -1,6 +1,10 @@
 <?php
-use frontend\assets\AppAsset;
+use app\assets\AppAsset;
+use app\assets\CalculatorAsset;
+use app\models\Backup;
+use app\models\CaptureSearch;
 use app\models\User;
+use app\widgets\Alert;
 use devleaks\chardinjs\ChardinJSAsset;
 use devleaks\introjs\IntroJSAsset;
 use yii\bootstrap\Nav;
@@ -16,6 +20,9 @@ if(isset(Yii::$app->params['BootswatchTheme'])) {
 }
 
 AppAsset::register($this);
+CalculatorAsset::register($this);
+IntroJSAsset::register($this);
+ChardinJSAsset::register($this);
 $apphomedir = Yii::getAlias('@app');
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -103,10 +110,23 @@ $apphomedir = Yii::getAlias('@app');
                 'items' => $menu
             ]);
 
+
+			/** Search field */
+			$form = ActiveForm::begin(['action' => Url::to(['/order/document/search'])]);
+			$model = new CaptureSearch();
+			echo $form->field($model, 'search'/*, [
+			    'addon' => [
+					'append' => [
+						'content' => '<i class="glyphicon glyphicon-search"></i>'					]
+				]
+			]*/)->textInput(['maxlength' => 40, 'class' => 'input-sm pull-right', 'style' => 'margin-top: 10px;'])->label('');
+			ActiveForm::end();
+
+
             NavBar::end();
         ?>
 
-        <div class="container-fluid" style="margin-top: 60px;">
+        <div class="container">
             <?= Breadcrumbs::widget([
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 				'options' => [
@@ -114,12 +134,13 @@ $apphomedir = Yii::getAlias('@app');
 					'data-intro' => 'Menu hiérarchique'
 				]
             ]) ?>
+        	<?= Alert::widget() ?> 
             <?= $content ?>
         </div>
     </div>
 
     <footer class="footer">
-        <div class="container-fluid">
+        <div class="container">
             <p class="pull-left">&copy; Labo JJ Micheli <?= date('Y') ?>
 				<small><?php echo ' — Version '.`cd $apphomedir ; git describe --tags`;
 					if(YII_DEBUG) {

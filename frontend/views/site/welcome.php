@@ -12,74 +12,20 @@ $this->title = 'GIP Application Dashboard';
 ?>
 <div class="site-welcome body-content">
 
-	<?php $gridstack = Gridstack::begin([
-	    'options' =>[
-			'class'=>'grid-stack'
-		],
-	    'clientOptions'=>[
-	        'verticalMargin'=> 10,
-			'cellHeight' => 50,
-			'float' => true,
-			'handle' => '.drag'
-	    ]
-	]);?>
+	<div class="row">
+	        <div class="col s12 m6">
+	          <div class="card blue-grey darken-1">
+	            <div class="card-content white-text">
+	              <span class="card-title">Card Title</span>
+	              <p>I am a very simple card. I am good at containing small bits of information.
+	              I am convenient because I require little markup to use effectively.</p>
+	            </div>
+	            <div class="card-action">
+	              <a href="#">This is a link</a>
+	              <a href="#">This is a link</a>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
 	
-		<?= $gridstack->beginWidget([
-				'class'=>'grid-stack-item',
-				'data-gs-width'=>"2",
-				'data-gs-height'=>"2",
-		    ]);
-		?>
-		<div class="grid-stack-item-content">
-			<span class="drag fa"></span>
-			<?= Indicator::widget([
-					'color' => 'green',
-					'item' => "Seconds",
-					'icon' => 'fa-clock-o',
-					'value' => date('s', time())
-				  ]);
-			?>
-		</div>
-		<?=$gridstack->endWidget();?>
-		
-		
-		
-		<?= $gridstack->beginWidget([
-				'class'=>'grid-stack-item',
-				'data-gs-width'=>"2",
-				'data-gs-height'=>"2",
-		    ]);
-		?>
-		<div class="grid-stack-item-content">
-			<span class="drag fa"></span>
-			<?= Indicator::widget([
-					'color' => 'red',
-					'colorBG' => true,
-					'icon' => 'fa-envelope-o',
-					'progress' => 60,
-					'item' => 'Mail',
-					'progressDescription' => '62% done.'
-				  ]);
-			?>
-		</div>
-		<?=$gridstack->endWidget();?>
-
-		
-
-		<?= $gridstack->beginWidget([
-				'class'=>'grid-stack-item',
-				'data-gs-width'=>"2",
-				'data-gs-height'=>"2",
-		    ]);
-		?>
-		<div class="grid-stack-item-content">
-			<span class="drag fa"></span>
-			<?= Indicator::widget(); ?>
-		</div>
-		<?=$gridstack->endWidget();?>
-		
-
-
-	<?php $gridstack->end(); ?>
-
 </div><!-- .site-welcome -->
