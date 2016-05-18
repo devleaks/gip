@@ -27,7 +27,7 @@ use yii\widgets\Pjax;
 	            'type' => TabularForm::INPUT_STATIC, 
 	            'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT],
 				'value' => function ($model, $key, $index, $widget) {
-							return $model->entityAttribute->name;
+							return $model->entityAttribute->display_name;
 	            		},
 	        ],
 		    'value_text' => [
