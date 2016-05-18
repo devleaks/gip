@@ -16,12 +16,13 @@ use yii\web\AssetBundle;
 class AppAsset extends AssetBundle
 {
     public $sourcePath = '@frontend/assets';
-	public $basePath = '@webroot';
+//	public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
     ];
     public $js = [
+		'js/notification.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

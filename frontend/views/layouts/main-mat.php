@@ -30,7 +30,7 @@ frontend\assets\AppAsset::register($this);
         <header class="page-header">
             <?php
             NavBar::begin([
-                'brandLabel' => Yii::$app->name,
+                'brandLabel' => 'My Company',
                 'brandUrl' => Yii::$app->homeUrl,
                 'fixed' => true,
                 'wrapperOptions' => [
@@ -73,72 +73,12 @@ frontend\assets\AppAsset::register($this);
                 ]) ?>
 
                 <?= Alert::widget() ?>
-				<?php
-				$js = <<<JS
-$('#chat-form').submit(function() {
-
-     var form = $(this);
-
-     $.ajax({
-          url: form.attr('action'),
-          type: 'post',
-          data: form.serialize(),
-          success: function (response) {
-               $("#message-field").val("");
-          }
-     });
-
-     return false;
-});
-JS;
-				$this->registerJs($js, \yii\web\View::POS_READY);		
-				?>
-				<div class="row">
-		            <div class="card col-lg-8 col-lg-offset-2">
-
-		                <?= Html::beginForm(['/site/index'], 'POST', [
-		                    'id' => 'chat-form'
-		                ]) ?>
-
-		                <div class="row">
-		                    <div class="col-xs-3">
-		                        <div class="form-group">
-		                            <?= Html::textInput('name', null, [
-		                                'class' => 'form-control',
-		                                'placeholder' => 'Name'
-		                            ]) ?>
-		                        </div>
-		                    </div>
-		                    <div class="col-xs-7">
-		                        <div class="form-group">
-		                            <?= Html::textInput('message', null, [
-		                                'id' => 'message-field',
-		                                'class' => 'form-control',
-		                                'placeholder' => 'Message'
-		                            ]) ?>
-		                        </div>
-		                    </div>
-		                    <div class="col-xs-2">
-		                        <div class="form-group">
-		                            <?= Html::submitButton('Send', [
-		                                'class' => 'btn btn-block btn-success'
-		                            ]) ?>
-		                        </div>
-		                    </div>
-		                </div>
-
-		                <?= Html::endForm() ?>
-
-		                <div id="notifications" ></div>
-		            </div>
-		        </div>
-
 
                 <?= $content ?>
             </div>
         </main>
 
-        <footer class="page-footer">
+        <footer class="footer page-footer">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
@@ -158,7 +98,8 @@ JS;
             </div>
             <div class="footer-copyright">
                 <div class="container">
-                    <?= Yii::$app->name.' &copy; '.date('Y').' • '.Yii::powered() ?>
+                    &copy; My Company <?= date('Y') ?>
+                    <?= Yii::powered() ?>
                 </div>
             </div>
         </footer>

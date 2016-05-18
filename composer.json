@@ -80,7 +80,10 @@
         "morozovsk/websocket-examples": "^1.1",
         "fedemotta/yii2-gridster": "*",
         "romdim/yii2-bootstrap-material": "dev-master",
-        "macgyer/yii2-materializecss": "*"
+        "macgyer/yii2-materializecss": "*",
+        "devgroup/yii2-jsoneditor": "*",
+        "dkhru/yii2-socket-events": "*",
+        "yiisoft/yii2-redis": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
