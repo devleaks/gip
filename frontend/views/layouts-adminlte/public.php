@@ -62,22 +62,9 @@ $asset = AppAsset::register($this);
                 ['label' => 'Home', 'url' => ['/site/index']],
                 ['label' => 'About', 'url' => ['/site/about']],
                 ['label' => 'Contact', 'url' => ['/site/contact']],
+                ['label' => 'Signup', 'url' => ['/user/register']],
+            	['label' => 'Login', 'url' => ['/user/security/login']]
             ];
-
-            // golf league stuff
-
-            if(!Yii::$app->user->isGuest) {
-                $who = Yii::$app->user->identity->username;
-
-				$user_menu = [];
-				$user_menu[] = ['label' => Yii::t('gip', 'Profile'), 'url' => ['/user/settings']];
-				$user_menu[] = ['label' => Yii::t('gip', 'Logout'), 'url' => ['/user/security/logout'], 'linkOptions' => ['data-method' => 'post']];
-
-            	$menuItems[] = ['label' => $who, 'items' => $user_menu];
-            } else {
-                $menuItems[] = ['label' => 'Signup', 'url' => ['/user/register']];
-            	$menuItems[] = ['label' => 'Login', 'url' => ['/user/security/login']];
-			}
 
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],

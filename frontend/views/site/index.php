@@ -19,20 +19,4 @@ $this->title = 'Geo Intelligent Platform';
 
     </div>
 
-    <div class="body-content">
-	
-        <div class="row">
-            <div class="col-lg-6">
-                <h2>Menus for Visitors</h2>
-
-                <ul>
-                    <li><a href="<?= Url::to(['/gip']) ?>">GIP</a></li>
-                </ul>
-
-            </div>
-
-        </div>
-
-    </div>
-
 </div>

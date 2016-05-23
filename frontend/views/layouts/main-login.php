@@ -1,24 +1,12 @@
 <?php
-use frontend\assets\AppAsset;
-use app\models\User;
-use devleaks\chardinjs\ChardinJSAsset;
-use devleaks\introjs\IntroJSAsset;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\widgets\ActiveForm;
-use yii\widgets\Breadcrumbs;
 
-if(isset(Yii::$app->params['BootswatchTheme'])) {
-	raoul2000\bootswatch\BootswatchAsset::$theme = Yii::$app->params['BootswatchTheme'];
-	raoul2000\bootswatch\BootswatchAsset::register($this);
-}
+use macgyer\yii2materializecss\lib\Html;
+use macgyer\yii2materializecss\widgets\Nav;
+use macgyer\yii2materializecss\widgets\NavBar;
+use macgyer\yii2materializecss\widgets\Breadcrumbs;
+use macgyer\yii2materializecss\widgets\Alert;
 
-AppAsset::register($this);
-$apphomedir = Yii::getAlias('@app');
-/* @var $this \yii\web\View */
-/* @var $content string */
+frontend\assets\AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -26,126 +14,87 @@ $apphomedir = Yii::getAlias('@app');
 <head>
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="<?= Yii::$app->homeUrl ?>favicon.ico">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body>
-<?php $this->beginBody() ?>
-    <div class="wrap">
+<body class="login-page">
+
+	<?php $this->beginBody() ?>
+
+    <header class="page-header">
         <?php
-			$name = Yii::$app->name . (YII_ENV_DEV ? ' –DEV='.`cd $apphomedir ; git describe --tags` : '') . (YII_DEBUG ? '–DEBUG' : '') ;
-            NavBar::begin([
-                'brandLabel' => $name,
-                'brandUrl' => Yii::$app->homeUrl,
-                'options' => [
-                    'class' => 'navbar-inverse navbar-fixed-top'
-                ],
-            ]);
+        NavBar::begin([
+            'brandLabel' => Yii::$app->name,
+            'brandUrl' => Yii::$app->homeUrl,
+            'fixed' => true,
+            'wrapperOptions' => [
+                'class' => 'container'
+            ],
+        ]);
 
-			$menu = [];
-			$menu[] = ['label' => Yii::$app->formatter->asDate(date('c')), 'url' => "javascript:do_introjs();"];
-				
-            if(!Yii::$app->user->isGuest) {
-				$menu[] = ['label' => Yii::t('store', 'Cash'), 'url' => ['/accnt/cash/list']];
+        $menuItems = [
+            ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'About', 'url' => ['/site/about']],
+            ['label' => 'Contact', 'url' => ['/site/contact']],
+        ];
+        if (Yii::$app->user->isGuest) {
+            $menuItems[] = ['label' => 'Signup', 'url' => ['/user/register']];
+            $menuItems[] = ['label' => 'Login', 'url' => ['/user/login']];
+        } else {
+            $menuItems[] = '<li>'
+                . Html::a(
+                    'Sign out',
+                    ['/user/security/logout'],
+                    ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
+                ) . '</li>';
+        }
 
-				$work_menu = [];
-				if(defined('YII_DEVLEAKS')) {
-					$dev_menu = [];
-                	$dev_menu[] = ['label' => Yii::t('store', 'All documents'), 'url' => ['/order/document/', 'sort' => '-updated_at']];
-					$dev_menu[] = ['label' => Yii::t('store', 'Accounting'), 'url' => ['/accnt']];
-					$dev_menu[] = ['label' => Yii::t('store', 'History'), 'url' => ['/admin/history', 'sort' => '-created_at']];
-					$dev_menu[] = ['label' => Yii::t('store', 'Gii'), 'url' => ['/gii']];
-					$menu[] = ['label' => Yii::t('store', 'Development'), 'items' => $dev_menu];
-				}
+        echo Nav::widget([
+            'options' => ['class' => 'right'],
+            'items' => $menuItems,
+        ]);
 
-				if(User::hasRole(['admin', 'manager', 'compta', 'frontdesk', 'employee']))
-                	$work_menu[] = ['label' => Yii::t('store', 'Cash'), 'url' => ['/accnt/cash/list']];
-				if(User::hasRole(['admin', 'manager', 'compta', 'frontdesk', 'employee']))
-                	$work_menu[] = ['label' => Yii::t('store', 'Orders'), 'url' => ['/order']];
-				if(User::hasRole(['admin', 'manager', 'employee', 'worker']))
-                	$work_menu[] = ['label' => Yii::t('store', 'Works'), 'url' => ['/work']];
-				if(User::hasRole(['admin', 'manager']))
-                	$work_menu[] = ['label' => Yii::t('store', 'Management'), 'url' => ['/store']];
-				if(User::hasRole(['admin']))
-                	$work_menu[] = ['label' => Yii::t('store', 'Administration'), 'url' => ['/admin']];
-				if(User::hasRole(['admin', 'compta']))
-                	$work_menu[] = ['label' => Yii::t('store', 'Accounting'), 'url' => ['/accnt']];
-
-               	$work_menu[] = ['label' => Yii::t('store', 'Calculator'), 'url' => ['/assets/calculator/'], 'linkOptions' => ['target' => '_blank']];
-
-			$menu[] = ['label' => Yii::t('store', 'Menu'), 'items' => $work_menu];
-
-
-				$help_menu = [];
-				// $help_menu[] = ['label' => 'Chardin',		'url' => "javascript:do_chardinjs();"];
-				$help_menu[] = ['label' => 'Intro',			'url' => "javascript:do_introjs();"];
-				$help_menu[] = ['label' => 'Documentation',	'url' => ['/help/guide-README.html']];
-
-			$menu[] = ['label' => Yii::t('store', 'Help'), 'items' => $help_menu/*'url' => ['/help/guide-README.html']*/];
-
-
-				$user_menu = [];
-                $user_menu[] = ['label' => Yii::t('store', 'Profile'), 'url' => ['/user/settings']];
-                $user_menu[] = ['label' => Yii::t('store', 'Logout'), 'url' => ['/user/security/logout'], 'linkOptions' => ['data-method' => 'post']];
-
-            $menu[] = ['label' => Yii::$app->user->identity->username, 'items' => $user_menu];
-
-            } else
-				$menu[] = ['label' => 'Login', 'url' => ['/user/security/login']];
-
-            echo Nav::widget([
-                'options' => [
-					'class' => 'navbar-nav navbar-right',
-					'data-intro' => 'Menus vers écrans principaux, connexion ou déconnexion, et modification du profil (mot de passe, adresse email, etc.)'
-				],
-                'items' => $menu
-            ]);
-
-            NavBar::end();
+        NavBar::end();
         ?>
+    </header>
 
-        <div class="container-fluid" style="margin-top: 60px;">
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-				'options' => [
-					'class' => 'breadcrumb',
-					'data-intro' => 'Menu hiérarchique'
-				]
-            ]) ?>
-            <?= $content ?>
+    <main class="content">
+        <div class="container">
+
+            <?= Alert::widget() ?>
+
+    		<?= $content ?>
+
         </div>
-    </div>
+    </main>
 
-    <footer class="footer">
-        <div class="container-fluid">
-            <p class="pull-left">&copy; Labo JJ Micheli <?= date('Y') ?>
-				<small><?php echo ' — Version '.`cd $apphomedir ; git describe --tags`;
-					if(YII_DEBUG) {
-						echo ' — Last commit: '.`git log -1 --format=%cd --relative-date`;
-						echo ' — '.`hostname`;
-						echo ' — '.Yii::$app->getDb()->dsn;
-					}
-				?></small>
-			</p>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Footer Content</h5>
+                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                <?= Yii::$app->name.' &copy; '.date('Y').' • '.Yii::powered() ?>
+            </div>
         </div>
     </footer>
-<script type="text/javascript">
-<?php
-$this->beginBlock('PRINT_LAYOUT_HELP_JS'); ?>
-function do_introjs() {
-	introJs().setOptions({ 'nextLabel': 'Suivant', 'prevLabel': 'Précédent', 'doneLabel': 'Terminé', 'skipLabel': 'Sortir' }).start();
-}
-function do_chardinjs() {
-	$('body').chardinJs('start');
-}
-<?php $this->endBlock(); ?>
-</script>
-<?php
-$this->registerJs($this->blocks['PRINT_LAYOUT_HELP_JS'], yii\web\View::POS_END);
 
-$this->endBody() ?>
+<?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>

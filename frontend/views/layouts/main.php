@@ -48,13 +48,11 @@ frontend\assets\AppAsset::register($this);
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
             } else {
                 $menuItems[] = '<li>'
-                    . Html::beginForm(['/site/logout'], 'post')
-                    . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->username . ')',
-                        ['class' => 'btn btn-flat']
-                    )
-                    . Html::endForm()
-                    . '</li>';
+                    . Html::a(
+                        'Sign out',
+                        ['/user/security/logout'],
+                        ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
+                    ) . '</li>';
             }
 
             echo Nav::widget([
@@ -141,10 +139,16 @@ JS;
         <footer class="page-footer">
             <div class="container">
                 <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="white-text">Footer Content</h5>
-                        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-                    </div>
+	                <div class="col l6 s12">
+	                    <h5 class="white-text">Version Information</h5>
+	                    <p class="grey-text text-lighten-4"><?php $apphomedir = Yii::getAlias('@common'); echo ' — Version '.`cd $apphomedir/.. ; git describe --tags`;
+							if(YII_DEBUG) {
+								echo ' — Last commit: '.`git log -1 --format=%cd --relative-date`;
+								echo ' — '.`hostname`;
+								echo ' — '.Yii::$app->getDb()->dsn;
+							}
+						?></p>
+	                </div>
                     <div class="col l4 offset-l2 s12">
                         <h5 class="white-text">Links</h5>
                         <ul>

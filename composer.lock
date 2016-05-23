@@ -491,16 +491,16 @@
         },
         {
             "name": "bower-asset/fullcalendar",
-            "version": "v2.7.1",
+            "version": "v2.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fullcalendar/fullcalendar.git",
-                "reference": "237bd4da83f38ba678fd5272c44b7a2ad13ccdc5"
+                "reference": "0725d49df0243bd7c97519a42f9a5002bd4c3fc9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fullcalendar/fullcalendar/zipball/237bd4da83f38ba678fd5272c44b7a2ad13ccdc5",
-                "reference": "237bd4da83f38ba678fd5272c44b7a2ad13ccdc5",
+                "url": "https://api.github.com/repos/fullcalendar/fullcalendar/zipball/0725d49df0243bd7c97519a42f9a5002bd4c3fc9",
+                "reference": "0725d49df0243bd7c97519a42f9a5002bd4c3fc9",
                 "shasum": ""
             },
             "require": {
@@ -639,16 +639,16 @@
         },
         {
             "name": "bower-asset/jquery",
-            "version": "2.2.3",
+            "version": "2.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jquery/jquery-dist.git",
-                "reference": "af22a351b2ea5801ffb1695abb3bb34d5bed9198"
+                "reference": "c0185ab7c75aab88762c5aae780b9d83b80eda72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/af22a351b2ea5801ffb1695abb3bb34d5bed9198",
-                "reference": "af22a351b2ea5801ffb1695abb3bb34d5bed9198",
+                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/c0185ab7c75aab88762c5aae780b9d83b80eda72",
+                "reference": "c0185ab7c75aab88762c5aae780b9d83b80eda72",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -1311,16 +1311,16 @@
         },
         {
             "name": "components/flag-icon-css",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lipis/flag-icon-css.git",
-                "reference": "b1c7bf1c13587e1de1d10eeb06b4b83b391fbf2d"
+                "reference": "836eca11ecf437ae3d0f0c93dd245ab00d94cee1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lipis/flag-icon-css/zipball/b1c7bf1c13587e1de1d10eeb06b4b83b391fbf2d",
-                "reference": "b1c7bf1c13587e1de1d10eeb06b4b83b391fbf2d",
+                "url": "https://api.github.com/repos/lipis/flag-icon-css/zipball/836eca11ecf437ae3d0f0c93dd245ab00d94cee1",
+                "reference": "836eca11ecf437ae3d0f0c93dd245ab00d94cee1",
                 "shasum": ""
             },
             "type": "component",
@@ -1345,7 +1345,7 @@
                 }
             ],
             "description": "CSS for vector based country flags",
-            "time": "2016-05-18 06:15:00"
+            "time": "2016-05-18 13:50:30"
         },
         {
             "name": "composer/ca-bundle",
@@ -5180,12 +5180,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/morozovsk/yii2-websocket.git",
-                "reference": "561151728f5baf03f5fb5a8babf8bec2b846bcb1"
+                "reference": "48b6f2afd6b6aaa4e3f581b270ba05dba6c44824"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/morozovsk/yii2-websocket/zipball/561151728f5baf03f5fb5a8babf8bec2b846bcb1",
-                "reference": "561151728f5baf03f5fb5a8babf8bec2b846bcb1",
+                "url": "https://api.github.com/repos/morozovsk/yii2-websocket/zipball/48b6f2afd6b6aaa4e3f581b270ba05dba6c44824",
+                "reference": "48b6f2afd6b6aaa4e3f581b270ba05dba6c44824",
                 "shasum": ""
             },
             "require": {
@@ -5761,16 +5761,16 @@
         },
         {
             "name": "schmunk42/yii2-giiant",
-            "version": "0.8.0",
+            "version": "0.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmunk42/yii2-giiant.git",
-                "reference": "d1ffd3b76a2ab6cac473839e640ed6d2c1becbdf"
+                "reference": "26bd147e705068431e6a6db9a476e07e22dd673a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmunk42/yii2-giiant/zipball/d1ffd3b76a2ab6cac473839e640ed6d2c1becbdf",
-                "reference": "d1ffd3b76a2ab6cac473839e640ed6d2c1becbdf",
+                "url": "https://api.github.com/repos/schmunk42/yii2-giiant/zipball/26bd147e705068431e6a6db9a476e07e22dd673a",
+                "reference": "26bd147e705068431e6a6db9a476e07e22dd673a",
                 "shasum": ""
             },
             "require": {
@@ -5813,7 +5813,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2016-05-11 15:24:32"
+            "time": "2016-05-19 17:33:20"
         },
         {
             "name": "scrivo/highlight.php",
@@ -6361,16 +6361,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.1.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "1289d16209491b584839022f29257ad859b8532d"
+                "reference": "dff51f72b0706335131b00a7f49606168c582594"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/1289d16209491b584839022f29257ad859b8532d",
-                "reference": "1289d16209491b584839022f29257ad859b8532d",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/dff51f72b0706335131b00a7f49606168c582594",
+                "reference": "dff51f72b0706335131b00a7f49606168c582594",
                 "shasum": ""
             },
             "require": {
@@ -6382,7 +6382,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "1.2-dev"
                 }
             },
             "autoload": {
@@ -6416,7 +6416,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-01-20 09:13:37"
+            "time": "2016-05-18 14:26:46"
         },
         {
             "name": "symfony/process",

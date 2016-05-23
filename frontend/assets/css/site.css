@@ -6,6 +6,6 @@ a.navbar-brand {
 	padding: 2px 2px!important;
 }
 
-a.brand-logo:hover {
+a:hover {
 	text-decoration: none;
 }

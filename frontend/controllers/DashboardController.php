@@ -13,8 +13,6 @@ use yii\helpers\Json;
  */
 class DashboardController extends Controller
 {
-	public $layout = '//main';
-	
 	private $metar_url = 'http://aviationweather.gov/adds/metars/?station_ids=XXXX&std_trans=standard&chk_metars=on&hoursStr=most+recent+only&submitmet=Submit';
 
     /**

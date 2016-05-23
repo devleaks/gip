@@ -17,7 +17,6 @@ use yii\helpers\Json;
  */
 class SiteController extends Controller
 {
-	public $layout = '//public';
     /**
      * @inheritdoc
      */
@@ -37,9 +36,9 @@ class SiteController extends Controller
     public function actionIndex()
     {
 		if(Yii::$app->user->isGuest) {
+			$this->layout = '//public';
 	        return $this->render('index');
 		}
-		$this->layout = '//main';
 		$now = date('Y-m-d H:i:s');
 	    if (Yii::$app->request->post()) {
 
