@@ -35,17 +35,24 @@ $('.update-me').click(function () {
 	var giplet = $(this).parents('.giplet');
 	var vname = giplet.data('widget-name');
 	var vid = giplet.attr('id');
-	console.log('giplet '+ vname + ':' + vid);
 	$.post(
 		"<?= Url::to(['dashboard/update'])?>",
-	    { name: vname, id: vid },
+	    {
+			name: vname,
+			id: vid
+		},
 		function (r) {
 			s = JSON.parse(r);
-			giplet.find('.update-value').html(s.r);
-			percent = Math.round(100*parseInt(s.r)/60) + '%';
-			giplet.find('.progress-bar').css('width', percent);
-			giplet.find('.progress-description').html(percent+' done');
-			//console.log(s.r);
+			//console.log(s);
+			if(s.e != null) {
+				giplet.find('.raw').html(s.errors);
+				giplet.find('.last-updated').html(new Date());
+			} else {
+				giplet.find('.update-value').html(s.r);
+				percent = Math.round(100*parseInt(s.r)/60) + '%';
+				giplet.find('.progress-bar').css('width', percent);
+				giplet.find('.progress-description').html(percent+' done');
+			}
 	    }
 	);
 	//console.log('giplet updated');

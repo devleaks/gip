@@ -7,6 +7,7 @@ use frontend\assets\MetarAsset;
 use Yii;
 use yii\web\Response;
 use yii\helpers\Json;
+use yii\helpers\ArrayHelper;
 
 /**
  * Metar widget fetches and renders a Metar string
@@ -14,7 +15,7 @@ use yii\helpers\Json;
  */
 class Metar extends \yii\bootstrap\Widget
 {
-	const METAR_URL = 'http://aviationweather.gov/adds/metars/?station_ids=XXXX&std_trans=standard&chk_metars=on&hoursStr=most+recent+only&submitmet=Submit';
+	const METAR_URL = 'http://weather.noaa.gov/pub/data/observations/metar/stations/XXXX.TXT';
 
     public $location = 'EBBR';
 	
@@ -37,7 +38,8 @@ class Metar extends \yii\bootstrap\Widget
 	/**
 	 * Update Giplet value
 	 */
-	protected static function getTextBetweenTags($string) {
+	protected function getTextBetweenTags($string,$pat) {
+		return rtrim(substr($string, strpos($string, $pat)));
 	    $pattern = '/<FONT FACE="Monospace,Courier">(.*?)<\/FONT>/';
 	    preg_match($pattern, $string, $matches);
 	    return isset($matches[1])?$matches[1]:'';
@@ -59,17 +61,19 @@ class Metar extends \yii\bootstrap\Widget
 	    return $result;
 	}
 
-	public static function update() {
-		$errors = '';
-		$icao = Yii::$app->request->post('icao', 'EBBR');
+	public static function update($id, $params) {
+		Yii::trace('Params '.print_r($params,true), 'Metar::update');
+		$errors = null;
+		$icao = ArrayHelper::getValue($params, 'icao', 'EBBR');
 		$url = str_replace('XXXX', $icao, self::METAR_URL);
 		$html = self::getHtml($url);
-		$metar = self::getTextBetweenTags($html);
+		Yii::trace('Got '.$html, 'Metar::update');
+		$metar = self::getTextBetweenTags($html, $icao);
 		if(! $metar) {
-			$errors = 'HTML FONT parsing error';
+			$errors = 'Metar parsing error';
 		}
 		Yii::$app->response->format = Response::FORMAT_JSON;
-        return Json::encode(['metar' => $metar, 'errors' => $errors]);
+        return Json::encode(['metar' => $metar, 'e' => $errors]);
 	}
 
 }

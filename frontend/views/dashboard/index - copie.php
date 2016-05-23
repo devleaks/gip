@@ -80,7 +80,7 @@ $this->title = 'GIP Application Dashboard';
 			<?= Indicator::widget(); ?>
 		</div>
 		<?=$gridstack->endWidget();?>
-
+		
 
 
 		<?= $gridstack->beginWidget([
@@ -92,18 +92,16 @@ $this->title = 'GIP Application Dashboard';
 		<div class="grid-stack-item-content">
 			<span class="drag fa"></span>
 			<?= Metar::widget([
-					'location' => 'EBLG'
+					'location' => 'EBBR'
 				]);
 			?>
 		</div>
 		<?=$gridstack->endWidget();?>
 		
-		
-		
 		<?= $gridstack->beginWidget([
 				'class'=>'grid-stack-item',
-				'data-gs-width'=>"8",
-				'data-gs-height'=>"8",
+				'data-gs-width'=>"6",
+				'data-gs-height'=>"6",
 		    ]);
 		?>
 		<div class="grid-stack-item-content">
@@ -113,7 +111,8 @@ $this->title = 'GIP Application Dashboard';
 		</div>
 		<?=$gridstack->endWidget();?>
 		
-		
+
+
 
 	<?php $gridstack->end(); ?>
 

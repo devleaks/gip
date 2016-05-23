@@ -37,10 +37,10 @@ class Indicator extends \yii\bootstrap\Widget
 	/**
      * Update widget action
      */
-	static public function update() {
+	static public function update($id, $params) {
 		$value = date('s', time());
 		Yii::$app->response->format = Response::FORMAT_JSON;
-        return Json::encode(['r' => $value]);
+        return Json::encode(['r' => $value, 'e' => null]);
 	}
 
 

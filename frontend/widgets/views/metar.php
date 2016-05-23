@@ -10,6 +10,7 @@ use yii\helpers\Url;
 <div id="<?= $widget->id ?>"
 	class="giplet"
 	data-widget-name="<?= $widget->className() ?>"
+	data-widget-params="<?= $widget->location ?>"
 	>
 	<span class="info-box-icon bg-info"><i class="fa fa-cloud update-metar"></i></span>
 
@@ -27,20 +28,29 @@ $('.update-metar').click(function () {
 	var giplet = $(this).parents('.giplet');
 	var vname = giplet.data('widget-name');
 	var vid = giplet.attr('id');
-	console.log('giplet '+ vname + ':' + vid);
+	var vparams = giplet.data('widget-params');
+	console.log('giplet '+ vname + ':' + vid + ',' + vparams);
 	
 	$.post(
 		"<?= Url::to(['dashboard/update'])?>",
-	    {icao: 'EBLG', name: vname},
+	    {
+			name: vname,
+			id: vid,
+			params: {
+				icao: vparams
+			}
+		},
 		function (r) {
 			s = JSON.parse(r);
-			if(s.errors != '') {
+			//console.log(s);
+			if(s.e != null) {
 				giplet.find('.raw').html(s.errors);
 				giplet.find('.last-updated').html(new Date());
 			} else {
 				t = s.metar;
-				console.log(t);
+				//console.log(t);
 				u = metar_decode(t);
+				//console.log(u);
 				str = u.replace(/(?:\r\n|\r|\n)/g, '<br/>');
 				giplet.find('.raw').html(str);
 				giplet.find('.last-updated').html(new Date());
