@@ -1,5 +1,6 @@
 <?php
 
+use frontend\widgets\RandomChart;
 use frontend\widgets\Indicator;
 use frontend\widgets\Metar;
 
@@ -97,6 +98,20 @@ $this->title = 'GIP Application Dashboard';
 		</div>
 		<?=$gridstack->endWidget();?>
 		
+		<?= $gridstack->beginWidget([
+				'class'=>'grid-stack-item',
+				'data-gs-width'=>"6",
+				'data-gs-height'=>"6",
+		    ]);
+		?>
+		<div class="grid-stack-item-content">
+			<span class="drag fa"></span>
+			<?= RandomChart::widget();
+			?>
+		</div>
+		<?=$gridstack->endWidget();?>
+		
+
 
 
 	<?php $gridstack->end(); ?>
