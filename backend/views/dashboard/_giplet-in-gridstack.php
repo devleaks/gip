@@ -33,9 +33,11 @@ echo $gridstack->beginWidget($gridstack_widget);
 	<?php
 		if($widget = $giplet->gipletType->factory) {
 			$giplet_params = [];
-			foreach(explode(',', $giplet->parameters) as $nv) {
-				$d = explode('=', str_replace("'", "", str_replace('"', '', $nv)));
-				$giplet_params[$d[0]] = $d[1];
+			if($giplet->parameters) { // params are in format name=value,name=value
+				foreach(explode(',', $giplet->parameters) as $nv) {
+					$d = explode('=', str_replace("'", "", str_replace('"', '', $nv)));
+					$giplet_params[$d[0]] = $d[1];
+				}
 			}
 			echo $giplet->gipletType->factory::widget($giplet_params);
 		} else {

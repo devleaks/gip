@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0e509e7571fc7e23b184d20a093e231e",
-    "content-hash": "b7c90f8e05fed2e3b3ea5015b0ac8a18",
+    "hash": "9a9e7cfaa3e227cc54655897d2fd730d",
+    "content-hash": "95a96c8e249186ba2734140d29fbc736",
     "packages": [
         {
             "name": "2amigos/yii2-gallery-widget",
@@ -736,16 +736,16 @@
         },
         {
             "name": "bower-asset/lodash",
-            "version": "4.13.0",
+            "version": "4.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lodash/lodash.git",
-                "reference": "013d9db86f309b346a7b80272e685dae72059131"
+                "reference": "40ac55acb6a6966274929b33e071bfd73f8f5bd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lodash/lodash/zipball/013d9db86f309b346a7b80272e685dae72059131",
-                "reference": "013d9db86f309b346a7b80272e685dae72059131",
+                "url": "https://api.github.com/repos/lodash/lodash/zipball/40ac55acb6a6966274929b33e071bfd73f8f5bd3",
+                "reference": "40ac55acb6a6966274929b33e071bfd73f8f5bd3",
                 "shasum": ""
             },
             "type": "bower-asset-library"
@@ -990,6 +990,52 @@
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "brandonwamboldt/utilphp",
+            "version": "1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brandonwamboldt/utilphp.git",
+                "reference": "74d79a58e70d3e11026f92a7c2ac488de60f83cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brandonwamboldt/utilphp/zipball/74d79a58e70d3e11026f92a7c2ac488de60f83cd",
+                "reference": "74d79a58e70d3e11026f92a7c2ac488de60f83cd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "utilphp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brandon Wamboldt",
+                    "email": "brandon.wamboldt@gmail.com"
+                }
+            ],
+            "description": "util.php is a collection of useful functions and snippets that you need or could use every day, designed to avoid conflicts with existing projects",
+            "homepage": "https://github.com/brandonwamboldt/utilphp",
+            "keywords": [
+                "collection",
+                "helpers",
+                "php",
+                "utility"
+            ],
+            "time": "2015-01-24 04:09:39"
         },
         {
             "name": "cebe/js-search",
@@ -5587,6 +5633,86 @@
             "time": "2016-03-17 10:28:16"
         },
         {
+            "name": "sagem-cassiopee/php-metar-decoder",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SagemCassiopee/php-metar-decoder.git",
+                "reference": "36498f0062928274ddb0a70661aba8a21fa88a45"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SagemCassiopee/php-metar-decoder/zipball/36498f0062928274ddb0a70661aba8a21fa88a45",
+                "reference": "36498f0062928274ddb0a70661aba8a21fa88a45",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MetarDecoder\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Edouard de Labareyre",
+                    "email": "edouard@melix.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "METAR weather observation decoder",
+            "time": "2016-05-10 18:41:06"
+        },
+        {
+            "name": "sagem-cassiopee/php-taf-decoder",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SagemCassiopee/php-taf-decoder.git",
+                "reference": "d1ab8b9a075ea5b1d6cf17c4c798851fce6c7a90"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SagemCassiopee/php-taf-decoder/zipball/d1ab8b9a075ea5b1d6cf17c4c798851fce6c7a90",
+                "reference": "d1ab8b9a075ea5b1d6cf17c4c798851fce6c7a90",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TafDecoder\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Philippe Martin",
+                    "email": "philippe2.martin@sagem.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "TAF weather forecast decoder",
+            "time": "2016-04-07 20:02:39"
+        },
+        {
             "name": "schmunk42/yii2-giiant",
             "version": "0.8.1",
             "source": {
@@ -7371,7 +7497,9 @@
         "yurkinx/yii2-image": 20,
         "kop/yii2-scroll-pager": 20,
         "devleaks/yii2-weather": 20,
-        "romdim/yii2-bootstrap-material": 20
+        "romdim/yii2-bootstrap-material": 20,
+        "sagem-cassiopee/php-metar-decoder": 20,
+        "sagem-cassiopee/php-taf-decoder": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

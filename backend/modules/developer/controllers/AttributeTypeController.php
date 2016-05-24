@@ -71,7 +71,7 @@ class AttributeTypeController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
 			Yii::$app->session->setFlash('error', Yii::t('gip', 'There was an error saving the model: {0}.', VarDumper::dumpAsString($model->errors, 4, true))); 			
-			Yii::trace('errors '.print_r($model->errors, true), 'ZoneGroupController::actionView');
+			Yii::trace('errors '.print_r($model->errors, true), 'AttributeTypeController::actionCreate');
             return $this->render('create', [
                 'model' => $model,
             ]);
