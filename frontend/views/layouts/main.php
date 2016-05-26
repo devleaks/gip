@@ -21,11 +21,11 @@ if (Yii::$app->controller->action->id === 'login') {
 	else if(!in_array(Yii::$app->user->identity->role, ['admin', 'scorer', 'starter']))
 	    echo Yii::$app->getResponse()->redirect(['/user/security/login']);
 	*/
-
+	$asset = null;
     if (class_exists('backend\assets\AppAsset')) {
-        backend\assets\AppAsset::register($this);
+        $asset = backend\assets\AppAsset::register($this);
     } else {
-        app\assets\AppAsset::register($this);
+        $asset = app\assets\AppAsset::register($this);
     }
 
     dmstr\web\AdminLteAsset::register($this);

@@ -2,6 +2,8 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 /* @var $this yii\web\View */
+$asset = backend\assets\AppAsset::register($this);
+
 $this->title = 'Geo Intelligent Platform';
 ?>
 <div class="site-index">
@@ -15,7 +17,7 @@ $this->title = 'Geo Intelligent Platform';
 
         <p><a class="btn btn-lg btn-danger" href="<?= Url::to(['/user/login']) ?>">Get started with Your GIP Application</a></p>
 
-		<img src="/gip/images/welcome.png" class="center" />
+		<img class="center" src="<?= $asset->baseUrl . '/images/gip.png' ?>" />
 
     </div>
 
