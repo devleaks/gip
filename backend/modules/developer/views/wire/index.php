@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'attribute' => 'subject',
 				'format' => 'raw',
 				'value' => function($model, $key, $index, $widget) {
-					return $model->subject . ($model->link ? Html::a(' <i class="fa fa-link"></i>', $model->link, ['target' => '_blank']) : '');
+					return '<span class="test">'.$model->subject.'</span>' . ($model->link ? Html::a(' <i class="fa fa-link"></i>', $model->link, ['target' => '_blank']) : '');
 				},
 			],
             [
@@ -73,8 +73,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     ]);
 								},
                 	'publish' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-bullhorn"></span>', Yii::$app->urlManager->createUrl(['developer/wire/publish','id' => $model->id]), [
+                                    return Html::a('<span class="glyphicon glyphicon-bullhorn"></span>', '#', [
                                                     'title' => Yii::t('yii', 'Publish'),
+													'class' => 'publish'
                                     ]);
 								}
 
@@ -96,3 +97,24 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); Pjax::end(); ?>
 
 </div>
+<script type="text/javascript">
+<?php
+$this->beginBlock('JS_WIRE_CLI') ?>
+
+$(function(){
+    function wsStart() {
+        ws = new WebSocket("ws://imac.local:8051/");
+    }
+    wsStart();	
+
+	$('a.publish').click(function() {
+		line = $(this).closest('tr').find('span.test').html();
+		ws.send(line);		
+		console.log('sent');
+	});
+});
+
+<?php $this->endBlock(); ?>
+</script>
+<?php
+$this->registerJs($this->blocks['JS_WIRE_CLI'], yii\web\View::POS_END);

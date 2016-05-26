@@ -81,9 +81,10 @@
         "fedemotta/yii2-gridster": "*",
         "romdim/yii2-bootstrap-material": "dev-master",
         "macgyer/yii2-materializecss": "*",
-        "brandonwamboldt/utilphp": "1.0.*",
         "sagem-cassiopee/php-metar-decoder": "dev-master",
-        "sagem-cassiopee/php-taf-decoder": "dev-master"
+        "sagem-cassiopee/php-taf-decoder": "dev-master",
+        "brandonwamboldt/utilphp": "1.0.*",
+        "textalk/websocket": "^1.2"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

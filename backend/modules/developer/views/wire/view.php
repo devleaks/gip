@@ -51,8 +51,6 @@ $this->params['breadcrumbs'][] = $this->title;
             	'type'=> DetailView::INPUT_WIDGET,
 				'widgetOptions' => [
 					'class' => Iconpicker::className(),
-					'rows' => 6,
-					'columns' => 8,
 					'iconset'=> 'fontawesome',
 				],
 			],

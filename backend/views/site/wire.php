@@ -10,6 +10,12 @@ $this->title = 'GIP - Wire';
 <div id="chat"  class="site-index" style="overflow: auto;">
 	<ul id="the-wire" class="timeline">
 	</ul>
+	
+	
+	<form onsubmit="ws.send($('#inputext').val()); $('#inputext').val(''); return false; ">
+        <input id="inputext" type="text" class="form-control" placeholder="Text input" style="width: 100%;" maxlength="140" autocomplete="off">
+    </form>
+    
 </div>
 <script type="text/javascript">
 <?php
@@ -43,11 +49,15 @@ $(function(){
         ws = new WebSocket("ws://imac.local:8051/");
         ws.onopen = function() { addWire('warning', 'green', 'info', 'Opening...', "... connected."); };
         ws.onclose = function() { addWire('warning', 'red', 'info', 'Closing...', "Connection closed. Trying to reconnect..."); setTimeout(wsStart, 1000);};
-        ws.onmessage = function(evt) { addWire('comment', 'blue', 'success', 'Message', evt.data); $('#the-wire').scrollTop($('#the-wire')[0].scrollHeight);};
+        ws.onmessage = function(evt) {
+			console.log('ws.onmessage');
+			console.log(evt);
+			addWire('comment', 'blue', 'success', 'Message', evt.data); $('#the-wire').scrollTop($('#the-wire')[0].scrollHeight);
+		};
     }
 
 	addWire('warning', 'yellow', 'info', 'Connection', "Connecting to server...");	
-    wsStart();
+    wsStart();	
 });
 
 <?php $this->endBlock(); ?>

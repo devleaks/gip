@@ -5,7 +5,7 @@ namespace backend\modules\developer\controllers;
 use common\models\Wire;
 use common\models\search\Wire as WireSearch;
 
-use backend\models\WebsocketClient;
+use WebSocket\Client as WebsocketClient;
 
 use Yii;
 use yii\web\Controller;
@@ -143,8 +143,16 @@ class WireController extends Controller
 
 	public function actionPublish($id) {
         $model = $this->findModel($id);
+		$feedback = 'Nothing done';
 
-
+		if($client = new WebsocketClient("ws://imac.local:8051")) {
+			$client->send($model->body);
+			$feedback = 'Message sent';
+		} else {
+			$feedback = 'Error';
+		}
+		
+		/*
 		$client = new WebsocketClient;
 		if( $client->connect('imac.local', 8051, '/gipadmin/site/wire/', 'index.php') ) {
 			$payload = json_encode(['message' => $model->body]) . "\n\r";

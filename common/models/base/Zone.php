@@ -50,6 +50,8 @@ abstract class Zone extends \yii\db\ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['created_by', 'updated_by'], 'integer'],
             [['name', 'zone_type'], 'string', 'max' => 40],
+            [['display_name'], 'string', 'max' => 80],
+            [['display_name'], 'unique'],
             [['description'], 'string', 'max' => 2000],
             [['name'], 'unique'],
             ['zone_dimension', 'in', 'range' => [
