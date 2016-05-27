@@ -14,8 +14,22 @@ class Wire extends BaseWire
 {
 	use Constant;
 	
-	const STATUS_PUSBLISHED = 'PUBLISHED';
-	const STATUS_READ = 'READ';
-	const STATUS_ARCHIVED = 'ARCHIVED';
-	
+	const STATUS_UNREAD		= 'UNREAD';
+	const STATUS_ACTIVE		= 'ACTIVE';
+	const STATUS_PUBLISHED	= 'PUBLISHED';
+	const STATUS_ACKNOWLEDGED = 'ACKNOWLEDGED';
+	const STATUS_ARCHIVED	= 'ARCHIVED';
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return array_merge(parent::attributeLabels(), [
+            'id' => Yii::t('gip', 'Wire'),
+             'source_id' => Yii::t('gip', 'Source'),
+            'type_id' => Yii::t('gip', 'Type'),
+        ]);
+    }
+
 }

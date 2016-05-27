@@ -70,7 +70,7 @@
         "yii2mod/yii2-chosen-select": "*",
         "yii2mod/yii2-selectize": "*",
         "yurkinx/yii2-image": "dev-master",
-        "insolita/yii2-iconpicker": "*",
+        "insolita/yii2-iconpicker": "1.0.0",
         "kop/yii2-scroll-pager": "dev-master",
         "insolita/yii2-migration-generator": "*",
         "devleaks/yii2-sieve": "*",

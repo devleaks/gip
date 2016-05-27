@@ -16,6 +16,7 @@ use insolita\iconpicker\Iconpicker;
 
 $this->title = $model->display_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Types'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->type->display_name, 'url' => ['index', 'Type[type_id]' => $model->type_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="type-view">

@@ -15,8 +15,8 @@ class Wire extends WireModel
     public function rules()
     {
         return [
-            [['id', 'type_id', 'created_by', 'updated_by'], 'integer'],
-            [['subject', 'body', 'icon', 'color', 'status', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'source_id', 'type_id', 'priority', 'created_by', 'updated_by'], 'integer'],
+            [['subject', 'body', 'link', 'expired_at', 'icon', 'color', 'note', 'status', 'created_at', 'updated_at', 'tags'], 'safe'],
         ];
     }
 
@@ -40,7 +40,10 @@ class Wire extends WireModel
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'source_id' => $this->source_id,
             'type_id' => $this->type_id,
+            'priority' => $this->priority,
+            'expired_at' => $this->expired_at,
             'created_at' => $this->created_at,
             'created_by' => $this->created_by,
             'updated_at' => $this->updated_at,
@@ -49,9 +52,12 @@ class Wire extends WireModel
 
         $query->andFilterWhere(['like', 'subject', $this->subject])
             ->andFilterWhere(['like', 'body', $this->body])
+            ->andFilterWhere(['like', 'link', $this->link])
             ->andFilterWhere(['like', 'icon', $this->icon])
             ->andFilterWhere(['like', 'color', $this->color])
-            ->andFilterWhere(['like', 'status', $this->status]);
+            ->andFilterWhere(['like', 'note', $this->note])
+            ->andFilterWhere(['like', 'status', $this->status])
+            ->andFilterWhere(['like', 'tags', $this->tags]);
 
         return $dataProvider;
     }

@@ -8,11 +8,11 @@ $this->title = 'GIP - Wire';
 
 ?>
 <div id="chat"  class="site-index" style="overflow: auto;">
+
 	<ul id="the-wire" class="timeline">
 	</ul>
 	
-	
-	<form onsubmit="ws.send($('#inputext').val()); $('#inputext').val(''); return false; ">
+	<form id="chat-form">
         <input id="inputext" type="text" class="form-control" placeholder="Text input" style="width: 100%;" maxlength="140" autocomplete="off">
     </form>
     
@@ -22,42 +22,93 @@ $this->title = 'GIP - Wire';
 $this->beginBlock('JS_WIRE') ?>
 
 $(function(){
-	function addWire(icon, color, priority, title, text) {
-	    $("#the-wire").append(
-			$('<li>')
-			.append(
-				$('<i>').addClass('fa').addClass('fa-'+icon).addClass('bg-'+color).html(' ')
-			)
-			.append( $('<div>').addClass('timeline-item').addClass('timeline-danger')
-				.append( $('<span>').addClass('time')
-					.append(
-						$('<i>').addClass('fa').addClass('fa-clock-o').html(' '+moment(new Date()).format('MM/DD/YY HH:mm'))
-					)
-				)
-				.append( $('<h3>').addClass('timeline-header').html(title) )
-				.append( $('<div>').addClass('timeline-body').html(text) )
-				.append( $('<div>').addClass('timeline-footer')
-					.append(
-						$('<a>').addClass('btn').addClass('btn-'+priority).addClass('btn-xs').html('Published on '+moment(new Date()).format('MM/DD/YY HH:mm'))
-					)
-				)
-			)
-		);
+	priority_map = [
+		'default',
+		'info',
+		'success',
+		'primary',
+		'warning',
+		'danger'
+	];
+	intro_messages = {
+		opening: {
+			subject: 'Opening connection...',
+			body: '... connected.',
+			priority: 1,
+			source: 'websocket',
+			type: 'warning',
+			color: '#0f0'
+		},
+		closing: {
+			subject: 'Closing connection...',
+			body: 'Connection closed. Trying to reconnect...',
+			priority: 1,
+			source: 'websocket',
+			type: 'warning',
+			color: '#f00'
+		},
+		starting: {
+			subject: 'Connection',
+			body: 'Connecting to server...',
+			priority: 1,
+			source: 'websocket',
+			type: 'info',
+			color: '#aa0'
+		}
 	};
+	function addWire(message) {
+		bs_color = priority_map[message.priority % 6];
+		//console.log(message);
+		$('<li>')
+		.append(
+			$('<i>').addClass('fa').addClass(message.icon).css('bg-color', message.color).html(' ')
+		)
+		.append( $('<div>').addClass('timeline-item').addClass('timeline-danger')
+			.append( $('<span>').addClass('time')
+				.append(
+					$('<i>').addClass('fa').addClass('fa-clock-o').html(' '+moment(new Date()).format('MM/DD/YY HH:mm'))
+				)
+			)
+			.append( $('<h3>').addClass('timeline-header').html(message.subject) )
+			.append( $('<div>').addClass('timeline-body').html(message.body) )
+			.append( $('<div>').addClass('timeline-footer')
+				.append(
+					$('<a>').addClass('btn').addClass('btn-'+bs_color).addClass('btn-xs').html('Published on '+moment(new Date()).format('MM/DD/YY HH:mm'))
+				)
+			)
+		)
+		.prependTo("#the-wire").hide().slideDown();
+	};
+	
+	$('form#chat-form').submit(function(){
+		msg = {
+			subject: 'Chat message',
+			body: $('#inputext').val(),
+			priority: 1,
+			source: 'websocket',
+			icon: 'fa-comments',
+			type: 'info',
+			color: '#00f'
+		};
+		console.log(JSON.stringify(msg));
+		ws.send(JSON.stringify(msg));
+		$('#inputext').val('');
+		return false;
+	});
 
     function wsStart() {
         ws = new WebSocket("ws://imac.local:8051/");
-        ws.onopen = function() { addWire('warning', 'green', 'info', 'Opening...', "... connected."); };
-        ws.onclose = function() { addWire('warning', 'red', 'info', 'Closing...', "Connection closed. Trying to reconnect..."); setTimeout(wsStart, 1000);};
+        ws.onopen = function() { addWire(intro_messages.opening); };
+        ws.onclose = function() { addWire(intro_messages.closing); };
         ws.onmessage = function(evt) {
-			console.log('ws.onmessage');
-			console.log(evt);
-			addWire('comment', 'blue', 'success', 'Message', evt.data); $('#the-wire').scrollTop($('#the-wire')[0].scrollHeight);
+			msg = $.parseJSON(evt.data);
+			addWire(msg);
+			$('#the-wire').scrollTop($('#the-wire')[0].scrollHeight);
 		};
     }
 
-	addWire('warning', 'yellow', 'info', 'Connection', "Connecting to server...");	
-    wsStart();	
+	addWire(intro_messages.starting);	
+    wsStart();
 });
 
 <?php $this->endBlock(); ?>

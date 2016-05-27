@@ -7,7 +7,8 @@ use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
 use kartik\builder\Form;
 use insolita\iconpicker\Iconpicker;
-use kartik\widgets\ColorInput
+use kartik\widgets\ColorInput;
+use kartik\widgets\DateTimePicker;
 
 /**
  * @var yii\web\View $this
@@ -31,11 +32,15 @@ use kartik\widgets\ColorInput
 
             'subject'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Wire Subject...', 'maxlength'=>160]],
 
-        	'body'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Wire Body...', 'maxlength'=>2000]],
+        	'body'=>['type'=> Form::INPUT_TEXTAREA, 'options'=>['placeholder'=>'Enter Wire Body...', 'maxlength'=>2000]],
 
-            'type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Wire Type...', 'maxlength'=>40], 'items' => Type::forClass(Wire::className())],
+            'link'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Link URL...', 'maxlength'=>200]],
 
-            'link'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Icon...', 'maxlength'=>200]],
+            'source_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Wire Source...', 'maxlength'=>40], 'items' => Type::forClass(Wire::className().':source')],
+
+            'type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Wire Type...', 'maxlength'=>40], 'items' => Type::forClass(Wire::className().':type')],
+
+            'priority'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Priority...', 'maxlength'=>4]],
 
             'icon'=>['type'=> Form::INPUT_WIDGET,
 					 'widgetClass' => Iconpicker::className(),
@@ -54,6 +59,13 @@ use kartik\widgets\ColorInput
 					 ]
 			],
 
+        	'note'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Note (testing only)...', 'maxlength'=>160]],
+
+            'expired_at'=>['type'=> Form::INPUT_WIDGET,
+	            'widgetClass' => DateTimePicker::className(), 
+	            'hint'=>'Enter Expiration Date and Time'
+			],
+
             'status'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Status...', 'maxlength'=>40], 'items' => Wire::getLocalizedConstants('STATUS_')],
 
         ]
@@ -61,6 +73,7 @@ use kartik\widgets\ColorInput
     ]);
 
     echo Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']);
+
     ActiveForm::end(); ?>
 
 </div>

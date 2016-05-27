@@ -31,17 +31,23 @@ $this->params['breadcrumbs'][] = $this->title;
             'type'=>DetailView::TYPE_INFO,
         ],
         'attributes' => [
-            'subject',
+			'subject',
             [
 				'attribute' => 'body',
             	'type'=> DetailView::INPUT_TEXTAREA,
 				'options' => ['rows' => 10],
 			],
-           'link',
+           	'link',
             [
-				'attribute' => 'type_id',
-				'items' => Type::forClass(Wire::className()),
+				'attribute' => 'source_id',
+				'items' => Type::forClass(Wire::className().':source'),
             	'type'=> DetailView::INPUT_DROPDOWN_LIST,
+				'value' => $model->type ? $model->type->display_name : '',
+			],
+           	[
+				'attribute' => 'type_id',
+				'items' => Type::forClass(Wire::className().':type'),
+           		'type'=> DetailView::INPUT_DROPDOWN_LIST,
 				'value' => $model->type ? $model->type->display_name : '',
 			],
             [

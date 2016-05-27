@@ -29,16 +29,27 @@ $this->params['breadcrumbs'][] = $this->title;
 				'attribute' => 'subject',
 				'format' => 'raw',
 				'value' => function($model, $key, $index, $widget) {
-					return '<span class="test">'.$model->subject.'</span>' . ($model->link ? Html::a(' <i class="fa fa-link"></i>', $model->link, ['target' => '_blank']) : '');
+					return '<span>'.$model->subject.'</span>' . ($model->link ? Html::a(' <i class="fa fa-link"></i>', $model->link, ['target' => '_blank']) : '');
 				},
 			],
             [
+				'attribute' => 'source_id',
+				'filter' => Type::forClass(Wire::className().':source'),
+				'value' => function ($model, $key, $index, $widget) {
+							return $model->source ? $model->source->name : $model->source_id;
+	            		},
+			],
+            [
 				'attribute' => 'type_id',
-				'filter' => Type::forClass(Wire::className()),
+				'filter' => Type::forClass(Wire::className().':type'),
 				'value' => function ($model, $key, $index, $widget) {
 							return $model->type ? $model->type->name : $model->type_id;
 	            		},
 			],
+	        [
+				'attribute' => 'priority',
+				'hAlign' => GridView::ALIGN_CENTER,
+	        ],
 	        [
 				'attribute' => 'icon',
 				'filter' => false,
@@ -51,10 +62,11 @@ $this->params['breadcrumbs'][] = $this->title;
 			[
 			    'attribute'=>'color',
 			    'value'=>function ($model, $key, $index, $widget) {
-			        return "<span class='badge' style='background-color: {$model->color}'> </span>";
+			        return $model->color ? "<span class='badge' style='background-color: {$model->color}'> </span>" : '';
 			    },
 			    'width'=>'8%',
 			    'vAlign'=>'middle',
+				'hAlign' => GridView::ALIGN_CENTER,
 			    'format'=>'raw',
 				'filter' => false,
 			],
@@ -72,10 +84,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     'title' => Yii::t('yii', 'Edit'),
                                     ]);
 								},
+                	'publish-php' => function ($url, $model) {
+                                    return Html::a('<span class="glyphicon glyphicon-bullhorn"></span>', Yii::$app->urlManager->createUrl(['developer/wire/publish','id' => $model->id]), [
+                                                    'title' => Yii::t('yii', 'Publish with PHP'),
+                                    ]);
+								},
                 	'publish' => function ($url, $model) {
                                     return Html::a('<span class="glyphicon glyphicon-bullhorn"></span>', '#', [
                                                     'title' => Yii::t('yii', 'Publish'),
-													'class' => 'publish'
+													'class' => 'publish',
+													'data-id' => $model->id
                                     ]);
 								}
 
@@ -108,9 +126,20 @@ $(function(){
     wsStart();	
 
 	$('a.publish').click(function() {
-		line = $(this).closest('tr').find('span.test').html();
-		ws.send(line);		
-		console.log('sent');
+		var vid = $(this).data('id');
+		var msg = null;
+		console.log(vid);
+		$.post(
+			'/gipadmin/developer/wire/get',
+            {
+				id: vid
+			},
+   			function (r) {
+				console.log(r);
+				ws.send(r);		
+				console.log('sent');
+            }
+		);
 	});
 });
 
