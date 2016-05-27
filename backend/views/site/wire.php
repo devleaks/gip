@@ -97,12 +97,11 @@ $(function(){
 	});
 
     function wsStart() {
-        ws = new WebSocket("ws://imac.local:8051/");
+		ws = new WebSocket("<?= Yii::$app->params['websocket_server'] ?>");
         ws.onopen = function() { addWire(intro_messages.opening); };
         ws.onclose = function() { addWire(intro_messages.closing); };
         ws.onmessage = function(evt) {
-			msg = $.parseJSON(evt.data);
-			addWire(msg);
+			addWire($.parseJSON(evt.data));
 			$('#the-wire').scrollTop($('#the-wire')[0].scrollHeight);
 		};
     }
