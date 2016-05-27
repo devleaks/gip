@@ -103,7 +103,7 @@ $this->beginBlock('JS_WIRE_CLI') ?>
 
 $(function(){
     function wsStart() {
-        ws = new WebSocket("ws://imac.local:8051/");
+        ws = new WebSocket("<?= Yii::$app->params['websocket_server'] ?>");
     }
     wsStart();	
 

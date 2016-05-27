@@ -145,7 +145,7 @@ class WireController extends Controller
         $model = $this->findModel($id);
 		$feedback = 'Nothing done';
 
-		if($client = new WebsocketClient("ws://imac.local:8051")) {
+		if($client = new WebsocketClient(Yii::$app->params['websocket_server'])) {
 			$client->send($model->body);
 			$feedback = 'Message sent';
 		} else {

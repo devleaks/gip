@@ -46,7 +46,7 @@ $(function(){
 	};
 
     function wsStart() {
-        ws = new WebSocket("ws://imac.local:8051/");
+        ws = new WebSocket("<?= Yii::$app->params['websocket_server'] ?>");
         ws.onopen = function() { addWire('warning', 'green', 'info', 'Opening...', "... connected."); };
         ws.onclose = function() { addWire('warning', 'red', 'info', 'Closing...', "Connection closed. Trying to reconnect..."); setTimeout(wsStart, 1000);};
         ws.onmessage = function(evt) {
