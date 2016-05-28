@@ -1,10 +1,13 @@
 <?php
 namespace backend\controllers;
 
+use common\models\Wire;
+
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
 
 /**
  * Site controller
@@ -61,12 +64,23 @@ class SiteController extends Controller
     }
 
     /**
-     * Default action
+     * Lists Wire models already published.
+     * @return mixed
      */
     public function actionWire()
     {
-        return $this->render('wire');
+        $dataProvider = new ActiveDataProvider([
+			'query' => Wire::find()
+				->andWhere([ 'status' => 'PUBLISHED' ])
+				->orderBy('created_at desc')
+		]);
+
+        return $this->render('wire', [
+            'dataProvider' => $dataProvider,
+        ]);
     }
+
+
 
     /**
      * List markdown files or render a markdown file if supplied

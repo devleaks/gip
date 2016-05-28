@@ -109,7 +109,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> '.Html::encode($this->title).' </h3>',
             'type'=>'info',
             'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Add', ['create'], ['class' => 'btn btn-success']),
-            'after'=>Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset List', ['index'], ['class' => 'btn btn-info']),
+            'after'=>Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset List', ['index'], ['class' => 'btn btn-info'])
+				.' '.Html::a('<i class="glyphicon glyphicon-news"></i> Live Wire', ['/site/wire'], ['class' => 'btn btn-primary', 'target' => '_blank']),
             'showFooter'=>false
         ],
     ]); Pjax::end(); ?>

@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ListView;
 
 use devleaks\sieve\Sieve;
 
@@ -26,7 +25,7 @@ $last   = null;
 		]
 	]) ?>
 
-	<ul id="the-wire" class="timeline">
+	<ul id="<?= $id ?>" class="timeline">
 		<?php
 			foreach($dataProvider->query->each() as $model) {
 				if(!$last) {
