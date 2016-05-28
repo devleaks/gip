@@ -8,6 +8,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 
 /**
  * Site controller
@@ -28,7 +29,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['help', 'index', 'search', 'wire'],
+                        'actions' => ['help', 'index', 'search', 'wire', 'read'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -37,7 +38,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['post','read'],
                 ],
             ],
         ];
@@ -80,7 +81,22 @@ class SiteController extends Controller
         ]);
     }
 
+	public function actionRead() {
+		$id = ArrayHelper::getValue($_POST, 'id');
+        $model = $this->findModel($id);
+		$model->status = Wire::STATUS_PUBLISHED;
+		$model->ack_at = date('Y-m-d H:i:s');
+		$model->save();
+	}
 
+    protected function findModel($id)
+    {
+        if (($model = Wire::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
 
     /**
      * List markdown files or render a markdown file if supplied

@@ -44,7 +44,7 @@ class Wire extends \yii\db\ActiveRecord
             [['subject'], 'required'],
             [['body'], 'string'],
             [['source_id', 'type_id', 'priority', 'created_by', 'updated_by'], 'integer'],
-            [['expired_at', 'created_at', 'updated_at'], 'safe'],
+            [['ack_at', 'expired_at', 'created_at', 'updated_at'], 'safe'],
             [['subject', 'note'], 'string', 'max' => 160],
             [['link', 'tags'], 'string', 'max' => 400],
             [['icon', 'color', 'status'], 'string', 'max' => 40]
@@ -73,6 +73,7 @@ class Wire extends \yii\db\ActiveRecord
             'type_id' => Yii::t('gip', 'Type ID'),
             'priority' => Yii::t('gip', 'Priority'),
             'expired_at' => Yii::t('gip', 'Expired At'),
+            'ack_at' => Yii::t('gip', 'Acknowledged At'),
             'icon' => Yii::t('gip', 'Icon'),
             'color' => Yii::t('gip', 'Color'),
             'note' => Yii::t('gip', 'Note'),

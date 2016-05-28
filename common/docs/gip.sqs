@@ -3081,7 +3081,7 @@
         </location>
         <size>
             <width>256.00</width>
-            <height>360.00</height>
+            <height>380.00</height>
         </size>
         <zorder>24</zorder>
         <SQLField>
@@ -3176,6 +3176,12 @@
             <type><![CDATA[DATETIME]]></type>
             <forcedUnique><![CDATA[0]]></forcedUnique>
             <uid><![CDATA[366B6C9A-7BF1-4202-8134-FC0FF8554399]]></uid>
+        </SQLField>
+        <SQLField>
+            <name><![CDATA[ack_at]]></name>
+            <type><![CDATA[DATETIME]]></type>
+            <forcedUnique><![CDATA[0]]></forcedUnique>
+            <uid><![CDATA[FE85C01D-7B44-4FF6-98DD-156F146F49ED]]></uid>
         </SQLField>
         <SQLField>
             <name><![CDATA[status]]></name>

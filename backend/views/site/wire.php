@@ -8,7 +8,7 @@ $this->title = 'GIP - Live Wire';
 
 	<?= Wire::widget([
 		'id' => 'the-wire',
-		'statuses' => ['PUBLISHED'],
+		'statuses' => ['PUBLISHED', 'UNREAD'],
 		'live' => true
 	]) ?>
 	
