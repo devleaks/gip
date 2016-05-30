@@ -19,10 +19,13 @@ class WireAsset extends AssetBundle
 //	public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-		'css/wire.css'
+		'css/wire.css',
+		'css/tagsort.css'
     ];
     public $js = [
-		'js/wire.js'
+		'js/wire.js',
+		'js/tagsort.min.js',
+//		'js/tinysort/jquery.tinysort.min.js'
     ];
     public $depends = [
         'backend\assets\AppAsset',

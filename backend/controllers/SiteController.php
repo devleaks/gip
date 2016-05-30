@@ -29,7 +29,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['help', 'index', 'search', 'wire', 'read'],
+                        'actions' => ['help', 'index', 'search'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -63,31 +63,6 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
-
-    /**
-     * Lists Wire models already published.
-     * @return mixed
-     */
-    public function actionWire()
-    {
-        $dataProvider = new ActiveDataProvider([
-			'query' => Wire::find()
-				->andWhere([ 'status' => 'PUBLISHED' ])
-				->orderBy('created_at desc')
-		]);
-
-        return $this->render('wire', [
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-	public function actionRead() {
-		$id = ArrayHelper::getValue($_POST, 'id');
-        $model = $this->findModel($id);
-		$model->status = Wire::STATUS_PUBLISHED;
-		$model->ack_at = date('Y-m-d H:i:s');
-		$model->save();
-	}
 
     protected function findModel($id)
     {

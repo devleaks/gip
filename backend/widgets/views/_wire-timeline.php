@@ -6,17 +6,27 @@ use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model Model to display */
+$tags='p'.intval($model->priority);
+if($model->source) $tags += ','.$model->source->name;
+if($model->type) $tags += ','.$model->type->name;
+
 ?>
-<li style="display: list-item;" data-tags="wire">
+<li style="display: list-item;" class="wire-message" data-item-tags="wire">
     <i class="fa <?=$model->icon?> bg-blue"></i>
     <div class="timeline-item timeline-<?=strtolower($model->type->name)?>">
 		<span class="time">
         <i class="fa fa-clock-o"></i> <?= Yii::$app->formatter->asDateTime(time()) ?></span>
         <h3 class="timeline-header">
 			<input type="checkbox" class="wire-checkbox" <?= $model->status == Wire::STATUS_UNREAD ? ' ' : 'disabled checked'?> data-message="<?= $model->id ?>">
-			&nbsp;<a href="<?=Url::to(['wire/view', 'id'=>$model->id])?>" title="<?= Html::encode($model->subject) ?>"
-				style="color: <?=strtolower($model->color)?>"><?= Html::encode($model->subject) ?></a></h3>
-        <div class="timeline-body">
+			&nbsp;
+			<?php if($model->link): ?>
+				<a href="<?=$model->link?>" title="<?= Html::encode($model->subject) ?>"
+				style="color: <?=strtolower($model->color)?>"><i class="fa fa-link"></i>&nbsp;<?= Html::encode($model->subject) ?></a>
+			<?php else:?>
+				<span style="color: <?=strtolower($model->color)?>"><?= Html::encode($model->subject) ?></span>
+			<?php endif;?>
+		</h3>
+        <div class="timeline-body more">
         <?= Html::encode($model->body) ?>
         </div>
 

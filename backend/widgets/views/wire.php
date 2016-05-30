@@ -11,33 +11,46 @@ use devleaks\sieve\Sieve;
  */
 
 $this->title = Yii::t('gip', 'The Wire');
-$repeat = 120; // minutes
-$last   = null;
 ?>
-<div class="wire-index">
+<div class="wire-wrappe">
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-	<?= Sieve::widget([
-		'id' => 'the-wire',
-		'pluginOptions' => [
-			'itemSelector' => '.timeline-item'
-		]
-	]) ?>
+	<div class="wire-seave row">
+		<div class="col-lg-12">
+			<?= Sieve::widget([
+				'id' => 'the-wire',
+				'pluginOptions' => [
+					'itemSelector' => '.wire-message'
+				]
+			]) ?>
+		</div>
+	</div>
 
-	<ul id="<?= $id ?>" class="timeline">
-		<?php
-			foreach($dataProvider->query->each() as $model) {
-				if(!$last) {
-				    echo '<li class="time-label"><span class="bg-red">'.date("d M y h:m", strtotime($model->created_at)).'</span></li>';
-					$last = $model->created_at;
-				} else if (round(abs(strtotime($last) - strtotime($model->created_at)) / 60) > $repeat) {
-				    echo '<li class="time-label"><span class="bg-red">'.date("d M y h:m", strtotime($model->created_at)).'</span></li>';
-					$last = $model->created_at;
-				}
-				echo $this->render('_wire-timeline', ['model' => $model]);
-			}
-		?>
-	</ul>
+	<div class="wire-tagsort row">
+		<div class="tagsort-tags-container col-lg-12 ">
+		</div>  
+	</div>
+
+	<div class="wire-body row">
+		<div class="col-lg-12">
+			<ul id="<?= $id ?>" class="timeline">
+				<?php
+					if($widget->wire_count != 0) {
+						foreach($dataProvider->query->each() as $model) {
+							if(!$widget->last) {
+							    echo '<li class="time-label"><span class="bg-blue">'.date("d M h:m", strtotime($model->created_at)).'</span></li>';
+								$widget->last = $model->created_at;
+							} else if (round(abs(strtotime($widget->last) - strtotime($model->created_at)) / 60) > $widget->repeat) {
+							    echo '<li class="time-label"><span class="bg-blue">'.date("d M h:m", strtotime($model->created_at)).'</span></li>';
+								$widget->last = $model->created_at;
+							}
+							echo $this->render('_wire-timeline', ['model' => $model]);
+						}
+					}
+				?>
+			</ul>
+		</div>
+	</div>
 	
 </div>

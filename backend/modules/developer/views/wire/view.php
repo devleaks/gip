@@ -50,6 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
            		'type'=> DetailView::INPUT_DROPDOWN_LIST,
 				'value' => $model->type ? $model->type->display_name : '',
 			],
+           	'priority',
             [
 				'attribute' => 'icon',
 				'value' => Icon::show(str_replace('fa-', '', $model->icon)),
@@ -66,6 +67,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => "<span class='badge' style='background-color: {$model->color}'> </span>  <code>" . $model->color . '</code>',
                 'type'=> DetailView::INPUT_COLOR,
                 'valueColOptions' => ['style'=>'width:30%'], 
+            ],
+           	'tags',
+            [
+                'attribute'=>'expired_at',
+				'format' => 'datetime',
+				'type' => DetailView::INPUT_DATETIME,
+				'widgetOptions' => [
+					'pluginOptions' => [
+	                	'format' => 'yyyy-mm-dd hh:ii:ss',
+	                	'todayHighlight' => true
+	            	]
+				],
+				'value' => $model->expired_at ? new DateTime($model->expired_at) : '',
             ],
             [
 				'attribute' => 'status',

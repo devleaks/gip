@@ -18,7 +18,7 @@ use yii\bootstrap\Widget;
 
 class Wire extends Widget {
 	/** number of recent message to display */
-	public $wire_count = 5;
+	public $wire_count = 10;
 	
 	/** text excerpt length */
 	public $words = 50;
@@ -31,6 +31,13 @@ class Wire extends Widget {
 	
 	/** whether to start listening on websocket */
 	public $live = false;
+	
+	/** */
+	public $repeat = 120; // minutes
+	
+	/** */
+	public $last;
+	
 	
 	public function init() {
 		parent::init();
@@ -45,11 +52,15 @@ class Wire extends Widget {
 		if($this->statuses) {
 			$dataProvider->query->andWhere(['status' => $this->statuses]);
 		}
+		if(intval($this->wire_count) > 0) {
+			$dataProvider->query->limit(intval($this->wire_count));
+		}
 
         return $this->render('wire', [
             'dataProvider' => $dataProvider,
             'searchModel' => $searchModel,
-			'id' => $this->id ? $this->id : 'the-wire'
+			'id' => $this->id ? $this->id : 'the-wire',
+			'widget' => $this
         ]);
 	}
 
