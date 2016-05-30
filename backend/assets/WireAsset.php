@@ -29,6 +29,7 @@ class WireAsset extends AssetBundle
     ];
     public $depends = [
         'backend\assets\AppAsset',
+    	'frontend\assets\MetarAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
 }

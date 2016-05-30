@@ -128,6 +128,13 @@ $(function() {
 
 		// Body
 		text = message.body;
+		
+		if(message.type.toLowerCase() == 'metar') {
+			metar = metar_decode(text);
+			if(metar.length > 0) {
+				text = metar.replace(/(?:\r\n|\r|\n)/g, '<br />') + '<br/><pre>'+text+'</pre>';
+			}
+		}
 		if(defaults.numWords > 0) {
 			var content = text.split(" ");
 			if(content.length > defaults.numWords) {
