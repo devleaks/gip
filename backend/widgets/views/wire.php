@@ -12,25 +12,27 @@ use devleaks\sieve\Sieve;
 
 $this->title = Yii::t('gip', 'The Wire');
 ?>
-<div class="wire-wrappe">
+<div class="wire-wrapper">
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-	<div class="wire-seave row">
-		<div class="col-lg-12">
-			<?= Sieve::widget([
-				'id' => 'the-wire',
-				'pluginOptions' => [
-					'itemSelector' => '.wire-message'
-				]
-			]) ?>
+	<header class="wire-top">
+		<div class="wire-seave row">
+			<div class="col-lg-12">
+				<?= Sieve::widget([
+					'id' => 'the-wire',
+					'pluginOptions' => [
+						'itemSelector' => '.wire-message'
+					]
+				]) ?>
+			</div>
 		</div>
-	</div>
 
-	<div class="wire-tagsort row">
-		<div class="tagsort-tags-container col-lg-12 ">
-		</div>  
-	</div>
+		<div class="wire-tagsort row">
+			<div class="tagsort-tags-container col-lg-12 ">
+			</div>  
+		</div>
+	</header>
 
 	<div class="wire-body row">
 		<div class="col-lg-12">

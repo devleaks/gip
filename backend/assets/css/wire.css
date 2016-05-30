@@ -1,14 +1,13 @@
-.expired {
+.wire-expired {
     color: #e08e0b;
 }
-.not-expired {
+.wire-not-expired {
 	color: red;
 }
-a.morelink {
+a.wire-more-link {
 	text-decoration:none;
 	outline: none;
 }
-.morecontent span {
+.wire-more-content span {
 	display: none;
-
 }

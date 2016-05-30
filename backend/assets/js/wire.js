@@ -30,6 +30,53 @@
 	}
 
  */
+jQuery.fn.sortElements = (function(){
+
+    var sort = [].sort;
+
+    return function(comparator, getSortable) {
+
+        getSortable = getSortable || function(){return this;};
+
+        var placements = this.map(function(){
+
+            var sortElement = getSortable.call(this),
+                parentNode = sortElement.parentNode,
+
+                // Since the element itself will change position, we have
+                // to have some way of storing its original position in
+                // the DOM. The easiest way is to have a 'flag' node:
+                nextSibling = parentNode.insertBefore(
+                    document.createTextNode(''),
+                    sortElement.nextSibling
+                );
+
+            return function() {
+
+                if (parentNode === this) {
+                    throw new Error(
+                        "You can't sort elements if any one is a descendant of another."
+                    );
+                }
+
+                // Insert before flag:
+                parentNode.insertBefore(this, nextSibling);
+                // Remove flag:
+                parentNode.removeChild(nextSibling);
+
+            };
+
+        });
+
+        return sort.call(this, comparator).each(function(i){
+            placements[i].call(getSortable.call(this));
+        });
+
+    };
+
+})();
+
+
 $(function() {
 	// Plugin Defaults
 	defaults = {
@@ -45,9 +92,12 @@ $(function() {
 		speed: 500,
 		// More
 		numWords: 50,
+		dateReminder: 120, // minutes
 		ellipsestext: '<i class="fa fa-ellipsis-h"></i>',
 		moretext: '<i class="fa fa-angle-double-right"></i>',
-		lesstext: '<i class="fa fa-angle-double-left"></i>',  
+		lesstext: '<i class="fa fa-angle-double-left"></i>',
+		ignoreTags: ['default','unknown'],
+		filterNewMessage: false,
 		priority_map: [
 			'default',
 			'info',
@@ -89,12 +139,16 @@ $(function() {
 	};
 
 	// Timestamp of last addition. Used to make date markers.
-	var last_add = null;
-		
-
+	var lastDateReminder = null;
+	
 	// Main subroutine
 	function addWire(message) {
 		var tags = new Array();
+		var addTags = function(str) {
+			if(defaults.ignoreTags.indexOf(str) == -1)
+				tags.push(str);
+		}
+		
 		// Priority
 		var priority = message.priority == null ? 0 : parseInt(message.priority);
 		if(priority > 5) priority = 5;
@@ -105,14 +159,14 @@ $(function() {
 		for(i=priority; i<6; i++)
 			priority_string += '<i class="fa fa-star-o"></i>';
 		priority_string += '&nbsp;';
-		tags.push('p'+priority);
-		tags.push(message.source);
-		tags.push(message.type);
+		addTags('p'+priority);
+		addTags(message.source);
+		addTags(message.type);
 
 
 		// Color
 		if(message.color.substr(0, 1) != '#' && $.inArray(message.color, defaults.priority_map)) { // uses bootstrap color
-			console.log('uses bs color');
+			//console.log('uses bs color');
 			message.color = defaults.color;
 		}
 		
@@ -120,28 +174,40 @@ $(function() {
 		
 				
 		// Link
-		console.log(tags.join(','));
-		title = message.subject;
+		var title = message.subject;
 		if(message.link) {
 			title = $('a').attr('href', message.link);
 		}
 
 		// Body
-		text = message.body;
+		var text = message.body;
 		
+		// special message parsing
 		if(message.type.toLowerCase() == 'metar') {
 			metar = metar_decode(text);
 			if(metar.length > 0) {
 				text = metar.replace(/(?:\r\n|\r|\n)/g, '<br />') + '<br/><pre>'+text+'</pre>';
 			}
 		}
+		// text shortening
 		if(defaults.numWords > 0) {
 			var content = text.split(" ");
 			if(content.length > defaults.numWords) {
-				var c = content.slice(0,defaults.numWords).join(" ");
-				var h = content.slice(defaults.numWords,content.length).join(" ");
-				text = c + '&nbsp;<span class="moreelipses">'+defaults.ellipsestext+'</span>&nbsp;<span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">'+defaults.moretext+'</a></span>';
+				text = content.slice(0,defaults.numWords).join(" ")
+						 + '&nbsp;<span class="wire-more-elipses">' + defaults.ellipsestext
+						 + '</span>&nbsp;<span class="wire-more-content"><span>'
+						 + content.slice(defaults.numWords,content.length).join(" ")
+						 + '</span>&nbsp;&nbsp;<a href="" class="wire-more-link">'
+						 + defaults.moretext + '</a></span>';
 			}
+		}
+		
+		// Do we need a new Date reminder in the margin?
+		if(lastDateReminder == null || ((Date() - lastDateReminder) > (defaults.dateReminder * 3600000)) ) {
+			$('<li>').addClass('time-label')
+					.append($('<span>').addClass('bg-blue').html(moment().format("ddd D MMM H:m")))
+					.prependTo("#"+defaults.id);
+			lastDateReminder = new Date();
 		}
 
 		// Assembly
@@ -157,7 +223,7 @@ $(function() {
 				).append(' '+moment(new Date()).format('ddd D MMM YY H:mm'))
 			)
 			.append( $('<h3>').addClass('timeline-header').html(title) )
-			.append( $('<div>').addClass('timeline-body').addClass('more').html(defaults.debug ? text + '<br/>' + JSON.stringify(message) : text) )
+			.append( $('<div>').addClass('timeline-body').addClass('wire-more').html(defaults.debug ? text + '<br/>' + JSON.stringify(message) : text) )
 			.append( $('<div>').addClass('timeline-footer')
 				.append(
 					$('<a>').addClass('btn').addClass('btn-'+bs_color).addClass('btn-xs').html('Published on '+moment(message.created_at).format('ddd D MMM YY H:mm'))
@@ -166,20 +232,41 @@ $(function() {
 		)
 		.addClass('wire-message')
 		.attr('data-item-tags', tags.join(',').toLowerCase())
+		.attr('id', 'wire-message-'+message.id)
 		.prependTo("#"+defaults.id).hide().slideDown(defaults.speed);
 		
 		// Cleanup
-		last_add = new Date();
-		// Rebuild task list
+
+		// Rebuild task list, sort it, and set those that were active.
+		// 1. remember which ones where selected
+		tagsortActive = $('div.tagsort-tags-container span.tagsort-active');
+		// 2. rebuild list
 		$('div.tagsort-tags-container').html('').tagSort({
 			items:'.wire-message'
+		}).find('span').sortElements(function(a, b){
+		    return $(a).text() > $(b).text() ? 1 : -1;
 		});
-		$(".morelink").click(function(){
-			if($(this).hasClass("less")) {
-				$(this).removeClass("less");
+		// 3. select those which were selected
+		var hasTags = 0;
+		if(tagsortActive.length !== 0) {
+			tagsortActive.each(function() {
+				tag = $(this).html();
+				if(defaults.filterNewMessage && (tags.indexOf(tag) > -1)) { // current message has tag
+					hasTags++;
+				}
+				$('div.tagsort-tags-container span:contains("'+tag+'")').addClass('tagsort-active');
+			});
+		}
+		if(defaults.filterNewMessage && tagsortActive.length !== hasTags) {
+			$('li#wire-message-'+message.id).toggle(false);
+		}
+		
+		$(".wire-more-link").click(function(){
+			if($(this).hasClass("wire-less")) {
+				$(this).removeClass("wire-less");
 				$(this).html(defaults.moretext);
 			} else {
-				$(this).addClass("less");
+				$(this).addClass("wire-less");
 				$(this).html(defaults.lesstext);
 			}
 			$(this).parent().prev().toggle();
@@ -208,22 +295,25 @@ $(function() {
 
 	// More... (only works with plain text)
 	// Chops text
-	$('.more').each(function() {
+	$('.wire-more').each(function() {
 		var content = $(this).html().split(" ");
 		if(content.length > defaults.numWords) {
 			var c = content.slice(0,defaults.numWords).join(" ");
 			var h = content.slice(defaults.numWords,content.length).join(" ");
-			var html = c + '&nbsp;<span class="moreelipses">'+defaults.ellipsestext+'</span>&nbsp;<span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">'+defaults.moretext+'</a></span>';
+			var html = c + '&nbsp;<span class="wire-more-elipses">' + defaults.ellipsestext
+						 + '</span>&nbsp;<span class="wire-more-content"><span>'
+						 + h + '</span>&nbsp;&nbsp;<a href="" class="wire-more-link">'
+						 + defaults.moretext + '</a></span>';
 			$(this).html(html);
 		}
 	});
 	
-	$(".morelink").click(function(){
-		if($(this).hasClass("less")) {
-			$(this).removeClass("less");
+	$(".wire-more-link").click(function(){
+		if($(this).hasClass("wire-less")) {
+			$(this).removeClass("wire-less");
 			$(this).html(defaults.moretext);
 		} else {
-			$(this).addClass("less");
+			$(this).addClass("wire-less");
 			$(this).html(defaults.lesstext);
 		}
 		$(this).parent().prev().toggle();
@@ -238,7 +328,7 @@ $(function() {
         ws.onclose = function() { if(defaults.debug) { defaults.intro_messages.closing.created_at = new Date(); addWire(defaults.intro_messages.closing); } };
         ws.onmessage = function(evt) {
 			addWire($.parseJSON(evt.data));
-			$('#'.defaults.id).scrollTop($('#'+defaults.id)[0].scrollHeight);
+			$('#'+defaults.id).scrollTop($('#'+defaults.id)[0].scrollHeight);
 		};
     }
 
