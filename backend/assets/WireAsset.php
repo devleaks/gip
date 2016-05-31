@@ -25,6 +25,7 @@ class WireAsset extends AssetBundle
     public $js = [
 		'js/wire.js',
 		'js/tagsort.min.js',
+		'js/sidetoggle.js',
     ];
     public $depends = [
         'backend\assets\AppAsset',

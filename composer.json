@@ -84,7 +84,9 @@
         "sagem-cassiopee/php-metar-decoder": "dev-master",
         "sagem-cassiopee/php-taf-decoder": "dev-master",
         "brandonwamboldt/utilphp": "1.0.*",
-        "textalk/websocket": "^1.2"
+        "textalk/websocket": "^1.2",
+        "bburim/flot": "dev-master",
+        "2amigos/yii2-leaflet-extension": "~1.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

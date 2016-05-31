@@ -211,6 +211,11 @@ $(function() {
 		}
 
 		// Assembly
+		tagPills = $('<span>');
+		for(var idx = 0; idx < tags.length; idx++) {
+			tagPills.append($('<span>').addClass('label').addClass('label-default').html(tags[idx])).append('&nbsp;');
+		}
+		
 		$('<li>')
 		.append(
 			$('<i>').addClass('fa').addClass(message.icon).css('background-color', message.color).html(' ')
@@ -225,8 +230,9 @@ $(function() {
 			.append( $('<h3>').addClass('timeline-header').html(title) )
 			.append( $('<div>').addClass('timeline-body').addClass('wire-more').html(defaults.debug ? text + '<br/>' + JSON.stringify(message) : text) )
 			.append( $('<div>').addClass('timeline-footer')
+				.append(tagPills)
 				.append(
-					$('<a>').addClass('btn').addClass('btn-'+bs_color).addClass('btn-xs').html('Published on '+moment(message.created_at).format('ddd D MMM YY H:mm'))
+					$('<span>').addClass('label').addClass('label-'+bs_color).html('Published on '+moment(message.created_at).format('ddd D MMM YY H:mm'))
 				)
 			)
 		)

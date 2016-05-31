@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e92a1e1dea1cad20068b4566fc1c4404",
-    "content-hash": "9d2dd80f1fea623c66f86f7df0b95a73",
+    "hash": "1344d2bca14e71ea18138fdd05f89c11",
+    "content-hash": "413aea248a2371130599b21f1fb0bae5",
     "packages": [
         {
             "name": "2amigos/yii2-gallery-widget",
@@ -69,6 +69,66 @@
             "time": "2016-01-04 06:27:31"
         },
         {
+            "name": "2amigos/yii2-leaflet-extension",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/2amigos/yii2-leaflet-extension.git",
+                "reference": "05ac1496b0b7a5c7bdeec110a02f0e36d0a91e88"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/2amigos/yii2-leaflet-extension/zipball/05ac1496b0b7a5c7bdeec110a02f0e36d0a91e88",
+                "reference": "05ac1496b0b7a5c7bdeec110a02f0e36d0a91e88",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/leaflet": "0.7.*@stable",
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "asset-installer-paths": {
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "dosamigos\\leaflet\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "2amigOS! Consulting Group",
+                    "email": "hola@2amigos.us",
+                    "homepage": "http://2amigos.us",
+                    "role": "Developer"
+                }
+            ],
+            "description": "LeafLet Mobile-Friendly Interactive Maps Extension Library for Yii2.",
+            "homepage": "http://yiiwheels.com/extension/leaflet-extension-library",
+            "keywords": [
+                "2amigos",
+                "extension",
+                "leaflet",
+                "maps",
+                "widget",
+                "yii",
+                "yii2"
+            ],
+            "time": "2016-02-05 23:47:38"
+        },
+        {
             "name": "almasaeed2010/adminlte",
             "version": "v2.3.3",
             "source": {
@@ -107,6 +167,49 @@
                 "web"
             ],
             "time": "2016-03-24 14:31:41"
+        },
+        {
+            "name": "bburim/flot",
+            "version": "dev-master",
+            "target-dir": "bburim/flot",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bburim/flot.git",
+                "reference": "d570be08c497ac5ef2112b9259527abffc798c44"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bburim/flot/zipball/d570be08c497ac5ef2112b9259527abffc798c44",
+                "reference": "d570be08c497ac5ef2112b9259527abffc798c44",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-0": {
+                    "bburim\\flot\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GNU GENERAL PUBLIC LICENSE"
+            ],
+            "authors": [
+                {
+                    "name": "Bogdan Burim",
+                    "email": "bgdn2007@ukr.net"
+                }
+            ],
+            "description": "jQuery Flot Charts extension for the Yii 2 framework",
+            "keywords": [
+                "chart",
+                "flot",
+                "jquery",
+                "yii"
+            ],
+            "time": "2015-08-06 12:52:17"
         },
         {
             "name": "bower-asset/blueimp-gallery",
@@ -665,6 +768,43 @@
                 "mask",
                 "plugins"
             ]
+        },
+        {
+            "name": "bower-asset/leaflet",
+            "version": "v0.7.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Leaflet/Leaflet.git",
+                "reference": "197f9d43b7bbc73c0492bf62cd666a5a98038098"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Leaflet/Leaflet/zipball/197f9d43b7bbc73c0492bf62cd666a5a98038098",
+                "reference": "197f9d43b7bbc73c0492bf62cd666a5a98038098",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "dist/leaflet.css",
+                    "dist/leaflet-src.js",
+                    "dist/images/layers-2x.png",
+                    "dist/images/layers.png",
+                    "dist/images/marker-icon-2x.png",
+                    "dist/images/marker-icon.png",
+                    "dist/images/marker-shadow.png"
+                ],
+                "bower-asset-ignore": [
+                    ".*",
+                    "CHANGELOG.json",
+                    "FAQ.md",
+                    "debug",
+                    "spec",
+                    "src",
+                    "build"
+                ]
+            },
+            "description": "JavaScript library for mobile-friendly interactive maps"
         },
         {
             "name": "bower-asset/local-storage-lite",
@@ -7506,7 +7646,8 @@
         "devleaks/yii2-weather": 20,
         "romdim/yii2-bootstrap-material": 20,
         "sagem-cassiopee/php-metar-decoder": 20,
-        "sagem-cassiopee/php-taf-decoder": 20
+        "sagem-cassiopee/php-taf-decoder": 20,
+        "bburim/flot": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
