@@ -20,7 +20,8 @@ class WireAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
 		'css/wire.css',
-		'css/tagsort.css'
+		'css/tagsort.css',
+		'css/cd-panel.css'
     ];
     public $js = [
 		'js/wire.js',

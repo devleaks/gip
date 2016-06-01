@@ -14,10 +14,17 @@ use dosamigos\leaflet\layers\TileLayer;
 use dosamigos\leaflet\LeafLet;
 use dosamigos\leaflet\widgets\Map;
 
+$liege = [
+	'lat' => 50.63639,
+	'lon' => 5.44278
+];
+
 $this->title = 'GIP - Live Wire';
 ?>
 <div class="wire container-fluid">
 	
+	<main class="cd-main-content">
+
 	<div class="row">
 
 		<div class="col-lg-9">
@@ -27,7 +34,7 @@ $this->title = 'GIP - Live Wire';
 					<?php 
 
 					// first lets setup the center of our map
-					$center = new LatLng(['lat' => 50.63639, 'lng' => 5.44278]);
+					$center = new LatLng(['lat' => $liege['lat'], 'lng' => $liege['lon']]);
 
 					// now lets create a marker that we are going to place on our map
 					$marker = new Marker(['latLng' => $center, 'popupContent' => 'Hi!']);
@@ -43,6 +50,7 @@ $this->title = 'GIP - Live Wire';
 					// now our component and we are going to configure it
 					$leaflet = new LeafLet([
 					    'center' => $center, // set the center
+						'zoom' => 15
 					]);
 					// Different layers can be added to our map using the `addLayer` function.
 					$leaflet->addLayer($marker)      // add the marker
@@ -51,7 +59,7 @@ $this->title = 'GIP - Live Wire';
 					// finally render the widget
 					echo Map::widget([
 						'leafLet' => $leaflet,
-						'height' => '800px'
+						'height' => '1200px',
 					]);
 					// we could also do
 					// echo $leaflet->widget();
@@ -60,21 +68,15 @@ $this->title = 'GIP - Live Wire';
 				</div>
 			</div>
 
-
-			<div class="row">
-				<div class="col-lg-12">
-					<?= Wire::widget([
-						'id' => 'the-wire',
-						'statuses' => [WireModel::STATUS_PUBLISHED, WireModel::STATUS_UNREAD],
-						'live' => true,
-						'wire_count' => 0
-					]) ?>
-				</div>
-			</div>
 		</div>
 	
 		<div class="col-lg-3">
 
+			<div class="row">
+				<div class="col-lg-12">
+				<a href="#0" class="cd-btn">GIP Alerts</a>
+				</div>
+			</div>
 
 			<div class="row">
 				<div class="col-lg-12">
@@ -86,8 +88,8 @@ $this->title = 'GIP - Live Wire';
 										'celsius' => true,
 										'cacheTime' => 60,
 										'key' => Yii::$app->params['FORECAST_APIKEY'],
-										'lat' => Yii::$app->params['FORECAST_DEFAULT_LAT'],
-										'lon' => Yii::$app->params['FORECAST_DEFAULT_LON'],
+										'lat' => $liege['lat'],
+										'lon' => $liege['lon'],
 									]
 								]);
 							} else {
@@ -206,10 +208,48 @@ $this->title = 'GIP - Live Wire';
 		<div class="col-lg-12">
 		</div>
 	</div>	
+		
+	</main>
+	
+	<div class="cd-panel from-right">
+		<header class="cd-panel-header">
+			<h1>GIP Alerts</h1>
+			<a href="#0" class="cd-panel-close">Close</a>
+		</header>
+
+		<div class="cd-panel-container">
+			<div class="cd-panel-content">
+				<div class="row">
+					<div class="col-lg-12">
+						<?= Wire::widget([
+							'id' => 'the-wire',
+							'statuses' => [WireModel::STATUS_PUBLISHED, WireModel::STATUS_UNREAD],
+							'live' => true,
+							'wire_count' => 0
+						]) ?>
+					</div>
+				</div>	
+			</div> <!-- cd-panel-content -->
+		</div> <!-- cd-panel-container -->
+	</div> <!-- cd-panel -->
 
 </div>
 <script type="text/javascript">
 <?php $this->beginBlock('JS_SIDEBAR') ?>
+jQuery(document).ready(function($){
+	//open the lateral panel
+	$('.cd-btn').on('click', function(event){
+		event.preventDefault();
+		$('.cd-panel').addClass('is-visible');
+	});
+	//clode the lateral panel
+	$('.cd-panel').on('click', function(event){
+		if( $(event.target).is('.cd-panel') || $(event.target).is('.cd-panel-close') ) { 
+			$('.cd-panel').removeClass('is-visible');
+			event.preventDefault();
+		}
+	});
+});
 <?php $this->endBlock(); ?>
 </script>
 <?php
