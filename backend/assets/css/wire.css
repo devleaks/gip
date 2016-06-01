@@ -11,6 +11,40 @@ a.wire-more-link {
 .wire-more-content span {
 	display: none;
 }
+.message-header span.time {
+	display-style: inline-cell;
+	float: right;
+}
+.message-header span.title {
+	font-weight: bold;
+	font-size: 120%;
+}
+.timeline.collapse-lg li.time-label {
+	background-color: #00c0ef;
+	border: 3px solid white;
+	color: white;
+	width: 10em;
+	padding: 4px;
+	text-align: center;
+}
 
+div.timeline-circ.circ-xl.style-primary {
+	background-color: #3c8dbc;
+}
+div.timeline-circ.circ-xl.style-success {
+	background-color: #00a65a;
+}
+div.timeline-circ.circ-xl.style-default {
+	background-color: #777;
+}
+div.timeline-circ.circ-xl.style-warning {
+	background-color: #f39c12;
+}
+div.timeline-circ.circ-xl.style-danger {
+	background-color: #f56954;
+}
+div.timeline-circ.circ-xl.style-info {
+	background-color: #00c0ef;
+}
 
 

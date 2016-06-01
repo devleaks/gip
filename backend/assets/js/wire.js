@@ -92,7 +92,7 @@ $(function() {
 		speed: 500,
 		// More
 		numWords: 50,
-		dateReminder: 120, // minutes
+		dateReminder: 3, // minutes
 		ellipsestext: '<i class="fa fa-ellipsis-h"></i>',
 		moretext: '<i class="fa fa-angle-double-right"></i>',
 		lesstext: '<i class="fa fa-angle-double-left"></i>',
@@ -155,13 +155,13 @@ $(function() {
 		var bs_color = defaults.priority_map[priority % 6];
 		var priority_string = '';
 		for(i=0; i<priority; i++)
-			priority_string += '<i class="fa fa-star"></i>';
-		for(i=priority; i<6; i++)
-			priority_string += '<i class="fa fa-star-o"></i>';
-		priority_string += '&nbsp;';
-		addTags('p'+priority);
-		addTags(message.source);
-		addTags(message.type);
+			priority_string += '★';
+		for(i=priority+1; i<6; i++)
+			priority_string += '☆';
+		//priority_string += '&nbsp;';
+		addTags(priority_string);
+		addTags(message.source.toLowerCase());
+		addTags(message.type.toLowerCase());
 
 
 		// Color
@@ -205,7 +205,7 @@ $(function() {
 		// Do we need a new Date reminder in the margin?
 		if(lastDateReminder == null || ((Date() - lastDateReminder) > (defaults.dateReminder * 3600000)) ) {
 			$('<li>').addClass('time-label')
-					.append($('<span>').addClass('bg-blue').html(moment().format("ddd D MMM H:m")))
+					.append($('<span>').addClass('bg-blue').html(moment().format("ddd D MMM H:mm")))
 					.prependTo("#"+defaults.id);
 			lastDateReminder = new Date();
 		}
@@ -216,31 +216,84 @@ $(function() {
 			tagPills.append($('<span>').addClass('label').addClass('label-default').html(tags[idx])).append('&nbsp;');
 		}
 		
+		/*
 		$('<li>')
-		.append(
-			$('<i>').addClass('fa').addClass(message.icon).css('background-color', message.color).html(' ')
-		)
-		.append( $('<div>').addClass('timeline-item').addClass('timeline-'+bs_color)
-			.append( $('<span>').addClass('time')
-				.append(priority_string)
 				.append(
-					$('<i>').addClass('fa').addClass('fa-clock-o')
-				).append(' '+moment(new Date()).format('ddd D MMM YY H:mm'))
-			)
-			.append( $('<h3>').addClass('timeline-header').html(title) )
-			.append( $('<div>').addClass('timeline-body').addClass('wire-more').html(defaults.debug ? text + '<br/>' + JSON.stringify(message) : text) )
-			.append( $('<div>').addClass('timeline-footer')
-				.append(tagPills)
+					$('<i>').addClass('fa').addClass(message.icon).css('background-color', message.color).html(' ')
+				)
+				.append( $('<div>').addClass('timeline-item').addClass('timeline-'+bs_color)
+					.append( $('<span>').addClass('time')
+						.append(priority_string)
+						.append(
+							$('<i>').addClass('fa').addClass('fa-clock-o')
+						).append(' '+moment(new Date()).format('ddd D MMM YY H:mm'))
+					)
+					.append( $('<h3>').addClass('timeline-header').html(title) )
+					.append( $('<div>').addClass('timeline-body').addClass('wire-more').html(defaults.debug ? text + '<br/>' + JSON.stringify(message) : text) )
+					.append( $('<div>').addClass('timeline-footer')
+						.append(tagPills)
+						.append(
+							$('<span>').addClass('label').addClass('label-'+bs_color).html('Published on '+moment(message.created_at).format('ddd D MMM YY H:mm'))
+						)
+					)
+				)
+				.addClass('wire-message')
+				.attr('data-item-tags', tags.join(',').toLowerCase())
+				.attr('id', 'wire-message-'+message.id)
+				.prependTo("#"+defaults.id).hide().slideDown(defaults.speed);
+		
+		<li class="timeline-inverted">
+			<div class="timeline-circ circ-xl style-primary"><span class="glyphicon glyphicon-leaf"></span></div>
+			<div class="timeline-entry">
+				<div class="card style-default-bright">
+					<div class="card-body small-padding">
+						<img class="img-circle img-responsive pull-left width-1" src="http://www.codecovers.eu/assets/img/modules/materialadmin/avatar9.jpg?1422538626" alt="">
+						<span class="text-medium">Received a <a class="text-primary" href="http://www.codecovers.eu/materialadmin/mail/inbox">message</a> from <span class="text-primary">Ann Lauren</span></span><br>
+						<span class="opacity-50">
+							Saturday, Oktober 18, 2014
+						</span>
+					</div><!--end .card-body -->
+				</div><!--end .card -->
+			</div><!--end .timeline-entry -->
+		</li>		
+		*/
+		
+		$('<li>').addClass('timeline-inverted')
+			.append( $('<div>').addClass('timeline-circ').addClass('circ-xl').addClass('style-'+bs_color)
 				.append(
-					$('<span>').addClass('label').addClass('label-'+bs_color).html('Published on '+moment(message.created_at).format('ddd D MMM YY H:mm'))
+					$('<i>').addClass('fa').addClass(message.icon).html(' ')
 				)
 			)
-		)
+			.append( $('<div>').addClass('timeline-entry')
+				.append( $('<div>').addClass('card').addClass('style-default-bright')
+					.append( $('<div>').addClass('card-body').addClass('small-padding')
+						.append(
+							$('<span>').addClass('message-header')
+								.append( $('<span>').addClass('title').html(title + '<br/>') )
+								.append( $('<span>').addClass('time').addClass('opacity-50')
+									.append(
+										$('<i>').addClass('fa').addClass('fa-clock-o')
+									).append(moment(new Date()).format('ddd D MMM YY H:mm'))
+								)
+						)
+						.append(
+							$('<span>').addClass('message-body').addClass('wire-more').addClass('text-medium').html(text + '<br/>')
+						)
+						.append(
+							$('<span>').addClass('message-footer')
+							.append(tagPills)
+							.append(
+								$('<span>').addClass('label').addClass('label-'+bs_color).html('Published on '+moment(message.created_at).format('ddd D MMM YY H:mm'))
+							)
+						)
+					)
+				)
+			)
 		.addClass('wire-message')
-		.attr('data-item-tags', tags.join(',').toLowerCase())
+		.attr('data-item-tags', tags.join(','))
 		.attr('id', 'wire-message-'+message.id)
 		.prependTo("#"+defaults.id).hide().slideDown(defaults.speed);
-		
+		console.log()
 		// Cleanup
 
 		// Rebuild task list, sort it, and set those that were active.

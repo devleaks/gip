@@ -59,7 +59,7 @@ $this->title = 'GIP - Live Wire';
 					// finally render the widget
 					echo Map::widget([
 						'leafLet' => $leaflet,
-						'height' => '1200px',
+						'height' => '900px',
 					]);
 					// we could also do
 					// echo $leaflet->widget();
@@ -99,22 +99,93 @@ $this->title = 'GIP - Live Wire';
 				</div>
 			</div>
 			
+			<!--
+			.card.style-accent
+			.card.style-accent-bright
+			.card.style-accent-dark
+			.card.style-accent-light
+			.card.style-danger
+			.card.style-default
+			.card.style-default-bright
+			.card.style-default-dark
+			.card.style-default-light
+			.card.style-info
+			.card.style-primary
+			.card.style-primary-bright
+			.card.style-primary-dark
+			.card.style-primary-light
+			.card.style-success
+			.card.style-warning
+			-->
 			
 			<div class="row">
+				<div class="col-lg-6">
+					<div class="card card-bordered style-default-bright">
+						QFU<br/><span style="font-size: 6em;">23</span><br/><span style="font-size: 2em;">L/R</span>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="card card-bordered style-primary">
+						QNH<br/><span style="font-size: 6em;">1013</span><br/><span style="font-size: 2em;">mBar</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="card card-bordered style-success">
+						AVG. DELAY<br/><span style="font-size: 6em;">12</span><br/><span style="font-size: 2em;">min</span>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="card card-bordered style-info">
+						PARKING<br/><span style="font-size: 6em;">32</span><br/><span style="font-size: 2em;">%</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="card card-bordered style-warning">
+						QFU<br/><span style="font-size: 6em;">23</span><br/><span style="font-size: 2em;">L/R</span>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="card card-bordered style-danger">
+						QNH<br/><span style="font-size: 6em;">1013</span><br/><span style="font-size: 2em;">mBar</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="card card-bordered style-accent">
+						QFU<br/><span style="font-size: 6em;">23</span><br/><span style="font-size: 2em;">L/R</span>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="card card-bordered style-default">
+						QNH<br/><span style="font-size: 6em;">1013</span><br/><span style="font-size: 2em;">mBar</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
 				<div class="col-lg-12">
+					<?php
+						$data = [];
+						$cur = round(rand(0, 100));
+						for($i=0; $i<20; $i++) {
+							$data[] = [$i, $cur];
+							$cur += round(rand(-2, 2));
+						}
+					?>
 					<?= Chart::widget([
 					    'data' => [
 					        [
-					            'label' => 'line', 
-					            'data'  => [
-					                [1, 1],
-					                [2,7],
-					                [3,12],
-					                [4,32],
-					                [5,62],
-					                [6,89],
-					            ],
-					            'lines'  => ['show' => true],
+					            'label' => 'Parking Space', 
+					            'data'  => $data,
+					            'lines'  => ['show' => true, 'steps' => true],
 					            'points' => ['show' => true],
 					        ],
 					    ],
@@ -250,6 +321,22 @@ jQuery(document).ready(function($){
 		}
 	});
 });
+parking_data = <?= json_encode($data) ?>;
+function update_parking() {
+	new_data = Array();
+	diff2 = Array();
+	len = parking_data.length - 1;
+	for(var i=1;i<=len;i++) {
+		new_data.push([i-1, parking_data[i][1]]);
+	}
+	diff = Math.round(Math.random()*4.5) - 2;
+	diff2[diff + 2] = isNaN(diff2[diff + 2]) ? 1 : diff2[diff + 2]+1;
+	console.log(diff2);
+	new_data.push([len, parking_data[len][1] + diff]);
+	$.plot($('#w1'), [{"label":"Parking Space","data":new_data,"lines":{"show":true, 'steps':true},"points":{"show":true}}], {"legend":{"position":"nw","show":true,"margin":10,"backgroundOpacity":0.5}});
+	parking_data = new_data;
+}
+setInterval(update_parking, 5000);
 <?php $this->endBlock(); ?>
 </script>
 <?php

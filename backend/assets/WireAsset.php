@@ -21,12 +21,13 @@ class WireAsset extends AssetBundle
     public $css = [
 		'css/wire.css',
 		'css/tagsort.css',
-		'css/cd-panel.css'
+		'css/cd-panel.css',
+		'css/cd-timeline.css',
+		'css/materialadmin.css',
     ];
     public $js = [
 		'js/wire.js',
 		'js/tagsort.min.js',
-		'js/sidetoggle.js',
     ];
     public $depends = [
         'backend\assets\AppAsset',

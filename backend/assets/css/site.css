@@ -183,3 +183,14 @@ ul.flight2 li:before {
     background-color: #eee;
     color: #999;
 }
+
+/* temporary adjustments ADL Jun'16 */
+div.weather.widget section.current span.temperature,
+div.weather.widget section.hourly div.hour span.temperature {
+	color: #9B9B9B;	
+}
+div.weather.widget header.title h2.name {
+	color: #9B9B9B;	
+	text-align: left;
+}
+/* end temporary adjustments ADL Jun'16 */

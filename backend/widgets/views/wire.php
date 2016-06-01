@@ -3,7 +3,9 @@
 use yii\helpers\Html;
 
 use devleaks\sieve\Sieve;
+use kartik\icons\Icon;
 
+Icon::map($this);
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
@@ -34,9 +36,10 @@ $this->title = Yii::t('gip', 'The Wire');
 		</div>
 	</header>
 
+
 	<div class="wire-body row">
 		<div class="col-lg-12">
-			<ul id="<?= $id ?>" class="timeline">
+			<ul id="<?= $id ?>" class="timeline collapse-lg timeline-hairline">
 				<?php
 					if($widget->wire_count != 0) {
 						foreach($dataProvider->query->each() as $model) {
