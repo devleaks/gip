@@ -386,8 +386,27 @@ $(function() {
         ws.onopen = function() { defaults.intro_messages.opening.created_at = new Date(); addWire(defaults.intro_messages.opening); };
         ws.onclose = function() { if(defaults.debug) { defaults.intro_messages.closing.created_at = new Date(); addWire(defaults.intro_messages.closing); } };
         ws.onmessage = function(evt) {
-			addWire($.parseJSON(evt.data));
-			$('#'+defaults.id).scrollTop($('#'+defaults.id)[0].scrollHeight);
+			msg = $.parseJSON(evt.data);
+			switch(msg.source.toLowerCase()) {
+				case 'aodb':
+					console.log(msg);
+					switch(msg.type.toLowerCase()) {
+						case 'qfu':
+							payload = $.parseJSON(msg.body);
+							$('#indicator-qfu-value').html(payload.value);
+							$('#indicator-qfu-info').html(payload.note);
+							msg.body = ''; // reset body to empty
+						default:
+							addWire(msg);
+							$('#'+defaults.id).scrollTop($('#'+defaults.id)[0].scrollHeight);
+							break;
+					}
+					break;
+				default:
+					addWire(msg);
+					$('#'+defaults.id).scrollTop($('#'+defaults.id)[0].scrollHeight);
+					break;
+			}
 		};
     }
 

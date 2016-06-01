@@ -121,7 +121,7 @@ $this->title = 'GIP - Live Wire';
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="card card-bordered style-default-bright">
-						QFU<br/><span style="font-size: 6em;">23</span><br/><span style="font-size: 2em;">L/R</span>
+						QFU<br/><span style="font-size: 6em;" id="indicator-qfu-value">23</span><br/><span style="font-size: 2em;" id="indicator-qfu-info">L/R</span>
 					</div>
 				</div>
 				<div class="col-lg-6">
