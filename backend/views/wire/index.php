@@ -14,6 +14,8 @@ use dosamigos\leaflet\layers\TileLayer;
 use dosamigos\leaflet\LeafLet;
 use dosamigos\leaflet\widgets\Map;
 
+use yii\web\JsExpression;
+
 $liege = [
 	'lat' => 50.63639,
 	'lon' => 5.44278
@@ -93,41 +95,57 @@ $this->title = 'GIP - Live Wire';
 				</div>
 			</div>
 			
-			
+			<!-- card style colors
+			.style-accent
+			.style-accent-bright
+			.style-accent-dark
+			.style-accent-light
+
+			.style-default
+			.style-default-bright
+			.style-default-dark
+			.style-default-light
+
+			.style-primary
+			.style-primary-bright
+			.style-primary-dark
+			.style-primary-light
+
+			.style-danger
+			.style-info
+			.style-success
+			.style-warning
+			-->
+						
 			<div class="row">
-				<div class="col-lg-12 markers">
-					<span style="font-size: 3em;">23L </span>
-					<a class="marker marker-inner">I</a>
-					<a class="marker marker-middle">M</a>
-					<a class="marker marker-outer">O</a>
+				<div class="col-lg-6">
+					<div class="card card-bordered style-default-bright gip-indicator markers">
+						<span class="gip-header">INBOUND</span><br/>
+						<span class="gip-body">
+						<a class="marker marker-inner marker-left">I</a>
+						<a class="marker marker-middle marker-left">M</a>
+						<a class="marker marker-outer marker-left">O</a></span><br/>
+						<span class="gip-footer">23 L</span>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="card card-bordered style-default-bright gip-indicator markers">
+						<span class="gip-header">INBOUND</span><br/>
+						<span class="gip-body">
+						<a class="marker marker-inner marker-right">I</a>
+						<a class="marker marker-middle marker-right">M</a>
+						<a class="marker marker-outer marker-right">O</a></span><br/>
+						<span class="gip-footer">23 R</span>
+					</div>
 				</div>
 			</div>
 
-			<!--
-			.card.style-accent
-			.card.style-accent-bright
-			.card.style-accent-dark
-			.card.style-accent-light
-			.card.style-danger
-			.card.style-default
-			.card.style-default-bright
-			.card.style-default-dark
-			.card.style-default-light
-			.card.style-info
-			.card.style-primary
-			.card.style-primary-bright
-			.card.style-primary-dark
-			.card.style-primary-light
-			.card.style-success
-			.card.style-warning
-			-->
-			
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="card card-bordered style-default-bright gip-indicator">
-						<span class="gip-header" id="aodb-qfu-value">QFU</span><br/>
+					<div class="card card-bordered style-info gip-indicator">
+						<span class="gip-header">QFU</span><br/>
 						<span class="gip-body" id="aodb-qfu-value">23</span><br/>
-						<span class="gip-footer" id="aodb-qfu-note">L/R</span>
+						<span class="gip-footer" id="aodb-qfu-note">L / R</span>
 					</div>
 				</div>
 				<div class="col-lg-6">
@@ -148,7 +166,7 @@ $this->title = 'GIP - Live Wire';
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<div class="card card-bordered style-info gip-indicator">
+					<div class="card card-bordered style-accent gip-indicator">
 						<span class="gip-header">Forecast (NEXT 4H)</span><br/>
 						<span class="gip-body">4</span><i class="fa fa-arrow-down"></i><br/>
 						<span class="gip-footer">minutes</span>
@@ -160,7 +178,7 @@ $this->title = 'GIP - Live Wire';
 				<div class="col-lg-6">
 					<div class="card card-bordered style-warning gip-indicator">
 						<span class="gip-header">PARKING</span><br/>
-						<span class="gip-body">32</span><br/>
+						<span class="gip-body" id="aodb-parking">0</span><br/>
 						<span class="gip-footer">%</span>
 					</div>
 				</div>
@@ -175,36 +193,74 @@ $this->title = 'GIP - Live Wire';
 
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="card card-bordered style-accent gip-indicator">
-						<span class="gip-header">COLORS</span><br/>
-						<span class="gip-body">7</span><br/>
-						<span class="gip-footer">Base</span>
-					</div>
-				</div>
-				<div class="col-lg-6">
 					<div class="card card-bordered style-default gip-indicator">
 						<span class="gip-header">COLORS</span><br/>
 						<span class="gip-body">7</span><br/>
-						<span class="gip-footer">VARIANTS</span>
+						<span class="gip-footer">+ 9 VARIANTS</span>
 					</div>
 				</div>
+				
+				<div class="col-lg-6">				
+				<?php
+				$moves = [
+					'in' => ['L' => 12, 'R' => 4],
+					'out' => ['L' => 9, 'R' => 7],
+				];
+				
+				echo Chart::widget([
+					'id' => 'inout-graph',
+				    'data' => [
+				    	['label' => 'Inbound L', 'data' => round(50 * $moves['in']['L'] / ($moves['in']['L']+$moves['in']['R']))],
+				    	['label' => 'Inbound R', 'data' => round(50 * $moves['in']['R'] / ($moves['in']['L']+$moves['in']['R']))],
+				    	['label' => 'Outbound L', 'data' => round(50 * $moves['out']['L'] / ($moves['out']['L']+$moves['out']['R']))],
+				    	['label' => 'Outbound R', 'data' => round(50 * $moves['out']['R'] / ($moves['out']['L']+$moves['out']['R']))]
+				    ],
+				    'options' => [
+						'series' => [
+							'pie' => [
+								'innerRadius' => 0.5,
+								'show' => true,
+								'label' => [
+					                'show' => true,
+					                'radius' => 1/3,
+					                // 'formatter' => new JsExpression("labelFormatter"),
+					                'threshold' => 0.1
+						          ]
+							],
+						],
+				        'legend' => [
+				            'show'              => false,
+				        ],
+				    ],
+				    'htmlOptions' => [
+				        'style' => 'width:100%;height:200px;'
+				    ],
+				    'plugins' => [
+				        Plugin::PIE,
+						Plugin::TIME
+				    ]
+				]);
+				?>
+				</div>
+				
 			</div>
 
 			<div class="row">
 				<div class="col-lg-12">
 					<?php
-						$data = [];
-						$cur = round(rand(0, 100));
+						$max_parking = 75;
+						$parking_data = [];
+						$cur_parking = round(rand($max_parking / 10, $max_parking / 2));
 						for($i=0; $i<20; $i++) {
-							$data[] = [$i, $cur];
-							$cur += round(rand(-2, 2));
+							$parking_data[] = [$i, $cur_parking];
+							$cur_parking += round(rand(-2, 3));
 						}
-					?>
-					<?= Chart::widget([
+					echo Chart::widget([
+						'id' => 'parking-graph',
 					    'data' => [
 					        [
 					            'label' => 'Parking Space', 
-					            'data'  => $data,
+					            'data'  => $parking_data,
 					            'lines'  => ['show' => true, 'steps' => true],
 					            'points' => ['show' => true],
 					        ],
@@ -218,77 +274,13 @@ $this->title = 'GIP - Live Wire';
 					        ],
 					    ],
 					    'htmlOptions' => [
-					        'style' => 'width:100%;height:300px;'
+					        'style' => 'width:100%;height:200px;'
 					    ],
-					    'plugins' => [
-					        Plugin::PIE
-					    ]
 					]);
 					?>
 				</div>
 			</div>
 			
-			
-			<div class="row">
-				<div class="col-lg-12">
-					<?= Chart::widget([
-					    'data' => [
-					        [
-					            'label' => 'bars', 
-					            'data'  => [
-					                [1,12],
-					                [2,16],
-					                [3,89],
-					                [4,44],
-					                [5,38],
-					            ],
-					            'bars' => ['show' => true],
-					        ],
-					    ],
-					    'options' => [
-					        'legend' => [
-					            'position'          => 'nw',
-					            'show'              => true,
-					            'margin'            => 10,
-					            'backgroundOpacity' => 0.5
-					        ],
-					    ],
-					    'htmlOptions' => [
-					        'style' => 'width:100%;height:300px;'
-					    ]
-					]);
-					?>
-				</div>
-			</div>
-			
-			
-			<div class="row">
-				<div class="col-lg-12">
-					<div id="pie-location2" style="width: 100%; height: 300px;">
-					<?=
-					Chart::widget([
-					    'data' => [
-					    	['label' => 'Serie1', 'data' => 10],
-					    	['label' => 'Serie2', 'data' => 40],
-					    	['label' => 'Serie3', 'data' => 20],
-					    	['label' => 'Serie4', 'data' => 60],
-					    	['label' => 'Serie5', 'data' => 10]
-					    ],
-					    'options' => [
-							'series' => [
-								'pie' => [
-									'show' => true
-								]
-							]
-					    ],
-					    'htmlOptions' => [
-					        'style' => 'width:100%;height:300px;'
-					    ],
-					]);
-					?>
-					</div>
-				</div>
-			</div>
 			
 		</div>
 		
@@ -297,6 +289,60 @@ $this->title = 'GIP - Live Wire';
 	
 	<div class="row">
 		<div class="col-lg-12">
+				<?php
+				$data = [];
+				$count = 4; // hours
+				$divs  = 12; // 5 mins.
+				$delta = 3600000 / $divs; // milli secs
+				$start = time();
+				//echo date('d-m-y h:i:s', $start);
+				for($i = 0; $i< (2*$count*$divs); $i++) {
+					$data[] = [$start + $i * $delta, round(rand(-2, 3))];
+				}
+				//echo print_r($data, true);
+				
+				echo Chart::widget([
+					'id' => 'graph-time',
+				    'data' => [
+				        [
+				            'label' => 'Movements', 
+				            'data'  => $data,
+				            'bars' => ['show' => true],
+				        ],
+				    ],
+				    'options' => [
+				        'legend' => [
+				            'position'          => 'nw',
+				            'show'              => true,
+				            'margin'            => 10,
+				            'backgroundOpacity' => 0.5
+				        ],
+						'xaxis' => [
+							'mode' => 'time',
+							'timezone' => 'Europe/Brussels',
+							'minTickSize' => [15, "minute"],
+							'timeformat' => "%d %H:%M",
+//			                'min' => strtotime("-4 hours"),
+//			                'max' => strtotime("+4 hours")
+						]
+				    ],
+				    'htmlOptions' => [
+				        'style' => 'width:100%;height:100px;'
+				    ]
+				]);
+				/*
+			 %h: hours
+			  %H: hours (left-padded with a zero)
+			  %M: minutes (left-padded with a zero)
+			  %S: seconds (left-padded with a zero)
+			  %d: day of month (1-31), use %0d for zero-padding
+			  %m: month (1-12), use %0m for zero-padding
+			  %y: year (2 digits)
+			  %Y: year (4 digits)
+			  %b: month name (customizable)
+			  %p: am/pm, additionally switches %h/%H to 12 hour instead of 24
+			  %P: AM/PM (uppercase version of %p)				*/
+				?>
 		</div>
 	</div>	
 		
@@ -341,22 +387,43 @@ jQuery(document).ready(function($){
 		}
 	});
 });
-parking_data = <?= json_encode($data) ?>;
+parking_data = <?= json_encode($parking_data) ?>;
 function update_parking() {
+	max_parking = <?= $max_parking ?>;
 	new_data = Array();
-	diff2 = Array();
-	len = parking_data.length - 1;
-	for(var i=1;i<=len;i++) {
+	for(var i=1;i<parking_data.length;i++) {
 		new_data.push([i-1, parking_data[i][1]]);
 	}
-	diff = Math.round(Math.random()*4.5) - 2;
-	diff2[diff + 2] = isNaN(diff2[diff + 2]) ? 1 : diff2[diff + 2]+1;
-	console.log(diff2);
-	new_data.push([len, parking_data[len][1] + diff]);
-	$.plot($('#w1'), [{"label":"Parking Space","data":new_data,"lines":{"show":true, 'steps':true},"points":{"show":true}}], {"legend":{"position":"nw","show":true,"margin":10,"backgroundOpacity":0.5}});
+	diff = Math.floor(Math.random()*5) - 2;
+	new_val = parking_data[parking_data.length - 1][1] + diff;
+	if(new_val > max_parking) new_val = max_parking;
+	new_data.push([parking_data.length - 1, new_val]);
+	
+	$('#aodb-parking').html(Math.round(100 * new_val / max_parking));
+	
+	$.plot($('#parking-graph'),
+		[{
+			"label":"Parking Space",
+			"data":new_data,
+			"lines": {
+				"show":true,
+				'steps':true
+			},
+			"points": {
+				"show":true
+			}
+		}], {
+			"legend": {
+				"position":"nw",
+				"show":true,
+				"margin":10,
+				"backgroundOpacity":0.5
+			}
+		}
+	);
 	parking_data = new_data;
 }
-setInterval(update_parking, 5000);
+setInterval(update_parking, 10000);
 <?php $this->endBlock(); ?>
 </script>
 <?php

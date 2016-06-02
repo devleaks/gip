@@ -129,16 +129,14 @@ $(function(){
 	$('a.publish').click(function() {
 		var vid = $(this).data('id');
 		var msg = null;
-		console.log(vid);
 		$.post(
 			'/gipadmin/developer/wire/get',
             {
 				id: vid
 			},
    			function (r) {
-				console.log(r);
+				//console.log(r);
 				ws.send(r);		
-				console.log('sent');
             }
 		);
 	});

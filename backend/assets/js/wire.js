@@ -348,7 +348,7 @@ $(function() {
 				id: vid
 			},
    			function () {
-				console.log('read '+vid);
+				console.log('marked as read '+vid);
             }
 		);
 		$(this).prop('disabled', true);
@@ -392,6 +392,7 @@ $(function() {
 		for (var property in payload) {
 			if (payload.hasOwnProperty(property)) {
 				$('#' + prefix + property).html(payload[property]);
+				console.log('#' + prefix + property);
 		    }		
 		}
 	}
@@ -407,7 +408,11 @@ $(function() {
 	
 	function flash_marker(msg) {
 		marker = msg.type.toLowerCase();
-		blink(".marker-"+marker, 0);
+		side = msg.body.toLowerCase();
+		if(side.length == 0)
+			side = 'right';
+		console.log(".marker-"+marker+'.marker-'+side);
+		blink(".marker-"+marker+'.marker-'+side, 0);
 	}
 	
 	// Init & start ws connection
@@ -419,7 +424,6 @@ $(function() {
 			msg = $.parseJSON(evt.data);
 			switch(msg.source.toLowerCase()) {
 				case 'aodb':
-					console.log(msg);
 					switch(msg.type.toLowerCase()) {
 						case 'qfu':
 							updateFields(msg);
