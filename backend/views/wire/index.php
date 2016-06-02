@@ -74,12 +74,6 @@ $this->title = 'GIP - Live Wire';
 
 			<div class="row">
 				<div class="col-lg-12">
-				<a href="#0" class="cd-btn">GIP Alerts</a>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-12">
 					<?php   echo '<div id="weather"></div>';
 							if(isset(Yii::$app->params['FORECAST_APIKEY'])) {
 								echo Weather::widget([
@@ -99,6 +93,16 @@ $this->title = 'GIP - Live Wire';
 				</div>
 			</div>
 			
+			
+			<div class="row">
+				<div class="col-lg-12 markers">
+					<span style="font-size: 3em;">23L </span>
+					<a class="marker marker-inner">I</a>
+					<a class="marker marker-middle">M</a>
+					<a class="marker marker-outer">O</a>
+				</div>
+			</div>
+
 			<!--
 			.card.style-accent
 			.card.style-accent-bright
@@ -120,52 +124,68 @@ $this->title = 'GIP - Live Wire';
 			
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="card card-bordered style-default-bright">
-						QFU<br/><span style="font-size: 6em;" id="indicator-qfu-value">23</span><br/><span style="font-size: 2em;" id="indicator-qfu-info">L/R</span>
+					<div class="card card-bordered style-default-bright gip-indicator">
+						<span class="gip-header" id="aodb-qfu-value">QFU</span><br/>
+						<span class="gip-body" id="aodb-qfu-value">23</span><br/>
+						<span class="gip-footer" id="aodb-qfu-note">L/R</span>
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<div class="card card-bordered style-primary">
-						QNH<br/><span style="font-size: 6em;">1013</span><br/><span style="font-size: 2em;">mBar</span>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="card card-bordered style-success">
-						AVG. DELAY<br/><span style="font-size: 6em;">12</span><br/><span style="font-size: 2em;">min</span>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="card card-bordered style-info">
-						PARKING<br/><span style="font-size: 6em;">32</span><br/><span style="font-size: 2em;">%</span>
+					<div class="card card-bordered style-primary gip-indicator">
+						<span class="gip-header">QNH</span><br/>
+						<span class="gip-body">1013</span><br/>
+						<span class="gip-footer">mBar</span>
 					</div>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="card card-bordered style-warning">
-						QFU<br/><span style="font-size: 6em;">23</span><br/><span style="font-size: 2em;">L/R</span>
+					<div class="card card-bordered style-success gip-indicator">
+						<span class="gip-header">Avg. Delay (LAST 4H)</span><br/>
+						<span class="gip-body">12</span><br/>
+						<span class="gip-footer">minutes</span>
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<div class="card card-bordered style-danger">
-						QNH<br/><span style="font-size: 6em;">1013</span><br/><span style="font-size: 2em;">mBar</span>
+					<div class="card card-bordered style-info gip-indicator">
+						<span class="gip-header">Forecast (NEXT 4H)</span><br/>
+						<span class="gip-body">4</span><i class="fa fa-arrow-down"></i><br/>
+						<span class="gip-footer">minutes</span>
 					</div>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="card card-bordered style-accent">
-						QFU<br/><span style="font-size: 6em;">23</span><br/><span style="font-size: 2em;">L/R</span>
+					<div class="card card-bordered style-warning gip-indicator">
+						<span class="gip-header">PARKING</span><br/>
+						<span class="gip-body">32</span><br/>
+						<span class="gip-footer">%</span>
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<div class="card card-bordered style-default">
-						QNH<br/><span style="font-size: 6em;">1013</span><br/><span style="font-size: 2em;">mBar</span>
+					<div class="card card-bordered style-danger  gip-indicator cd-btn">
+						<span class="gip-header">GIP</span><br/>
+						<span class="gip-body" id="gip-alerts">0</span><br/>
+						<span class="gip-footer">Alerts</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="card card-bordered style-accent gip-indicator">
+						<span class="gip-header">COLORS</span><br/>
+						<span class="gip-body">7</span><br/>
+						<span class="gip-footer">Base</span>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="card card-bordered style-default gip-indicator">
+						<span class="gip-header">COLORS</span><br/>
+						<span class="gip-body">7</span><br/>
+						<span class="gip-footer">VARIANTS</span>
 					</div>
 				</div>
 			</div>
@@ -284,7 +304,7 @@ $this->title = 'GIP - Live Wire';
 	
 	<div class="cd-panel from-right">
 		<header class="cd-panel-header">
-			<h1>GIP Alerts</h1>
+			<h1>GIP ALERTS</h1>
 			<a href="#0" class="cd-panel-close">Close</a>
 		</header>
 

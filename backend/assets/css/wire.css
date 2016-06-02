@@ -47,4 +47,55 @@ div.timeline-circ.circ-xl.style-info {
 	background-color: #00c0ef;
 }
 
+.gip-indicator .gip-header {
+	font-size: 1em;
+	text-transform: uppercase;
+}
 
+.gip-indicator .gip-body {
+	font-size: 6em;
+	text-transform: uppercase;
+}
+
+.gip-indicator .gip-footer {
+	font-size: 2em;
+	text-transform: uppercase;
+}
+
+.marker {
+    display:inline-block;
+    width:50px;
+    height:50px;
+    line-height:50px;
+    border: 3px solid #f5f5f5;
+    border-radius: 50%;
+    color:#f5f5f5;
+    text-align:center;
+    text-decoration:none;
+    background: #777;
+    box-shadow: 0 0 3px gray;
+    font-size:20px;
+    font-weight:bold;
+}
+.markers a {
+	margin: 10px;
+	margin-bottom: 20px;
+}
+.marker.marker-inner {
+    border: 3px solid white;
+	background-color: white;
+	color: black;
+}
+.marker.marker-middle {
+    border: 3px solid white;
+	background-color: yellow;
+	color: black;
+}
+.marker.marker-outer {
+    border: 3px solid white;
+	background-color: blue;
+	color: white;
+}
+.marker:hover {
+	text-decoration: none;
+}

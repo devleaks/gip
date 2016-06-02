@@ -293,7 +293,10 @@ $(function() {
 		.attr('data-item-tags', tags.join(','))
 		.attr('id', 'wire-message-'+message.id)
 		.prependTo("#"+defaults.id).hide().slideDown(defaults.speed);
-		console.log()
+		
+		// increase alert count indicator
+		$('#gip-alerts').html(parseInt($('#gip-alerts').html()) + 1);
+		
 		// Cleanup
 
 		// Rebuild task list, sort it, and set those that were active.
@@ -380,6 +383,33 @@ $(function() {
 		return false;
 	});
 	
+	/**
+		Fields have id='source-type-name'.
+	 */
+	function updateFields(msg) {
+		payload = $.parseJSON(msg.body);
+		prefix  = msg.source.toLowerCase() + '-' + msg.type.toLowerCase() + '-';
+		for (var property in payload) {
+			if (payload.hasOwnProperty(property)) {
+				$('#' + prefix + property).html(payload[property]);
+		    }		
+		}
+	}
+	
+	function blink(selector, count){
+	if(count > 5) return;
+	$(selector).fadeOut('slow', function(){
+	    $(this).fadeIn('slow', function(){
+	        blink(this, count + 1);
+	    });
+	});
+	}
+	
+	function flash_marker(msg) {
+		marker = msg.type.toLowerCase();
+		blink(".marker-"+marker, 0);
+	}
+	
 	// Init & start ws connection
     function wsStart() {
 		ws = new WebSocket(defaults.websocket);
@@ -392,14 +422,18 @@ $(function() {
 					console.log(msg);
 					switch(msg.type.toLowerCase()) {
 						case 'qfu':
-							payload = $.parseJSON(msg.body);
-							$('#indicator-qfu-value').html(payload.value);
-							$('#indicator-qfu-info').html(payload.note);
+							updateFields(msg);
 							msg.body = ''; // reset body to empty
 						default:
 							addWire(msg);
 							$('#'+defaults.id).scrollTop($('#'+defaults.id)[0].scrollHeight);
 							break;
+					}
+					break;
+				case 'marker':
+					flash_marker(msg);
+					if(msg.type.toLowerCase() == 'outer') {
+						addWire(msg);
 					}
 					break;
 				default:
