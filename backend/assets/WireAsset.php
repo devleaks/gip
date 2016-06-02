@@ -24,10 +24,12 @@ class WireAsset extends AssetBundle
 		'css/cd-panel.css',
 		'css/cd-timeline.css',
 		'css/materialadmin.css',
+		'snd',
     ];
     public $js = [
-		'js/wire.js',
 		'js/tagsort.min.js',
+		'js/sortElements.js',
+		'js/wire.js',
     ];
     public $depends = [
         'backend\assets\AppAsset',

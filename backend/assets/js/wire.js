@@ -30,113 +30,11 @@
 	}
 
  */
-jQuery.fn.sortElements = (function(){
+(function($) {
+	
+$.gipWire = function(options) {
 
-    var sort = [].sort;
-
-    return function(comparator, getSortable) {
-
-        getSortable = getSortable || function(){return this;};
-
-        var placements = this.map(function(){
-
-            var sortElement = getSortable.call(this),
-                parentNode = sortElement.parentNode,
-
-                // Since the element itself will change position, we have
-                // to have some way of storing its original position in
-                // the DOM. The easiest way is to have a 'flag' node:
-                nextSibling = parentNode.insertBefore(
-                    document.createTextNode(''),
-                    sortElement.nextSibling
-                );
-
-            return function() {
-
-                if (parentNode === this) {
-                    throw new Error(
-                        "You can't sort elements if any one is a descendant of another."
-                    );
-                }
-
-                // Insert before flag:
-                parentNode.insertBefore(this, nextSibling);
-                // Remove flag:
-                parentNode.removeChild(nextSibling);
-
-            };
-
-        });
-
-        return sort.call(this, comparator).each(function(i){
-            placements[i].call(getSortable.call(this));
-        });
-
-    };
-
-})();
-
-
-$(function() {
-	// Plugin Defaults
-	defaults = {
-		debug: false,
-		id: "the-wire",
-		// Websocket feeds
-		websocket: 'ws://imac.local:8051/',
-		initSeed: '',///gipadmin/wire/seed
-		markRead: '/gipadmin/wire/read',
-		// General presentation
-		color: '#bbb',
-		size: 'medium',
-		speed: 500,
-		// More
-		numWords: 50,
-		dateReminder: 3, // minutes
-		ellipsestext: '<i class="fa fa-ellipsis-h"></i>',
-		moretext: '<i class="fa fa-angle-double-right"></i>',
-		lesstext: '<i class="fa fa-angle-double-left"></i>',
-		ignoreTags: ['default','unknown'],
-		filterNewMessage: false,
-		priority_map: [
-			'default',
-			'info',
-			'success',
-			'primary',
-			'warning',
-			'danger'
-		],
-		// Debug
-		intro_messages: {
-			opening: {
-				subject: 'Opening connection...',
-				body: '... connected.',
-				priority: 1,
-				source: 'websocket',
-				type: 'warning',
-				icon: 'fa-info',
-				color: 'success'
-			},
-			closing: {
-				subject: 'Closing connection...',
-				body: 'Connection closed. Trying to reconnect...',
-				priority: 1,
-				source: 'websocket',
-				type: 'warning',
-				icon: 'fa-info',
-				color: '#ff0'
-			},
-			starting: {
-				subject: 'Connection',
-				body: 'Connecting to server...',
-				priority: 1,
-				source: 'websocket',
-				type: 'info',
-				icon: 'fa-info',
-				color: '#0f0'
-			}
-		}
-	};
+	var opts = $.extend( {}, $.gipWire.defaults, options );
 
 	// Timestamp of last addition. Used to make date markers.
 	var lastDateReminder = null;
@@ -145,14 +43,14 @@ $(function() {
 	function addWire(message) {
 		var tags = new Array();
 		var addTags = function(str) {
-			if(defaults.ignoreTags.indexOf(str) == -1)
+			if(opts.ignoreTags.indexOf(str) == -1)
 				tags.push(str);
 		}
 		
 		// Priority
 		var priority = message.priority == null ? 0 : parseInt(message.priority);
 		if(priority > 5) priority = 5;
-		var bs_color = defaults.priority_map[priority % 6];
+		var bs_color = opts.priority_map[priority % 6];
 		var priority_string = '';
 		for(i=0; i<priority; i++)
 			priority_string += '★';
@@ -165,9 +63,9 @@ $(function() {
 
 
 		// Color
-		if(message.color.substr(0, 1) != '#' && $.inArray(message.color, defaults.priority_map)) { // uses bootstrap color
+		if(message.color.substr(0, 1) != '#' && $.inArray(message.color, opts.priority_map)) { // uses bootstrap color
 			//console.log('uses bs color');
-			message.color = defaults.color;
+			message.color = opts.color;
 		}
 		
 		// Icon
@@ -190,23 +88,23 @@ $(function() {
 			}
 		}
 		// text shortening
-		if(defaults.numWords > 0) {
+		if(opts.numWords > 0) {
 			var content = text.split(" ");
-			if(content.length > defaults.numWords) {
-				text = content.slice(0,defaults.numWords).join(" ")
-						 + '&nbsp;<span class="wire-more-elipses">' + defaults.ellipsestext
+			if(content.length > opts.numWords) {
+				text = content.slice(0,opts.numWords).join(" ")
+						 + '&nbsp;<span class="wire-more-elipses">' + opts.ellipsestext
 						 + '</span>&nbsp;<span class="wire-more-content"><span>'
-						 + content.slice(defaults.numWords,content.length).join(" ")
+						 + content.slice(opts.numWords,content.length).join(" ")
 						 + '</span>&nbsp;&nbsp;<a href="" class="wire-more-link">'
-						 + defaults.moretext + '</a></span>';
+						 + opts.moretext + '</a></span>';
 			}
 		}
 		
 		// Do we need a new Date reminder in the margin?
-		if(lastDateReminder == null || ((Date() - lastDateReminder) > (defaults.dateReminder * 3600000)) ) {
+		if(lastDateReminder == null || ((Date() - lastDateReminder) > (opts.dateReminder * 3600000)) ) {
 			$('<li>').addClass('time-label')
 					.append($('<span>').addClass('bg-blue').html(moment().format("ddd D MMM H:mm")))
-					.prependTo("#"+defaults.id);
+					.prependTo("#"+opts.id);
 			lastDateReminder = new Date();
 		}
 
@@ -229,7 +127,7 @@ $(function() {
 						).append(' '+moment(new Date()).format('ddd D MMM YY H:mm'))
 					)
 					.append( $('<h3>').addClass('timeline-header').html(title) )
-					.append( $('<div>').addClass('timeline-body').addClass('wire-more').html(defaults.debug ? text + '<br/>' + JSON.stringify(message) : text) )
+					.append( $('<div>').addClass('timeline-body').addClass('wire-more').html(opts.debug ? text + '<br/>' + JSON.stringify(message) : text) )
 					.append( $('<div>').addClass('timeline-footer')
 						.append(tagPills)
 						.append(
@@ -240,7 +138,7 @@ $(function() {
 				.addClass('wire-message')
 				.attr('data-item-tags', tags.join(',').toLowerCase())
 				.attr('id', 'wire-message-'+message.id)
-				.prependTo("#"+defaults.id).hide().slideDown(defaults.speed);
+				.prependTo("#"+opts.id).hide().slideDown(opts.speed);
 		
 		<li class="timeline-inverted">
 			<div class="timeline-circ circ-xl style-primary"><span class="glyphicon glyphicon-leaf"></span></div>
@@ -292,7 +190,7 @@ $(function() {
 		.addClass('wire-message')
 		.attr('data-item-tags', tags.join(','))
 		.attr('id', 'wire-message-'+message.id)
-		.prependTo("#"+defaults.id).hide().slideDown(defaults.speed);
+		.prependTo("#"+opts.id).hide().slideDown(opts.speed);
 		
 		// increase alert count indicator
 		$('#gip-alerts').html(parseInt($('#gip-alerts').html()) + 1);
@@ -313,23 +211,23 @@ $(function() {
 		if(tagsortActive.length !== 0) {
 			tagsortActive.each(function() {
 				tag = $(this).html();
-				if(defaults.filterNewMessage && (tags.indexOf(tag) > -1)) { // current message has tag
+				if(opts.filterNewMessage && (tags.indexOf(tag) > -1)) { // current message has tag
 					hasTags++;
 				}
 				$('div.tagsort-tags-container span:contains("'+tag+'")').addClass('tagsort-active');
 			});
 		}
-		if(defaults.filterNewMessage && tagsortActive.length !== hasTags) {
+		if(opts.filterNewMessage && tagsortActive.length !== hasTags) {
 			$('li#wire-message-'+message.id).toggle(false);
 		}
 		
 		$(".wire-more-link").click(function(){
 			if($(this).hasClass("wire-less")) {
 				$(this).removeClass("wire-less");
-				$(this).html(defaults.moretext);
+				$(this).html(opts.moretext);
 			} else {
 				$(this).addClass("wire-less");
-				$(this).html(defaults.lesstext);
+				$(this).html(opts.lesstext);
 			}
 			$(this).parent().prev().toggle();
 			$(this).prev().toggle();
@@ -343,7 +241,7 @@ $(function() {
 	$('input.wire-checkbox').click(function() {
 		vid = $(this).data('message');
 		$.post(
-			defaults.markRead,
+			opts.markRead,
             {
 				id: vid
 			},
@@ -359,13 +257,13 @@ $(function() {
 	// Chops text
 	$('.wire-more').each(function() {
 		var content = $(this).html().split(" ");
-		if(content.length > defaults.numWords) {
-			var c = content.slice(0,defaults.numWords).join(" ");
-			var h = content.slice(defaults.numWords,content.length).join(" ");
-			var html = c + '&nbsp;<span class="wire-more-elipses">' + defaults.ellipsestext
+		if(content.length > opts.numWords) {
+			var c = content.slice(0,opts.numWords).join(" ");
+			var h = content.slice(opts.numWords,content.length).join(" ");
+			var html = c + '&nbsp;<span class="wire-more-elipses">' + opts.ellipsestext
 						 + '</span>&nbsp;<span class="wire-more-content"><span>'
 						 + h + '</span>&nbsp;&nbsp;<a href="" class="wire-more-link">'
-						 + defaults.moretext + '</a></span>';
+						 + opts.moretext + '</a></span>';
 			$(this).html(html);
 		}
 	});
@@ -373,10 +271,10 @@ $(function() {
 	$(".wire-more-link").click(function(){
 		if($(this).hasClass("wire-less")) {
 			$(this).removeClass("wire-less");
-			$(this).html(defaults.moretext);
+			$(this).html(opts.moretext);
 		} else {
 			$(this).addClass("wire-less");
-			$(this).html(defaults.lesstext);
+			$(this).html(opts.lesstext);
 		}
 		$(this).parent().prev().toggle();
 		$(this).prev().toggle();
@@ -397,11 +295,25 @@ $(function() {
 		}
 	}
 	
-	function blink(selector, count){
-	if(count > 5) return;
-	$(selector).fadeOut('slow', function(){
-	    $(this).fadeIn('slow', function(){
-	        blink(this, count + 1);
+	function blink(selector, marker, count) {
+	switch(marker) {
+		case 'inner':
+			speed = 'fast';
+			maxcount = 12;
+			break;
+		case 'middle':
+			speed = 'medium';
+			maxcount = 7;
+			break;
+		default:
+			speed = 'slow';
+			maxcount = 5;
+			break;
+	}
+	if(count > maxcount) return;
+	$(selector).fadeOut(speed, function(){
+	    $(this).fadeIn(speed, function(){
+	        blink(this, marker, count + 1);
 	    });
 	});
 	}
@@ -412,14 +324,20 @@ $(function() {
 		if(side.length == 0)
 			side = 'right';
 		console.log(".marker-"+marker+'.marker-'+side);
-		blink(".marker-"+marker+'.marker-'+side, 0);
+		baseUrl = $('#marker-sound').data('location');
+		soundUrl = baseUrl + '/snd/' + marker + '.m4a';
+		console.log("playing "+soundUrl);
+		var audio = new Audio();
+        audio.src = soundUrl;
+        audio.play();
+		blink(".marker-"+marker+'.marker-'+side, marker, 0);
 	}
 	
 	// Init & start ws connection
     function wsStart() {
-		ws = new WebSocket(defaults.websocket);
-        ws.onopen = function() { defaults.intro_messages.opening.created_at = new Date(); addWire(defaults.intro_messages.opening); };
-        ws.onclose = function() { if(defaults.debug) { defaults.intro_messages.closing.created_at = new Date(); addWire(defaults.intro_messages.closing); } };
+		ws = new WebSocket(opts.websocket);
+        ws.onopen = function() { opts.intro_messages.opening.created_at = new Date(); addWire(opts.intro_messages.opening); };
+        ws.onclose = function() { if(opts.debug) { opts.intro_messages.closing.created_at = new Date(); addWire(opts.intro_messages.closing); } };
         ws.onmessage = function(evt) {
 			msg = $.parseJSON(evt.data);
 			switch(msg.source.toLowerCase()) {
@@ -430,7 +348,7 @@ $(function() {
 							msg.body = ''; // reset body to empty
 						default:
 							addWire(msg);
-							$('#'+defaults.id).scrollTop($('#'+defaults.id)[0].scrollHeight);
+							$('#'+opts.id).scrollTop($('#'+opts.id)[0].scrollHeight);
 							break;
 					}
 					break;
@@ -442,7 +360,7 @@ $(function() {
 					break;
 				default:
 					addWire(msg);
-					$('#'+defaults.id).scrollTop($('#'+defaults.id)[0].scrollHeight);
+					$('#'+opts.id).scrollTop($('#'+opts.id)[0].scrollHeight);
 					break;
 			}
 		};
@@ -450,9 +368,9 @@ $(function() {
 
 	// Fetches last messages (if url provided). Displays them all.
 	function initSeed() {
-		if(defaults.initSeed.length > 0) {
+		if(opts.initSeed.length > 0) {
 			$.post(
-				defaults.initSeed,
+				opts.initSeed,
 	            {},
 	   			function (r) {
 					msgs = $.parseJSON(r);
@@ -466,11 +384,73 @@ $(function() {
 	}
 
 	// Main
-	if(defaults.debug) {
-		defaults.intro_messages.starting.created_at = new Date(); 
-		addWire(defaults.intro_messages.starting);
+	if(opts.debug) {
+		opts.intro_messages.starting.created_at = new Date(); 
+		addWire(opts.intro_messages.starting);
 	}
     wsStart();
 	initSeed();
+	
+} // end $.fn.gipWire()
+	
+// Plugin Defaults
+$.gipWire.defaults = {
+	debug: false,
+	id: "the-wire",
+	// Websocket feeds
+	websocket: 'ws://localhost:8051/',
+	initSeed: '',///gipadmin/wire/seed
+	markRead: '/gipadmin/wire/read',
+	// General presentation
+	color: '#bbb',
+	size: 'medium',
+	speed: 500,
+	// More
+	numWords: 50,
+	dateReminder: 3, // minutes
+	ellipsestext: '<i class="fa fa-ellipsis-h"></i>',
+	moretext: '<i class="fa fa-angle-double-right"></i>',
+	lesstext: '<i class="fa fa-angle-double-left"></i>',
+	ignoreTags: ['default','unknown'],
+	filterNewMessage: false,
+	priority_map: [
+		'default',
+		'info',
+		'success',
+		'primary',
+		'warning',
+		'danger'
+	],
+	// Debug
+	intro_messages: {
+		opening: {
+			subject: 'Opening connection...',
+			body: '... connected.',
+			priority: 1,
+			source: 'websocket',
+			type: 'warning',
+			icon: 'fa-info',
+			color: 'success'
+		},
+		closing: {
+			subject: 'Closing connection...',
+			body: 'Connection closed. Trying to reconnect...',
+			priority: 1,
+			source: 'websocket',
+			type: 'warning',
+			icon: 'fa-info',
+			color: '#ff0'
+		},
+		starting: {
+			subject: 'Connection',
+			body: 'Connecting to server...',
+			priority: 1,
+			source: 'websocket',
+			type: 'info',
+			icon: 'fa-info',
+			color: '#0f0'
+		}
+	}
+};
 
-});
+})(jQuery);

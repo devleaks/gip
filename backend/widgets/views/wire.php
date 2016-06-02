@@ -59,3 +59,11 @@ $this->title = Yii::t('gip', 'The Wire');
 	</div>
 	
 </div>
+
+<script type="text/javascript">
+<?php $this->beginBlock('JS_WIRE_TEST') ?>	
+$.gipWire({websocket: 'ws://imac.local:8051/'});
+<?php $this->endBlock(); ?>
+</script>
+<?php
+$this->registerJs($this->blocks['JS_WIRE_TEST'], yii\web\View::POS_READY);

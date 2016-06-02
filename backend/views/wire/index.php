@@ -2,6 +2,7 @@
 
 use common\models\Wire as WireModel;
 use backend\widgets\Wire;
+use backend\assets\WireAsset;
 
 use devleaks\weather\Weather;
 
@@ -15,6 +16,10 @@ use dosamigos\leaflet\LeafLet;
 use dosamigos\leaflet\widgets\Map;
 
 use yii\web\JsExpression;
+use yii\bootstrap\Alert;
+
+$asset = backend\assets\WireAsset::register($this);
+
 
 $liege = [
 	'lat' => 50.63639,
@@ -33,6 +38,7 @@ $this->title = 'GIP - Live Wire';
 
 			<div class="row">
 				<div class="col-lg-12">
+					<div class="card card-bordered style-default-bright">
 					<?php 
 
 					// first lets setup the center of our map
@@ -66,7 +72,7 @@ $this->title = 'GIP - Live Wire';
 					// we could also do
 					// echo $leaflet->widget();
 					?>
-
+					</div>
 				</div>
 			</div>
 
@@ -76,8 +82,8 @@ $this->title = 'GIP - Live Wire';
 
 			<div class="row">
 				<div class="col-lg-12">
-					<?php   echo '<div id="weather"></div>';
-							if(isset(Yii::$app->params['FORECAST_APIKEY'])) {
+					<?php   if(isset(Yii::$app->params['FORECAST_APIKEY'])) {
+								echo '<div id="weather" class="card card-bordered style-default-bright "></div>';
 								echo Weather::widget([
 									'id' => 'weather',
 									'pluginOptions' => [
@@ -89,9 +95,15 @@ $this->title = 'GIP - Live Wire';
 									]
 								]);
 							} else {
-								Yii::$app->session->setFlash('error', 'Weather: No API key.');
+								echo Alert::widget([
+								    'options' => [
+								        'class' => 'alert-info',
+								    ],
+								    'body' => Yii::t('gip', 'Weather Widget: No API key to fetch data.'),
+								]);
 							}
 					?>
+
 				</div>
 			</div>
 			
@@ -119,7 +131,7 @@ $this->title = 'GIP - Live Wire';
 						
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="card card-bordered style-default-bright gip-indicator markers">
+					<div class="card card-bordered style-default-bright gip-indicator markers" id="marker-sound" data-location="<?= $asset->baseUrl ?>">
 						<span class="gip-header">INBOUND</span><br/>
 						<span class="gip-body">
 						<a class="marker marker-inner marker-left">I</a>
@@ -201,6 +213,7 @@ $this->title = 'GIP - Live Wire';
 				</div>
 				
 				<div class="col-lg-6">				
+					<div class="card card-bordered style-default-bright">
 				<?php
 				$moves = [
 					'in' => ['L' => 12, 'R' => 4],
@@ -241,12 +254,14 @@ $this->title = 'GIP - Live Wire';
 				    ]
 				]);
 				?>
+					</div>
 				</div>
 				
 			</div>
 
 			<div class="row">
 				<div class="col-lg-12">
+					<div class="card card-bordered style-default-bright">
 					<?php
 						$max_parking = 75;
 						$parking_data = [];
@@ -278,6 +293,7 @@ $this->title = 'GIP - Live Wire';
 					    ],
 					]);
 					?>
+					</div>
 				</div>
 			</div>
 			
@@ -331,7 +347,7 @@ $this->title = 'GIP - Live Wire';
 				    ]
 				]);
 				/*
-			 %h: hours
+			  %h: hours
 			  %H: hours (left-padded with a zero)
 			  %M: minutes (left-padded with a zero)
 			  %S: seconds (left-padded with a zero)
@@ -373,6 +389,8 @@ $this->title = 'GIP - Live Wire';
 </div>
 <script type="text/javascript">
 <?php $this->beginBlock('JS_SIDEBAR') ?>
+parking_data = <?= json_encode($parking_data) ?>;
+
 jQuery(document).ready(function($){
 	//open the lateral panel
 	$('.cd-btn').on('click', function(event){
@@ -387,7 +405,7 @@ jQuery(document).ready(function($){
 		}
 	});
 });
-parking_data = <?= json_encode($parking_data) ?>;
+
 function update_parking() {
 	max_parking = <?= $max_parking ?>;
 	new_data = Array();
@@ -399,6 +417,7 @@ function update_parking() {
 	if(new_val > max_parking) new_val = max_parking;
 	new_data.push([parking_data.length - 1, new_val]);
 	
+	jQuery(document).ready(function($){
 	$('#aodb-parking').html(Math.round(100 * new_val / max_parking));
 	
 	$.plot($('#parking-graph'),
@@ -421,6 +440,8 @@ function update_parking() {
 			}
 		}
 	);
+	});
+
 	parking_data = new_data;
 }
 setInterval(update_parking, 10000);
