@@ -13,19 +13,22 @@ use yii\behaviors\BlameableBehavior;
  * @property string $subject
  * @property string $body
  * @property string $link
+ * @property string $payload
  * @property integer $source_id
  * @property integer $type_id
+ * @property integer $channel
  * @property integer $priority
- * @property string $expired_at
  * @property string $icon
  * @property string $color
+ * @property string $tags
  * @property string $note
  * @property string $status
+ * @property string $ack_at
+ * @property string $expired_at
  * @property string $created_at
  * @property integer $created_by
  * @property string $updated_at
  * @property integer $updated_by
- * @property string $tags
  *
  * @property \common\models\Type $source
  * @property \common\models\Type $type
@@ -41,9 +44,9 @@ class Wire extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['subject'], 'required'],
-            [['body'], 'string'],
-            [['source_id', 'type_id', 'priority', 'created_by', 'updated_by'], 'integer'],
+            [['subject', 'source_id', 'type_id'], 'required'],
+            [['body', 'payload'], 'string'],
+            [['source_id', 'type_id', 'channel', 'priority', 'created_by', 'updated_by'], 'integer'],
             [['ack_at', 'expired_at', 'created_at', 'updated_at'], 'safe'],
             [['subject', 'note'], 'string', 'max' => 160],
             [['link', 'tags'], 'string', 'max' => 400],
@@ -69,16 +72,18 @@ class Wire extends \yii\db\ActiveRecord
             'subject' => Yii::t('gip', 'Subject'),
             'body' => Yii::t('gip', 'Body'),
             'link' => Yii::t('gip', 'Link'),
+            'payload' => Yii::t('gip', 'Payload'),
             'source_id' => Yii::t('gip', 'Source ID'),
             'type_id' => Yii::t('gip', 'Type ID'),
+            'channel' => Yii::t('gip', 'Channel'),
             'priority' => Yii::t('gip', 'Priority'),
-            'expired_at' => Yii::t('gip', 'Expired At'),
-            'ack_at' => Yii::t('gip', 'Acknowledged At'),
             'icon' => Yii::t('gip', 'Icon'),
             'color' => Yii::t('gip', 'Color'),
+            'tags' => Yii::t('gip', 'Tags'),
             'note' => Yii::t('gip', 'Note'),
             'status' => Yii::t('gip', 'Status'),
-            'tags' => Yii::t('gip', 'Tags'),
+            'ack_at' => Yii::t('gip', 'Ack At'),
+            'expired_at' => Yii::t('gip', 'Expired At'),
         ];
     }
 

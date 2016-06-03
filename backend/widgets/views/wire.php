@@ -68,7 +68,9 @@ $this->title = Yii::t('gip', 'The Wire');
 
 <script type="text/javascript">
 <?php $this->beginBlock('JS_GIP_WIRE') ?>	
-$.gipWire({websocket: "<?= Yii::$app->params['websocket_server'] ?>"});
+$.wireWidget.init({websocket: "<?= Yii::$app->params['websocket_server'] ?>"});
+
+//$.gipWire({websocket: "<?= Yii::$app->params['websocket_server'] ?>"});
 <?php $this->endBlock(); ?>
 </script>
 <?php

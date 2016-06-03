@@ -22,8 +22,10 @@ class DashboardAsset extends AssetBundle
 		'css/cd-panel.css',
 		'css/cd-timeline.css',
 		'css/materialadmin.css',
+//		'css/waves.css'
     ];
     public $js = [
+//		'js/waves.js'
     ];
     public $depends = [
         'backend\assets\WireAsset',

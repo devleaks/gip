@@ -22,10 +22,11 @@ use yii\bootstrap\Alert;
 $asset = WireAsset::register($this);
 DashboardAsset::register($this);
 
-
+// /@50.6231023,4.2940581
+// EBLG: 50.63639, 5.44278
 $liege = [
-	'lat' => 50.63639,
-	'lon' => 5.44278
+	'lat' => 50.6231023,
+	'lon' => 4.2940581
 ];
 
 $this->title = 'GIP - Live Wire';
@@ -197,7 +198,7 @@ $this->title = 'GIP - Live Wire';
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<div class="card card-bordered style-danger  gip-indicator cd-btn">
+					<div class="card card-bordered style-danger gip-indicator cd-btn">
 						<span class="gip-header">GIP</span><br/>
 						<span class="gip-body" id="gip-alerts">0</span><br/>
 						<span class="gip-footer">Alerts</span>
@@ -265,9 +266,9 @@ $this->title = 'GIP - Live Wire';
 				<div class="col-lg-12">
 					<div class="card card-bordered style-default-bright">
 					<?php
-						$max_parking = 75;
+						$parking_max = 75;
 						$parking_data = [];
-						$cur_parking = round(rand($max_parking / 10, $max_parking / 2));
+						$cur_parking = round(rand($parking_max / 10, $parking_max / 2));
 						for($i=0; $i<20; $i++) {
 							$parking_data[] = [$i, $cur_parking];
 							$cur_parking += round(rand(-2, 3));
@@ -307,18 +308,16 @@ $this->title = 'GIP - Live Wire';
 	
 	<div class="row">
 		<div class="col-lg-12">
+			<div class="card card-bordered style-default-bright">
 				<?php
 				$data = [];
 				$count = 4; // hours
-				$divs  = 12; // 5 mins.
+				$divs  = 12; // 5 mins, divs per hour.
 				$delta = 3600000 / $divs; // milli secs
-				$start = time();
-				//echo date('d-m-y h:i:s', $start);
+				$start = time() * 1000 - ($count * 3600000);
 				for($i = 0; $i< (2*$count*$divs); $i++) {
 					$data[] = [$start + $i * $delta, round(rand(-2, 3))];
 				}
-				//echo print_r($data, true);
-				
 				echo Chart::widget([
 					'id' => 'graph-time',
 				    'data' => [
@@ -337,30 +336,17 @@ $this->title = 'GIP - Live Wire';
 				        ],
 						'xaxis' => [
 							'mode' => 'time',
-							'timezone' => 'Europe/Brussels',
+							'timezone' => 'browser',
 							'minTickSize' => [15, "minute"],
-							'timeformat' => "%d %H:%M",
-//			                'min' => strtotime("-4 hours"),
-//			                'max' => strtotime("+4 hours")
+							'timeformat' => "%H:%M",/*https://github.com/flot/flot/blob/master/API.md*/
 						]
 				    ],
 				    'htmlOptions' => [
 				        'style' => 'width:100%;height:100px;'
 				    ]
 				]);
-				/*
-			  %h: hours
-			  %H: hours (left-padded with a zero)
-			  %M: minutes (left-padded with a zero)
-			  %S: seconds (left-padded with a zero)
-			  %d: day of month (1-31), use %0d for zero-padding
-			  %m: month (1-12), use %0m for zero-padding
-			  %y: year (2 digits)
-			  %Y: year (4 digits)
-			  %b: month name (customizable)
-			  %p: am/pm, additionally switches %h/%H to 12 hour instead of 24
-			  %P: AM/PM (uppercase version of %p)				*/
 				?>
+			</div>
 		</div>
 	</div>	
 		
@@ -392,6 +378,7 @@ $this->title = 'GIP - Live Wire';
 <script type="text/javascript">
 <?php $this->beginBlock('JS_SIDEBAR') ?>
 parking_data = <?= json_encode($parking_data) ?>;
+parking_max = <?= $parking_max ?>;
 
 jQuery(document).ready(function($){
 	//open the lateral panel
@@ -409,39 +396,39 @@ jQuery(document).ready(function($){
 });
 
 function update_parking() {
-	max_parking = <?= $max_parking ?>;
 	new_data = Array();
 	for(var i=1;i<parking_data.length;i++) {
 		new_data.push([i-1, parking_data[i][1]]);
 	}
 	diff = Math.floor(Math.random()*5) - 2;
 	new_val = parking_data[parking_data.length - 1][1] + diff;
-	if(new_val > max_parking) new_val = max_parking;
+	if(new_val > parking_max) new_val = parking_max;
 	new_data.push([parking_data.length - 1, new_val]);
 	
 	jQuery(document).ready(function($){
-	$('#aodb-parking').html(Math.round(100 * new_val / max_parking));
+		$.plot($('#parking-graph'),
+			[{
+				"label":"Parking Space",
+				"data":new_data,
+				"lines": {
+					"show":true,
+					'steps':true
+				},
+				"points": {
+					"show":true
+				}
+			}], {
+				"legend": {
+					"position":"nw",
+					"show":true,
+					"margin":10,
+					"backgroundOpacity":0.5
+				}
+			}
+		);
+
+		$('#aodb-parking').html(Math.round(100 * new_val / parking_max));
 	
-	$.plot($('#parking-graph'),
-		[{
-			"label":"Parking Space",
-			"data":new_data,
-			"lines": {
-				"show":true,
-				'steps':true
-			},
-			"points": {
-				"show":true
-			}
-		}], {
-			"legend": {
-				"position":"nw",
-				"show":true,
-				"margin":10,
-				"backgroundOpacity":0.5
-			}
-		}
-	);
 	});
 
 	parking_data = new_data;
