@@ -603,16 +603,16 @@
         },
         {
             "name": "bower-asset/fullcalendar",
-            "version": "v2.7.2",
+            "version": "v2.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fullcalendar/fullcalendar.git",
-                "reference": "0725d49df0243bd7c97519a42f9a5002bd4c3fc9"
+                "reference": "71c63881fc0af4750e1b34988d879a88d8e32ce9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fullcalendar/fullcalendar/zipball/0725d49df0243bd7c97519a42f9a5002bd4c3fc9",
-                "reference": "0725d49df0243bd7c97519a42f9a5002bd4c3fc9",
+                "url": "https://api.github.com/repos/fullcalendar/fullcalendar/zipball/71c63881fc0af4750e1b34988d879a88d8e32ce9",
+                "reference": "71c63881fc0af4750e1b34988d879a88d8e32ce9",
                 "shasum": ""
             },
             "require": {
@@ -1638,16 +1638,16 @@
         },
         {
             "name": "composer/semver",
-            "version": "1.4.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/semver.git",
-                "reference": "84c47f3d8901440403217afc120683c7385aecb8"
+                "reference": "03c9de5aa25e7672c4ad251eeaba0c47a06c8b98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/semver/zipball/84c47f3d8901440403217afc120683c7385aecb8",
-                "reference": "84c47f3d8901440403217afc120683c7385aecb8",
+                "url": "https://api.github.com/repos/composer/semver/zipball/03c9de5aa25e7672c4ad251eeaba0c47a06c8b98",
+                "reference": "03c9de5aa25e7672c4ad251eeaba0c47a06c8b98",
                 "shasum": ""
             },
             "require": {
@@ -1696,7 +1696,7 @@
                 "validation",
                 "versioning"
             ],
-            "time": "2016-03-30 13:16:03"
+            "time": "2016-06-02 09:04:51"
         },
         {
             "name": "composer/spdx-licenses",
@@ -5904,16 +5904,16 @@
         },
         {
             "name": "schmunk42/yii2-giiant",
-            "version": "0.8.1",
+            "version": "0.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmunk42/yii2-giiant.git",
-                "reference": "26bd147e705068431e6a6db9a476e07e22dd673a"
+                "reference": "83b1d37664f7d5d4427cd799cb374ff958217fea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmunk42/yii2-giiant/zipball/26bd147e705068431e6a6db9a476e07e22dd673a",
-                "reference": "26bd147e705068431e6a6db9a476e07e22dd673a",
+                "url": "https://api.github.com/repos/schmunk42/yii2-giiant/zipball/83b1d37664f7d5d4427cd799cb374ff958217fea",
+                "reference": "83b1d37664f7d5d4427cd799cb374ff958217fea",
                 "shasum": ""
             },
             "require": {
@@ -5956,7 +5956,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2016-05-19 17:33:20"
+            "time": "2016-06-02 08:13:46"
         },
         {
             "name": "scrivo/highlight.php",
@@ -6704,12 +6704,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thomaspark/bootswatch.git",
-                "reference": "7820b744da10884c2613de7a905ab2d93028661d"
+                "reference": "4db5bf22ea130613ed0080981814db45fa27997c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thomaspark/bootswatch/zipball/7820b744da10884c2613de7a905ab2d93028661d",
-                "reference": "7820b744da10884c2613de7a905ab2d93028661d",
+                "url": "https://api.github.com/repos/thomaspark/bootswatch/zipball/4db5bf22ea130613ed0080981814db45fa27997c",
+                "reference": "4db5bf22ea130613ed0080981814db45fa27997c",
                 "shasum": ""
             },
             "suggest": {

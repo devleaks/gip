@@ -13,24 +13,19 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class WireAsset extends AssetBundle
+class DashboardAsset extends AssetBundle
 {
     public $sourcePath = '@backend/assets';
 //	public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-		'css/wire.css',
-		'css/tagsort.css',
-		'snd',
+		'css/cd-panel.css',
+		'css/cd-timeline.css',
+		'css/materialadmin.css',
     ];
     public $js = [
-		'js/tagsort.min.js',
-		'js/sortElements.js',
-		'js/wire.js',
     ];
     public $depends = [
-        'backend\assets\AppAsset',
-    	'frontend\assets\MetarAsset',
-        'yii\bootstrap\BootstrapAsset',
+        'backend\assets\WireAsset',
     ];
 }

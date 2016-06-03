@@ -1,11 +1,17 @@
 <?php
 
+use backend\assets\WireAsset;
+
 use yii\helpers\Html;
 
 use devleaks\sieve\Sieve;
 use kartik\icons\Icon;
+use kartik\daterange\MomentAsset;
 
 Icon::map($this);
+WireAsset::register($this);
+MomentAsset::register($this);
+
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
@@ -61,9 +67,9 @@ $this->title = Yii::t('gip', 'The Wire');
 </div>
 
 <script type="text/javascript">
-<?php $this->beginBlock('JS_WIRE_TEST') ?>	
-$.gipWire({websocket: 'ws://imac.local:8051/'});
+<?php $this->beginBlock('JS_GIP_WIRE') ?>	
+$.gipWire({websocket: "<?= Yii::$app->params['websocket_server'] ?>"});
 <?php $this->endBlock(); ?>
 </script>
 <?php
-$this->registerJs($this->blocks['JS_WIRE_TEST'], yii\web\View::POS_READY);
+$this->registerJs($this->blocks['JS_GIP_WIRE'], yii\web\View::POS_READY);

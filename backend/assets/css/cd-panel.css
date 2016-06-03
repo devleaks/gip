@@ -167,7 +167,7 @@ html, body {
 .cd-panel-header {
   position: fixed;
   width: 90%;
-  height: 60px;
+  height: 70px;
   line-height: 50px;
   background: rgba(255, 255, 255, 0.96);
   z-index: 2;
@@ -177,8 +177,8 @@ html, body {
   transition: top 0.3s 0s;
 }
 .cd-panel-header h1 {
-  font-weight: bold;
-  color: #f00;
+//  font-weight: bold;
+  color: #db2004;
   padding-left: 5%;
 }
 .from-right .cd-panel-header, .from-left .cd-panel-header {

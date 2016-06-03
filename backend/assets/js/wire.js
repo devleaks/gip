@@ -49,17 +49,19 @@ $.gipWire = function(options) {
 		
 		// Priority
 		var priority = message.priority == null ? 0 : parseInt(message.priority);
-		if(priority > 5) priority = 5;
-		var bs_color = opts.priority_map[priority % 6];
-		var priority_string = '';
-		for(i=0; i<priority; i++)
-			priority_string += '★';
-		for(i=priority+1; i<6; i++)
-			priority_string += '☆';
-		//priority_string += '&nbsp;';
+		
+		if(priority < 0)	// convention: we do not display wire message with negative priority on the wire.
+			return; 		// they are handled by other giplet handlers, but they are not displayed on the wire.
+		
+		if(priority > 5)
+			priority = 5;
+
+		var priority_string = '★'.repeat(priority)+'☆'.repeat(5-priority);
+
 		addTags(priority_string);
 		addTags(message.source.toLowerCase());
 		addTags(message.type.toLowerCase());
+		var bs_color = opts.priority_map[priority % 6];
 
 
 		// Color
@@ -74,7 +76,7 @@ $.gipWire = function(options) {
 		// Link
 		var title = message.subject;
 		if(message.link) {
-			title = $('a').attr('href', message.link);
+			title = $('<a>').attr('href', message.link).html('<i class="fa fa-link"></i>&nbsp;' + message.subject);
 		}
 
 		// Body
@@ -101,7 +103,7 @@ $.gipWire = function(options) {
 		}
 		
 		// Do we need a new Date reminder in the margin?
-		if(lastDateReminder == null || ((Date() - lastDateReminder) > (opts.dateReminder * 3600000)) ) {
+		if(lastDateReminder == null || ((Date() - lastDateReminder) > (opts.dateReminder * 60000)) ) {
 			$('<li>').addClass('time-label')
 					.append($('<span>').addClass('bg-blue').html(moment().format("ddd D MMM H:mm")))
 					.prependTo("#"+opts.id);
@@ -114,7 +116,7 @@ $.gipWire = function(options) {
 			tagPills.append($('<span>').addClass('label').addClass('label-default').html(tags[idx])).append('&nbsp;');
 		}
 		
-		/*
+		/* madminLTE timeline structure
 		$('<li>')
 				.append(
 					$('<i>').addClass('fa').addClass(message.icon).css('background-color', message.color).html(' ')
@@ -167,21 +169,21 @@ $.gipWire = function(options) {
 					.append( $('<div>').addClass('card-body').addClass('small-padding')
 						.append(
 							$('<span>').addClass('message-header')
-								.append( $('<span>').addClass('title').html(title + '<br/>') )
 								.append( $('<span>').addClass('time').addClass('opacity-50')
 									.append(
 										$('<i>').addClass('fa').addClass('fa-clock-o')
 									).append(moment(new Date()).format('ddd D MMM YY H:mm'))
 								)
+								.append( $('<span>').addClass('title').html(title) )
 						)
 						.append(
-							$('<span>').addClass('message-body').addClass('wire-more').addClass('text-medium').html(text + '<br/>')
+							$('<span>').addClass('message-body').addClass('wire-more').addClass('text-medium').html('<br/>' + text + '<br/>')
 						)
 						.append(
 							$('<span>').addClass('message-footer')
 							.append(tagPills)
 							.append(
-								$('<span>').addClass('label').addClass('label-'+bs_color).html('Published on '+moment(message.created_at).format('ddd D MMM YY H:mm'))
+								$('<span>').addClass('label').addClass('label-info').html('Published on '+moment(message.created_at).format('ddd D MMM YY H:mm'))
 							)
 						)
 					)
@@ -251,7 +253,6 @@ $.gipWire = function(options) {
 		);
 		$(this).prop('disabled', true);
 	});
-	
 
 	// More... (only works with plain text)
 	// Chops text
@@ -282,54 +283,42 @@ $.gipWire = function(options) {
 	});
 	
 	/**
-		Fields have id='source-type-name'.
-	 */
+	 *	Main
+	 */ 
+	//Fields have id='source-type-name'.
 	function updateFields(msg) {
 		payload = $.parseJSON(msg.body);
 		prefix  = msg.source.toLowerCase() + '-' + msg.type.toLowerCase() + '-';
 		for (var property in payload) {
 			if (payload.hasOwnProperty(property)) {
 				$('#' + prefix + property).html(payload[property]);
-				console.log('#' + prefix + property);
 		    }		
 		}
 	}
 	
 	function blink(selector, marker, count) {
-	switch(marker) {
-		case 'inner':
-			speed = 'fast';
-			maxcount = 12;
-			break;
-		case 'middle':
-			speed = 'medium';
-			maxcount = 7;
-			break;
-		default:
-			speed = 'slow';
-			maxcount = 5;
-			break;
+		if(count > opts.marker_beacons[marker]['count']) return;
+		$(selector).fadeOut(opts.marker_beacons[marker]['speed'], function(){
+		    $(this).fadeIn(opts.marker_beacons[marker]['speed'], function(){
+		        blink(this, marker, count + 1);
+		    });
+		});
 	}
-	if(count > maxcount) return;
-	$(selector).fadeOut(speed, function(){
-	    $(this).fadeIn(speed, function(){
-	        blink(this, marker, count + 1);
-	    });
-	});
+	
+	function play_sound(marker) {
+		baseUrl = $('#marker-sound').data('location');
+		soundUrl = baseUrl + '/snd/' + marker + '.m4a';
+		var audio = new Audio();
+        audio.src = soundUrl;
+        audio.play();
 	}
 	
 	function flash_marker(msg) {
 		marker = msg.type.toLowerCase();
 		side = msg.body.toLowerCase();
-		if(side.length == 0)
+		if(side.length == 0) // defaults to right
 			side = 'right';
-		console.log(".marker-"+marker+'.marker-'+side);
-		baseUrl = $('#marker-sound').data('location');
-		soundUrl = baseUrl + '/snd/' + marker + '.m4a';
-		console.log("playing "+soundUrl);
-		var audio = new Audio();
-        audio.src = soundUrl;
-        audio.play();
+		play_sound(marker);
 		blink(".marker-"+marker+'.marker-'+side, marker, 0);
 	}
 	
@@ -383,7 +372,10 @@ $.gipWire = function(options) {
 		}
 	}
 
-	// Main
+
+	/**
+	 *	Main
+	 */ 
 	if(opts.debug) {
 		opts.intro_messages.starting.created_at = new Date(); 
 		addWire(opts.intro_messages.starting);
@@ -401,6 +393,7 @@ $.gipWire.defaults = {
 	websocket: 'ws://localhost:8051/',
 	initSeed: '',///gipadmin/wire/seed
 	markRead: '/gipadmin/wire/read',
+	moreOlder: '',///gipadmin/wire/older
 	// General presentation
 	color: '#bbb',
 	size: 'medium',
@@ -450,7 +443,22 @@ $.gipWire.defaults = {
 			icon: 'fa-info',
 			color: '#0f0'
 		}
+	},
+	marker_beacons: {
+		inner: {
+			count: 12,
+			speed: 'fast'
+		},
+		middle: {
+			count: 7,
+			speed: 'medium'
+		},
+		outer: {
+			count: 5,
+			speed: 'slow'
+		}
 	}
 };
+
 
 })(jQuery);

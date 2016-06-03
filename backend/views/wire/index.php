@@ -3,6 +3,7 @@
 use common\models\Wire as WireModel;
 use backend\widgets\Wire;
 use backend\assets\WireAsset;
+use backend\assets\DashboardAsset;
 
 use devleaks\weather\Weather;
 
@@ -18,7 +19,8 @@ use dosamigos\leaflet\widgets\Map;
 use yii\web\JsExpression;
 use yii\bootstrap\Alert;
 
-$asset = backend\assets\WireAsset::register($this);
+$asset = WireAsset::register($this);
+DashboardAsset::register($this);
 
 
 $liege = [
@@ -67,7 +69,7 @@ $this->title = 'GIP - Live Wire';
 					// finally render the widget
 					echo Map::widget([
 						'leafLet' => $leaflet,
-						'height' => '900px',
+						'height' => '600px',
 					]);
 					// we could also do
 					// echo $leaflet->widget();
@@ -204,15 +206,15 @@ $this->title = 'GIP - Live Wire';
 			</div>
 
 			<div class="row">
-				<div class="col-lg-6">
+				<!--div class="col-lg-6">
 					<div class="card card-bordered style-default gip-indicator">
 						<span class="gip-header">COLORS</span><br/>
 						<span class="gip-body">7</span><br/>
 						<span class="gip-footer">+ 9 VARIANTS</span>
 					</div>
-				</div>
+				</div -->
 				
-				<div class="col-lg-6">				
+				<div class="col-lg-12">				
 					<div class="card card-bordered style-default-bright">
 				<?php
 				$moves = [
