@@ -2,7 +2,7 @@
 
 use common\models\Wire as WireModel;
 use backend\widgets\Wire;
-use backend\assets\WireAsset;
+//use backend\assets\WireAsset;
 use backend\assets\DashboardAsset;
 
 use devleaks\weather\Weather;
@@ -19,7 +19,6 @@ use dosamigos\leaflet\widgets\Map;
 use yii\web\JsExpression;
 use yii\bootstrap\Alert;
 
-$asset = WireAsset::register($this);
 DashboardAsset::register($this);
 
 // /@50.6231023,4.2940581
@@ -134,13 +133,13 @@ $this->title = 'GIP - Live Wire';
 						
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="card card-bordered style-default-bright gip-indicator markers" id="marker-sound" data-location="<?= $asset->baseUrl ?>">
+					<div class="card card-bordered style-default-bright gip-indicator markers">
 						<span class="gip-header">INBOUND</span><br/>
 						<span class="gip-body">
 						<a class="marker marker-inner marker-left">I</a>
 						<a class="marker marker-middle marker-left">M</a>
 						<a class="marker marker-outer marker-left">O</a></span><br/>
-						<span class="gip-footer">23 L</span>
+						<span class="gip-footer" id="marker-left">23 L</span>
 					</div>
 				</div>
 				<div class="col-lg-6">
@@ -150,7 +149,7 @@ $this->title = 'GIP - Live Wire';
 						<a class="marker marker-inner marker-right">I</a>
 						<a class="marker marker-middle marker-right">M</a>
 						<a class="marker marker-outer marker-right">O</a></span><br/>
-						<span class="gip-footer">23 R</span>
+						<span class="gip-footer" id="marker-right">23 R</span>
 					</div>
 				</div>
 			</div>
@@ -377,9 +376,6 @@ $this->title = 'GIP - Live Wire';
 </div>
 <script type="text/javascript">
 <?php $this->beginBlock('JS_SIDEBAR') ?>
-parking_data = <?= json_encode($parking_data) ?>;
-parking_max = <?= $parking_max ?>;
-
 jQuery(document).ready(function($){
 	//open the lateral panel
 	$('.cd-btn').on('click', function(event){
@@ -394,6 +390,15 @@ jQuery(document).ready(function($){
 		}
 	});
 });
+<?php $this->endBlock(); ?>
+</script>
+<?php
+$this->registerJs($this->blocks['JS_SIDEBAR'], yii\web\View::POS_READY);
+?>
+<script type="text/javascript">
+<?php $this->beginBlock('JS_PARKING') ?>
+parking_data = <?= json_encode($parking_data) ?>;
+parking_max = <?= $parking_max ?>;
 
 function update_parking() {
 	new_data = Array();
@@ -437,4 +442,4 @@ setInterval(update_parking, 10000);
 <?php $this->endBlock(); ?>
 </script>
 <?php
-$this->registerJs($this->blocks['JS_SIDEBAR'], yii\web\View::POS_READY);
+$this->registerJs($this->blocks['JS_PARKING'], yii\web\View::POS_READY);

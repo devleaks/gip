@@ -9,7 +9,7 @@ use kartik\icons\Icon;
 use kartik\daterange\MomentAsset;
 
 Icon::map($this);
-WireAsset::register($this);
+$asset = WireAsset::register($this);
 MomentAsset::register($this);
 
 /**
@@ -68,7 +68,7 @@ $this->title = Yii::t('gip', 'The Wire');
 
 <script type="text/javascript">
 <?php $this->beginBlock('JS_GIP_WIRE') ?>	
-$.wireWidget.init({websocket: "<?= Yii::$app->params['websocket_server'] ?>"});
+$.wireWidget.init({websocket: "<?= Yii::$app->params['websocket_server'] ?>", soundFileLocation: "<?= $asset->baseUrl.'/snd/' ?>"});
 
 //$.gipWire({websocket: "<?= Yii::$app->params['websocket_server'] ?>"});
 <?php $this->endBlock(); ?>

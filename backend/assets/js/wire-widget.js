@@ -83,7 +83,8 @@
 				count: 5,
 				speed: 'slow'
 			}
-		}
+		},
+		soundFileLocation: ''
 	};
 
 	/*
@@ -117,6 +118,12 @@
 		    }		
 		}
 	}
+	
+	function updateMarkers(msg) {
+		var payload = $.parseJSON(msg.body);
+		$('#marker-left').html(payload.value + ' L');
+		$('#marker-right').html(payload.value + ' R');
+	}
 
 	//Fields of type marker
 	function blink(selector, marker, count) {
@@ -129,8 +136,7 @@
 	}
 
 	function play_sound(marker) {
-		var baseUrl = $('#marker-sound').data('location');
-		var soundUrl = baseUrl + '/snd/' + marker + '.m4a';
+		var soundUrl = opts.soundFileLocation + marker + '.m4a';
 		var audio = new Audio();
         audio.src = soundUrl;
         audio.play();
@@ -204,6 +210,7 @@
 					switch(msg.type.toLowerCase()) {
 						case 'qfu':
 							updateFields(msg);
+							updateMarkers(msg);
 							msg.body = ''; // reset body to empty
 						default:
 							WireWidget.prototype.addWire(msg);
