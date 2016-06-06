@@ -50,6 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
            		'type'=> DetailView::INPUT_DROPDOWN_LIST,
 				'value' => $model->type ? $model->type->display_name : '',
 			],
+			'channel',
            	'priority',
             [
 				'attribute' => 'icon',

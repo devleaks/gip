@@ -46,6 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
 							return $model->type ? $model->type->name : $model->type_id;
 	            		},
 			],
+			'channel',
 	        [
 				'attribute' => 'priority',
 				'hAlign' => GridView::ALIGN_CENTER,

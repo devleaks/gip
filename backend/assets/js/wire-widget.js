@@ -198,6 +198,16 @@
 
 	};
 
+	function get_giplet_id(msg) {
+		var lid = msg.source+'-'+msg.type;
+		if(typeof msg.channel !== undefined) {
+			if(msg.channel !== null) {
+				lid += ('-'+msg.channel);
+			}
+		}
+		return '#gip-'+lid.toLowerCase();
+	}
+	
 	// Init & start ws connection
     function wsStart() {
 		var ws = new WebSocket(opts.websocket);
@@ -205,7 +215,7 @@
         ws.onclose = function() { if(opts.debug) { opts.intro_messages.closing.created_at = new Date(); WireWidget.prototype.addWire(opts.intro_messages.closing); } };
         ws.onmessage = function(evt) {
 			var msg = $.parseJSON(evt.data);
-			var gid = '#gip-'+msg.source.toLowerCase()+'-'+msg.type.toLowerCase()/*+msg.channel.toLowerCase()*/;
+			var gid = get_giplet_id(msg);
 			console.log(gid + " notifying...");
 			$(gid).trigger('gip:message', msg);
 			console.log("... "+ gid + " notified");

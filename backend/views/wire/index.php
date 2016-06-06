@@ -1,7 +1,11 @@
 <?php
 
 use common\models\Wire as WireModel;
+
 use backend\widgets\Wire;
+use backend\widgets\Indicator;
+use backend\widgets\Beacon;
+
 //use backend\assets\WireAsset;
 use backend\assets\DashboardAsset;
 
@@ -105,26 +109,27 @@ $this->title = 'GIP - Live Wire';
 
 			<div class="row">
 				<div class="col-lg-12">
-					<?php   if(isset(Yii::$app->params['FORECAST_APIKEY'])) {
-								echo '<div id="weather" class="card card-bordered style-default-bright "></div>';
-								echo Weather::widget([
-									'id' => 'weather',
-									'pluginOptions' => [
-										'celsius' => true,
-										'cacheTime' => 60,
-										'key' => Yii::$app->params['FORECAST_APIKEY'],
-										'lat' => $liege['lat'],
-										'lon' => $liege['lon'],
-									]
-								]);
-							} else {
-								echo Alert::widget([
-								    'options' => [
-								        'class' => 'alert-info',
-								    ],
-								    'body' => Yii::t('gip', 'Weather Widget: No API key to fetch data.'),
-								]);
-							}
+					<?php
+						if(isset(Yii::$app->params['FORECAST_APIKEY'])) {
+							echo '<div id="weather" class="card card-bordered style-default-bright "></div>';
+							echo Weather::widget([
+								'id' => 'weather',
+								'pluginOptions' => [
+									'celsius' => true,
+									'cacheTime' => 60,
+									'key' => Yii::$app->params['FORECAST_APIKEY'],
+									'lat' => $liege['lat'],
+									'lon' => $liege['lon'],
+								]
+							]);
+						} else {
+							echo Alert::widget([
+							    'options' => [
+							        'class' => 'alert-info',
+							    ],
+							    'body' => Yii::t('gip', 'Weather Widget: No API key to fetch data.'),
+							]);
+						}
 					?>
 
 				</div>
@@ -132,70 +137,93 @@ $this->title = 'GIP - Live Wire';
 			
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="card card-bordered style-default-bright gip-indicator markers">
-						<span class="gip-header">INBOUND</span><br/>
-						<span class="gip-body">
-						<a class="marker marker-inner marker-left">I</a>
-						<a class="marker marker-middle marker-left">M</a>
-						<a class="marker marker-outer marker-left">O</a></span><br/>
-						<span class="gip-footer" id="marker-left">23 L</span>
-					</div>
+					<?= Beacon::widget([
+						'source'	=> 'gip',
+						'type'		=> 'marker2',
+						'channel'	=> 1,
+						'color'		=> 'default-bright',
+						'header'	=> 'INBOUND',
+						'footer'	=> '23 L',
+						]) ?>
 				</div>
 				<div class="col-lg-6">
-					<div class="card card-bordered style-default-bright gip-indicator markers">
-						<span class="gip-header">INBOUND</span><br/>
-						<span class="gip-body">
-						<a class="marker marker-inner marker-right">I</a>
-						<a class="marker marker-middle marker-right">M</a>
-						<a class="marker marker-outer marker-right">O</a></span><br/>
-						<span class="gip-footer" id="marker-right">23 R</span>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-6">
-					<?= $this->render('_aodb_qfu') ?>
-				</div>
-				<div class="col-lg-6">
-					<div class="card card-bordered style-primary gip-indicator">
-						<span class="gip-header">QNH</span><br/>
-						<span class="gip-body">1013</span><br/>
-						<span class="gip-footer">mBar</span>
-					</div>
+					<?= Beacon::widget([
+						'source'	=> 'gip',
+						'type'		=> 'marker2',
+						'channel'	=> 2,
+						'color'		=> 'default-bright',
+						'header'	=> 'INBOUND',
+						'footer'	=> '23 R',
+						]) ?>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="card card-bordered style-success gip-indicator">
-						<span class="gip-header">Avg. Delay (LAST 4H)</span><br/>
-						<span class="gip-body">12</span><br/>
-						<span class="gip-footer">minutes</span>
-					</div>
+					<?= Indicator::widget([
+						'source'	=> 'aodb',
+						'type'		=> 'qfu',
+						'color'		=> 'primary',
+						'header'	=> 'QFU',
+						'footer'	=> 'L / R',
+						'body'		=> '23',
+						]) ?>
 				</div>
 				<div class="col-lg-6">
-					<div class="card card-bordered style-accent gip-indicator">
-						<span class="gip-header">Forecast (NEXT 4H)</span><br/>
-						<span class="gip-body">4</span><i class="fa fa-arrow-down"></i><br/>
-						<span class="gip-footer">minutes</span>
-					</div>
+					<?= Indicator::widget([
+						'source'	=> 'aodb',
+						'type'		=> 'qnh',
+						'color'		=> 'primary',
+						'header'	=> 'QNH',
+						'footer'	=> 'mBar',
+						'body'		=> '1013',
+						]) ?>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="card card-bordered style-warning gip-indicator">
-						<span class="gip-header">PARKING</span><br/>
-						<span class="gip-body" id="aodb-parking">0</span><br/>
-						<span class="gip-footer">%</span>
-					</div>
+					<?= Indicator::widget([
+						'source'	=> 'aodb',
+						'type'		=> 'delay',
+						'color'		=> 'success',
+						'header'	=> 'Avg. Delay (LAST 4H)',
+						'footer'	=> 'minutes',
+						'body'		=> '12',
+						]) ?>
 				</div>
 				<div class="col-lg-6">
-					<div class="card card-bordered style-danger gip-indicator cd-btn">
-						<span class="gip-header">GIP</span><br/>
-						<span class="gip-body" id="gip-alerts">0</span><br/>
-						<span class="gip-footer">Alerts</span>
+					<?= Indicator::widget([
+						'source'	=> 'aodb',
+						'type'		=> 'forecast',
+						'color'		=> 'accent',
+						'header'	=> 'Forecast (NEXT 4H)',
+						'footer'	=> 'minutes',
+						'body'		=> '4',
+						]) ?>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-6">
+					<?= Indicator::widget([
+						'source'	=> 'aodb',
+						'type'		=> 'parking',
+						'color'		=> 'warning',
+						'header'	=> 'PARKING',
+						'footer'	=> '%',
+						'body'		=> '0',
+						]) ?>
+				</div>
+				<div class="col-lg-6">
+						<?= Indicator::widget([
+							'source'	=> 'gip',
+							'type'		=> 'alert',
+							'color'		=> 'danger',
+							'header'	=> 'GIP',
+							'footer'	=> 'Alerts',
+							'body'		=> '0',
+							]) ?>
 					</div>
 				</div>
 			</div>
