@@ -426,7 +426,8 @@
 		.prependTo("#"+opts.id).hide().slideDown(opts.speed);
 
 		// increase alert count indicator
-		$('#gip-alerts').html(parseInt($('#gip-alerts').html()) + 1);
+		var counter_selector = '#gip-gip-alert .gip-body';
+		$(counter_selector).html(parseInt($(counter_selector).html()) + 1);
 
 		// Cleanup
 

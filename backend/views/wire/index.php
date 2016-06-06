@@ -23,13 +23,13 @@ use dosamigos\leaflet\widgets\Map;
 use yii\web\JsExpression;
 use yii\bootstrap\Alert;
 
-DashboardAsset::register($this);
+$asset = DashboardAsset::register($this);
 
 // /@50.6231023,4.2940581
 // EBLG: 50.63639, 5.44278
 $liege = [
-	'lat' => 50.6231023,
-	'lon' => 4.2940581
+	'lat' => 50.63639,
+	'lon' => 5.44278
 ];
 
 $this->title = 'GIP - Live Wire';
@@ -59,9 +59,125 @@ $this->title = 'GIP - Live Wire';
 	
 	<main class="cd-main-content">
 
-	<div class="row">
+		<!--
+		  -- TOP LINE
+		  --
+		  --
+		  --
+		  -->
+		<div class="row">
 
-		<div class="col-lg-9">
+			<div class="col-lg-12">
+				<div class="breakingNews" id="news" style="text-align: left;">
+			    	<div class="bn-title"><h2>News For Liège Airport</h2><span></span></div>
+			        <ul>
+			        	<li><a href="#">Mauris interdum elit non sapien imperdiet, ac dapibus mi maximus</a></li>
+			            <li><a href="#">Nullam sit amet nisl ex</a></li>
+			            <li><a href="#">Cras lorem augue, facilisis a commodo in, facilisis finibus libero vel ultrices.</a></li>
+			            <li><a href="#">Maecenas imperdiet ante vitae neque facilisis cursus</a></li>
+			            <li><a href="#">Maecenas libero ipsum, placerat in mattis vel, tincidunt quis est.</a></li>
+			            <li><a href="#">Curabitur tortor libero, vehicula sagittis luctus sed, lobortis sed arcu</a></li>
+			        </ul>
+			        <div class="bn-navi">
+			        	<span></span>
+			            <span></span>
+			        </div>
+			    </div>
+			</div>
+
+		</div>
+
+
+		<div class="row">
+
+		<!--
+		  -- LEFT COLUMN
+		  --
+		  --
+		  --
+		  -->
+		<div class="col-lg-2">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="cssclock">
+						<div id="clockanalog">
+							<img src="<?=$asset->baseUrl?>/css/css-clocks/analogseconds.png" id="analogsecond" alt="Clock second-hand" />
+							<img src="<?=$asset->baseUrl?>/css/css-clocks/analogminutes.png" id="analogminute" alt="Clock minute-hand" />
+							<img src="<?=$asset->baseUrl?>/css/css-clocks/analoghours.png" id="analoghour"  alt="Clock hour-hand" />
+						</div>
+						<div id="clockdigital">
+							<img src="<?=$asset->baseUrl?>/css/css-clocks/digitalhours.gif" id="digitalhour" alt="Clocks hours" />
+							<img src="<?=$asset->baseUrl?>/css/css-clocks/digitalminutes.gif" id="digitalminute" alt="Clocks minutes" />
+							<img src="<?=$asset->baseUrl?>/css/css-clocks/digitalseconds.gif" id="digitalsecond" alt="Clocks seconds" />
+							<div>&nbsp;</div><div>&nbsp;</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<?php
+						if(isset(Yii::$app->params['FORECAST_APIKEY'])) {
+							echo '<div id="weather" class="card card-bordered style-default-bright "></div>';
+							echo Weather::widget([
+								'id' => 'weather',
+								'pluginOptions' => [
+									'celsius' => true,
+									'cacheTime' => 60,
+									'key' => Yii::$app->params['FORECAST_APIKEY'],
+									'lat' => $liege['lat'],
+									'lon' => $liege['lon'],
+								]
+							]);
+						} else {
+							echo Alert::widget([
+							    'options' => [
+							        'class' => 'alert-info',
+							    ],
+							    'body' => Yii::t('gip', 'Weather Widget: No API key to fetch data.'),
+							]);
+						}
+					?>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<?= Indicator::widget([
+						'source'	=> 'aodb',
+						'type'		=> 'qfu',
+						'color'		=> 'primary',
+						'header'	=> 'QFU',
+						'footer'	=> 'L / R',
+						'body'		=> '23',
+						]) ?>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="cd-btn">
+					<?= Indicator::widget([
+						'source'	=> 'gip',
+						'type'		=> 'alert',
+						'color'		=> 'danger',
+						'header'	=> 'GIP',
+						'footer'	=> 'Alerts',
+						'body'		=> '0',
+						]) ?>
+					</div>
+				</div>
+			</div>
+
+			
+			
+		</div><!-- end left column -->
+
+		<!--
+		  -- MAP
+		  --
+		  --
+		  --
+		  -->
+		<div class="col-lg-8">
 
 			<div class="row">
 				<div class="col-lg-12">
@@ -94,7 +210,7 @@ $this->title = 'GIP - Live Wire';
 					// finally render the widget
 					echo Map::widget([
 						'leafLet' => $leaflet,
-						'height' => '600px',
+						'height' => '900',
 					]);
 					// we could also do
 					// echo $leaflet->widget();
@@ -103,40 +219,103 @@ $this->title = 'GIP - Live Wire';
 				</div>
 			</div>
 
-		</div>
+		</div><!-- end map -->
 	
-		<div class="col-lg-3">
-
+		<!--
+		  -- RIGHT COLUMN
+		  --
+		  --
+		  --
+		  -->
+		<div class="col-lg-2">
+			
 			<div class="row">
 				<div class="col-lg-12">
-					<?php
-						if(isset(Yii::$app->params['FORECAST_APIKEY'])) {
-							echo '<div id="weather" class="card card-bordered style-default-bright "></div>';
-							echo Weather::widget([
-								'id' => 'weather',
-								'pluginOptions' => [
-									'celsius' => true,
-									'cacheTime' => 60,
-									'key' => Yii::$app->params['FORECAST_APIKEY'],
-									'lat' => $liege['lat'],
-									'lon' => $liege['lon'],
-								]
-							]);
-						} else {
-							echo Alert::widget([
-							    'options' => [
-							        'class' => 'alert-info',
-							    ],
-							    'body' => Yii::t('gip', 'Weather Widget: No API key to fetch data.'),
-							]);
-						}
-					?>
-
+					<?= Indicator::widget([
+						'source'	=> 'aodb',
+						'type'		=> 'qfu',
+						'color'		=> 'accent',
+						'header'	=> 'DEPARTS',
+						'footer'	=> 'L / R',
+						'body'		=> '23',
+						]) ?>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<?= Indicator::widget([
+						'source'	=> 'aodb',
+						'type'		=> 'qnh',
+						'color'		=> 'info',
+						'header'	=> 'ARRIVEES',
+						'footer'	=> 'mBar',
+						'body'		=> '1013',
+						]) ?>
 				</div>
 			</div>
 			
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-lg-12">			
+					<div class="card card-bordered style-default-bright">
+					<?php
+					$moves = [
+						'in' => ['L' => 12, 'R' => 4],
+						'out' => ['L' => 9, 'R' => 7],
+					];
+
+					echo Chart::widget([
+						'id' => 'inout-graph',
+					    'data' => [
+					    	['label' => 'Inbound L', 'data' => round(50 * $moves['in']['L'] / ($moves['in']['L']+$moves['in']['R']))],
+					    	['label' => 'Inbound R', 'data' => round(50 * $moves['in']['R'] / ($moves['in']['L']+$moves['in']['R']))],
+					    	['label' => 'Outbound L', 'data' => round(50 * $moves['out']['L'] / ($moves['out']['L']+$moves['out']['R']))],
+					    	['label' => 'Outbound R', 'data' => round(50 * $moves['out']['R'] / ($moves['out']['L']+$moves['out']['R']))]
+					    ],
+					    'options' => [
+							'series' => [
+								'pie' => [
+									'innerRadius' => 0.5,
+									'show' => true,
+									'label' => [
+						                'show' => true,
+						                'radius' => 1/3,
+						                // 'formatter' => new JsExpression("labelFormatter"),
+						                'threshold' => 0.1
+							          ]
+								],
+							],
+					        'legend' => [
+					            'show'              => false,
+					        ],
+					    ],
+					    'htmlOptions' => [
+					        'style' => 'width:100%;height:200px;'
+					    ],
+					    'plugins' => [
+					        Plugin::PIE,
+							Plugin::TIME
+					    ]
+					]);
+					?>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-12">
+					<?= Indicator::widget([
+						'source'	=> 'aodb',
+						'type'		=> 'dealy',
+						'color'		=> 'warning',
+						'header'	=> 'DELAY',
+						'footer'	=> '%',
+						'body'		=> '0',
+						]) ?>
+				</div>
+			</div>
+						
+			<div class="row">
+				<div class="col-lg-12">
 					<?= Beacon::widget([
 						'source'	=> 'gip',
 						'type'		=> 'marker2',
@@ -146,7 +325,10 @@ $this->title = 'GIP - Live Wire';
 						'footer'	=> '23 L',
 						]) ?>
 				</div>
-				<div class="col-lg-6">
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-12">
 					<?= Beacon::widget([
 						'source'	=> 'gip',
 						'type'		=> 'marker2',
@@ -157,221 +339,12 @@ $this->title = 'GIP - Live Wire';
 						]) ?>
 				</div>
 			</div>
-
-			<div class="row">
-				<div class="col-lg-6">
-					<?= Indicator::widget([
-						'source'	=> 'aodb',
-						'type'		=> 'qfu',
-						'color'		=> 'primary',
-						'header'	=> 'QFU',
-						'footer'	=> 'L / R',
-						'body'		=> '23',
-						]) ?>
-				</div>
-				<div class="col-lg-6">
-					<?= Indicator::widget([
-						'source'	=> 'aodb',
-						'type'		=> 'qnh',
-						'color'		=> 'primary',
-						'header'	=> 'QNH',
-						'footer'	=> 'mBar',
-						'body'		=> '1013',
-						]) ?>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-6">
-					<?= Indicator::widget([
-						'source'	=> 'aodb',
-						'type'		=> 'delay',
-						'color'		=> 'success',
-						'header'	=> 'Avg. Delay (LAST 4H)',
-						'footer'	=> 'minutes',
-						'body'		=> '12',
-						]) ?>
-				</div>
-				<div class="col-lg-6">
-					<?= Indicator::widget([
-						'source'	=> 'aodb',
-						'type'		=> 'forecast',
-						'color'		=> 'accent',
-						'header'	=> 'Forecast (NEXT 4H)',
-						'footer'	=> 'minutes',
-						'body'		=> '4',
-						]) ?>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-6">
-					<?= Indicator::widget([
-						'source'	=> 'aodb',
-						'type'		=> 'parking',
-						'color'		=> 'warning',
-						'header'	=> 'PARKING',
-						'footer'	=> '%',
-						'body'		=> '0',
-						]) ?>
-				</div>
-				<div class="col-lg-6">
-						<?= Indicator::widget([
-							'source'	=> 'gip',
-							'type'		=> 'alert',
-							'color'		=> 'danger',
-							'header'	=> 'GIP',
-							'footer'	=> 'Alerts',
-							'body'		=> '0',
-							]) ?>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<!--div class="col-lg-6">
-					<div class="card card-bordered style-default gip-indicator">
-						<span class="gip-header">COLORS</span><br/>
-						<span class="gip-body">7</span><br/>
-						<span class="gip-footer">+ 9 VARIANTS</span>
-					</div>
-				</div -->
-				
-				<div class="col-lg-12">				
-					<div class="card card-bordered style-default-bright">
-				<?php
-				$moves = [
-					'in' => ['L' => 12, 'R' => 4],
-					'out' => ['L' => 9, 'R' => 7],
-				];
-				
-				echo Chart::widget([
-					'id' => 'inout-graph',
-				    'data' => [
-				    	['label' => 'Inbound L', 'data' => round(50 * $moves['in']['L'] / ($moves['in']['L']+$moves['in']['R']))],
-				    	['label' => 'Inbound R', 'data' => round(50 * $moves['in']['R'] / ($moves['in']['L']+$moves['in']['R']))],
-				    	['label' => 'Outbound L', 'data' => round(50 * $moves['out']['L'] / ($moves['out']['L']+$moves['out']['R']))],
-				    	['label' => 'Outbound R', 'data' => round(50 * $moves['out']['R'] / ($moves['out']['L']+$moves['out']['R']))]
-				    ],
-				    'options' => [
-						'series' => [
-							'pie' => [
-								'innerRadius' => 0.5,
-								'show' => true,
-								'label' => [
-					                'show' => true,
-					                'radius' => 1/3,
-					                // 'formatter' => new JsExpression("labelFormatter"),
-					                'threshold' => 0.1
-						          ]
-							],
-						],
-				        'legend' => [
-				            'show'              => false,
-				        ],
-				    ],
-				    'htmlOptions' => [
-				        'style' => 'width:100%;height:200px;'
-				    ],
-				    'plugins' => [
-				        Plugin::PIE,
-						Plugin::TIME
-				    ]
-				]);
-				?>
-					</div>
-				</div>
-				
-			</div>
-
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="card card-bordered style-default-bright">
-					<?php
-						$parking_max = 75;
-						$parking_data = [];
-						$cur_parking = round(rand($parking_max / 10, $parking_max / 2));
-						for($i=0; $i<20; $i++) {
-							$parking_data[] = [$i, $cur_parking];
-							$cur_parking += round(rand(-2, 3));
-						}
-					echo Chart::widget([
-						'id' => 'parking-graph',
-					    'data' => [
-					        [
-					            'label' => 'Parking Space', 
-					            'data'  => $parking_data,
-					            'lines'  => ['show' => true, 'steps' => true],
-					            'points' => ['show' => true],
-					        ],
-					    ],
-					    'options' => [
-					        'legend' => [
-					            'position'          => 'nw',
-					            'show'              => true,
-					            'margin'            => 10,
-					            'backgroundOpacity' => 0.5
-					        ],
-					    ],
-					    'htmlOptions' => [
-					        'style' => 'width:100%;height:200px;'
-					    ],
-					]);
-					?>
-					</div>
-				</div>
-			</div>
 			
-			
-		</div>
+		</div><!-- end right column -->
 		
 		
 	</div>
 	
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="card card-bordered style-default-bright">
-				<?php
-				$data = [];
-				$count = 4; // hours
-				$divs  = 12; // 5 mins, divs per hour.
-				$delta = 3600000 / $divs; // milli secs
-				$start = time() * 1000 - ($count * 3600000);
-				for($i = 0; $i< (2*$count*$divs); $i++) {
-					$data[] = [$start + $i * $delta, round(rand(-2, 3))];
-				}
-				echo Chart::widget([
-					'id' => 'graph-time',
-				    'data' => [
-				        [
-				            'label' => 'Movements', 
-				            'data'  => $data,
-				            'bars' => ['show' => true],
-				        ],
-				    ],
-				    'options' => [
-				        'legend' => [
-				            'position'          => 'nw',
-				            'show'              => true,
-				            'margin'            => 10,
-				            'backgroundOpacity' => 0.5
-				        ],
-						'xaxis' => [
-							'mode' => 'time',
-							'timezone' => 'browser',
-							'minTickSize' => [15, "minute"],
-							'timeformat' => "%H:%M",/*https://github.com/flot/flot/blob/master/API.md*/
-						]
-				    ],
-				    'htmlOptions' => [
-				        'style' => 'width:100%;height:100px;'
-				    ]
-				]);
-				?>
-			</div>
-		</div>
-	</div>	
-		
 	</main>
 	
 	<div class="cd-panel from-right">
@@ -402,6 +375,7 @@ $this->title = 'GIP - Live Wire';
 jQuery(document).ready(function($){
 	//open the lateral panel
 	$('.cd-btn').on('click', function(event){
+		console.log('panel out');
 		event.preventDefault();
 		$('.cd-panel').addClass('is-visible');
 	});
@@ -412,57 +386,41 @@ jQuery(document).ready(function($){
 			event.preventDefault();
 		}
 	});
+
+    $("#news").breakingNews({
+		effect		:"slide-v",
+		autoplay	:true,
+		timer		:3000,
+		color		:"red"
+	});
 });
+
+
+bDOMLoaded = true;
+ClockInit();
+
 <?php $this->endBlock(); ?>
 </script>
 <?php
 $this->registerJs($this->blocks['JS_SIDEBAR'], yii\web\View::POS_READY);
 ?>
 <script type="text/javascript">
-<?php $this->beginBlock('JS_PARKING') ?>
-parking_data = <?= json_encode($parking_data) ?>;
-parking_max = <?= $parking_max ?>;
+<?php $this->beginBlock('JS_SIDEBAR') ?>
+// this strange block of code exists to make sure the clocks are started as soon as
+// possible as the page loads, rather than always waiting for a
+// $(document).ready() as I normally do...
+var bScriptLoaded       = false;
+var bDOMLoaded          = false;
+var bClocksInitialised  = false;
 
-function update_parking() {
-	new_data = Array();
-	for(var i=1;i<parking_data.length;i++) {
-		new_data.push([i-1, parking_data[i][1]]);
-	}
-	diff = Math.floor(Math.random()*5) - 2;
-	new_val = parking_data[parking_data.length - 1][1] + diff;
-	if(new_val > parking_max) new_val = parking_max;
-	new_data.push([parking_data.length - 1, new_val]);
-	
-	jQuery(document).ready(function($){
-		$.plot($('#parking-graph'),
-			[{
-				"label":"Parking Space",
-				"data":new_data,
-				"lines": {
-					"show":true,
-					'steps':true
-				},
-				"points": {
-					"show":true
-				}
-			}], {
-				"legend": {
-					"position":"nw",
-					"show":true,
-					"margin":10,
-					"backgroundOpacity":0.5
-				}
-			}
-		);
-
-		$('#aodb-parking').html(Math.round(100 * new_val / parking_max));
-	
-	});
-
-	parking_data = new_data;
+function ClockInit() {
+    if ((bClocksInitialised != true) && (bDOMLoaded == true) && (bScriptLoaded == true)) {
+        bClocksInitialised = true;
+        oClockAnalog.fInit();
+        oClockDigital.fInit();
+    }
 }
-setInterval(update_parking, 10000);
 <?php $this->endBlock(); ?>
 </script>
 <?php
-$this->registerJs($this->blocks['JS_PARKING'], yii\web\View::POS_READY);
+$this->registerJs($this->blocks['JS_SIDEBAR'], yii\web\View::POS_BEGIN);

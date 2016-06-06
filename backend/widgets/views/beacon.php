@@ -35,7 +35,7 @@ if($widget->channel) {
 		<a class="marker marker-middle">M</a>
 		<a class="marker marker-outer">O</a>
 	</span><br/>
-	<span class="gip-footer"><?= $widget->footer ?></span>
+	<span class="gip-footer" data-gip="note"><?= $widget->footer ?></span>
 </div>
 
 <script type="text/javascript">
@@ -71,7 +71,7 @@ jQuery(document).ready(function($){
 
 	function play_sound(marker) {
 		var audio = new Audio();
-        audio.src = opts.soundFileLocation + marker + '.m4a';;
+        audio.src = opts.soundFileLocation + marker + '.mp3';;
         audio.play();
 	}
 	
@@ -82,14 +82,15 @@ jQuery(document).ready(function($){
 		}
 		return ("#gip-"+lid).toLowerCase();
 	}
+	
+	var selector = "#" + "<?= $widget_class ?>";
 
 	/**
 	 *	GIP Message Handler: Handle plain messages
 	 */
-	$("#" + "<?= $widget_class ?>").on('gip:message', function(event, msg) {
+	$(selector).on('gip:message', function(event, msg) {
 		var payload = $.parseJSON(msg.body);
 		var mid = get_marker(msg, payload);
-		console.log("mid="+mid);
 		play_sound(payload.marker);
 		
 		blink(mid+" a.marker-"+payload.marker, payload.marker, 0);
@@ -103,7 +104,7 @@ jQuery(document).ready(function($){
 	/**
 	 *	GIP Change Handler: Handle change messages
 	 */
-	$("#" + "<?= $widget_class ?>").on('gip:change', function(event) {
+	$(selector).on('gip:change', function(event) {
 		var payload = event.gip_payload;
 		for (var property in payload) {
 			$(this).find("[data-gip="+property+"]").html(payload[property]);

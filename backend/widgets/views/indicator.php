@@ -33,21 +33,25 @@ $widget_hndlr 	= strtoupper($widget->source.'_'.$widget->type);
 <script type="text/javascript">
 <?php $this->beginBlock('JS_GIP_'+$widget_hndlr) ?>
 jQuery(document).ready(function($){
-
+	var selector = "#" + "<?= $widget_class ?>";
 	/**
 	 *	GIP Message Handler: Handle plain messages
 	 */
-	$("#" + "<?= $widget_class ?>").on('gip:message', function(event, msg) {
+	$(selector).on('gip:message', function(event, msg) {
 		var payload = $.parseJSON(msg.body);
 		for (var property in payload) {
 			$(this).find("[data-gip="+property+"]").html(payload[property]);
+		}
+		if(selector == '#gip-aodb-qfu') {
+			$('#gip-gip-marker2-1').trigger(jQuery.Event( 'gip:change', { gip_payload: {note: payload['value'] + ' L'} } ));
+			$('#gip-gip-marker2-2	').trigger(jQuery.Event( 'gip:change', { gip_payload: {note: payload['value'] + ' R'} } ));
 		}
 	});
 
 	/**
 	 *	GIP Change Handler: Handle change messages
 	 */
-	$("#" + "<?= $widget_class ?>").on('gip:change', function(event) {
+	$(selector).on('gip:change', function(event) {
 		var payload = event.gip_payload;
 		for (var property in payload) {
 			$(this).find("[data-gip="+property+"]").html(payload[property]);
