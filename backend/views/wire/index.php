@@ -29,6 +29,27 @@ $liege = [
 ];
 
 $this->title = 'GIP - Live Wire';
+/** card style colors
+.style-accent
+.style-accent-bright
+.style-accent-dark
+.style-accent-light
+
+.style-default
+.style-default-bright
+.style-default-dark
+.style-default-light
+
+.style-primary
+.style-primary-bright
+.style-primary-dark
+.style-primary-light
+
+.style-danger
+.style-info
+.style-success
+.style-warning
+**/
 ?>
 <div class="wire container-fluid">
 	
@@ -109,28 +130,6 @@ $this->title = 'GIP - Live Wire';
 				</div>
 			</div>
 			
-			<!-- card style colors
-			.style-accent
-			.style-accent-bright
-			.style-accent-dark
-			.style-accent-light
-
-			.style-default
-			.style-default-bright
-			.style-default-dark
-			.style-default-light
-
-			.style-primary
-			.style-primary-bright
-			.style-primary-dark
-			.style-primary-light
-
-			.style-danger
-			.style-info
-			.style-success
-			.style-warning
-			-->
-						
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="card card-bordered style-default-bright gip-indicator markers">
@@ -156,11 +155,7 @@ $this->title = 'GIP - Live Wire';
 
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="card card-bordered style-info gip-indicator">
-						<span class="gip-header">QFU</span><br/>
-						<span class="gip-body" id="aodb-qfu-value">23</span><br/>
-						<span class="gip-footer" id="aodb-qfu-note">L / R</span>
-					</div>
+					<?= $this->render('_aodb_qfu') ?>
 				</div>
 				<div class="col-lg-6">
 					<div class="card card-bordered style-primary gip-indicator">

@@ -205,6 +205,15 @@
         ws.onclose = function() { if(opts.debug) { opts.intro_messages.closing.created_at = new Date(); WireWidget.prototype.addWire(opts.intro_messages.closing); } };
         ws.onmessage = function(evt) {
 			var msg = $.parseJSON(evt.data);
+			var gid = '#gip-'+msg.source.toLowerCase()+'-'+msg.type.toLowerCase()/*+msg.channel.toLowerCase()*/;
+			console.log(gid + " notifying...");
+			$(gid).trigger('gip:message', msg);
+			console.log("... "+ gid + " notified");
+			var priority = msg.priority == null ? 0 : parseInt(msg.priority);
+			if(priority >= 0) {
+				WireWidget.prototype.addWire(msg);
+				$('#'+opts.id).scrollTop($('#'+opts.id)[0].scrollHeight);
+			}
 			switch(msg.source.toLowerCase()) {
 				case 'aodb':
 					switch(msg.type.toLowerCase()) {

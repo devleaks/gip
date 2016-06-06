@@ -44,7 +44,7 @@ RandomChartAsset::register($this);
 					'events' => [
 						'load' => new JsExpression("function() {
 							var series = this.series[0];
-						    var socket = io.connect('http://imac.local:3131');
+						    var socket = io.connect('http://mac-de-pierre.local:3131');
 						    socket.on('sample', function (sample) {
 						    	// when a sample arrives we plot it
 								series.addPoint([sample.x, sample.y], true, true);
