@@ -5,7 +5,7 @@ use common\models\Wire as WireModel;
 use backend\widgets\Wire;
 use backend\widgets\Indicator;
 use backend\widgets\Beacon;
-use frontend\widgets\Metar;
+use backend\widgets\Metar;
 
 //use backend\assets\WireAsset;
 use backend\assets\DashboardAsset;
@@ -96,7 +96,8 @@ $this->title = 'GIP - Live Wire';
 		<div class="col-lg-2">
 			<div class="row">
 				<div class="col-lg-12">
-					<div id="live_clock">
+					<div class="card card-bordered style-default-bright">
+					<div id="live_clock"></div>
 					</div>
 				</div>
 			</div>
@@ -221,26 +222,84 @@ $this->title = 'GIP - Live Wire';
 			
 			<div class="row">
 				<div class="col-lg-12">
-					<?= Indicator::widget([
-						'source'	=> 'aodb',
-						'type'		=> 'qfu',
-						'color'		=> 'accent',
-						'header'	=> 'DEPARTS',
-						'footer'	=> 'L / R',
-						'body'		=> '23',
-						]) ?>
+					<div class="card card-bordered style-default-bright">
+						<span class="gip-header">DEPARTURE</span><br/>
+						<div class="gip-body" data-gip="value">
+							
+							<table class="table table-striped no-margin">
+								<thead>
+									<tr>
+										<th>Fl.#</th>
+										<th>Dest</th>
+										<th>Sched</th>
+										<th>Est</th>
+										<th>Act</th>
+										<th>Dly</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th>SN123</th>
+										<th>Alicante</th>
+										<th>10:30</th>
+										<th>11:10</th>
+										<th>---</th>
+										<th>40</th>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<th colspan=5>Delay average: </th>
+										<th>6</th>
+									</tr>
+								</tfoot>						
+							</table>
+						
+						</div><!-- .gip-body -->
+						<span class="gip-footer" data-gip="note">LAST UPDATED</span>
+						
+					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-12">
-					<?= Indicator::widget([
-						'source'	=> 'aodb',
-						'type'		=> 'qnh',
-						'color'		=> 'info',
-						'header'	=> 'ARRIVEES',
-						'footer'	=> 'mBar',
-						'body'		=> '1013',
-						]) ?>
+					<div class="card card-bordered style-default-bright">
+						<span class="gip-header">ARRIVAL</span><br/>
+						<div class="gip-body" data-gip="value">
+							
+							<table class="table table-striped no-margin">
+								<thead>
+									<tr>
+										<th>Fl.#</th>
+										<th>Dest</th>
+										<th>Sched</th>
+										<th>Est</th>
+										<th>Act</th>
+										<th>Dly</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th>SN123</th>
+										<th>Alicante</th>
+										<th>10:30</th>
+										<th>11:10</th>
+										<th>---</th>
+										<th>40</th>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<th colspan=5>Delay average: </th>
+										<th>6</th>
+									</tr>
+								</tfoot>						
+							</table>
+						
+						</div><!-- .gip-body -->
+						<span class="gip-footer" data-gip="note">LAST UPDATED</span>
+						
+					</div>
 				</div>
 			</div>
 			
@@ -298,8 +357,8 @@ $this->title = 'GIP - Live Wire';
 						'type'		=> 'dealy',
 						'color'		=> 'warning',
 						'header'	=> 'DELAY',
-						'footer'	=> '%',
-						'body'		=> '0',
+						'footer'	=> 'min',
+						'body'		=> '12',
 						]) ?>
 				</div>
 			</div>

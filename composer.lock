@@ -3284,12 +3284,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-markdown.git",
-                "reference": "f6c78178c8385a4898fc6b0d8160253d401e1675"
+                "reference": "f4ecb0078805f453104e5f46749ab31bc05463d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-markdown/zipball/f6c78178c8385a4898fc6b0d8160253d401e1675",
-                "reference": "f6c78178c8385a4898fc6b0d8160253d401e1675",
+                "url": "https://api.github.com/repos/kartik-v/yii2-markdown/zipball/f4ecb0078805f453104e5f46749ab31bc05463d8",
+                "reference": "f4ecb0078805f453104e5f46749ab31bc05463d8",
                 "shasum": ""
             },
             "require": {
@@ -3328,7 +3328,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2015-09-01 17:20:30"
+            "time": "2016-06-06 16:29:06"
         },
         {
             "name": "kartik-v/yii2-mpdf",

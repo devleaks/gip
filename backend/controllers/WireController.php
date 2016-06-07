@@ -31,7 +31,7 @@ class WireController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['index', 'search', 'wire', 'read', 'seed'],
+                        'actions' => ['index', 'search', 'wire', 'read', 'seed', 'get-metar'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -123,4 +123,37 @@ class WireController extends Controller
 		Yii::$app->response->format = Response::FORMAT_JSON;
         return Json::encode($messages);
     }
+
+	/**
+	 * Update Giplet value
+	 */
+	protected static function getHtml($url, $post = null) {
+	    $ch = curl_init();
+	    curl_setopt($ch, CURLOPT_URL, $url);
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+	    if(!empty($post)) {
+	        curl_setopt($ch, CURLOPT_POST, true);
+	        curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+	    } 
+	    $result = curl_exec($ch);
+	    curl_close($ch);
+	    return $result;
+	}
+
+	public static function actionGetMetar() {
+		$errors = null;
+		$icao = 'EBLG';
+		$html = self::getHtml('http://weather.noaa.gov/pub/data/observations/metar/stations/'.strtoupper($icao).'.TXT');
+		Yii::trace('Got '.$html, 'Metar::update');
+		$metar = rtrim(substr($html, strpos($html, $icao)));
+		if(! $metar) {
+			$errors = 'Metar parsing error';
+		}
+		Yii::$app->response->format = Response::FORMAT_JSON;
+        return Json::encode(['metar' => $metar, 'e' => $errors]);
+	}
+
 }
