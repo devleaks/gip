@@ -5,6 +5,7 @@ use common\models\Wire as WireModel;
 use backend\widgets\Wire;
 use backend\widgets\Indicator;
 use backend\widgets\Beacon;
+use frontend\widgets\Metar;
 
 //use backend\assets\WireAsset;
 use backend\assets\DashboardAsset;
@@ -62,8 +63,6 @@ $this->title = 'GIP - Live Wire';
 		<!--
 		  -- TOP LINE
 		  --
-		  --
-		  --
 		  -->
 		<div class="row">
 
@@ -93,24 +92,11 @@ $this->title = 'GIP - Live Wire';
 		<!--
 		  -- LEFT COLUMN
 		  --
-		  --
-		  --
 		  -->
 		<div class="col-lg-2">
 			<div class="row">
 				<div class="col-lg-12">
-					<div id="cssclock">
-						<div id="clockanalog">
-							<img src="<?=$asset->baseUrl?>/css/css-clocks/analogseconds.png" id="analogsecond" alt="Clock second-hand" />
-							<img src="<?=$asset->baseUrl?>/css/css-clocks/analogminutes.png" id="analogminute" alt="Clock minute-hand" />
-							<img src="<?=$asset->baseUrl?>/css/css-clocks/analoghours.png" id="analoghour"  alt="Clock hour-hand" />
-						</div>
-						<div id="clockdigital">
-							<img src="<?=$asset->baseUrl?>/css/css-clocks/digitalhours.gif" id="digitalhour" alt="Clocks hours" />
-							<img src="<?=$asset->baseUrl?>/css/css-clocks/digitalminutes.gif" id="digitalminute" alt="Clocks minutes" />
-							<img src="<?=$asset->baseUrl?>/css/css-clocks/digitalseconds.gif" id="digitalsecond" alt="Clocks seconds" />
-							<div>&nbsp;</div><div>&nbsp;</div>
-						</div>
+					<div id="live_clock">
 					</div>
 				</div>
 			</div>
@@ -137,6 +123,14 @@ $this->title = 'GIP - Live Wire';
 							    'body' => Yii::t('gip', 'Weather Widget: No API key to fetch data.'),
 							]);
 						}
+					?>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<?= Metar::widget([
+							'location' => 'EBLG'
+						]);
 					?>
 				</div>
 			</div>
@@ -173,8 +167,6 @@ $this->title = 'GIP - Live Wire';
 
 		<!--
 		  -- MAP
-		  --
-		  --
 		  --
 		  -->
 		<div class="col-lg-8">
@@ -223,8 +215,6 @@ $this->title = 'GIP - Live Wire';
 	
 		<!--
 		  -- RIGHT COLUMN
-		  --
-		  --
 		  --
 		  -->
 		<div class="col-lg-2">
@@ -347,6 +337,10 @@ $this->title = 'GIP - Live Wire';
 	
 	</main>
 	
+	<!--
+	  -- SIDE PANEL
+	  --
+	  -->
 	<div class="cd-panel from-right">
 		<header class="cd-panel-header">
 			<h1>GIP ALERTS</h1>
@@ -393,34 +387,15 @@ jQuery(document).ready(function($){
 		timer		:3000,
 		color		:"red"
 	});
+	
+	function show_clock(){
+		$('#live_clock').html(moment.utc(new Date()).format('HH:mm:ss'));
+	}
+	
+	setInterval(show_clock,1000);
 });
-
-
-bDOMLoaded = true;
-ClockInit();
 
 <?php $this->endBlock(); ?>
 </script>
 <?php
 $this->registerJs($this->blocks['JS_SIDEBAR'], yii\web\View::POS_READY);
-?>
-<script type="text/javascript">
-<?php $this->beginBlock('JS_SIDEBAR') ?>
-// this strange block of code exists to make sure the clocks are started as soon as
-// possible as the page loads, rather than always waiting for a
-// $(document).ready() as I normally do...
-var bScriptLoaded       = false;
-var bDOMLoaded          = false;
-var bClocksInitialised  = false;
-
-function ClockInit() {
-    if ((bClocksInitialised != true) && (bDOMLoaded == true) && (bScriptLoaded == true)) {
-        bClocksInitialised = true;
-        oClockAnalog.fInit();
-        oClockDigital.fInit();
-    }
-}
-<?php $this->endBlock(); ?>
-</script>
-<?php
-$this->registerJs($this->blocks['JS_SIDEBAR'], yii\web\View::POS_BEGIN);

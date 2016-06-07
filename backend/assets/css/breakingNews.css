@@ -13,7 +13,7 @@
 .breakingNews>ul>li>a:hover{color:#2096cd;}
 
 .breakingNews>.bn-navi{width:40px; height:40px; position:absolute; right:0; top:0; opacity:0;}
-.breakingNews>.bn-navi>span{width:20px; height:40px; position:absolute; top:0; cursor:pointer; opacity:0.3; background-image:url(../img/bn-arrows.png); background-repeat:no-repeat;}
+.breakingNews>.bn-navi>span{width:20px; height:40px; position:absolute; top:0; cursor:pointer; opacity:0.3; background-image:url(../images/bn-arrows.png); background-repeat:no-repeat;}
 .breakingNews>.bn-navi>span:hover{opacity:1;}
 .breakingNews>.bn-navi>span:first-child{background-position:left center; left:0;}
 .breakingNews>.bn-navi>span:last-child{background-position:right center; right:0;}
