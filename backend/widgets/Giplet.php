@@ -23,4 +23,7 @@ class Giplet extends Widget { // class should be abstract
 	/** top element identifier */
 	public $id = null;
 	
+	/** giplet title */
+	public $title = null;
+	
 }

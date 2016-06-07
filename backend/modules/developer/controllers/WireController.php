@@ -28,7 +28,7 @@ class WireController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                      [
-                        'actions' => ['index', 'wire', 'view', 'get', 'seed', 'older'],
+                        'actions' => ['index', 'wire', 'view', 'get', 'seed', 'older', 'create'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

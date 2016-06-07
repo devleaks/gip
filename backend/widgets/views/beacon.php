@@ -1,23 +1,4 @@
 <?php
-/**
- *
- *	var event = jQuery.Event( "logged" );
- *	event.user = "foo";
- *	event.pass = "bar";
- *	$( "body" ).trigger( event );
- *
- *	Alternative way to pass data through an event object:
- *	$( "body" ).trigger({
- *	  type:"logged",
- *	  user:"foo",
- *	  pass:"bar"
- *	});
- *	
- *	$( "body" ).on("logged", function(event) {
- *		user = event.user;
- *		pass = event.pass;
- *	});
- **/
 $widget_class 	= strtolower('gip-'.$widget->source.'-'.$widget->type);
 $widget_hndlr 	= strtoupper($widget->source.'_'.$widget->type);
 if($widget->channel) {

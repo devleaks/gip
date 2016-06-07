@@ -23,7 +23,6 @@ $widget_hndlr 	= strtoupper($widget->source.'_'.$widget->type);
 
 <script type="text/javascript">
 <?php $this->beginBlock('JS_UPDATEMETAR') ?>
-//console.log('giplet update metar');
 function update_metar() {
 	giplet = $('.metar');
 	$.get(

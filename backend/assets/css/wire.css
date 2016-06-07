@@ -109,7 +109,12 @@ div.timeline-circ.circ-xl.style-info {
 	font-size: 50px;
 	margin-top: 10px
 }
+.gip-table .gip-body,
 .metar .gip-body {
-	font-size: 11px;
-	text-align: left; !important
+	font-size: 10px;
+	text-align: left;
+	text-transform: none;
+}
+.metar .gip-body {
+	padding-left: 5px;
 }

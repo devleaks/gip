@@ -2,10 +2,11 @@
 
 use common\models\Wire as WireModel;
 
-use backend\widgets\Wire;
-use backend\widgets\Indicator;
 use backend\widgets\Beacon;
+use backend\widgets\FlightTable;
+use backend\widgets\Indicator;
 use backend\widgets\Metar;
+use backend\widgets\Wire;
 
 //use backend\assets\WireAsset;
 use backend\assets\DashboardAsset;
@@ -101,7 +102,7 @@ $this->title = 'GIP - Live Wire';
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<!--div class="row">
 				<div class="col-lg-12">
 					<?php
 						if(isset(Yii::$app->params['FORECAST_APIKEY'])) {
@@ -126,7 +127,7 @@ $this->title = 'GIP - Live Wire';
 						}
 					?>
 				</div>
-			</div>
+			</div -->
 			<div class="row">
 				<div class="col-lg-12">
 					<?= Metar::widget([
@@ -174,6 +175,8 @@ $this->title = 'GIP - Live Wire';
 
 			<div class="row">
 				<div class="col-lg-12">
+					<!-- iframe id="flight-radar" src="http://www.flightradar24.com/simple_index.php?lat=50.63639&amp;lon=5.44278&amp;z=9&amp;airports=1" width="100%" height="800"></iframe -->
+					
 					<div class="card card-bordered style-default-bright">
 					<?php 
 
@@ -222,84 +225,49 @@ $this->title = 'GIP - Live Wire';
 			
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="card card-bordered style-default-bright">
-						<span class="gip-header">DEPARTURE</span><br/>
-						<div class="gip-body" data-gip="value">
-							
-							<table class="table table-striped no-margin">
-								<thead>
-									<tr>
-										<th>Fl.#</th>
-										<th>Dest</th>
-										<th>Sched</th>
-										<th>Est</th>
-										<th>Act</th>
-										<th>Dly</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th>SN123</th>
-										<th>Alicante</th>
-										<th>10:30</th>
-										<th>11:10</th>
-										<th>---</th>
-										<th>40</th>
-									</tr>
-								</tbody>
-								<tfoot>
-									<tr>
-										<th colspan=5>Delay average: </th>
-										<th>6</th>
-									</tr>
-								</tfoot>						
-							</table>
-						
-						</div><!-- .gip-body -->
-						<span class="gip-footer" data-gip="note">LAST UPDATED</span>
-						
-					</div>
+					<?= FlightTable::widget([
+						'source'	=> 'aodb',
+						'type'		=> 'departure',
+						'title'	=> 'DEPARTURE',
+						'flights' => [ [
+								'registration' => 'EBLG',
+								'flight_number' => 'EBLG',
+								'destination' => 'Liège',
+								'schedule' => '00:00',
+								'estimated' => '00:00',
+								'actual' => '-',
+								'delay' => '0'
+							]
+						]
+					]) ?>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="card card-bordered style-default-bright">
-						<span class="gip-header">ARRIVAL</span><br/>
-						<div class="gip-body" data-gip="value">
-							
-							<table class="table table-striped no-margin">
-								<thead>
-									<tr>
-										<th>Fl.#</th>
-										<th>Dest</th>
-										<th>Sched</th>
-										<th>Est</th>
-										<th>Act</th>
-										<th>Dly</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th>SN123</th>
-										<th>Alicante</th>
-										<th>10:30</th>
-										<th>11:10</th>
-										<th>---</th>
-										<th>40</th>
-									</tr>
-								</tbody>
-								<tfoot>
-									<tr>
-										<th colspan=5>Delay average: </th>
-										<th>6</th>
-									</tr>
-								</tfoot>						
-							</table>
-						
-						</div><!-- .gip-body -->
-						<span class="gip-footer" data-gip="note">LAST UPDATED</span>
-						
-					</div>
+					<?= FlightTable::widget([
+						'source'	=> 'aodb',
+						'type'		=> 'arrival',
+						'title'	=> 'ARRIVAL',
+						'flights' => [ [
+								'registration' => 'EBLG',
+								'flight_number' => 'EBLG',
+								'destination' => 'Liège',
+								'schedule' => '00:00',
+								'estimated' => '00:00',
+								'actual' => '-',
+								'delay' => '0'
+							],
+							[
+									'registration' => 'EBLG1',
+									'flight_number' => 'EBLG1',
+									'destination' => 'Liège',
+									'schedule' => '00:00',
+									'estimated' => '00:00',
+									'actual' => '-',
+									'delay' => '0'
+							]
+						]
+					]) ?>
 				</div>
 			</div>
 			
@@ -315,10 +283,10 @@ $this->title = 'GIP - Live Wire';
 					echo Chart::widget([
 						'id' => 'inout-graph',
 					    'data' => [
-					    	['label' => 'Inbound L', 'data' => round(50 * $moves['in']['L'] / ($moves['in']['L']+$moves['in']['R']))],
-					    	['label' => 'Inbound R', 'data' => round(50 * $moves['in']['R'] / ($moves['in']['L']+$moves['in']['R']))],
-					    	['label' => 'Outbound L', 'data' => round(50 * $moves['out']['L'] / ($moves['out']['L']+$moves['out']['R']))],
-					    	['label' => 'Outbound R', 'data' => round(50 * $moves['out']['R'] / ($moves['out']['L']+$moves['out']['R']))]
+					    	['label' => 'Passenger Free', 'data' => round(50 * $moves['in']['L'] / ($moves['in']['L']+$moves['in']['R']))],
+					    	['label' => 'Passenger Busy', 'data' => round(50 * $moves['in']['R'] / ($moves['in']['L']+$moves['in']['R']))],
+					    	['label' => 'Freit Busy', 'data' => round(50 * $moves['out']['R'] / ($moves['out']['L']+$moves['out']['R']))],
+					    	['label' => 'Freit Free', 'data' => round(50 * $moves['out']['L'] / ($moves['out']['L']+$moves['out']['R']))],
 					    ],
 					    'options' => [
 							'series' => [
