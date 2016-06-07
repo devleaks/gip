@@ -13,7 +13,7 @@
 	var opts;
 	var defaults = {
 		debug: false,
-		id: "the-wire",
+		id: "gip-gip-wire",
 		// Websocket feeds
 		websocket: 'ws://localhost:8051/',
 		initSeed: '',///gipadmin/wire/seed
@@ -62,36 +62,40 @@
 		opts = $.extend( {}, defaults, options);
 		if(opts.debug) {
 			opts.intro_messages.starting.created_at = new Date(); 
-			Dashboard.prototype.addWire(opts.intro_messages.starting);
+			send_to_wire(opts.intro_messages.starting);
 		}
-		install();
+		// install();
 	    wsStart();
 		initSeed();
 	};
 	
 	function get_giplet_id(msg) {
-		id = '#gip-'+msg.source.toLowerCase()+'-'+msg.type.toLowerCase();
-		if(typeof msg.channel !== undefined)
-			id += '-'.msg.channel.toLowerCase;
+		var id = '#gip-'+msg.source.toLowerCase()+'-'+msg.type.toLowerCase();
+		if(typeof msg.channel !== undefined) {
+			if(msg.channel !== null) {
+				id += ('-'+msg.channel);
+			}
+		}
 		return id;
+	}
+	
+	function send_to_wire(msg) {
+		$('#gip-gip-wire').trigger('gip:message', msg);
 	}
 	
 	// Init & start ws connection
     function wsStart() {
 		var ws = new WebSocket(opts.websocket);
-        ws.onopen = function() { opts.intro_messages.opening.created_at = new Date(); Dashboard.prototype.addWire(opts.intro_messages.opening); };
-        ws.onclose = function() { if(opts.debug) { opts.intro_messages.closing.created_at = new Date(); Dashboard.prototype.addWire(opts.intro_messages.closing); } };
+        ws.onopen = function() { opts.intro_messages.opening.created_at = new Date(); send_to_wire(opts.intro_messages.opening); };
+        ws.onclose = function() { if(opts.debug) { opts.intro_messages.closing.created_at = new Date(); send_to_wire(opts.intro_messages.closing); } };
         ws.onmessage = function(evt) {
 			var msg = $.parseJSON(evt.data);
 			var gid = get_giplet_id(msg);
-			console.log("notifying " + gid + "...");
 			$(gid).trigger('gip:message', msg);
-			console.log("..." + gid + " notified");
 			var priority = msg.priority == null ? 0 : parseInt(msg.priority);
 			if(priority >= 0) {
-				console.log("sending to wire " + gid);
 				$('#'+opts.id).trigger('gip:message', msg);
-				$('#'+opts.id).scrollTop($('#'+opts.id)[0].scrollHeight);
+				$('#'+opts.id+' ul').scrollTop($('#'+opts.id+' ul')[0].scrollHeight);
 			}
 		};
     }
@@ -105,7 +109,7 @@
 	   			function (r) {
 					msgs = $.parseJSON(r);
 					for(var idx=msgs.length - 1;idx>= 0;idx--) { // oldest first
-						Dashboard.prototype.addWire(msgs[idx]);
+						send_to_wire(msgs[idx]);
 					}
 	            }
 			);

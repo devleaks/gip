@@ -23,13 +23,16 @@ class DashboardAsset extends AssetBundle
 		'css/cd-timeline.css',
 		'css/materialadmin.css',
 		'css/breakingNews.css',
+		'snd',
 //		'css/waves.css'
     ];
     public $js = [
+		'js/dashboard.js',
 		'js/breakingNews.js',
 //		'js/waves.js'
     ];
     public $depends = [
-        'backend\assets\WireAsset',
+        'backend\assets\AppAsset',
+        'yii\bootstrap\BootstrapAsset',
     ];
 }

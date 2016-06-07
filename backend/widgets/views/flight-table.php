@@ -56,14 +56,11 @@ jQuery(document).ready(function($){
 	$(selector).on('gip:message', function(event, msg) {
 		var payload = $.parseJSON(msg.body);
 		var delay_cnt = 0, delay_avg = 0;
-		console.log(payload);
 		$(this).find('tbody tr').remove();
 		for (var i = 0; i < payload.length; i++) {
 			flight = payload[i];
-			console.log(flight);
 			var tr = $('<tr>').data('gip-id', flight.registration);
 			for (var property in flight) {
-				console.log(property);
 				if(property == "registration") continue;
 				tr.append( $('<td>').data('gip', property).html(flight[property]) );
 			}

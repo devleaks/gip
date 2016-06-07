@@ -379,7 +379,8 @@ $this->title = 'GIP - Live Wire';
 				<div class="row">
 					<div class="col-lg-12">
 						<?= Wire::widget([
-							'id' => 'the-wire',
+							'source' => 'gip',
+							'type' => 'wire',
 							'statuses' => [WireModel::STATUS_PUBLISHED, WireModel::STATUS_UNREAD],
 							'live' => true,
 							'wire_count' => 0
@@ -392,15 +393,18 @@ $this->title = 'GIP - Live Wire';
 
 </div>
 <script type="text/javascript">
-<?php $this->beginBlock('JS_SIDEBAR') ?>
+<?php $this->beginBlock('JS_DASHBOARD') ?>
 jQuery(document).ready(function($){
+	//main communication
+	$.dashboard.init({websocket: "<?= Yii::$app->params['websocket_server'] ?>"});
+	
 	//open the lateral panel
 	$('.cd-btn').on('click', function(event){
 		console.log('panel out');
 		event.preventDefault();
 		$('.cd-panel').addClass('is-visible');
 	});
-	//clode the lateral panel
+	//close the lateral panel
 	$('.cd-panel').on('click', function(event){
 		if( $(event.target).is('.cd-panel') || $(event.target).is('.cd-panel-close') ) { 
 			$('.cd-panel').removeClass('is-visible');
@@ -408,6 +412,16 @@ jQuery(document).ready(function($){
 		}
 	});
 
+});
+<?php $this->endBlock(); ?>
+</script>
+<?php
+$this->registerJs($this->blocks['JS_DASHBOARD'], yii\web\View::POS_READY);
+?>
+<script type="text/javascript">
+<?php $this->beginBlock('JS_GLOBAL_WIDGETS') ?>	
+jQuery(document).ready(function($){
+	//main communication
     $("#news").breakingNews({
 		effect		:"slide-v",
 		autoplay	:true,
@@ -425,4 +439,4 @@ jQuery(document).ready(function($){
 <?php $this->endBlock(); ?>
 </script>
 <?php
-$this->registerJs($this->blocks['JS_SIDEBAR'], yii\web\View::POS_READY);
+$this->registerJs($this->blocks['JS_GLOBAL_WIDGETS'], yii\web\View::POS_READY);

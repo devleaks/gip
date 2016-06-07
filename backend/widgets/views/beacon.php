@@ -75,11 +75,9 @@ jQuery(document).ready(function($){
 		play_sound(payload.marker);
 		
 		blink(mid+" a.marker-"+payload.marker, payload.marker, 0);
-		/*
 		if(msg.type.toLowerCase() == 'outer') {
-			WireWidget.prototype.addWire(msg);
+			$('#gip-gip-wire').trigger('gip:message', msg);
 		}
-		*/
 	});
 
 	/**

@@ -21,17 +21,14 @@ class WireAsset extends AssetBundle
     public $css = [
 		'css/wire.css',
 		'css/tagsort.css',
-		'snd',
     ];
     public $js = [
 		'js/tagsort.min.js',
 		'js/sortElements.js',
 //		'js/wire.js',
-		'js/wire-widget.js',
+//		'js/wire-widget.js',
     ];
     public $depends = [
-        'backend\assets\AppAsset',
-    	'frontend\assets\MetarAsset',
-        'yii\bootstrap\BootstrapAsset',
+    	'backend\assets\DashboardAsset',
     ];
 }

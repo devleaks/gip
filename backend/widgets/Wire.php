@@ -16,7 +16,7 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\bootstrap\Widget;
 
-class Wire extends Widget {
+class Wire extends Giplet {
 	/** number of recent message to display */
 	public $wire_count = 10;
 	
