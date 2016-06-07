@@ -3,9 +3,11 @@
 use common\models\Wire as WireModel;
 
 use backend\widgets\Beacon;
+use backend\widgets\Clock;
 use backend\widgets\FlightTable;
 use backend\widgets\Indicator;
 use backend\widgets\Metar;
+use backend\widgets\News;
 use backend\widgets\Wire;
 
 //use backend\assets\WireAsset;
@@ -34,7 +36,7 @@ $liege = [
 	'lon' => 5.44278
 ];
 
-$this->title = 'GIP - Live Wire';
+$this->title = 'GIP Dashboard';
 /** card style colors
 .style-accent
 .style-accent-bright
@@ -68,21 +70,19 @@ $this->title = 'GIP - Live Wire';
 		<div class="row">
 
 			<div class="col-lg-12">
-				<div class="breakingNews" id="news" style="text-align: left;">
-			    	<div class="bn-title"><h2>News For Liège Airport</h2><span></span></div>
-			        <ul>
-			        	<li><a href="#">Mauris interdum elit non sapien imperdiet, ac dapibus mi maximus</a></li>
-			            <li><a href="#">Nullam sit amet nisl ex</a></li>
-			            <li><a href="#">Cras lorem augue, facilisis a commodo in, facilisis finibus libero vel ultrices.</a></li>
-			            <li><a href="#">Maecenas imperdiet ante vitae neque facilisis cursus</a></li>
-			            <li><a href="#">Maecenas libero ipsum, placerat in mattis vel, tincidunt quis est.</a></li>
-			            <li><a href="#">Curabitur tortor libero, vehicula sagittis luctus sed, lobortis sed arcu</a></li>
-			        </ul>
-			        <div class="bn-navi">
-			        	<span></span>
-			            <span></span>
-			        </div>
-			    </div>
+				<?= News::widget([
+						'source' => 'gip',
+						'type'	=> 'news',
+						'title' => 'News For Liège Airport',
+						'news' => [
+							'Mauris interdum elit non sapien imperdiet, ac dapibus mi maximus',
+					        'Nullam sit amet nisl ex',
+					        'Cras lorem augue, facilisis a commodo in, facilisis finibus libero vel ultrices.',
+					        'Maecenas libero ipsum, placerat in mattis vel, tincidunt quis est.',
+					        'Curabitur tortor libero, vehicula sagittis luctus sed, lobortis sed arcu',
+						]
+					]);
+				?>
 			</div>
 
 		</div>
@@ -97,9 +97,11 @@ $this->title = 'GIP - Live Wire';
 		<div class="col-lg-2">
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="card card-bordered style-default-bright">
-					<div id="live_clock"></div>
-					</div>
+					<?= Clock::widget([
+						'source' => 'gip',
+						'type' => 'clock',
+						'color' => 'default-bright'
+					]) ?>
 				</div>
 			</div>
 			<!--div class="row">
@@ -131,6 +133,8 @@ $this->title = 'GIP - Live Wire';
 			<div class="row">
 				<div class="col-lg-12">
 					<?= Metar::widget([
+							'source' => 'gip',
+							'type' => 'metar',
 							'location' => 'EBLG'
 						]);
 					?>
@@ -197,7 +201,7 @@ $this->title = 'GIP - Live Wire';
 					// now our component and we are going to configure it
 					$leaflet = new LeafLet([
 					    'center' => $center, // set the center
-						'zoom' => 15
+						'zoom' => (rand(0, 1) == 1 ? 8 : 15) //15=close, 8=about 150km around
 					]);
 					// Different layers can be added to our map using the `addLayer` function.
 					$leaflet->addLayer($marker)      // add the marker
@@ -411,32 +415,8 @@ jQuery(document).ready(function($){
 			event.preventDefault();
 		}
 	});
-
 });
 <?php $this->endBlock(); ?>
 </script>
 <?php
 $this->registerJs($this->blocks['JS_DASHBOARD'], yii\web\View::POS_READY);
-?>
-<script type="text/javascript">
-<?php $this->beginBlock('JS_GLOBAL_WIDGETS') ?>	
-jQuery(document).ready(function($){
-	//main communication
-    $("#news").breakingNews({
-		effect		:"slide-v",
-		autoplay	:true,
-		timer		:3000,
-		color		:"red"
-	});
-	
-	function show_clock(){
-		$('#live_clock').html(moment.utc(new Date()).format('HH:mm:ss'));
-	}
-	
-	setInterval(show_clock,1000);
-});
-
-<?php $this->endBlock(); ?>
-</script>
-<?php
-$this->registerJs($this->blocks['JS_GLOBAL_WIDGETS'], yii\web\View::POS_READY);

@@ -80,7 +80,11 @@
 	}
 	
 	function send_to_wire(msg) {
-		$('#gip-gip-wire').trigger('gip:message', msg);
+		var priority = msg.priority == null ? 0 : parseInt(msg.priority);
+		if(priority >= 0) {
+			$('#'+opts.id).trigger('gip:message', msg);
+			$('#'+opts.id+' ul').scrollTop($('#'+opts.id+' ul')[0].scrollHeight);
+		}
 	}
 	
 	// Init & start ws connection
@@ -97,6 +101,7 @@
 				$('#'+opts.id).trigger('gip:message', msg);
 				$('#'+opts.id+' ul').scrollTop($('#'+opts.id+' ul')[0].scrollHeight);
 			}
+			send_to_wire(msg);
 		};
     }
 

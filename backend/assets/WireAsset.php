@@ -29,6 +29,5 @@ class WireAsset extends AssetBundle
 //		'js/wire-widget.js',
     ];
     public $depends = [
-    	'backend\assets\DashboardAsset',
     ];
 }

@@ -23,7 +23,7 @@ $widget_hndlr 	= strtoupper($widget->source.'_'.$widget->type);
 
 <script type="text/javascript">
 <?php $this->beginBlock('JS_UPDATEMETAR') ?>
-function update_metar() {
+function init_metar() {
 	giplet = $('.metar');
 	$.get(
 		"wire/get-metar",
@@ -45,8 +45,24 @@ function update_metar() {
 	    }
 	);
 };
-update_metar();
-//setInterval(update_metar, 1800000);
+init_metar();
+setInterval(init_metar, 10 * 60000); /* 10 minutes in msecs */
+jQuery(document).ready(function($){
+	var selector = "#" + "<?= $widget_class ?>";
+	/**
+	 *	GIP Message Handler: Handle plain messages
+	 */
+	$(selector).on('gip:message', function(event, msg) {
+		t = msg.body;
+		//console.log(t);
+		u = metar_decode(t);
+		//console.log(u);
+		str = u.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+		$(this).find('.gip-body').html(str);
+		$(this).find('.gip-footer').html('LAST UPDATED ' + moment().format('HH:mm')+ ' L');
+	});
+
+});
 <?php $this->endBlock(); ?>
 </script>
 
