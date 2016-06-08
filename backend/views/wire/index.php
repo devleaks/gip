@@ -405,7 +405,6 @@ jQuery(document).ready(function($){
 	
 	//open the lateral panel
 	$('.cd-btn').on('click', function(event){
-		console.log('panel out');
 		event.preventDefault();
 		$('.cd-panel').addClass('is-visible');
 	});

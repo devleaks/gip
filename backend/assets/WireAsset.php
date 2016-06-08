@@ -21,10 +21,12 @@ class WireAsset extends AssetBundle
     public $css = [
 		'css/wire.css',
 		'css/tagsort.css',
+		'css/jquery.growl.css',
     ];
     public $js = [
 		'js/tagsort.min.js',
 		'js/sortElements.js',
+		'js/jquery.growl.js',
 //		'js/wire.js',
 //		'js/wire-widget.js',
     ];

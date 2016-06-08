@@ -309,6 +309,10 @@ jQuery(document).ready(function($){
 			$(this).prev().toggle();
 			return false;
 		});
+		if(['default' , 'error' , 'notice' , 'warning'].indexOf(bs_color) == -1) {
+			bs_color = 'default';
+		}
+		$.growl({ title: message.subject, message: message.body, style: bs_color });
 	});
 
 });
