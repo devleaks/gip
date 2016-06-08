@@ -100,7 +100,8 @@ $this->title = 'GIP Dashboard';
 					<?= Clock::widget([
 						'source' => 'gip',
 						'type' => 'clock',
-						'color' => 'default-bright'
+						'color' => 'default-bright',
+						'title' => 'Liège Airport'
 					]) ?>
 				</div>
 			</div>
