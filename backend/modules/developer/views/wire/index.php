@@ -36,14 +36,14 @@ $this->params['breadcrumbs'][] = $this->title;
 				'attribute' => 'source_id',
 				'filter' => Type::forClass(Wire::className().':source'),
 				'value' => function ($model, $key, $index, $widget) {
-							return $model->source ? $model->source->name : $model->source_id;
+							return $model->source ? $model->source->display_name : $model->source_id;
 	            		},
 			],
             [
 				'attribute' => 'type_id',
 				'filter' => Type::forClass(Wire::className().':type'),
 				'value' => function ($model, $key, $index, $widget) {
-							return $model->type ? $model->type->name : $model->type_id;
+							return $model->type ? $model->type->display_name : $model->type_id;
 	            		},
 			],
 			'channel',

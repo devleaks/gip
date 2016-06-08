@@ -81,10 +81,12 @@
 	
 	function send_to_wire(msg) {
 		var priority = msg.priority == null ? 0 : parseInt(msg.priority);
-		if(priority >= 0) {
+		if(priority > 0) {
 			$('#'+opts.id).trigger('gip:message', msg);
 			$('#'+opts.id+' ul').scrollTop($('#'+opts.id+' ul')[0].scrollHeight);
+			return true;
 		}
+		return false;
 	}
 	
 	// Init & start ws connection
@@ -96,12 +98,9 @@
 			var msg = $.parseJSON(evt.data);
 			var gid = get_giplet_id(msg);
 			$(gid).trigger('gip:message', msg);
-			var priority = msg.priority == null ? 0 : parseInt(msg.priority);
-			if(priority >= 0) {
-				$('#'+opts.id).trigger('gip:message', msg);
+			if(send_to_wire(msg)) {
 				$('#'+opts.id+' ul').scrollTop($('#'+opts.id+' ul')[0].scrollHeight);
 			}
-			send_to_wire(msg);
 		};
     }
 
