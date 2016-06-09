@@ -2,7 +2,7 @@
 
 namespace backend\widgets;
 
-use frontend\assets\MetarAsset;
+use backend\assets\NewsAsset;
 
 use Yii;
 use yii\web\Response;
@@ -30,6 +30,7 @@ class News extends Giplet
     protected function registerAssets()
     {
         $view = $this->getView();
+		NewsAsset::register($view);
     }
 
 }

@@ -4,6 +4,7 @@ use common\models\Wire as WireModel;
 
 use backend\widgets\Beacon;
 use backend\widgets\Clock;
+use backend\widgets\DelayTable;
 use backend\widgets\FlightTable;
 use backend\widgets\Indicator;
 use backend\widgets\Metar;
@@ -325,14 +326,16 @@ $this->title = 'GIP Dashboard';
 			
 			<div class="row">
 				<div class="col-lg-12">
-					<?= Indicator::widget([
+					<?= DelayTable::widget([
 						'source'	=> 'aodb',
-						'type'		=> 'dealy',
-						'color'		=> 'warning',
-						'header'	=> 'DELAY',
-						'footer'	=> 'min',
-						'body'		=> '12',
-						]) ?>
+						'type'		=> 'departure',
+						'title'	=> 'DEPARTURE',
+						'delays' => [
+							[ 'code' => '01', 'descr' => 'Weather', 'time' => '7870', 'percent' => '44 %'],
+							[ 'code' => '02', 'descr' => 'ATC Capacity', 'time' => '5192', 'percent' => '29 %'],
+							[ 'code' => '03', 'descr' => 'Aerodrome Capacity', 'time' => '1573', 'percent' => '9 %'],
+						],
+					]) ?>
 				</div>
 			</div>
 						

@@ -13,20 +13,15 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class WireAsset extends AssetBundle
+class NewsAsset extends AssetBundle
 {
     public $sourcePath = '@backend/assets';
-//	public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-		'css/wire.css',
-		'css/tagsort.css',
-		'css/jquery.growl.css',
+		'css/breakingNews.css',
     ];
     public $js = [
-		'js/tagsort.min.js',
-		'js/sortElements.js',
-		'js/jquery.growl.js',
+		'js/breakingNews.js',
     ];
     public $depends = [
     ];

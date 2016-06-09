@@ -6,11 +6,10 @@ use yii\helpers\Html;
 
 use devleaks\sieve\Sieve;
 use kartik\icons\Icon;
-use kartik\daterange\MomentAsset;
 
 Icon::map($this);
 $asset = WireAsset::register($this);
-MomentAsset::register($this);
+
 $widget_class 	= strtolower('gip-'.$widget->source.'-'.$widget->type);
 $widget_hndlr 	= strtoupper($widget->source.'_'.$widget->type);
 
@@ -312,7 +311,8 @@ jQuery(document).ready(function($){
 		if(['default' , 'error' , 'notice' , 'warning'].indexOf(bs_color) == -1) {
 			bs_color = 'default';
 		}
-		$.growl({ title: message.subject, message: message.body, style: bs_color });
+		if($(selector).hasClass('gip-growl'))
+			$.growl({ title: message.subject, message: message.body, style: bs_color });
 	});
 
 });

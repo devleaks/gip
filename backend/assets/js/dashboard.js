@@ -80,13 +80,10 @@
 	}
 	
 	function send_to_wire(msg) {
-		var priority = msg.priority == null ? 0 : parseInt(msg.priority);
-		if(priority > 0) {
+		if(msg.priority > 0) {
 			$('#'+opts.id).trigger('gip:message', msg);
 			$('#'+opts.id+' ul').scrollTop($('#'+opts.id+' ul')[0].scrollHeight);
-			return true;
 		}
-		return false;
 	}
 	
 	// Init & start ws connection
@@ -96,11 +93,16 @@
         ws.onclose = function() { if(opts.debug) { opts.intro_messages.closing.created_at = new Date(); send_to_wire(opts.intro_messages.closing); } };
         ws.onmessage = function(evt) {
 			var msg = $.parseJSON(evt.data);
+			//fix priority because it is used in js at numerous place. Must be 0 <= priority <= 5.
+			var priority = msg.priority == null ? 0 : parseInt(msg.priority);
+			msg.priority = (priority > 5) ? 5 : priority;
+			//build giplet id
 			var gid = get_giplet_id(msg);
+			//send message to giplet
 			$(gid).trigger('gip:message', msg);
-			if(send_to_wire(msg)) {
-				$('#'+opts.id+' ul').scrollTop($('#'+opts.id+' ul')[0].scrollHeight);
-			}
+			//display message on wire if priority>0.
+			//messages with priority < 1 are not displayed on the wire (but the recipient giplet gets the message)
+			send_to_wire(msg);
 		};
     }
 
