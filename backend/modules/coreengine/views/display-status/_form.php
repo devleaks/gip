@@ -1,5 +1,7 @@
 <?php
 
+use common\models\Style;
+
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
 use kartik\builder\Form;
@@ -29,19 +31,8 @@ use kartik\datecontrol\DateControl;
 
 'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
 
-'style_name'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Style Name...', 'maxlength'=>40]],
+'style_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Style Name...'], 'items' => Style::getList()],
 
-'marker'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Marker...', 'maxlength'=>40]],
-
-'stroke_width'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Stroke Width...']],
-
-'stroke_style'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Stroke Style...']],
-
-'stroke_color'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Stroke Color...', 'maxlength'=>40]],
-
-'fill_pattern'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Fill Pattern...', 'maxlength'=>40]],
-
-'fill_color'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Fill Color...', 'maxlength'=>40]],
 
         ]
 

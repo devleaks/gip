@@ -4,12 +4,15 @@ namespace common\models;
 
 use Yii;
 use \common\models\base\Style as BaseStyle;
+use \common\behaviors\ListAll;
 
 /**
  * This is the model class for table "style".
  */
 class Style extends BaseStyle
 {
+	use ListAll;
+
 	const STROKE_TYPES = 'STROKE_TYPES';
 	const FILL_PATTERNS = 'FILL_PATTERNS';
 	const FONT_SIZES = 'FONT_SIZES';

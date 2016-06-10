@@ -9,15 +9,13 @@ use backend\widgets\FlightTable;
 use backend\widgets\Indicator;
 use backend\widgets\Metar;
 use backend\widgets\News;
+use backend\widgets\Parking;
 use backend\widgets\Wire;
 
 //use backend\assets\WireAsset;
 use backend\assets\DashboardAsset;
 
 use devleaks\weather\Weather;
-
-use bburim\flot\Chart;
-use bburim\flot\Plugin;
 
 use dosamigos\leaflet\types\LatLng;
 use dosamigos\leaflet\layers\Marker;
@@ -279,47 +277,15 @@ $this->title = 'GIP Dashboard';
 			
 			<div class="row">
 				<div class="col-lg-12">			
-					<div class="card card-bordered style-default-bright">
-					<?php
-					$moves = [
-						'in' => ['L' => 12, 'R' => 4],
-						'out' => ['L' => 9, 'R' => 7],
-					];
-
-					echo Chart::widget([
-						'id' => 'inout-graph',
-					    'data' => [
-					    	['label' => 'Passenger Free', 'data' => round(50 * $moves['in']['L'] / ($moves['in']['L']+$moves['in']['R']))],
-					    	['label' => 'Passenger Busy', 'data' => round(50 * $moves['in']['R'] / ($moves['in']['L']+$moves['in']['R']))],
-					    	['label' => 'Freit Busy', 'data' => round(50 * $moves['out']['R'] / ($moves['out']['L']+$moves['out']['R']))],
-					    	['label' => 'Freit Free', 'data' => round(50 * $moves['out']['L'] / ($moves['out']['L']+$moves['out']['R']))],
-					    ],
-					    'options' => [
-							'series' => [
-								'pie' => [
-									'innerRadius' => 0.5,
-									'show' => true,
-									'label' => [
-						                'show' => true,
-						                'radius' => 1/3,
-						                // 'formatter' => new JsExpression("labelFormatter"),
-						                'threshold' => 0.1
-							          ]
-								],
-							],
-					        'legend' => [
-					            'show'              => false,
-					        ],
-					    ],
-					    'htmlOptions' => [
-					        'style' => 'width:100%;height:200px;'
-					    ],
-					    'plugins' => [
-					        Plugin::PIE,
-							Plugin::TIME
-					    ]
-					]);
-					?>
+					<?= Parking::widget([
+						'source'	=> 'aodb',
+						'type'		=> 'parking-occupancy',
+						'title'	=> 'PARKING',
+						'parking_data' => [
+							'pax' => ['busy' => 10, 'avail' => 12],
+							'freit' => ['busy' => 7, 'avail' => 16],
+						],
+					]) ?>
 					</div>
 				</div>
 			</div>
@@ -329,7 +295,7 @@ $this->title = 'GIP Dashboard';
 					<?= DelayTable::widget([
 						'source'	=> 'aodb',
 						'type'		=> 'departure',
-						'title'	=> 'DEPARTURE',
+						'title'	=> 'DELAYS',
 						'delays' => [
 							[ 'code' => '01', 'descr' => 'Weather', 'time' => '7870', 'percent' => '44 %'],
 							[ 'code' => '02', 'descr' => 'ATC Capacity', 'time' => '5192', 'percent' => '29 %'],

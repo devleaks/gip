@@ -1,5 +1,7 @@
 <?php
 
+use common\models\Style;
+
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
@@ -25,14 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'display_name',
             'description',
-            'style_name',
-//            'marker', 
-//            'stroke_width', 
-//            'stroke_style', 
-//            'stroke_color', 
-//            'fill_pattern', 
-//            'fill_color', 
-
+			[
+				'attribute' => 'style_id',
+				'filter' => Style::getList(),
+	            'value' => function ($model, $key, $index, $widget) {
+							return $model->style_id ? $model->style->name : '';
+	            		},
+			],
             [
                 'class' => 'kartik\grid\ActionColumn',
 				'noWrap' => true,

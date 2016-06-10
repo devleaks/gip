@@ -9,6 +9,7 @@ use kartik\builder\Form;
 use insolita\iconpicker\Iconpicker;
 use kartik\widgets\ColorInput;
 use kartik\widgets\DateTimePicker;
+use devgroup\jsoneditor\Jsoneditor;
 
 /**
  * @var yii\web\View $this
@@ -33,6 +34,19 @@ use kartik\widgets\DateTimePicker;
             'subject'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Wire Subject...', 'maxlength'=>160]],
 
         	'body'=>['type'=> Form::INPUT_TEXTAREA, 'options'=>['placeholder'=>'Enter Wire Body...', 'maxlength'=>2000]],
+
+            'payload'=>['type'=> Form::INPUT_WIDGET,
+					 'widgetClass' => Jsoneditor::className(),
+					 'options' => [
+				        'editorOptions' => [
+				            'modes' => ['code', 'form', 'text', 'tree', 'view'], // available modes
+				            'mode' => 'tree', // current mode
+				        ],
+				        'model' => $model, // input name. Either 'name', or 'model' and 'attribute' properties must be specified.
+						'attribute' => 'payload',
+				        'options' => [], // html options
+				    ]
+			],
 
             'link'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Link URL...', 'maxlength'=>200]],
 

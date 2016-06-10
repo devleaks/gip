@@ -18,16 +18,9 @@ use yii\widgets\Pjax;
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn'],
 
-//            'name',
             'display_name',
             'description',
-            'style_name',
-//            'marker', 
-//            'stroke_width', 
-//            'stroke_style', 
-//            'stroke_color', 
-//            'fill_pattern', 
-//            'fill_color', 
+            'style_id',
 
             [
                 'class' => 'kartik\grid\ActionColumn',

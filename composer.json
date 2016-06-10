@@ -87,7 +87,8 @@
         "textalk/websocket": "^1.2",
         "bburim/flot": "dev-master",
         "2amigos/yii2-leaflet-extension": "~1.0",
-        "2amigos/yii2-chartjs-widget": "~2.0"
+        "2amigos/yii2-chartjs-widget": "~2.0",
+        "devgroup/yii2-jsoneditor": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
