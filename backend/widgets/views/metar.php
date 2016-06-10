@@ -59,7 +59,8 @@ jQuery(document).ready(function($){
 		//console.log(u);
 		str = u.replace(/(?:\r\n|\r|\n)/g, '<br/>');
 		$(this).find('.gip-body').html(str);
-		$(this).find('.gip-footer').html('LAST UPDATED ' + moment().format('HH:mm')+ ' L');
+		$.dashboard.last_updated(msg, $(this));
+		//$(this).find('.gip-footer').html('LAST UPDATED ' + moment().format('HH:mm')+ ' L');
 	});
 
 });

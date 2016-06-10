@@ -8,6 +8,7 @@ use backend\widgets\DelayTable;
 use backend\widgets\FlightTable;
 use backend\widgets\Indicator;
 use backend\widgets\Metar;
+use backend\widgets\Movement;
 use backend\widgets\News;
 use backend\widgets\Parking;
 use backend\widgets\Wire;
@@ -229,6 +230,16 @@ $this->title = 'GIP Dashboard';
 			
 			<div class="row">
 				<div class="col-lg-12">
+					<?= Movement::widget([
+						'source'	=> 'aodb',
+						'type'		=> 'movements',
+						'title'	=> 'MOVEMENTS',
+						'movements' => []
+					]) ?>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
 					<?= FlightTable::widget([
 						'source'	=> 'aodb',
 						'type'		=> 'departure',
@@ -286,7 +297,6 @@ $this->title = 'GIP Dashboard';
 							'freit' => ['busy' => 7, 'avail' => 16],
 						],
 					]) ?>
-					</div>
 				</div>
 			</div>
 			
@@ -294,12 +304,10 @@ $this->title = 'GIP Dashboard';
 				<div class="col-lg-12">
 					<?= DelayTable::widget([
 						'source'	=> 'aodb',
-						'type'		=> 'departure',
+						'type'		=> 'delay-report',
 						'title'	=> 'DELAYS',
 						'delays' => [
-							[ 'code' => '01', 'descr' => 'Weather', 'time' => '7870', 'percent' => '44 %'],
-							[ 'code' => '02', 'descr' => 'ATC Capacity', 'time' => '5192', 'percent' => '29 %'],
-							[ 'code' => '03', 'descr' => 'Aerodrome Capacity', 'time' => '1573', 'percent' => '9 %'],
+							[ 'code' => '01', 'reason' => 'Weather', 'time' => '7870', 'percent' => '44 %'],
 						],
 					]) ?>
 				</div>

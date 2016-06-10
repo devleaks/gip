@@ -69,6 +69,38 @@
 		initSeed();
 	};
 	
+	Dashboard.prototype.get_payload = function (msg) {
+		console.log({code: 'get_payload', message: msg});
+		var ret = null;
+		var fnd = 'no where';
+		try {
+			ret = JSON.parse(msg.body);
+			fnd = 'body';
+		} catch(e) {
+			console.log('cannot decode body');
+			console.log(e);
+			try {
+				ret = JSON.parse(msg.payload);
+				fnd = 'payload';
+			} catch(e) {
+				console.log('cannot decode payload');
+				console.log(e);
+				return false;
+			}
+		}
+		console.log('found payload in '+fnd);
+		return ret;
+	}
+
+
+	Dashboard.prototype.last_updated = function (msg, elem) {
+		var now = new Date();
+		console.log('updated at '+now);
+		elem.find('.gip-footer').html('LAST UPDATED ' + now.getHours() + ':' + now.getMinutes() + ' L');
+	}
+
+	
+	
 	function get_giplet_id(msg) {
 		var id = '#gip-'+msg.source.toLowerCase()+'-'+msg.type.toLowerCase();
 		if(typeof msg.channel !== undefined) {

@@ -118,3 +118,6 @@ div.timeline-circ.circ-xl.style-info {
 .metar .gip-body {
 	padding-left: 5px;
 }
+td.gip-percent {
+	text-align: right;
+}

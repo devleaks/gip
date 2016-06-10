@@ -22,7 +22,7 @@ $widget_hndlr 	= strtoupper($widget->source.'_'.$widget->type);
 				//echo json_encode($widget->flights);
 				foreach($widget->delays as $delay) {
 					$s = '<tr data-gip="delay" data-gip-id="'.$delay['code'].'">';
-					foreach(['descr','time', 'percent'] as $field) {
+					foreach(['reason','time','percent'] as $field) {
 						$s .= '<td data-gip="'.$field.'">'.$delay[$field].'</td>';
 					}
 					$s .= '</tr>';
@@ -45,23 +45,19 @@ jQuery(document).ready(function($){
 	 *	GIP Message Handler: Handle plain messages
 	 */
 	$(selector).on('gip:message', function(event, msg) {
-		var payload = $.parseJSON(msg.body);
-		var delay_cnt = 0, delay_avg = 0;
+		var payload = $.dashboard.get_payload(msg);
 		$(this).find('tbody tr').remove();
 		for (var i = 0; i < payload.length; i++) {
 			flight = payload[i];
 			var tr = $('<tr>').data('gip-id', flight.registration);
 			for (var property in flight) {
-				if(property == "registration") continue;
-				tr.append( $('<td>').data('gip', property).html(flight[property]) );
+				if(property == "code") continue;
+				tr.append( $('<td>').addClass('gip-'+property).html(flight[property]) );
 			}
-			delay_avg += parseInt(flight.delay);
-			delay_cnt++;
 			$(this).find('tbody').append(tr);
 		}
-		$(this).find('[data-gip="delay_avg"]').html(delay_cnt > 0 ? Math.round(delay_avg/delay_cnt) : 0);
-		$(this).find('[data-gip="note"]').html('LAST UPDATED ' + moment().format('HH:mm')+ ' L');
 		
+		$.dashboard.last_updated(msg, $(this));
 	});
 
 	/**

@@ -2102,17 +2102,21 @@
         },
         {
             "name": "dmstr/yii2-db",
-            "version": "0.3.0",
+            "version": "0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmstr/yii2-db.git",
-                "reference": "49e3227665c1f38b8da5d8b7cbe29b9f5b3fbab0"
+                "reference": "59193c6d9420ecde1b7e58b6742d35ba74dfd63e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmstr/yii2-db/zipball/49e3227665c1f38b8da5d8b7cbe29b9f5b3fbab0",
-                "reference": "49e3227665c1f38b8da5d8b7cbe29b9f5b3fbab0",
+                "url": "https://api.github.com/repos/dmstr/yii2-db/zipball/59193c6d9420ecde1b7e58b6742d35ba74dfd63e",
+                "reference": "59193c6d9420ecde1b7e58b6742d35ba74dfd63e",
                 "shasum": ""
+            },
+            "require": {
+                "mikehaertl/php-shellcommand": "1.*",
+                "yiisoft/yii2": "2.*"
             },
             "type": "yii2-extension",
             "autoload": {
@@ -2138,7 +2142,7 @@
                 "extension",
                 "yii2"
             ],
-            "time": "2015-12-21 10:01:49"
+            "time": "2016-06-08 21:34:58"
         },
         {
             "name": "dmstr/yii2-helpers",
@@ -2230,16 +2234,16 @@
         },
         {
             "name": "fabpot/php-cs-fixer",
-            "version": "v1.11.3",
+            "version": "v1.11.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "b0a383d856d884d6b16e15892f507ecf89f8dbd2"
+                "reference": "eeb280e909834603ffe03524dbe0066e77c83084"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/b0a383d856d884d6b16e15892f507ecf89f8dbd2",
-                "reference": "b0a383d856d884d6b16e15892f507ecf89f8dbd2",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/eeb280e909834603ffe03524dbe0066e77c83084",
+                "reference": "eeb280e909834603ffe03524dbe0066e77c83084",
                 "shasum": ""
             },
             "require": {
@@ -2281,7 +2285,7 @@
             ],
             "description": "A tool to automatically fix PHP code style",
             "abandoned": "friendsofphp/php-cs-fixer",
-            "time": "2016-05-26 23:49:24"
+            "time": "2016-06-07 07:51:27"
         },
         {
             "name": "fedemotta/yii2-gridstack",
@@ -4878,6 +4882,42 @@
             "time": "2013-07-31 18:13:10"
         },
         {
+            "name": "mikehaertl/php-shellcommand",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mikehaertl/php-shellcommand.git",
+                "reference": "c7bbaf2e01a6d6dbf39d54dd077a8f9061a845c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mikehaertl/php-shellcommand/zipball/c7bbaf2e01a6d6dbf39d54dd077a8f9061a845c2",
+                "reference": "c7bbaf2e01a6d6dbf39d54dd077a8f9061a845c2",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "mikehaertl\\shellcommand\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Härtl",
+                    "email": "haertl.mike@gmail.com"
+                }
+            ],
+            "description": "An object oriented interface to shell commands",
+            "keywords": [
+                "shell"
+            ],
+            "time": "2015-09-22 18:26:51"
+        },
+        {
             "name": "mikevanriel/text-to-latex",
             "version": "1.0.1",
             "source": {
@@ -4970,12 +5010,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mootensai/yii2-enhanced-gii.git",
-                "reference": "906a4b495d5061adf9c92667cfc9d0f5df6acd2a"
+                "reference": "24392b185787727bcc459fbab96de0b7b0950aba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mootensai/yii2-enhanced-gii/zipball/906a4b495d5061adf9c92667cfc9d0f5df6acd2a",
-                "reference": "906a4b495d5061adf9c92667cfc9d0f5df6acd2a",
+                "url": "https://api.github.com/repos/mootensai/yii2-enhanced-gii/zipball/24392b185787727bcc459fbab96de0b7b0950aba",
+                "reference": "24392b185787727bcc459fbab96de0b7b0950aba",
                 "shasum": ""
             },
             "require": {
@@ -5022,7 +5062,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2016-05-25 03:43:59"
+            "time": "2016-06-09 05:10:14"
         },
         {
             "name": "mootensai/yii2-jsblock",
@@ -5109,16 +5149,16 @@
         },
         {
             "name": "mootensai/yii2-relation-trait",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mootensai/yii2-relation-trait.git",
-                "reference": "0e61e70bf67cce15533e3ba02ac5bca9c59aa917"
+                "reference": "63af1a65457f3d33a5a32d556b42538953a87c1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mootensai/yii2-relation-trait/zipball/0e61e70bf67cce15533e3ba02ac5bca9c59aa917",
-                "reference": "0e61e70bf67cce15533e3ba02ac5bca9c59aa917",
+                "url": "https://api.github.com/repos/mootensai/yii2-relation-trait/zipball/63af1a65457f3d33a5a32d556b42538953a87c1a",
+                "reference": "63af1a65457f3d33a5a32d556b42538953a87c1a",
                 "shasum": ""
             },
             "require": {
@@ -5155,7 +5195,7 @@
                 "transaction",
                 "yii2"
             ],
-            "time": "2016-02-26 05:17:13"
+            "time": "2016-06-08 10:00:50"
         },
         {
             "name": "mootensai/yii2-uuid-behavior",
@@ -5332,16 +5372,16 @@
         },
         {
             "name": "morozovsk/yii2-websocket",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/morozovsk/yii2-websocket.git",
-                "reference": "48b6f2afd6b6aaa4e3f581b270ba05dba6c44824"
+                "reference": "07ac2ba3a4eeee108748e4ce51fdd149ba8d3cde"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/morozovsk/yii2-websocket/zipball/48b6f2afd6b6aaa4e3f581b270ba05dba6c44824",
-                "reference": "48b6f2afd6b6aaa4e3f581b270ba05dba6c44824",
+                "url": "https://api.github.com/repos/morozovsk/yii2-websocket/zipball/07ac2ba3a4eeee108748e4ce51fdd149ba8d3cde",
+                "reference": "07ac2ba3a4eeee108748e4ce51fdd149ba8d3cde",
                 "shasum": ""
             },
             "require": {
@@ -5387,7 +5427,7 @@
                 "websocket",
                 "yii"
             ],
-            "time": "2015-09-06 13:46:42"
+            "time": "2016-06-07 11:19:33"
         },
         {
             "name": "mpdf/mpdf",
