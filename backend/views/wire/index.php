@@ -26,6 +26,7 @@ use dosamigos\leaflet\widgets\Map;
 
 use yii\web\JsExpression;
 use yii\bootstrap\Alert;
+use yii\helpers\Html;
 
 $asset = DashboardAsset::register($this);
 

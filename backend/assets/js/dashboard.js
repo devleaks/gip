@@ -50,6 +50,7 @@
 			}
 		}
 	};
+	var _replay_time;
 
 	/*
 	 * Only gets called when we're using $('$el').dashboard format
@@ -69,33 +70,43 @@
 		initSeed();
 	};
 	
+	Dashboard.prototype.set_time = function(replay_time) {
+		_replay_time = replay_time;
+	};
+	
+	Dashboard.prototype.get_time = function() {
+		return (_replay_time !== null) ? _replay_time : new Date().getTime();
+	};
+	
 	Dashboard.prototype.get_payload = function (msg) {
-		console.log({code: 'get_payload', message: msg});
+		if(opts.debug) {
+			console.log({code: 'Dashboard.prototype.get_payload', message: msg});
+		}
 		var ret = null;
-		var fnd = 'no where';
+		var fnd = 'nothing';
 		try {
 			ret = JSON.parse(msg.body);
 			fnd = 'body';
 		} catch(e) {
-			console.log('cannot decode body');
+			console.log('Dashboard.prototype.get_payload: cannot decode body');
 			console.log(e);
 			try {
 				ret = JSON.parse(msg.payload);
 				fnd = 'payload';
 			} catch(e) {
-				console.log('cannot decode payload');
+				console.log('Dashboard.prototype.get_payload: cannot decode payload');
 				console.log(e);
 				return false;
 			}
 		}
-		console.log('found payload in '+fnd);
+		console.log('Dashboard.prototype.get_payload: found payload in '+fnd);
 		return ret;
 	}
 
 
 	Dashboard.prototype.last_updated = function (msg, elem) {
 		var now = new Date();
-		console.log('updated at '+now);
+		console.log('Dashboard.prototype.last_updated: updated at '+now);
 		elem.find('.gip-footer').html('LAST UPDATED ' + now.getHours() + ':' + now.getMinutes() + ' L');
 	}
 

@@ -88,6 +88,7 @@ foreach($a as $i => $e) { // starts 4 hours ago, display next four hours
     ],
     'plugins' => [
 		Plugin::PIE,
+		Plugin::STACK,
 		Plugin::TIME
     ]
 ]);
@@ -104,27 +105,7 @@ jQuery(document).ready(function($){
 		var payload = $.dashboard.get_payload(msg);
 		
 		if(payload) {
-			$.plot($('#gip-movement'), [
-				{"color":"#8f8","label":"PAX Free","data":payload['pax']['avail']},
-				{"color":"#f88","label":"PAX Busy","data":payload['pax']['busy']},
-				{"color":"#b00","label":"Freit Busy","data":payload['freit']['avail']},
-				{"color":"#0b0","label":"Freit Free","data":payload['freit']['busy']}
-			], {
-				"series":{
-					"pie":{
-						"innerRadius":0.5,
-						"show":true,
-						"label":{
-							"show":true,
-							"radius":0.33333333333333,
-							"threshold":0.1
-						}
-					}
-				},
-				"legend":{
-					"show":false
-				}
-			});
+			$.plot($('#gip-movement'), [], {});
 		}
 	});
 
@@ -137,6 +118,110 @@ jQuery(document).ready(function($){
 			$(this).find("[data-gip="+property+"]").html(payload[property]);
 		}
 	});
+	
+	$(selector).click(function() {
+		$.dashboard.set_time(new Date('2016-04-03T10:00:00'));
+		delayed_time = moment($.dashboard.get_time());
+		
+		// get scheduled flights (all positive numbers)
+		$.post(
+			"wire/get-movements",
+			{
+				'around': delayed_time.format('YYYY-MM-DD HH:mm')
+			},
+			function (r) {
+				var s = JSON.parse(r);
+				//console.log(s);
+
+				var sched_arr = new Array(), sched_dep = new Array();
+				var work = s.sched;
+				for(var i = 0; i < work.length; i++) {
+					if(work[i].dir == 'A') {
+						sched_arr.push([work[i].sched * 1000, work[i].count]);
+					} else {
+						sched_dep.push([work[i].sched * 1000, work[i].count]);
+					}
+				}
+				//console.log(sched_arr);
+
+				var plan_arr = new Array(), plan_dep = new Array();
+				work = s.plan;
+				//console.log(sched);
+				for(var i = 0; i < work.length; i++) {
+					if(work[i].dir == 'A') {
+						plan_arr.push([work[i].planned * 1000, -work[i].count]);
+					} else {
+						plan_dep.push([work[i].planned * 1000, -work[i].count]);
+					}
+				}
+				//console.log(plan_arr);
+
+				var act_arr = new Array(), act_dep = new Array();
+				work = s.act;
+				//console.log(sched);
+				for(var i = 0; i < work.length; i++) {
+					if(work[i].dir == 'A') {
+						act_arr.push([work[i].actual * 1000, -work[i].count]);
+					} else {
+						act_dep.push([work[i].actual * 1000, -work[i].count]);
+					}
+				}
+				//console.log(act_arr);
+
+				$.plot($('#gip-movement'),
+					[
+						{
+						    stack: true,
+							label: 'sched dep',
+						    data: sched_dep,
+						    color: "#f00"
+						},{
+						    stack: true,
+							label: 'sched arr',
+						    data: sched_arr,
+						    color: "#0f0"
+						},{
+						    stack: true,
+							label: 'act dep',
+						    data: act_dep,
+						    color: "#800"
+						},{
+						    stack: true,
+							label: 'act arr',
+						    data: act_arr,
+						    color: "#080"
+						},{
+						    stack: true,
+							label: 'plan dep',
+						    data: plan_dep,
+						    color: "#f88"
+						},{
+						    stack: true,
+							label: 'plan arr',
+						    data: plan_arr,
+						    color: "#8f8"
+						}
+					],
+					{
+				        series: {
+							stack: true,
+				            lines: {show: false, steps: false},
+				            bars: {show: true, barWidth: 0.4, align: 'center'}
+				        },
+				        xaxis: {
+							mode: 'time',
+							timezone: 'browser'
+				        },
+				        legend: {
+				            show: true
+				        }
+					}
+				);
+		    }
+		);
+	});
+	
+	// $(selector).trigger('click');
 
 });
 <?php $this->endBlock(); ?>

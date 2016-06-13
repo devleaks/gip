@@ -31,7 +31,7 @@ class WireController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['index', 'search', 'wire', 'read', 'seed', 'get-metar'],
+                        'actions' => ['index', 'search', 'wire', 'read', 'seed', 'get-metar', 'get-movements'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -154,6 +154,55 @@ class WireController extends Controller
 		}
 		Yii::$app->response->format = Response::FORMAT_JSON;
         return Json::encode(['metar' => $metar, 'e' => $errors]);
+	}
+	
+	public function actionGetMovements() {
+		$around = Yii::$app->request->post('around');
+
+		$hours = 4;		// hours
+		$bucket = 600;	// seconds
+		
+		$connection = Yii::$app->getDb();
+		$command = $connection->createCommand("select
+		       movement_direction as dir,
+		       count(movement_direction) as count,
+		       :bucket * round(unix_timestamp(scheduled_time_of_departure)/:bucket) as sched,
+		       from_unixtime(:bucket * round(unix_timestamp(scheduled_time_of_departure)/:bucket)) as date_window
+		  from movement_eblg
+		 where least(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) < date_add(:around_datetime, interval :window hour)
+		   and greatest(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) > date_sub(:around_datetime, interval :window hour)
+		 group by sched
+		 order by sched", [':around_datetime' => $around, ':window' => $hours, ':bucket' => $bucket]);
+		$sched = $command->queryAll();
+		
+		$command = $connection->createCommand("select
+		       movement_direction as dir,
+			   count(movement_direction) as count,
+		       600 * round(unix_timestamp(scheduled_time_of_departure)/600) as actual,
+		       from_unixtime(600 * round(unix_timestamp(scheduled_time_of_departure)/600)) as date_window
+		  from movement_eblg
+		 where least(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) < date_add(:around_datetime, interval :window hour)
+		   and greatest(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) > date_sub(:around_datetime, interval :window hour)
+		   and actual_time_of_departure <= :around_datetime
+		 group by movement_direction, actual
+		 order by actual", [':around_datetime' => $around, ':window' => $hours, ':bucket' => $bucket]);
+		$act = $command->queryAll();
+		
+		$command = $connection->createCommand("select
+		       movement_direction as dir,
+			   count(movement_direction) as count,
+		       600 * round(unix_timestamp(scheduled_time_of_departure)/600) as planned,
+		       from_unixtime(600 * round(unix_timestamp(scheduled_time_of_departure)/600)) as date_window
+		  from movement_eblg
+		 where least(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) < date_add(:around_datetime, interval :window hour)
+		   and greatest(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) > date_sub(:around_datetime, interval :window hour)
+		   and actual_time_of_departure > :around_datetime
+		 group by movement_direction, planned
+		 order by planned", [':around_datetime' => $around, ':window' => $hours, ':bucket' => $bucket]);
+		$plan = $command->queryAll();
+
+		Yii::$app->response->format = Response::FORMAT_JSON;
+        return Json::encode(['sched' => $sched, 'plan' => $plan, 'act' => $act]);
 	}
 
 }

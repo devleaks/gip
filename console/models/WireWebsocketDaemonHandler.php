@@ -17,7 +17,7 @@ class WireWebsocketDaemonHandler extends \morozovsk\websocket\Daemon
         }
 
         $message = 'user #' . $connectionId . ' (' . $this->pid . '): ' . strip_tags($data);
-		echo $message . PHP_EOL;
+		echo substr($message, 0, 60) . PHP_EOL;
 
         foreach ($this->clients as $clientId => $client) {
             $this->sendToClient($clientId, $data);
