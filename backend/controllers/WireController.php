@@ -31,7 +31,7 @@ class WireController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['index', 'search', 'wire', 'read', 'seed', 'get-metar', 'get-movements'],
+                        'actions' => ['index', 'search', 'wire', 'read', 'seed', 'get-metar', 'get-movements', 'get-table', 'get-delay'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -203,6 +203,59 @@ class WireController extends Controller
 
 		Yii::$app->response->format = Response::FORMAT_JSON;
         return Json::encode(['sched' => $sched, 'plan' => $plan, 'act' => $act]);
+	}
+	
+	/**
+	 * {
+	    "registration":"OO-123",
+	    "flight_number":"SN 123",
+	    "destination":"Alicante",
+	    "schedule":"14:30",
+	    "estimated":"15:10",
+	    "actual":"-",
+	    "delay":"40"
+	  }
+	 */
+	public function actionGetTable() {
+		$around = Yii::$app->request->post('around');
+		$what = Yii::$app->request->post('what');
+		$size = 6;
+		$what = strtolower($what);
+		$act = ($what == 'd') ? 'actual_time_of_departure' : 'actual_time_of_arrival';
+		$est = ($what == 'd') ? 'estim_time_of_departure' : 'estim_time_of_arrival';
+		$src = 'aerodrome_icao_code';
+		$oby = ($what == 'd') ? 'scheduled_time_of_departure' : 'scheduled_time_of_arrival';
+		$connection = Yii::$app->getDb();
+		$command = $connection->createCommand("select
+		       registration,
+			   flight_number,
+			   ".$src." as destination,
+			   date_format(".$oby.", '%H:%i') as schedule,
+			   date_format(".$est.", '%H:%i') as estimated
+		  from movement_eblg
+		 where movement_direction = :what
+		   and ".$act." > :around_datetime
+		 order by ".$oby." limit ".$size, [':around_datetime' => $around, ':what' => $what]);
+		$tab = $command->queryAll();
+		Yii::$app->response->format = Response::FORMAT_JSON;
+        return Json::encode($tab);
+	}
+
+	public function actionGetDelay() {
+		$around = Yii::$app->request->post('around');
+		$connection = Yii::$app->getDb();
+		$command = $connection->createCommand("select
+		      iata_delay_code as code,
+		      iata_delay_description as reason,
+		      sum(delay) as time,
+		      round(sum(delay)/(SELECT sum(delay) FROM movement_eblg_delays where actual < :around_datetime) * 100) as percent
+		from movement_eblg_delays
+		where actual < :around_datetime
+		group by iata_delay_code, iata_delay_description
+		order by delay desc", [':around_datetime' => $around]);
+		$res = $command->queryAll();
+		Yii::$app->response->format = Response::FORMAT_JSON;
+        return Json::encode($res);
 	}
 
 }

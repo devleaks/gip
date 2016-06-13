@@ -74,13 +74,11 @@ $this->title = 'GIP Dashboard';
 				<?= News::widget([
 						'source' => 'gip',
 						'type'	=> 'news',
-						'title' => 'News For Liège Airport',
+						'title' => '<i class="fa fa-warning"></i> Important',
 						'news' => [
-							'Mauris interdum elit non sapien imperdiet, ac dapibus mi maximus',
-					        'Nullam sit amet nisl ex',
-					        'Cras lorem augue, facilisis a commodo in, facilisis finibus libero vel ultrices.',
-					        'Maecenas libero ipsum, placerat in mattis vel, tincidunt quis est.',
-					        'Curabitur tortor libero, vehicula sagittis luctus sed, lobortis sed arcu',
+							'Mercredi 22 — Demo Geo Intelligent Platform',
+					        'Welcome Oscars — Good luck with your demo',
+					        "Je déteste les trucs qui bougent tout le temps, ça distrait comme c'est pas possible.",
 						]
 					]);
 				?>
@@ -379,7 +377,9 @@ $this->title = 'GIP Dashboard';
 <?php $this->beginBlock('JS_DASHBOARD') ?>
 jQuery(document).ready(function($){
 	//main communication
-	$.dashboard.init({websocket: "<?= Yii::$app->params['websocket_server'] ?>"});
+	$.dashboard.init({websocket: "<?= Yii::$app->params['websocket_server'] ?>", debug: false});
+
+	$.dashboard.set_time(new Date('2016-04-03T10:00:00'));
 	
 	//open the lateral panel
 	$('.cd-btn').on('click', function(event){

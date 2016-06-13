@@ -13,7 +13,7 @@ $widget_hndlr 	= strtoupper($widget->source.'_'.$widget->type);
 			<thead>
 				<tr>
 					<th>Reason</th>
-					<th>Delay</th>
+					<th>Delay&nbsp;(min.)</th>
 					<th>Delay&nbsp;(%)</th>
 				</tr>
 			</thead>
@@ -47,17 +47,36 @@ jQuery(document).ready(function($){
 	$(selector).on('gip:message', function(event, msg) {
 		var payload = $.dashboard.get_payload(msg);
 		$(this).find('tbody tr').remove();
-		for (var i = 0; i < payload.length; i++) {
-			flight = payload[i];
-			var tr = $('<tr>').data('gip-id', flight.registration);
-			for (var property in flight) {
-				if(property == "code") continue;
-				tr.append( $('<td>').addClass('gip-'+property).html(flight[property]) );
+		if(payload.length > 0) {
+			for (var i = 0; i < payload.length; i++) {
+				flight = payload[i];
+				var tr = $('<tr>').data('gip-id', flight.registration);
+				for (var property in flight) {
+					if(property == "code") continue;
+					tr.append( $('<td>').addClass('gip-'+property).html(flight[property]) );
+				}
+				$(this).find('tbody').append(tr);
 			}
-			$(this).find('tbody').append(tr);
+		} else {
+			$(this).find('tbody').append($('<tr>').append( $('<td>').attr('colspan', 3).html('No delay') ) );
 		}
 		
 		$.dashboard.last_updated(msg, $(this));
+	});
+
+	$(selector).click(function() {
+		delayed_time = moment($.dashboard.get_time());
+		// get scheduled flights (all positive numbers)
+		$.post(
+			"wire/get-delay",
+			{
+				'around': delayed_time.format('YYYY-MM-DD HH:mm')
+			},
+			function (r) {
+				var s = JSON.parse(r);
+				$(selector).trigger('gip:message', {payload: JSON.stringify(s)});
+			}
+		);
 	});
 
 	/**

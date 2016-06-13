@@ -14,6 +14,7 @@
 	var defaults = {
 		debug: false,
 		id: "gip-gip-wire",
+		clock_id: "gip-gip-clock",
 		// Websocket feeds
 		websocket: 'ws://localhost:8051/',
 		initSeed: '',///gipadmin/wire/seed
@@ -50,7 +51,8 @@
 			}
 		}
 	};
-	var _replay_time;
+	var _replay_time = new Date();
+	var _replay_speed = 1;
 
 	/*
 	 * Only gets called when we're using $('$el').dashboard format
@@ -71,11 +73,25 @@
 	};
 	
 	Dashboard.prototype.set_time = function(replay_time) {
-		_replay_time = replay_time;
+		if(replay_time === null) {
+			_replay_time = new Date();
+		} else {
+			_replay_time = replay_time;
+		}
+		$("#"+opts.clock_id).trigger('gip:change');
 	};
 	
 	Dashboard.prototype.get_time = function() {
-		return (_replay_time !== null) ? _replay_time : new Date().getTime();
+		return _replay_time;
+	};
+	
+	Dashboard.prototype.tick = function() {
+		return _replay_time.setSeconds(_replay_time.getSeconds() + _replay_speed);
+	};
+	
+	Dashboard.prototype.live = function() {
+		var now = new Date();
+		return Math.abs(_replay_time.getTime() - now.getTime()) < 2000;
 	};
 	
 	Dashboard.prototype.get_payload = function (msg) {
@@ -88,25 +104,33 @@
 			ret = JSON.parse(msg.body);
 			fnd = 'body';
 		} catch(e) {
-			console.log('Dashboard.prototype.get_payload: cannot decode body');
-			console.log(e);
+			if(opts.debug) {
+				console.log('Dashboard.prototype.get_payload: cannot decode body');
+				console.log(e);
+			}
 			try {
 				ret = JSON.parse(msg.payload);
 				fnd = 'payload';
 			} catch(e) {
-				console.log('Dashboard.prototype.get_payload: cannot decode payload');
-				console.log(e);
+				if(opts.debug) {
+					console.log('Dashboard.prototype.get_payload: cannot decode payload');
+					console.log(e);
+				}
 				return false;
 			}
 		}
-		console.log('Dashboard.prototype.get_payload: found payload in '+fnd);
+		if(opts.debug) {
+			console.log('Dashboard.prototype.get_payload: found payload in '+fnd);
+		}
 		return ret;
 	}
 
 
 	Dashboard.prototype.last_updated = function (msg, elem) {
 		var now = new Date();
-		console.log('Dashboard.prototype.last_updated: updated at '+now);
+		if(opts.debug) {
+			console.log('Dashboard.prototype.last_updated: updated at '+now);
+		}
 		elem.find('.gip-footer').html('LAST UPDATED ' + now.getHours() + ':' + now.getMinutes() + ' L');
 	}
 

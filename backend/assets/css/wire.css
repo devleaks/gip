@@ -121,3 +121,6 @@ div.timeline-circ.circ-xl.style-info {
 td.gip-percent {
 	text-align: right;
 }
+td.gip-reason {
+	text-transform: capitalize;
+}

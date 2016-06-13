@@ -16,8 +16,6 @@ $widget_hndlr 	= strtoupper($widget->source.'_'.$widget->type);
 					<th>Dest</th>
 					<th>Sched</th>
 					<th>Est</th>
-					<th>Act</th>
-					<th>Dly</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -25,7 +23,7 @@ $widget_hndlr 	= strtoupper($widget->source.'_'.$widget->type);
 				//echo json_encode($widget->flights);
 				foreach($widget->flights as $flight) {
 					$s = '<tr data-gip="flight" data-gip-id="'.$flight['registration'].'">';
-					foreach(['flight_number','destination', 'schedule', 'estimated', 'actual', 'delay'] as $field) {
+					foreach(['flight_number','destination', 'schedule', 'estimated'] as $field) {
 						$s .= '<td data-gip="'.$field.'">'.$flight[$field].'</td>';
 					}
 					$s .= '</tr>';
@@ -33,12 +31,6 @@ $widget_hndlr 	= strtoupper($widget->source.'_'.$widget->type);
 				}
 				?>
 			</tbody>
-			<tfoot>
-				<tr>
-					<th colspan=5>Delay Average: </th>
-					<th data-gip="delay_avg">0</th>
-				</tr>
-			</tfoot>						
 		</table>
 	
 	</div><!-- .gip-body -->
@@ -54,8 +46,7 @@ jQuery(document).ready(function($){
 	 *	GIP Message Handler: Handle plain messages
 	 */
 	$(selector).on('gip:message', function(event, msg) {
-		var payload = $.parseJSON(msg.body);
-		var delay_cnt = 0, delay_avg = 0;
+		var payload = $.dashboard.get_payload(msg);
 		$(this).find('tbody tr').remove();
 		for (var i = 0; i < payload.length; i++) {
 			flight = payload[i];
@@ -64,13 +55,26 @@ jQuery(document).ready(function($){
 				if(property == "registration") continue;
 				tr.append( $('<td>').data('gip', property).html(flight[property]) );
 			}
-			delay_avg += parseInt(flight.delay);
-			delay_cnt++;
 			$(this).find('tbody').append(tr);
 		}
-		$(this).find('[data-gip="delay_avg"]').html(delay_cnt > 0 ? Math.round(delay_avg/delay_cnt) : 0);
-		$(this).find('[data-gip="note"]').html('LAST UPDATED ' + moment().format('HH:mm')+ ' L');
-		
+		$.dashboard.last_updated(msg, $(this));
+	});
+	
+	$(selector).click(function() {
+		delayed_time = moment($.dashboard.get_time());
+		what = $(this).find('.gip-header').html().substr(0,1);
+		// get scheduled flights (all positive numbers)
+		$.post(
+			"wire/get-table",
+			{
+				'around': delayed_time.format('YYYY-MM-DD HH:mm'),
+				'what' : what
+			},
+			function (r) {
+				var s = JSON.parse(r);
+				$(selector).trigger('gip:message', {payload: JSON.stringify(s)});
+			}
+		);
 	});
 
 	/**

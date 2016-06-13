@@ -32,23 +32,41 @@ $widget_hndlr 	= strtoupper($widget->source.'_'.$widget->type);
 <?php $this->beginBlock('JS_GIP_'+$widget_hndlr) ?>
 jQuery(document).ready(function($){
 	var selector = "#" + "<?= $widget_class ?>";
+
 	function show_clock(){
-		var display = $(selector).find("[data-gip='note']").html() == 'U T C' ? moment.utc(new Date()).format('HH:mm:ss') : moment().format('HH:mm:ss');
+		var now = $.dashboard.tick();
+		var display = $(selector).hasClass("utc") ? moment.utc(now).format('HH:mm:ss') : moment(now).format('HH:mm:ss');
 		$(selector).find("[data-gip=value]").html( display );
 	}
+	
 	/**
 	 *	GIP Change Handler: Handle change messages
 	 */
 	$(selector).click(function() {
-		if($(selector).find("[data-gip='note']").html() == 'U T C') {
-			$(this).find("[data-gip='note']").html('LOCAL');
+		if($(selector).hasClass("utc")) {
+			$(this).removeClass("utc");
 		} else {
-			$(this).find("[data-gip='note']").html('U T C');
+			$(this).addClass("utc");
 		}
 		show_clock();
+		$(this).trigger('gip:change');
 	});
 	
-	$(selector).addClass('gip-utc').find("[data-gip='note']").html('U T C');
+	/*
+	 * Called when time has changed
+	 */
+	$(selector).on('gip:change', function() {
+		var now = $.dashboard.get_time();
+		var str = '';
+		if(! $.dashboard.live()) {
+			str = 'REPLAY '+moment(now).format('DD MMM YY');
+		}
+		str += ' ';
+		str += $(selector).hasClass("utc") ? 'U T C' : 'LOCAL';
+		$(this).find("[data-gip='note']").html(str);
+	});
+	
+	$(selector).addClass('gip-utc').trigger('gip:change');
 	setInterval(show_clock,1000);
 });
 <?php $this->endBlock(); ?>

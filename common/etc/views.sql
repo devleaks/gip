@@ -72,3 +72,29 @@ select movement_direction,
 
 
 
+select iata_delay_code, iata_delay_description, sum( round(time_to_sec(timediff(actual_time_of_departure, scheduled_time_of_departure))/60) ) as delay
+  from movement_eblg
+ where movement_direction = 'd'
+   and iata_delay_code <> ''
+ group by iata_delay_code, iata_delay_description
+
+create or replace view movement_eblg_delays
+as
+select iata_delay_code, iata_delay_description, round(time_to_sec(timediff(actual_time_of_departure, scheduled_time_of_departure))/60) as delay
+  from movement_eblg
+ where movement_direction = 'D'
+   and iata_delay_code <> ''
+union
+select iata_delay_code, iata_delay_description, round(time_to_sec(timediff(actual_time_of_arrival, scheduled_time_of_arrival))/60) as delay
+  from movement_eblg
+ where movement_direction = 'A'
+   and iata_delay_code <> ''
+
+
+select iata_delay_code, iata_delay_description, sum(delay) as total_delay
+from movement_eblg_delays
+group by iata_delay_code, iata_delay_description
+order by total_delay desc
+
+
+
