@@ -31,7 +31,7 @@ class WireController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['index', 'search', 'wire', 'read', 'seed', 'get-metar', 'get-movements', 'get-table', 'get-delay'],
+                        'actions' => ['index', 'search', 'wire', 'read', 'seed', 'get-metar', 'get-movements', 'get-table', 'get-delay', 'get-parking'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -255,4 +255,20 @@ class WireController extends Controller
         return Json::encode($res);
 	}
 
+
+	public function actionGetParking() {
+		$max_cargo = 80;
+		$max_passenger = 60;
+		$around = Yii::$app->request->post('around');
+		$connection = Yii::$app->getDb();
+		$command = $connection->createCommand("select
+		       parking_cargo,
+			   parking_passenger
+		  from movement_eblg
+		 where if(movement_direction = 'D', actual_time_of_departure, actual_time_of_arrival) < :around_datetime
+		 order by if(movement_direction = 'D', actual_time_of_departure, actual_time_of_arrival) desc limit 1", [':around_datetime' => $around]);
+		$res = $command->queryAll();
+		Yii::$app->response->format = Response::FORMAT_JSON;
+        return Json::encode($res);
+	}
 }

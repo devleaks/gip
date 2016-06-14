@@ -80,7 +80,7 @@ jQuery(document).ready(function($){
 	 */
 	$(selector).on('gip:message', function(event, msg) {
 		var payload = $.dashboard.get_payload(msg);
-		
+		console.log(payload);
 		if(payload) {
 			$.plot($('#gip-parking-pie'), [
 				{"color":"#8f8","label":"PAX Free","data":payload['pax']['avail']},
@@ -116,6 +116,30 @@ jQuery(document).ready(function($){
 		for (var property in payload) {
 			$(this).find("[data-gip="+property+"]").html(payload[property]);
 		}
+	});
+
+	$(selector).click(function() {
+		delayed_time = moment($.dashboard.get_time());
+		offset = {pax: 25, freit: 60};
+		maxcap = {pax: 50, freit: 100};
+		// get scheduled flights (all positive numbers)
+		$.post(
+			"wire/get-parking",
+			{
+				'around': delayed_time.format('YYYY-MM-DD HH:mm')
+			},
+			function (r) {
+				var arr = JSON.parse(r);
+				s = {pax: parseInt(arr[0].parking_passenger), freit: parseInt(arr[0].parking_cargo)};
+				p = {
+					pax:   { avail: Math.round( 100 * (maxcap['pax'] - offset['pax'] - s['pax']) / maxcap['pax']),
+							 busy:  Math.round( 100 * (offset['pax'] + s['pax']) / maxcap['pax']) },
+					freit: { avail: Math.round( 100 * (maxcap['freit'] - offset['freit'] - s['freit']) / maxcap['freit']),
+					 		 busy:  Math.round( 100 * (offset['freit'] + s['freit']) / maxcap['freit']) }
+				};
+				$(selector).trigger('gip:message', {payload: JSON.stringify(p)});
+			}
+		);
 	});
 
 });
