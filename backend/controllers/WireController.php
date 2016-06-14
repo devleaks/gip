@@ -166,8 +166,7 @@ class WireController extends Controller
 		$command = $connection->createCommand("select
 		       movement_direction as dir,
 		       count(movement_direction) as count,
-		       :bucket * round(unix_timestamp(scheduled_time_of_departure)/:bucket) as sched,
-		       from_unixtime(:bucket * round(unix_timestamp(scheduled_time_of_departure)/:bucket)) as date_window
+		       :bucket * round(unix_timestamp(scheduled_time_of_departure)/:bucket) as sched
 		  from movement_eblg
 		 where least(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) < date_add(:around_datetime, interval :window hour)
 		   and greatest(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) > date_sub(:around_datetime, interval :window hour)
@@ -178,8 +177,7 @@ class WireController extends Controller
 		$command = $connection->createCommand("select
 		       movement_direction as dir,
 			   count(movement_direction) as count,
-		       600 * round(unix_timestamp(scheduled_time_of_departure)/600) as actual,
-		       from_unixtime(600 * round(unix_timestamp(scheduled_time_of_departure)/600)) as date_window
+		       :bucket * round(unix_timestamp(scheduled_time_of_departure)/:bucket) as actual
 		  from movement_eblg
 		 where least(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) < date_add(:around_datetime, interval :window hour)
 		   and greatest(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) > date_sub(:around_datetime, interval :window hour)
@@ -191,8 +189,7 @@ class WireController extends Controller
 		$command = $connection->createCommand("select
 		       movement_direction as dir,
 			   count(movement_direction) as count,
-		       600 * round(unix_timestamp(scheduled_time_of_departure)/600) as planned,
-		       from_unixtime(600 * round(unix_timestamp(scheduled_time_of_departure)/600)) as date_window
+		       :bucket * round(unix_timestamp(scheduled_time_of_departure)/:bucket) as planned
 		  from movement_eblg
 		 where least(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) < date_add(:around_datetime, interval :window hour)
 		   and greatest(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) > date_sub(:around_datetime, interval :window hour)
@@ -229,7 +226,7 @@ class WireController extends Controller
 		$command = $connection->createCommand("select
 		       registration,
 			   flight_number,
-			   ".$src." as destination,
+			   aerodrome_icao_code as airport,
 			   date_format(".$oby.", '%H:%i') as schedule,
 			   date_format(".$est.", '%H:%i') as estimated
 		  from movement_eblg

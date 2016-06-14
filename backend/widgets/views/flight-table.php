@@ -23,7 +23,7 @@ $widget_hndlr 	= strtoupper($widget->source.'_'.$widget->type);
 				//echo json_encode($widget->flights);
 				foreach($widget->flights as $flight) {
 					$s = '<tr data-gip="flight" data-gip-id="'.$flight['registration'].'">';
-					foreach(['flight_number','destination', 'schedule', 'estimated'] as $field) {
+					foreach(['flight_number','airport', 'schedule', 'estimated'] as $field) {
 						$s .= '<td data-gip="'.$field.'">'.$flight[$field].'</td>';
 					}
 					$s .= '</tr>';

@@ -379,7 +379,7 @@ jQuery(document).ready(function($){
 	//main communication
 	$.dashboard.init({websocket: "<?= Yii::$app->params['websocket_server'] ?>", debug: false});
 
-	$.dashboard.set_time(new Date('2016-04-03T10:00:00'));
+	$.dashboard.set_time(new Date('2016-04-13T10:00:00'));
 	
 	//open the lateral panel
 	$('.cd-btn').on('click', function(event){
