@@ -16,10 +16,10 @@
 		id: "gip-gip-wire",
 		clock_id: "gip-gip-clock",
 		// Websocket feeds
-		websocket: 'ws://localhost:8051/',
-		initSeed: '',///gipadmin/wire/seed
-		markRead: '/gipadmin/wire/read',
-		moreOlder: '',///gipadmin/wire/older
+		websocket: null,
+		initSeed: null,	//gipadmin/wire/seed
+		markRead: null,	//gipadmin/wire/read
+		moreOlder: null,	//gipadmin/wire/older
 		// Debug
 		intro_messages: {
 			opening: {
@@ -48,6 +48,15 @@
 				type: 'info',
 				icon: 'fa-info',
 				color: '#0f0'
+			},
+			error: {
+				subject: 'Dashboard Error',
+				body: 'Error message',
+				priority: 1,
+				source: 'dashboard',
+				type: 'error',
+				icon: 'fa-danger',
+				color: '#f00'
 			}
 		}
 	};
@@ -68,8 +77,12 @@
 			send_to_wire(opts.intro_messages.starting);
 		}
 		// install();
-	    wsStart();
-		initSeed();
+		if(opts.websocket !== null) {
+	    	wsStart();
+		}
+		if(opts.initSeed!== null) {
+			initSeed();
+		}
 	};
 	
 	Dashboard.prototype.set_time = function(replay_time) {
@@ -153,41 +166,51 @@
 		}
 	}
 	
+	Dashboard.prototype.broadcast = function (msg) {
+		var priority = parseInt(msg.priority);
+		if(isNaN(priority)) priority = 0;
+		if(priority > 5) priority = 5;
+		msg.priority = priority;
+		//build giplet id
+		var gid = get_giplet_id(msg);
+		//send message to giplet
+		$(gid).trigger('gip:message', msg);
+		//display message on wire if priority>0.
+		//messages with priority < 1 are not displayed on the wire (but the recipient giplet gets the message)
+		send_to_wire(msg);
+	}
+
+	
 	// Init & start ws connection
     function wsStart() {
 		var ws = new WebSocket(opts.websocket);
         ws.onopen = function() { opts.intro_messages.opening.created_at = new Date(); send_to_wire(opts.intro_messages.opening); };
         ws.onclose = function() { if(opts.debug) { opts.intro_messages.closing.created_at = new Date(); send_to_wire(opts.intro_messages.closing); } };
         ws.onmessage = function(evt) {
-			var msg = $.parseJSON(evt.data);
-			//fix priority because it is used in js at numerous place. Must be 0 <= priority <= 5.
-			var priority = msg.priority == null ? 0 : parseInt(msg.priority);
-			msg.priority = (priority > 5) ? 5 : priority;
-			//build giplet id
-			var gid = get_giplet_id(msg);
-			//send message to giplet
-			$(gid).trigger('gip:message', msg);
-			//display message on wire if priority>0.
-			//messages with priority < 1 are not displayed on the wire (but the recipient giplet gets the message)
-			send_to_wire(msg);
+			try {
+				var msg = $.parseJSON(evt.data);
+				Dashboard.prototype.broadcast(msg);
+			} catch(e) {
+				console.log('Dashboard::wsStart: cannot decode message');
+				console.log(e);
+				opts.error.body = 'Dashboard::wsStart: cannot decode message';
+				Dashboard.prototype.broadcast(opts.error);
+			}
 		};
     }
 
 	// Fetches last messages (if url provided). Displays them all.
 	function initSeed() {
-		if(opts.initSeed.length > 0) {
-			$.post(
-				opts.initSeed,
-	            {},
-	   			function (r) {
-					msgs = $.parseJSON(r);
-					for(var idx=msgs.length - 1;idx>= 0;idx--) { // oldest first
-						send_to_wire(msgs[idx]);
-					}
-	            }
-			);
-
-		}
+		$.post(
+			opts.initSeed,
+            {},
+   			function (r) {
+				msgs = $.parseJSON(r);
+				for(var idx=msgs.length - 1;idx>= 0;idx--) { // oldest first
+					send_to_wire(msgs[idx]);
+				}
+            }
+		);
 	}
 
 
