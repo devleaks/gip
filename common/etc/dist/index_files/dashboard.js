@@ -10,6 +10,7 @@
 	/*
 	 * Default Values
 	 */
+	var _inited = false;
 	var opts;
 	var defaults = {
 		debug: false,
@@ -72,10 +73,8 @@
 	
 	Dashboard.prototype.init = function(options) {
 		opts = $.extend( {}, defaults, options);
-		if(opts.debug) {
-			opts.intro_messages.starting.created_at = new Date(); 
-			send_to_wire(opts.intro_messages.starting);
-		}
+		if(_inited)	return;
+		
 		// install();
 		if(opts.websocket !== null) {
 	    	wsStart();
@@ -83,6 +82,11 @@
 		if(opts.initSeed!== null) {
 			initSeed();
 		}
+		if(opts.debug) {
+			opts.intro_messages.starting.created_at = new Date(); 
+			send_to_wire(opts.intro_messages.starting);
+		}
+		_inited = true;
 	};
 	
 	Dashboard.prototype.set_time = function(replay_time) {
@@ -149,23 +153,13 @@
 
 	
 	
-	function makeSafeForCSS(name) {
-	    return name.replace(/[^a-z0-9]/g, function(s) {
-	        var c = s.charCodeAt(0);
-	        if (c == 32 || c == 45) return '-';
-	        if (c >= 65 && c <= 90) return '_' + s.toLowerCase();
-	        return '__' + ('000' + c.toString(16)).slice(-4);
-	    });
-	}
-	
 	function get_giplet_id(msg) {
-		var id = '#gip-' + makeSafeForCSS(msg.source.toLowerCase()+'-'+msg.type.toLowerCase());
-		if(typeof msg.channel !== undefined) {
+		var id = '#gip-'+msg.source.toLowerCase()+'-'+msg.type.toLowerCase();
+		if(typeof msg.channel !== "undefined") {
 			if(msg.channel !== null) {
 				id += ('-'+msg.channel);
 			}
 		}
-		console.log(id);
 		return id;
 	}
 	
@@ -176,13 +170,21 @@
 		}
 	}
 	
-	Dashboard.prototype.broadcast = function (msg) {
+	Dashboard.prototype.priority = function (msg, max_priority) {
 		var priority = parseInt(msg.priority);
 		if(isNaN(priority)) priority = 0;
-		if(priority > 5) priority = 5;
+		if(priority > max_priority) priority = max_priority;
 		msg.priority = priority;
+		return priority;
+	}
+
+	Dashboard.prototype.broadcast = function (msg) {
+		Dashboard.prototype.init();
+		//fix priority value, ensure 0<=p<=5.
+		Dashboard.prototype.priority(msg);
 		//build giplet id
 		var gid = get_giplet_id(msg);
+		//console.log(gid);
 		//send message to giplet
 		$(gid).trigger('gip:message', msg);
 		//display message on wire if priority>0.

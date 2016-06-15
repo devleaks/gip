@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://imac.local:8080/gipadmin/wire -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GIP Dashboard</title>
+
+<link href="./index_files/bootstrap.css" rel="stylesheet">
+<link href="./index_files/site.css" rel="stylesheet">
+<link href="./index_files/cd-panel.css" rel="stylesheet">
+<link href="./index_files/cd-timeline.css" rel="stylesheet">
+<link href="./index_files/materialadmin.css" rel="stylesheet">
+<link href="./index_files/breakingNews.css" rel="stylesheet">
+<link href="./index_files/metar.css" rel="stylesheet">
+<link href="./index_files/leaflet.css" rel="stylesheet">
+<link href="./index_files/wire.css" rel="stylesheet">
+<link href="./index_files/tagsort.css" rel="stylesheet">
+<link href="./index_files/jquery.growl.css" rel="stylesheet">
+<link href="./index_files/font-awesome.css" rel="stylesheet">
+<script src="./index_files/moment.js"></script>
+
+</head>
+<body>
+
+
+    <div class="wire container-fluid">
+	
+	<main class="cd-main-content">
+
+		<div class="row">
+
+		<!--
+		  -- TOP LINE
+		  --
+		  -->
+		<div class="col-lg-12">				
+			<div id="gip-gip-news" class="breakingNews" style="text-align: left;">
+				<div class="bn-title"><h2 style="display: inline-block;"><i class="fa fa-warning"></i> Important</h2><span></span></div>
+			    <ul>
+					<li>Mercredi 22 — Demo Geo Intelligent Platform</li>
+					<li>Welcome Oscars — Good luck with your demo</li>
+				</ul>
+			    <div class="bn-navi">
+			    	<span></span>
+			        <span></span>
+			    </div>
+			</div>
+		</div>
+
+		</div><!-- end top line -->
+
+
+		<div class="row">
+
+		<!--
+		  -- LEFT COLUMN
+		  --
+		  -->
+		<div class="col-lg-2">
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="gip-gip-clock" class="card card-bordered gip-indicator style-default-bright gip-utc">
+						<span class="gip-header">Liège Airport</span><br>
+						<span class="gip-body" data-gip="value"></span><br>
+						<span class="gip-footer" data-gip="note"></span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">					
+					<div id="gip-gip-metar" class="card card-bordered gip-indicator style-info metar">
+						<span class="gip-header">METAR</span><br>
+						<div class="gip-body" data-gip="value"></div><br>
+						<span class="gip-footer" data-gip="note"></span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">					
+					<div id="gip-aodb-qfu" class="card card-bordered gip-indicator style-primary">
+						<span class="gip-header">QFU</span><br>
+						<span class="gip-body" data-gip="value">23</span><br>
+						<span class="gip-footer" data-gip="note">L / R</span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="cd-btn">					
+						<div id="gip-gip-alert" class="card card-bordered gip-indicator style-danger">
+							<span class="gip-header">GIP</span><br>
+							<span class="gip-body" data-gip="value">0</span><br>
+							<span class="gip-footer" data-gip="note">Alerts</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div><!-- end left column -->
+
+		<!--
+		  -- MAP
+		  --
+		  -->
+		<div class="col-lg-8">
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card card-bordered style-default-bright map">
+					</div>
+				</div>
+			</div>
+
+		</div><!-- end map -->
+	
+		<!--
+		  -- RIGHT COLUMN
+		  --
+		  -->
+		<div class="col-lg-2">
+			
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="gip-aodb-movements" class="card gip-indicator style-bright">
+						<span class="gip-header">MOVEMENTS</span><br>
+						<div id="gip-movement" style="width: 100%; height: 200px; padding: 0px; position: relative;">
+						</div>
+						<span class="gip-footer" data-gip="note"></span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-12">				
+					<div id="gip-aodb-departure" class="card gip-indicator style-bright gip-table">
+						<span class="gip-header">DEPARTURE</span><br>
+						<div class="gip-body" data-gip="value">
+							<table class="table table-striped no-margin">
+								<thead>
+									<tr>
+										<th>Fl.#</th>
+										<th>Dest</th>
+										<th>Sched</th>
+										<th>Est</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div><!-- .gip-body -->
+						<span class="gip-footer" data-gip="note"></span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-12">			
+					<div id="gip-aodb-arrival" class="card gip-indicator style-bright gip-table">
+						<span class="gip-header">ARRIVAL</span><br>
+						<div class="gip-body" data-gip="value">	
+							<table class="table table-striped no-margin">
+								<thead>
+									<tr>
+										<th>Fl.#</th>
+										<th>Dest</th>
+										<th>Sched</th>
+										<th>Est</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+	
+						</div><!-- .gip-body -->
+						<span class="gip-footer" data-gip="note"></span>	
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-12">							
+					<div id="gip-aodb-parking-occupancy" class="card gip-indicator style-bright">
+						<span class="gip-header">PARKING</span><br>
+						<div id="gip-parking-pie" style="width: 100%; height: 200px; padding: 0px; position: relative;"></div>
+						<span class="gip-footer" data-gip="note"></span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-12">					
+					<div id="gip-aodb-delay-report" class="card gip-indicator style-bright gip-table">
+						<span class="gip-header">DELAYS</span><br>
+						<div class="gip-body" data-gip="value">
+							<table class="table table-striped no-margin">
+								<thead>
+									<tr>
+										<th>Reason</th>
+										<th>Delay&nbsp;(min.)</th>
+										<th>Delay&nbsp;(%)</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>	
+						</div><!-- .gip-body -->
+						<span class="gip-footer" data-gip="note"></span>	
+					</div>
+				</div>
+			</div>
+						
+			<div class="row">
+				<div class="col-lg-12">					
+					<div id="gip-gip-marker-1" class="card card-bordered gip-indicator markers style-default-bright" <span="">INBOUND<br>
+						<span class="gip-body">
+							<a class="marker marker-inner">I</a>
+							<a class="marker marker-middle">M</a>
+							<a class="marker marker-outer">O</a>
+						</span><br>
+						<span class="gip-footer" data-gip="note">23 L</span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-12">				
+					<div id="gip-gip-marker-2" class="card card-bordered gip-indicator markers style-default-bright" <span="">INBOUND<br>
+						<span class="gip-body">
+							<a class="marker marker-inner">I</a>
+							<a class="marker marker-middle">M</a>
+							<a class="marker marker-outer">O</a>
+						</span><br>
+						<span class="gip-footer" data-gip="note">23 R</span>
+					</div>
+				</div>
+			</div>
+			
+		</div><!-- end right column -->
+		
+		
+	</div><!-- end full -->
+	
+	</main>
+	
+	<!--
+	  -- SIDE PANEL
+	  --
+	  -->
+	<div class="cd-panel from-right">
+		<header class="cd-panel-header">
+			<h1>GIP ALERTS</h1>
+			<a href="http://imac.local:8080/gipadmin/wire#0" class="cd-panel-close">Close</a>
+		</header>
+
+		<div class="cd-panel-container">
+			<div class="cd-panel-content">
+				<div class="row">
+					<div class="col-lg-12">
+						<div id="gip-gip-wire">
+
+							<header class="wire-top">
+								<div class="wire-seave row">
+									<div class="col-lg-12"></div>
+								</div>
+
+								<div class="wire-tagsort row">
+									<div class="tagsort-tags-container col-lg-12 "></div>  
+								</div>
+							</header>
+
+							<div class="wire-body row">
+								<div class="col-lg-12">
+									<ul class="timeline collapse-lg timeline-hairline">
+									</ul>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>	
+			</div> <!-- cd-panel-content -->
+		</div> <!-- cd-panel-container -->
+	</div> <!-- cd-panel -->
+
+	</div><!-- container-fluid -->
+
+
+<script src="./index_files/jquery.js"></script>
+<script src="./index_files/yii.js"></script>
+<script src="./index_files/bootbox.min.js"></script>
+<script src="./index_files/yii2-bootbox.js"></script>
+<script src="./index_files/dashboard.js"></script>
+<script src="./index_files/breakingNews.js"></script>
+<script src="./index_files/geo-lite.js"></script>
+<script src="./index_files/parse_metar.js"></script>
+<script src="./index_files/leaflet-src.js"></script>
+<script src="./index_files/jquery.flot.js"></script>
+<script src="./index_files/jquery.flot.pie.js"></script>
+<script src="./index_files/jquery.flot.time.js"></script>
+<script src="./index_files/tagsort.min.js"></script>
+<script src="./index_files/sortElements.js"></script>
+<script src="./index_files/jquery.growl.js"></script>
+<script src="./index_files/jquery.sieve.js"></script>
+
+<script type="text/javascript">
+//
+//	D A S H B O A R D
+//
+jQuery(document).ready(function () {
+	
+//
+//	NEWS
+//
+jQuery(document).ready(function($){
+	var selector = "#" + "gip-gip-news";
+	/**
+	 *	GIP Message Handler: Handle plain messages
+	 */
+    $(selector).breakingNews({
+		effect		:"slide-v",
+		autoplay	:true,
+		timer		:3000,
+		color		:"red"
+	});
+
+	$(selector).on('gip:message', function(event, msg) {
+		var count = $(selector+' ul li').length;
+		if(count >= 5) {
+			var last = $(selector+' ul').find('li').last();
+			last.remove();
+		}
+		$(selector+' ul').prepend( $('<li>').html(msg.body) );
+	});
+
+});
+
+//
+//	CLOCK
+//
+jQuery(document).ready(function($){
+	var selector = "#" + "gip-gip-clock";
+
+	function show_clock(){
+		var now = $.dashboard.tick();
+		var display = $(selector).hasClass("utc") ? moment.utc(now).format('HH:mm:ss') : moment(now).format('HH:mm:ss');
+		$(selector).find("[data-gip=value]").html( display );
+	}
+	
+	/**
+	 *	GIP Change Handler: Handle change messages
+	 */
+	$(selector).click(function() {
+		if($(selector).hasClass("utc")) {
+			$(this).removeClass("utc");
+		} else {
+			$(this).addClass("utc");
+		}
+		show_clock();
+		$(this).trigger('gip:change');
+	});
+	
+	/*
+	 * Called when time has changed
+	 */
+	$(selector).on('gip:change', function() {
+		var now = $.dashboard.get_time();
+		var str = '';
+		if(! $.dashboard.live()) {
+			str = 'REPLAY '+moment(now).format('DD MMM YY');
+		}
+		str += ' ';
+		str += $(selector).hasClass("utc") ? 'U T C' : 'LOCAL';
+		$(this).find("[data-gip='note']").html(str);
+	});
+	
+	$(selector).addClass('gip-utc').trigger('gip:change');
+	setInterval(show_clock,1000);
+});
+
+//
+//	METAR
+//
+jQuery(document).ready(function($){
+	var selector = "#" + "gip-gip-metar";
+	/**
+	 *	GIP Message Handler: Handle plain messages
+	 */
+	$(selector).on('gip:message', function(event, msg) {
+		t = msg.body;
+		u = metar_decode(t);
+		str = u.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+		$(this).find('.gip-body').html(str);
+		$.dashboard.last_updated(msg, $(this));
+		//$(this).find('.gip-footer').html('LAST UPDATED ' + moment().format('HH:mm')+ ' L');
+	});
+
+});
+
+//
+//	QFU
+//
+jQuery(document).ready(function($){
+	var selector = "#" + "gip-aodb-qfu";
+	/**
+	 *	GIP Message Handler: Handle plain messages
+	 */
+	$(selector).on('gip:message', function(event, msg) {
+		var payload = $.parseJSON(msg.body);
+		for (var property in payload) {
+			$(this).find("[data-gip="+property+"]").html(payload[property]);
+		}
+		if(selector == '#gip-aodb-qfu') {
+			$('#gip-gip-marker-1').trigger(jQuery.Event( 'gip:change', { gip_payload: {note: payload['value'] + ' L'} } ));
+			$('#gip-gip-marker-2').trigger(jQuery.Event( 'gip:change', { gip_payload: {note: payload['value'] + ' R'} } ));
+		}
+	});
+
+	/**
+	 *	GIP Change Handler: Handle change messages
+	 */
+	$(selector).on('gip:change', function(event) {
+		var payload = event.gip_payload;
+		for (var property in payload) {
+			$(this).find("[data-gip="+property+"]").html(payload[property]);
+		}
+	});
+
+});
+
+//
+//	GIP ALERTS
+//
+jQuery(document).ready(function($){
+	var selector = "#" + "gip-gip-alert";
+	/**
+	 *	GIP Message Handler: Handle plain messages
+	 */
+	$(selector).on('gip:message', function(event, msg) {
+		var payload = $.parseJSON(msg.body);
+		for (var property in payload) {
+			$(this).find("[data-gip="+property+"]").html(payload[property]);
+		}
+		if(selector == '#gip-aodb-qfu') {
+			$('#gip-gip-marker-1').trigger(jQuery.Event( 'gip:change', { gip_payload: {note: payload['value'] + ' L'} } ));
+			$('#gip-gip-marker-2	').trigger(jQuery.Event( 'gip:change', { gip_payload: {note: payload['value'] + ' R'} } ));
+		}
+	});
+
+	/**
+	 *	GIP Change Handler: Handle change messages
+	 */
+	$(selector).on('gip:change', function(event) {
+		var payload = event.gip_payload;
+		for (var property in payload) {
+			$(this).find("[data-gip="+property+"]").html(payload[property]);
+		}
+	});
+
+});
+
+//
+//	MOVEMENTS
+//
+jQuery(document).ready(function($){
+	var selector = "#" + "gip-aodb-movements";
+
+	/**
+	 *	GIP Message Handler
+	 */
+	$(selector).on('gip:message', function(event, msg) {
+		var s = $.dashboard.get_payload(msg);
+		if(s) {
+			var sched_arr = new Array(), sched_dep = new Array();
+			var work = s.sched;
+			for(var i = 0; i < work.length; i++) {
+				if(work[i].dir == 'A') {
+					sched_arr.push([work[i].sched * 1000, work[i].count]);
+				} else {
+					sched_dep.push([work[i].sched * 1000, work[i].count]);
+				}
+			}
+
+			var plan_arr = new Array(), plan_dep = new Array();
+			work = s.plan;
+			for(var i = 0; i < work.length; i++) {
+				if(work[i].dir == 'A') {
+					plan_arr.push([work[i].planned * 1000, -work[i].count]);
+				} else {
+					plan_dep.push([work[i].planned * 1000, -work[i].count]);
+				}
+			}
+
+			var act_arr = new Array(), act_dep = new Array();
+			work = s.act;
+			for(var i = 0; i < work.length; i++) {
+				if(work[i].dir == 'A') {
+					act_arr.push([work[i].actual * 1000, -work[i].count]);
+				} else {
+					act_dep.push([work[i].actual * 1000, -work[i].count]);
+				}
+			}
+
+			$.plot($('#gip-movement'),
+				[
+					{
+					    stack: true,
+						label: 'sched dep',
+					    data: sched_dep,
+					    color: "#f00"
+					},{
+					    stack: true,
+						label: 'sched arr',
+					    data: sched_arr,
+					    color: "#0f0"
+					},{
+					    stack: true,
+						label: 'act dep',
+					    data: act_dep,
+					    color: "#800"
+					},{
+					    stack: true,
+						label: 'act arr',
+					    data: act_arr,
+					    color: "#080"
+					},{
+					    stack: true,
+						label: 'plan dep',
+					    data: plan_dep,
+					    color: "#f88"
+					},{
+					    stack: true,
+						label: 'plan arr',
+					    data: plan_arr,
+					    color: "#8f8"
+					}
+				],
+				{
+			        series: {
+						stack: true,
+			            lines: {show: false, steps: false},
+			            bars: {show: true, barWidth: 0.4, align: 'center'}
+			        },
+			        xaxis: {
+						mode: 'time',
+						timezone: 'browser'
+			        },
+			        legend: {
+			            show: true
+			        }
+				}
+			);
+		}
+	});
+
+	/**
+	 *	GIP Change Handler
+	 */
+	$(selector).on('gip:change', function(event) {
+		$(selector).trigger('click');
+	});
+
+
+});
+
+//
+//	DEPARTURES
+//
+jQuery(document).ready(function($){
+	var selector = "#" + "gip-aodb-departure";
+	/**
+	 *	GIP Message Handler: Handle plain messages
+	 */
+	$(selector).on('gip:message', function(event, msg) {
+		var payload = $.dashboard.get_payload(msg);
+		$(this).find('tbody tr').remove();
+		for (var i = 0; i < payload.length; i++) {
+			flight = payload[i];
+			var tr = $('<tr>').data('gip-id', flight.registration);
+			for (var property in flight) {
+				if(property == "registration") continue;
+				tr.append( $('<td>').data('gip', property).html(flight[property]) );
+			}
+			$(this).find('tbody').append(tr);
+		}
+		$.dashboard.last_updated(msg, $(this));
+	});
+	
+	$(selector).click(function() {
+		delayed_time = moment($.dashboard.get_time());
+		what = $(this).find('.gip-header').html().substr(0,1);
+		// get scheduled flights (all positive numbers)
+		$.post(
+			"wire/get-table",
+			{
+				'around': delayed_time.format('YYYY-MM-DD HH:mm'),
+				'what' : what
+			},
+			function (r) {
+				var s = JSON.parse(r);
+				$(selector).trigger('gip:message', {payload: JSON.stringify(s)});
+			}
+		);
+	});
+
+	/**
+	 *	GIP Change Handler: Handle change messages
+	 */
+	$(selector).on('gip:change', function(event) {
+		var payload = event.gip_payload;
+		for (var property in payload) {
+			$(this).find("[data-gip="+property+"]").html(payload[property]);
+		}
+	});
+
+});
+
+//
+//	ARRIVALS
+//
+jQuery(document).ready(function($){
+	var selector = "#" + "gip-aodb-arrival";
+	/**
+	 *	GIP Message Handler: Handle plain messages
+	 */
+	$(selector).on('gip:message', function(event, msg) {
+		var payload = $.dashboard.get_payload(msg);
+		$(this).find('tbody tr').remove();
+		for (var i = 0; i < payload.length; i++) {
+			flight = payload[i];
+			var tr = $('<tr>').data('gip-id', flight.registration);
+			for (var property in flight) {
+				if(property == "registration") continue;
+				tr.append( $('<td>').data('gip', property).html(flight[property]) );
+			}
+			$(this).find('tbody').append(tr);
+		}
+		$.dashboard.last_updated(msg, $(this));
+	});
+	
+	$(selector).click(function() {
+		delayed_time = moment($.dashboard.get_time());
+		what = $(this).find('.gip-header').html().substr(0,1);
+		// get scheduled flights (all positive numbers)
+		$.post(
+			"wire/get-table",
+			{
+				'around': delayed_time.format('YYYY-MM-DD HH:mm'),
+				'what' : what
+			},
+			function (r) {
+				var s = JSON.parse(r);
+				$(selector).trigger('gip:message', {payload: JSON.stringify(s)});
+			}
+		);
+	});
+
+	/**
+	 *	GIP Change Handler: Handle change messages
+	 */
+	$(selector).on('gip:change', function(event) {
+		var payload = event.gip_payload;
+		for (var property in payload) {
+			$(this).find("[data-gip="+property+"]").html(payload[property]);
+		}
+	});
+
+});
+
+//
+//	PARKING OCCUPANCY
+//
+jQuery(document).ready(function($){
+	var selector = "#" + "gip-aodb-parking-occupancy";
+	/**
+	 *	GIP Message Handler: Handle plain messages (changes all parking)
+	 */
+	$(selector).on('gip:message', function(event, msg) {
+		var payload = $.dashboard.get_payload(msg);
+		if(payload) {
+			$.plot($('#gip-parking-pie'), [
+				{"color":"#8f8","label":"PAX Free","data":payload['pax']['avail']},
+				{"color":"#f88","label":"PAX Busy","data":payload['pax']['busy']},
+				{"color":"#b00","label":"Freit Busy","data":payload['freit']['avail']},
+				{"color":"#0b0","label":"Freit Free","data":payload['freit']['busy']}
+			], {
+				"series":{
+					"pie":{
+						"innerRadius":0.5,
+						"show":true,
+						"label":{
+							"show":true,
+							"radius":0.33333333333333,
+							"threshold":0.1
+						}
+					}
+				},
+				"legend":{
+					"show":false
+				}
+			});
+			$.dashboard.last_updated(msg, $(this));
+		}
+	});
+
+	/**
+	 *	GIP Change Handler: Handle only +1 parking
+	 */
+	$(selector).on('gip:change', function(event) {
+		var payload = event.gip_payload;
+		for (var property in payload) {
+			$(this).find("[data-gip="+property+"]").html(payload[property]);
+		}
+	});
+
+	$(selector).click(function() {
+		delayed_time = moment($.dashboard.get_time());
+		offset = {pax: 25, freit: 60};
+		maxcap = {pax: 50, freit: 100};
+		// get scheduled flights (all positive numbers)
+		$.post(
+			"wire/get-parking",
+			{
+				'around': delayed_time.format('YYYY-MM-DD HH:mm')
+			},
+			function (r) {
+				var arr = JSON.parse(r);
+				s = {pax: parseInt(arr[0].parking_passenger), freit: parseInt(arr[0].parking_cargo)};
+				p = {
+					pax:   { avail: Math.round( 100 * (maxcap['pax'] - offset['pax'] - s['pax']) / maxcap['pax']),
+							 busy:  Math.round( 100 * (offset['pax'] + s['pax']) / maxcap['pax']) },
+					freit: { avail: Math.round( 100 * (maxcap['freit'] - offset['freit'] - s['freit']) / maxcap['freit']),
+					 		 busy:  Math.round( 100 * (offset['freit'] + s['freit']) / maxcap['freit']) }
+				};
+				$(selector).trigger('gip:message', {payload: JSON.stringify(p)});
+			}
+		);
+	});
+
+});
+
+//
+//	DELAY REPORT
+//
+jQuery(document).ready(function($){
+	var selector = "#" + "gip-aodb-delay-report";
+	/**
+	 *	GIP Message Handler: Handle plain messages
+	 */
+	$(selector).on('gip:message', function(event, msg) {
+		var payload = $.dashboard.get_payload(msg);
+		$(this).find('tbody tr').remove();
+		if(payload.length > 0) {
+			for (var i = 0; i < payload.length; i++) {
+				flight = payload[i];
+				var tr = $('<tr>').data('gip-id', flight.registration);
+				for (var property in flight) {
+					if(property == "code") continue;
+					tr.append( $('<td>').addClass('gip-'+property).html(flight[property]) );
+				}
+				$(this).find('tbody').append(tr);
+			}
+		} else {
+			$(this).find('tbody').append($('<tr>').append( $('<td>').attr('colspan', 3).html('No delay') ) );
+		}
+		
+		$.dashboard.last_updated(msg, $(this));
+	});
+
+	$(selector).click(function() {
+		delayed_time = moment($.dashboard.get_time());
+		// get scheduled flights (all positive numbers)
+		$.post(
+			"wire/get-delay",
+			{
+				'around': delayed_time.format('YYYY-MM-DD HH:mm')
+			},
+			function (r) {
+				var s = JSON.parse(r);
+				$(selector).trigger('gip:message', {payload: JSON.stringify(s)});
+			}
+		);
+	});
+
+	/**
+	 *	GIP Change Handler: Handle change messages
+	 */
+	$(selector).on('gip:change', function(event) {
+		var payload = event.gip_payload;
+		for (var property in payload) {
+			$(this).find("[data-gip="+property+"]").html(payload[property]);
+		}
+	});
+
+});
+
+//
+//	BEACONS
+//
+jQuery(document).ready(function($){
+
+	var opts = {
+		marker_beacons: {
+			inner: {
+				count: 12,
+				speed: 'fast'
+			},
+			middle: {
+				count: 7,
+				speed: 'medium'
+			},
+			outer: {
+				count: 5,
+				speed: 'slow'
+			}
+		},
+		soundFileLocation: './index_files/'
+	};
+
+	function blink(selector, marker, count) {
+		if(count > opts.marker_beacons[marker]['count']) return;
+		$(selector).fadeOut(opts.marker_beacons[marker]['speed'], function(){
+		    $(this).fadeIn(opts.marker_beacons[marker]['speed'], function(){
+		        blink(this, marker, count + 1);
+		    });
+		});
+	}
+
+	function play_sound(marker) {
+		var audio = new Audio();
+        audio.src = opts.soundFileLocation + marker + '.mp3';;
+        audio.play();
+	}
+	
+	function get_marker(msg, payload) {
+		var lid = msg.source+'-'+msg.type;
+		if(typeof msg.channel !== undefined) {
+			lid += ('-'+msg.channel);			
+		}
+		return ("#gip-"+lid).toLowerCase();
+	}
+	
+	var selector = "#gip-gip-marker-1";
+
+	/**
+	 *	GIP Message Handler: Handle plain messages
+	 */
+	$("#gip-gip-marker-1").on('gip:message', function(event, msg) {
+		var payload = $.parseJSON(msg.body);
+		var mid = get_marker(msg, payload);
+		play_sound(payload.marker);
+		
+		blink(mid+" a.marker-"+payload.marker, payload.marker, 0);
+		if(msg.type.toLowerCase() == 'outer') {
+			$('#gip-gip-wire').trigger('gip:message', msg);
+		}
+	});
+
+	/**
+	 *	GIP Change Handler: Handle change messages
+	 */
+	$("#gip-gip-marker-1").on('gip:change', function(event) {
+		var payload = event.gip_payload;
+		for (var property in payload) {
+			$(this).find("[data-gip="+property+"]").html(payload[property]);
+		}
+	});
+
+	$("#gip-gip-marker-2").on('gip:message', function(event, msg) {
+		var payload = $.parseJSON(msg.body);
+		var mid = get_marker(msg, payload);
+		play_sound(payload.marker);
+		
+		blink(mid+" a.marker-"+payload.marker, payload.marker, 0);
+		if(msg.type.toLowerCase() == 'outer') {
+			$('#gip-gip-wire').trigger('gip:message', msg);
+		}
+	});
+
+	/**
+	 *	GIP Change Handler: Handle change messages
+	 */
+	$("#gip-gip-marker-2").on('gip:change', function(event) {
+		var payload = event.gip_payload;
+		for (var property in payload) {
+			$(this).find("[data-gip="+property+"]").html(payload[property]);
+		}
+	});
+
+});
+	
+//
+//	DASHBOARD
+//
+jQuery(document).ready(function($){
+	var selector = "#" + "gip-gip-wire";
+
+	/*
+	 * Default Values
+	 */
+	var lastDateReminder = null;
+	var opts = {
+		debug: false,
+		id: "gip-gip-wire ul",
+		markRead: null,	//gipadmin/wire/read
+		// General presentation
+		color: 'default',
+		icon: 'fa-info',
+		size: 'medium',
+		speed: 500,
+		// More
+		numWords: 50,
+		dateReminder: 3, // minutes
+		ellipsestext: '<i class="fa fa-ellipsis-h"></i>',
+		moretext: '<i class="fa fa-angle-double-right"></i>',
+		lesstext: '<i class="fa fa-angle-double-left"></i>',
+		ignoreTags: ['default','unknown'],
+		filterNewMessage: false,
+		priority_map: [
+			'default',
+			'info',
+			'success',
+			'primary',
+			'warning',
+			'danger',
+			'accent'
+		]
+	};
+
+	/**
+	 *	Utility functions
+	 */
+	// Acknowledge Checkbox
+	$('input.wire-checkbox').click(function() {
+		if(opts.markRead != null) {
+			vid = $(this).data('message');
+			$.post(
+				opts.markRead,
+	            {
+					id: vid
+				},
+	   			function () {
+					console.log('marked as read '+vid);
+	            }
+			);
+			$(this).prop('disabled', true);
+		}
+	});
+
+	// More... (only works with plain text)
+	// Chops text
+	$('.wire-more').each(function() {
+		var content = $(this).html().split(" ");
+		if(content.length > opts.numWords) {
+			var c = content.slice(0,opts.numWords).join(" ");
+			var h = content.slice(opts.numWords,content.length).join(" ");
+			var html = c + '&nbsp;<span class="wire-more-elipses">' + opts.ellipsestext
+						 + '</span>&nbsp;<span class="wire-more-content"><span>'
+						 + h + '</span>&nbsp;&nbsp;<a href="" class="wire-more-link">'
+						 + opts.moretext + '</a></span>';
+			$(this).html(html);
+		}
+	});
+
+	$(".wire-more-link").click(function(){
+		if($(this).hasClass("wire-less")) {
+			$(this).removeClass("wire-less");
+			$(this).html(opts.moretext);
+		} else {
+			$(this).addClass("wire-less");
+			$(this).html(opts.lesstext);
+		}
+		$(this).parent().prev().toggle();
+		$(this).prev().toggle();
+		return false;
+	});
+
+	
+	/**
+	 *	GIP Message Handler: Handle plain messages
+	 */
+	$(selector).on('gip:message', function(event, message) {
+		var tags = new Array();
+		var addTags = function(str) {
+			if(opts.ignoreTags.indexOf(str) == -1)
+				tags.push(str);
+		}
+
+		if(message.priority < 0)	// convention: we do not display wire message with negative priority on the wire.
+			return; 		// they are handled by other giplet handlers, but they are not displayed on the wire.
+
+		// Priority
+		var priority = $.dashboard.priority(message, opts.priority_map.length);
+		var priority_string = '★'.repeat(priority)+'☆'.repeat(opts.priority_map.length - priority);
+		var priority_color = opts.priority_map[priority % opts.priority_map.length];
+
+		// Tags
+		addTags(priority_string);
+		addTags(message.source.toLowerCase());
+		addTags(message.type.toLowerCase());
+
+		// Color
+		if(typeof message.color != "undefined") {
+			if(message.color.substr(0, 1) != '#' && $.inArray(message.color, opts.priority_map) == -1) { // uses bootstrap color
+				message.color = opts.color;
+			}
+		} else {
+			message.color = priority_color;
+		}
+
+		// Icon
+		if(typeof message.icon != "undefined") {
+			message.icon = opts.icon;
+		}
+
+
+		// Link
+		var title = message.subject;
+		if(typeof title == 'undefined') {
+			title = 'No subject';
+		}
+		if(message.link) {
+			title = $('<a>').attr('href', message.link).html('<i class="fa fa-link"></i>&nbsp;' + message.subject);
+		}
+
+		// Body
+		var text = message.body;
+
+		// special message parsing
+		if(message.type.toLowerCase() == 'metar') {
+			var metar = metar_decode(text);
+			if(metar.length > 0) {
+				text = metar.replace(/(?:\r\n|\r|\n)/g, '<br />') + '<br/><pre>'+text+'</pre>';
+			}
+		}
+		// text shortening
+		if(typeof text != 'undefined') {
+			if(opts.numWords > 0) {
+				var content = text.split(" ");
+				if(content.length > opts.numWords) {
+					text = content.slice(0,opts.numWords).join(" ")
+							 + '&nbsp;<span class="wire-more-elipses">' + opts.ellipsestext
+							 + '</span>&nbsp;<span class="wire-more-content"><span>'
+							 + content.slice(opts.numWords,content.length).join(" ")
+							 + '</span>&nbsp;&nbsp;<a href="" class="wire-more-link">'
+							 + opts.moretext + '</a></span>';
+				}
+			}
+		} else {
+			text = '';
+		}
+		
+		// Do we need a new Date reminder in the margin?
+		if(lastDateReminder == null || ((Date() - lastDateReminder) > (opts.dateReminder * 60000)) ) {
+			$('<li>').addClass('time-label')
+					.append($('<span>').addClass('bg-blue').html(moment().format("ddd D MMM H:mm")))
+					.prependTo("#"+opts.id);
+			lastDateReminder = new Date();
+		}
+
+		// Assembly
+		var tagPills = $('<span>');
+		for(var idx = 0; idx < tags.length; idx++) {
+			tagPills.append($('<span>').addClass('label').addClass('label-default').html(tags[idx])).append('&nbsp;');
+		}
+
+		//materialadmin-based
+		if(title.length > 0 || text.length > 0) {
+			$('<li>').addClass('timeline-inverted')
+				.append( $('<div>').addClass('timeline-circ').addClass('circ-xl').addClass('style-'+priority_color)
+					.append(
+						$('<i>').addClass('fa').addClass(message.icon).html(' ')
+					)
+				)
+				.append( $('<div>').addClass('timeline-entry')
+					.append( $('<div>').addClass('card').addClass('style-default-bright')
+						.append( $('<div>').addClass('card-body').addClass('small-padding')
+							.append(
+								$('<span>').addClass('message-header')
+									.append( $('<span>').addClass('time').addClass('opacity-50')
+										.append(
+											$('<i>').addClass('fa').addClass('fa-clock-o')
+										).append(moment(new Date()).format('ddd D MMM YY H:mm'))
+									)
+									.append( $('<span>').addClass('title').html(title) )
+							)
+							.append(
+								$('<span>').addClass('message-body').addClass('wire-more').addClass('text-medium').html('<br/>' + text + '<br/>')
+							)
+							.append(
+								$('<span>').addClass('message-footer')
+								.append(tagPills)
+								.append(
+									$('<span>').addClass('label').addClass('label-'+message.color).html('Published on '+moment(message.created_at).format('ddd D MMM YY H:mm'))
+								)
+							)
+						)
+					)
+				)
+			.addClass('wire-message')
+			.attr('data-item-tags', tags.join(','))
+			.attr('id', 'wire-message-'+message.id)
+			.prependTo("#"+opts.id).hide().slideDown(opts.speed);
+
+			// increase alert count indicator
+			var counter_selector = '#gip-gip-alert .gip-body';
+			$(counter_selector).html(parseInt($(counter_selector).html()) + 1);
+		}
+
+		// Cleanup
+
+		// Rebuild task list, sort it, and set those that were active.
+		// 1. remember which ones where selected
+		var tagsortActive = $('div.tagsort-tags-container span.tagsort-active');
+		// 2. rebuild list
+		$('div.tagsort-tags-container').html('').tagSort({
+			items:'.wire-message'
+		}).find('span').sortElements(function(a, b){
+		    return $(a).text() > $(b).text() ? 1 : -1;
+		});
+		// 3. select those which were selected
+		var hasTags = 0;
+		if(tagsortActive.length !== 0) {
+			tagsortActive.each(function() {
+				tag = $(this).html();
+				if(opts.filterNewMessage && (tags.indexOf(tag) > -1)) { // current message has tag
+					hasTags++;
+				}
+				$('div.tagsort-tags-container span:contains("'+tag+'")').addClass('tagsort-active');
+			});
+		}
+		if(opts.filterNewMessage && tagsortActive.length !== hasTags) {
+			$('li#wire-message-'+message.id).toggle(false);
+		}
+
+		$(".wire-more-link").click(function(){
+			if($(this).hasClass("wire-less")) {
+				$(this).removeClass("wire-less");
+				$(this).html(opts.moretext);
+			} else {
+				$(this).addClass("wire-less");
+				$(this).html(opts.lesstext);
+			}
+			$(this).parent().prev().toggle();
+			$(this).prev().toggle();
+			return false;
+		});
+		if(['default' , 'error' , 'notice' , 'warning'].indexOf(priority_color) == -1) {
+			priority_color = 'default';
+		}
+		if($(selector).hasClass('gip-growl'))
+			$.growl({ title: message.subject, message: message.body, style: priority_color });
+	});
+
+});
+
+//
+//	MAIN
+//
+//	Dashboard Init
+//
+jQuery(document).ready(function($){
+
+	$.dashboard.init();
+
+	// $.dashboard.set_time(new Date('2016-04-13T10:00:00'));
+	
+	//open the lateral panel
+	$('.cd-btn').on('click', function(event){
+		event.preventDefault();
+		$('.cd-panel').addClass('is-visible');
+	});
+
+	//close the lateral panel
+	$('.cd-panel').on('click', function(event){
+		if( $(event.target).is('.cd-panel') || $(event.target).is('.cd-panel-close') ) { 
+			$('.cd-panel').removeClass('is-visible');
+			event.preventDefault();
+		}
+	});
+	
+	// search panel header
+	$("#the-wire").sieve({"itemSelector":".wire-message"});
+	
+});
+
+//
+//	TESTING
+//
+jQuery(document).ready(function($){
+	if(false) { // run tests?
+		var test = [
+
+{source: 'gip', type: 'news', subject: 'DASHBOARD TESTING STARTED...', priority: 3, icon: 'fa-info', color: 'accent'},
+
+{source: 'gip', type: 'metar', body: 'EBLG 300450Z 34007KT 1600 RA BR FEW002 BKN003 15/13 Q1005 TEMPO 1200 RADZ BKN002', subject: 'Metar EBLG 300450Z', priority: 2, icon: 'fa-cloud', color: 'info'},
+
+{source: 'aodb', type: 'qfu', title: "QFU Changed to 05", body: '{"value": "05", "note": "L / R"}'},
+
+{source: 'aodb', type: 'movements', body: '{"sched": [{"dir": "D","count": "1","sched": "1460527200"},{"dir": "D","count": "1","sched": "1460528400"},{"dir": "D","count": "5","sched": "1460529600"},{"dir": "D","count": "1","sched": "1460530200"},{"dir": "D","count": "5","sched": "1460530800"},{"dir": "D","count": "1","sched": "1460531400"},{"dir": "D","count": "3","sched": "1460532000"},{"dir": "D","count": "1","sched": "1460535600"},{"dir": "A","count": "1","sched": "1460536800"},{"dir": "A","count": "1","sched": "1460537400"},{"dir": "A","count": "1","sched": "1460538000"},{"dir": "D","count": "2","sched": "1460542200"},{"dir": "A","count": "1","sched": "1460545200"},{"dir": "D","count": "2","sched": "1460545800"},{"dir": "D","count": "2","sched": "1460547600"},{"dir": "D","count": "3","sched": "1460548800"},{"dir": "D","count": "2","sched": "1460549400"},{"dir": "D","count": "2","sched": "1460550000"},{"dir": "D","count": "3","sched": "1460551200"},{"dir": "D","count": "3","sched": "1460552400"},{"dir": "A","count": "1","sched": "1460553600"},{"dir": "A","count": "1","sched": "1460554200"},{"dir": "A","count": "3","sched": "1460556000"},{"dir": "D","count": "1","sched": "1460581200"}],"plan": [{"dir": "D","count": "1","planned": "1460542200"},{"dir": "A","count": "1","planned": "1460542200"},{"dir": "A","count": "1","planned": "1460545200"},{"dir": "D","count": "1","planned": "1460545800"},{"dir": "A","count": "1","planned": "1460545800"},{"dir": "D","count": "1","planned": "1460547600"},{"dir": "A","count": "1","planned": "1460547600"},{"dir": "D","count": "1","planned": "1460548800"},{"dir": "A","count": "2","planned": "1460548800"},{"dir": "D","count": "1","planned": "1460549400"},{"dir": "A","count": "1","planned": "1460549400"},{"dir": "D","count": "1","planned": "1460550000"},{"dir": "A","count": "1","planned": "1460550000"},{"dir": "D","count": "1","planned": "1460551200"},{"dir": "A","count": "2","planned": "1460551200"},{"dir": "A","count": "2","planned": "1460552400"},{"dir": "D","count": "1","planned": "1460552400"},{"dir": "A","count": "1","planned": "1460553600"},{"dir": "A","count": "1","planned": "1460554200"},{"dir": "A","count": "3","planned": "1460556000"},{"dir": "D","count": "1","planned": "1460581200"}],"act": [{"dir": "D","count": "1","actual": "1460527200"},{"dir": "D","count": "1","actual": "1460528400"},{"dir": "D","count": "2","actual": "1460529600"},{"dir": "A","count": "3","actual": "1460529600"},{"dir": "D","count": "1","actual": "1460530200"},{"dir": "D","count": "3","actual": "1460530800"},{"dir": "A","count": "2","actual": "1460530800"},{"dir": "D","count": "1","actual": "1460531400"},{"dir": "D","count": "2","actual": "1460532000"},{"dir": "A","count": "1","actual": "1460532000"},{"dir": "D","count": "1","actual": "1460535600"},{"dir": "A","count": "1","actual": "1460536800"},{"dir": "A","count": "1","actual": "1460537400"},{"dir": "A","count": "1","actual": "1460538000"}]}'},
+
+{source: 'aodb', type: 'departure', body: '[{"registration":"OO-123","flight_number":"SN 123","destination":"Alicante","schedule":"14:30","estimated":"15:10","actual":"-","delay":"40"},{"registration":"F-4321","flight_number":"AF 456","destination":"Orly","schedule":"15:00","estimated":"15:00","actual":"-","delay":"0"}]'},
+
+{source: 'aodb', type: 'arrival', body: '[{"registration":"OO-123","flight_number":"SN 123","destination":"Alicante","schedule":"14:30","estimated":"15:10","actual":"-","delay":"40"},{"registration":"F-4321","flight_number":"AF 456","destination":"Orly","schedule":"15:00","estimated":"15:00","actual":"-","delay":"0"}]'},
+
+{source: 'aodb', type: 'parking-occupancy', body: '{"pax": {"busy": 50,"avail": 50},"freit": {"busy": 75,"avail": 25}}'},
+
+{source: 'aodb', type: 'delay-report', body: '[{"code": "93","reason":"ROTATION D AVION","time":"220","percent":"54"},{"code":"61","reason":"PLAN DE VOL","time":"79","percent":"21"}]'},
+
+{source: 'aodb', type: 'notam', subject: "A1234/06 NOTAMR A1212/06", body: "A1234/06 NOTAMR A1212/06<br/>Q)EGTT/QMXLC/IV/NBO/A/000/999/5129N00028W005<br/>A)EGLL<br/>B)0609050500<br/>C)0704300500<br/>E)DUE WIP TWY B SOUTH CLSD BTN 'F' AND 'R'. TWY 'R' CLSD BTN 'A' AND 'B' AND DIVERTED VIA NEW GREEN CL AND BLUE EDGE LGT.<br/>CTN ADZ", priority: 5, icon: 'fa-plane', color: 'warning'},
+
+{source: 'gip', type: 'marker', channel: 1, body: '{"marker":"outer"}'},
+
+{source: 'gip', type: 'marker', channel: 2, body: '{"marker":"middle"}'},
+
+{source: 'gip', type: 'news', subject: '... DASHBOARD TESTING COMPLETED!', body: "Please check the browser's console for log", priority: 3, icon: 'fa-info', color: 'success'}
+
+		];
+	
+		// enable global debug for tracing
+		$.dashboard.init({debug: true});
+		
+		// make it beautiful
+		$('.card.map').append( $('<img>').attr('src', './index_files/map.png').attr('width', '100%') );
+
+		// send each message through regular mechanism
+		for(var i = 0; i < test.length; i++) {
+			console.log('Doing '+test[i].source+'-'+test[i].type);
+			console.log(test[i]);
+			$.dashboard.broadcast(test[i]);
+			//console.log('...done');
+		}
+	} else { // send at least one message to confirm init OK
+		$.dashboard.broadcast({source: 'gip', type: 'gip', subject: "GIP Alert started", body: 'Ready', priority: 1, icon: 'fa-info', color: 'info'});
+	}
+
+});
+
+
+});
+</script>
+
+</body></html>
