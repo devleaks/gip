@@ -191,11 +191,26 @@
 	}
 
 	
-	Dashboard.prototype.substitute = function (msg) {
+	Dashboard.prototype.substitute = function (msg) {		
 		var text = msg.body;
-		var occurences = text.match(/{{(.)+}}/gi);
+		var occurences = text.match(/{{([^}].)+}}/g);
 		console.log(occurences);
-		
+		console.log(typeof occurences);
+		if(typeof occurences == "object") {
+			if(occurences != null) {
+				var payload = JSON.parse(msg.payload);
+				for(var i = 0; i < occurences.length; i++) {
+					var varname = occurences[i].replace(/{{/,"").replace(/}}/,"");
+					var value = JSPath.apply('.'+varname, payload);
+					console.log(value);
+					console.log(varname+"="+value);
+					text = text.replace(new RegExp('{{'+varname+'}}', 'g'), value);
+				}
+			}
+		}
+		console.log(text);
+		msg.body_template = msg.body;
+		msg.body = text;
 	}
 
 	
