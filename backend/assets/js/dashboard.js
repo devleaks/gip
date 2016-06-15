@@ -191,6 +191,14 @@
 	}
 
 	
+	Dashboard.prototype.substitute = function (msg) {
+		var text = msg.body;
+		var occurences = text.match(/{{(.)+}}/gi);
+		console.log(occurences);
+		
+	}
+
+	
 	// Init & start ws connection
     function wsStart() {
 		var ws = new WebSocket(opts.websocket);

@@ -160,6 +160,8 @@ jQuery(document).ready(function($){
 			if(opts.ignoreTags.indexOf(str) == -1)
 				tags.push(str);
 		}
+		
+		$.dashboard.substitute(message);
 
 		// Priority
 		var priority = message.priority == null ? 0 : parseInt(message.priority);
