@@ -169,8 +169,49 @@
 		return id;
 	}
 	
+	function has_payload(msg) {
+		try {
+			var ret = JSON.parse(msg.payload);
+		} catch(e) {
+			console.log(e);
+			return false;
+		}
+		return true;
+	}
+	
+	function substitute_text(msg, text) {
+		var occurences = text.match(/{{([^}].)+}}/g);
+		if(typeof occurences == "object") {
+			if(occurences != null) {
+				var payload = JSON.parse(msg.payload);
+				for(var i = 0; i < occurences.length; i++) {
+					var varname = occurences[i].replace(/{{/,"").replace(/}}/,"");
+					var value = JSPath.apply('.'+varname, payload);
+					//console.log(varname+"="+value);
+					if(value != null) {
+						text = text.replace(new RegExp('{{'+varname+'}}', 'g'), value);
+					}
+				}
+			}
+		}
+		console.log(text);
+		return text;
+	}
+
+	function substitute(msg) { // both title and subject are searched for substitution
+		if(! has_payload(msg))
+			return;
+		var text = substitute_text(msg, msg.body);
+		msg.body_template = msg.body;
+		msg.body = text;
+		text = substitute_text(msg, msg.subject);
+		msg.subject_template = msg.subject;
+		msg.subject = text;
+	}
+
 	function send_to_wire(msg) {
 		if(msg.priority > 0) {
+			substitute(msg);
 			$('#'+opts.id).trigger('gip:message', msg);
 			$('#'+opts.id+' ul').scrollTop($('#'+opts.id+' ul')[0].scrollHeight);
 		}
@@ -184,35 +225,15 @@
 		//build giplet id
 		var gid = get_giplet_id(msg);
 		//send message to giplet
-		$(gid).trigger('gip:message', msg);
+		if(msg.source.toLowerCase() != 'gip' || msg.type.toLowerCase() != 'wire') {
+			$(gid).trigger('gip:message', msg);
+		}
 		//display message on wire if priority>0.
 		//messages with priority < 1 are not displayed on the wire (but the recipient giplet gets the message)
 		send_to_wire(msg);
 	}
 
 	
-	Dashboard.prototype.substitute = function (msg) {		
-		var text = msg.body;
-		var occurences = text.match(/{{([^}].)+}}/g);
-		console.log(occurences);
-		console.log(typeof occurences);
-		if(typeof occurences == "object") {
-			if(occurences != null) {
-				var payload = JSON.parse(msg.payload);
-				for(var i = 0; i < occurences.length; i++) {
-					var varname = occurences[i].replace(/{{/,"").replace(/}}/,"");
-					var value = JSPath.apply('.'+varname, payload);
-					console.log(value);
-					console.log(varname+"="+value);
-					text = text.replace(new RegExp('{{'+varname+'}}', 'g'), value);
-				}
-			}
-		}
-		console.log(text);
-		msg.body_template = msg.body;
-		msg.body = text;
-	}
-
 	
 	// Init & start ws connection
     function wsStart() {
