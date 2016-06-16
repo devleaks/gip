@@ -42,6 +42,9 @@ $widget_hndlr 	= strtoupper($widget->source.'_'.$widget->type);
 <?php $this->beginBlock('JS_GIP_'+$widget_hndlr) ?>
 jQuery(document).ready(function($){
 	var selector = "#" + "<?= $widget_class ?>";
+	var current_news = 0;
+	var count_news = $(selector+' ul li').length;
+
 	/**
 	 *	GIP Message Handler: Handle plain messages
 	 */
@@ -53,13 +56,7 @@ jQuery(document).ready(function($){
 	});
 
 	$(selector).on('gip:message', function(event, msg) {
-		var count = $(selector+' ul li').length;
-		if(count >= 5) {
-			var last = $(selector+' ul').find('li').last();
-			console.log('removing: '+last.html());
-			last.remove();
-		}
-		$(selector+' ul').prepend( $('<li>').html(msg.body) );
+		$(selector+' ul').find('li:nth-child('+(current_news % count_news + 1)+')').html(msg.body);
 	});
 
 });

@@ -78,7 +78,6 @@ $this->title = 'GIP Dashboard';
 						'news' => [
 							'Mercredi 22 — Demo Geo Intelligent Platform',
 					        'Welcome Oscars — Good luck with your demo',
-					        "Je déteste les trucs qui bougent tout le temps, ça distrait comme c'est pas possible.",
 						]
 					]);
 				?>
