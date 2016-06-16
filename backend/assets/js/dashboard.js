@@ -111,6 +111,8 @@
 	};
 	
 	Dashboard.prototype.get_payload = function (msg) {
+		return JSON.parse(msg.payload); // now payload can only be in payload attribute.
+		/* If payload can either be in body or payload, use following code:
 		if(opts.debug) {
 			console.log({code: 'Dashboard.prototype.get_payload', message: msg});
 		}
@@ -139,6 +141,7 @@
 			console.log('Dashboard.prototype.get_payload: found payload in '+fnd);
 		}
 		return ret;
+		*/
 	}
 
 
@@ -196,15 +199,12 @@
 	function substitute(msg) { // both title and subject are searched for substitution
 		if(msg.payload === null)
 			return;
-		var text;
 		// subject
-		text = substitute_text(msg, msg.subject);
 		msg.subject_template = msg.subject;
-		msg.subject = text;
+		msg.subject = substitute_text(msg, msg.subject);
 		// body
-		text = substitute_text(msg, msg.body);
 		msg.body_template = msg.body;
-		msg.body = text;
+		msg.body = substitute_text(msg, msg.body);;
 	}
 
 	function send_to_wire(msg) {

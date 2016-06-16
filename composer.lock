@@ -661,12 +661,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BlueBiteLLC/service-geolocate-lite-js.git",
-                "reference": "f4dc10d1b4fbb364b1c965c2effd4acec0de66fb"
+                "reference": "4f6f5d0054e13c9a83f9a6570d6065111b253833"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BlueBiteLLC/service-geolocate-lite-js/zipball/f4dc10d1b4fbb364b1c965c2effd4acec0de66fb",
-                "reference": "f4dc10d1b4fbb364b1c965c2effd4acec0de66fb",
+                "url": "https://api.github.com/repos/BlueBiteLLC/service-geolocate-lite-js/zipball/4f6f5d0054e13c9a83f9a6570d6065111b253833",
+                "reference": "4f6f5d0054e13c9a83f9a6570d6065111b253833",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -686,7 +686,7 @@
                 "geolocation",
                 "html5"
             ],
-            "time": "2016-03-23 15:42:37"
+            "time": "2016-06-15 16:57:08"
         },
         {
             "name": "bower-asset/gridstack",
@@ -2102,16 +2102,16 @@
         },
         {
             "name": "dmstr/yii2-db",
-            "version": "0.4.0",
+            "version": "0.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmstr/yii2-db.git",
-                "reference": "59193c6d9420ecde1b7e58b6742d35ba74dfd63e"
+                "reference": "5522a46605af954f52c52ee93da8289c9ecad0bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmstr/yii2-db/zipball/59193c6d9420ecde1b7e58b6742d35ba74dfd63e",
-                "reference": "59193c6d9420ecde1b7e58b6742d35ba74dfd63e",
+                "url": "https://api.github.com/repos/dmstr/yii2-db/zipball/5522a46605af954f52c52ee93da8289c9ecad0bd",
+                "reference": "5522a46605af954f52c52ee93da8289c9ecad0bd",
                 "shasum": ""
             },
             "require": {
@@ -2122,6 +2122,7 @@
             "autoload": {
                 "psr-4": {
                     "dmstr\\db\\": "db/",
+                    "dmstr\\db\\tests\\": "db/tests/",
                     "dmstr\\console\\": "console/"
                 }
             },
@@ -2142,7 +2143,7 @@
                 "extension",
                 "yii2"
             ],
-            "time": "2016-06-08 21:34:58"
+            "time": "2016-06-15 14:28:59"
         },
         {
             "name": "dmstr/yii2-helpers",
@@ -3021,12 +3022,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-detail-view.git",
-                "reference": "31b57671ca4072ddad72ac80775abba4cb9b0ddf"
+                "reference": "ed67fdb154e0c89c1f529f70bb8b4a0d3e028e26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-detail-view/zipball/31b57671ca4072ddad72ac80775abba4cb9b0ddf",
-                "reference": "31b57671ca4072ddad72ac80775abba4cb9b0ddf",
+                "url": "https://api.github.com/repos/kartik-v/yii2-detail-view/zipball/ed67fdb154e0c89c1f529f70bb8b4a0d3e028e26",
+                "reference": "ed67fdb154e0c89c1f529f70bb8b4a0d3e028e26",
                 "shasum": ""
             },
             "require": {
@@ -3067,7 +3068,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-05-15 19:15:04"
+            "time": "2016-06-14 13:50:00"
         },
         {
             "name": "kartik-v/yii2-dialog",
@@ -3975,16 +3976,16 @@
         },
         {
             "name": "kartik-v/yii2-widget-fileinput",
-            "version": "v1.0.4",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-fileinput.git",
-                "reference": "36f9f493c2d814529f2a195422a8af2e020fc80c"
+                "reference": "3b8f6819f2cd01becff5251b8b952ac3e57b903a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-fileinput/zipball/36f9f493c2d814529f2a195422a8af2e020fc80c",
-                "reference": "36f9f493c2d814529f2a195422a8af2e020fc80c",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-fileinput/zipball/3b8f6819f2cd01becff5251b8b952ac3e57b903a",
+                "reference": "3b8f6819f2cd01becff5251b8b952ac3e57b903a",
                 "shasum": ""
             },
             "require": {
@@ -3992,6 +3993,11 @@
                 "kartik-v/yii2-krajee-base": "~1.7"
             },
             "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "kartik\\file\\": ""
@@ -4021,7 +4027,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-01-10 16:10:58"
+            "time": "2016-06-16 06:53:01"
         },
         {
             "name": "kartik-v/yii2-widget-growl",
@@ -5010,12 +5016,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mootensai/yii2-enhanced-gii.git",
-                "reference": "82b3b9758f0de3de9de222b6f6d4ce8b3add2a45"
+                "reference": "79886de1d5119a4c7403cdb63e9292a9a953fc07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mootensai/yii2-enhanced-gii/zipball/82b3b9758f0de3de9de222b6f6d4ce8b3add2a45",
-                "reference": "82b3b9758f0de3de9de222b6f6d4ce8b3add2a45",
+                "url": "https://api.github.com/repos/mootensai/yii2-enhanced-gii/zipball/79886de1d5119a4c7403cdb63e9292a9a953fc07",
+                "reference": "79886de1d5119a4c7403cdb63e9292a9a953fc07",
                 "shasum": ""
             },
             "require": {
@@ -5062,7 +5068,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2016-06-11 06:45:35"
+            "time": "2016-06-16 05:20:38"
         },
         {
             "name": "mootensai/yii2-jsblock",
@@ -6418,16 +6424,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "f62db5b8afec27073a4609b8c84b1f9936652259"
+                "reference": "64a4d43b045f07055bb197650159769604cb2a92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/f62db5b8afec27073a4609b8c84b1f9936652259",
-                "reference": "f62db5b8afec27073a4609b8c84b1f9936652259",
+                "url": "https://api.github.com/repos/symfony/console/zipball/64a4d43b045f07055bb197650159769604cb2a92",
+                "reference": "64a4d43b045f07055bb197650159769604cb2a92",
                 "shasum": ""
             },
             "require": {
@@ -6474,20 +6480,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2016-05-30 06:58:39"
+            "time": "2016-06-14 11:18:07"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "0343b2cedd0edb26cdc791212a8eb645c406018b"
+                "reference": "f5b7563f67779c6d3d5370e23448e707c858df3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/0343b2cedd0edb26cdc791212a8eb645c406018b",
-                "reference": "0343b2cedd0edb26cdc791212a8eb645c406018b",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/f5b7563f67779c6d3d5370e23448e707c858df3e",
+                "reference": "f5b7563f67779c6d3d5370e23448e707c858df3e",
                 "shasum": ""
             },
             "require": {
@@ -6534,11 +6540,11 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2016-04-12 18:27:47"
+            "time": "2016-06-06 11:42:41"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -6587,7 +6593,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -6695,16 +6701,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "1574f3451b40fa9bbae518ef71d19a56f409cac0"
+                "reference": "6350e63ed9c232da50e00f00a7e0330f066387a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/1574f3451b40fa9bbae518ef71d19a56f409cac0",
-                "reference": "1574f3451b40fa9bbae518ef71d19a56f409cac0",
+                "url": "https://api.github.com/repos/symfony/process/zipball/6350e63ed9c232da50e00f00a7e0330f066387a2",
+                "reference": "6350e63ed9c232da50e00f00a7e0330f066387a2",
                 "shasum": ""
             },
             "require": {
@@ -6740,20 +6746,20 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2016-04-12 19:11:33"
+            "time": "2016-06-06 11:42:41"
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
-                "reference": "4670f122fa32a4900003a6802f6b8575f3f0b17e"
+                "reference": "e7238f98c90b99e9b53f3674a91757228663b04d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/4670f122fa32a4900003a6802f6b8575f3f0b17e",
-                "reference": "4670f122fa32a4900003a6802f6b8575f3f0b17e",
+                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/e7238f98c90b99e9b53f3674a91757228663b04d",
+                "reference": "e7238f98c90b99e9b53f3674a91757228663b04d",
                 "shasum": ""
             },
             "require": {
@@ -6789,7 +6795,7 @@
             ],
             "description": "Symfony Stopwatch Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-04 07:56:56"
+            "time": "2016-06-06 11:42:41"
         },
         {
             "name": "textalk/websocket",
