@@ -377,7 +377,7 @@ $this->title = 'GIP Dashboard';
 <?php $this->beginBlock('JS_DASHBOARD') ?>
 jQuery(document).ready(function($){
 	//main communication
-	$.dashboard.init({websocket: "<?= Yii::$app->params['websocket_server'] ?>", debug: false});
+	$.dashboard.init({websocket: "<?= Yii::$app->params['websocket_server'] ?>", debug: false, max_priority: 6});
 
 	$.dashboard.set_time(new Date('2016-04-13T10:00:00'));
 	

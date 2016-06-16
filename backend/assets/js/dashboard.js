@@ -15,6 +15,9 @@
 		debug: false,
 		id: "gip-gip-wire",
 		clock_id: "gip-gip-clock",
+		max_priority: 5,
+		begin_delimiter: '{{',
+		end_delimiter: '}}',
 		// Websocket feeds
 		websocket: null,
 		initSeed: null,	//gipadmin/wire/seed
@@ -165,48 +168,43 @@
 				id += ('-'+msg.channel);
 			}
 		}
-		console.log(id);
+		if(opts.debug) {
+			console.log(id);
+		}
 		return id;
 	}
 	
-	function has_payload(msg) {
-		try {
-			var ret = JSON.parse(msg.payload);
-		} catch(e) {
-			console.log(e);
-			return false;
-		}
-		return true;
-	}
-	
 	function substitute_text(msg, text) {
-		var occurences = text.match(/{{([^}].)+}}/g);
-		if(typeof occurences == "object") {
-			if(occurences != null) {
-				var payload = JSON.parse(msg.payload);
-				for(var i = 0; i < occurences.length; i++) {
-					var varname = occurences[i].replace(/{{/,"").replace(/}}/,"");
-					var value = JSPath.apply('.'+varname, payload);
-					//console.log(varname+"="+value);
-					if(value != null) {
-						text = text.replace(new RegExp('{{'+varname+'}}', 'g'), value);
-					}
+		var occurences = text.match(/{{([\.]*[^}].)+}}/g); // does not seems to work if we don't add the first . search
+		//console.log('Dashboard::substitute_text: original: '+text);
+		//console.log(msg);
+		console.log(occurences);
+		if(occurences !== null) {
+			for(var i = 0; i < occurences.length; i++) {
+				var varname = occurences[i].replace(/{{/,"").replace(/}}/,"");
+				var value = JSPath.apply(varname, msg);
+				console.log(varname+"="+value);
+				if(value != null) {
+					text = text.replace(new RegExp('{{'+varname+'}}', 'g'), value);
 				}
 			}
 		}
-		console.log(text);
+		console.log('Dashboard::substitute_text: substitued: '+text);
 		return text;
 	}
 
 	function substitute(msg) { // both title and subject are searched for substitution
-		if(! has_payload(msg))
+		if(msg.payload === null)
 			return;
-		var text = substitute_text(msg, msg.body);
-		msg.body_template = msg.body;
-		msg.body = text;
+		var text;
+		// subject
 		text = substitute_text(msg, msg.subject);
 		msg.subject_template = msg.subject;
 		msg.subject = text;
+		// body
+		text = substitute_text(msg, msg.body);
+		msg.body_template = msg.body;
+		msg.body = text;
 	}
 
 	function send_to_wire(msg) {
@@ -217,19 +215,45 @@
 		}
 	}
 	
-	Dashboard.prototype.broadcast = function (msg) {
+	function normalize(msg) {
+		// ensure priority 0 < p < 
 		var priority = parseInt(msg.priority);
 		if(isNaN(priority)) priority = 0;
-		if(priority > 5) priority = 5;
+		if(priority > opts.max_priority) priority = opts.max_priority;
 		msg.priority = priority;
+
 		//build giplet id
-		var gid = get_giplet_id(msg);
-		//send message to giplet
-		if(msg.source.toLowerCase() != 'gip' || msg.type.toLowerCase() != 'wire') {
-			$(gid).trigger('gip:message', msg);
+		msg.target_id = get_giplet_id(msg);
+
+		//check if payload exists, and parses it
+		if(msg.payload == null || msg.payload == '') {
+			if(opts.debug) { 
+				console.log('Dashboard::normalize: no payload');
+			}
+			msg.payload = null;
+		} else {
+			msg.payload_orig = msg.payload; // keep original payload here
+			try {
+				var ret = JSON.parse(msg.payload);
+				msg.payload = ret; // replace JSON version with object
+			} catch(e) {
+				msg.payload = null;
+				console.log('Dashboard::normalize: cannot decode payload');
+				console.log(e);
+			}
 		}
-		//display message on wire if priority>0.
-		//messages with priority < 1 are not displayed on the wire (but the recipient giplet gets the message)
+	}
+	
+	Dashboard.prototype.broadcast = function (msg) {
+		normalize(msg);
+		
+		//1. send message to giplet unless it is directed to the wire
+		if(msg.source.toLowerCase() != 'gip' || msg.type.toLowerCase() != 'wire') {
+			$(msg.target_id).trigger('gip:message', msg);
+		}
+
+		//2. display message on wire if priority>0.
+		//messages with priority < 1 are not displayed on the wire (but the recipient giplet still gets the message from step 1 above)
 		send_to_wire(msg);
 	}
 
@@ -241,15 +265,16 @@
         ws.onopen = function() { opts.intro_messages.opening.created_at = new Date(); send_to_wire(opts.intro_messages.opening); };
         ws.onclose = function() { if(opts.debug) { opts.intro_messages.closing.created_at = new Date(); send_to_wire(opts.intro_messages.closing); } };
         ws.onmessage = function(evt) {
+			var ret = null;
 			try {
-				var msg = $.parseJSON(evt.data);
-				Dashboard.prototype.broadcast(msg);
+				ret = $.parseJSON(evt.data);
 			} catch(e) {
 				console.log('Dashboard::wsStart: cannot decode message');
 				console.log(e);
-				opts.error.body = 'Dashboard::wsStart: cannot decode message';
-				Dashboard.prototype.broadcast(opts.error);
+				ret = opts.error;
+				ret.body = 'Dashboard::wsStart: cannot decode message';
 			}
+			Dashboard.prototype.broadcast(ret);
 		};
     }
 

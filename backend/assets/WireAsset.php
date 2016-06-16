@@ -27,6 +27,7 @@ class WireAsset extends AssetBundle
 		'js/tagsort.min.js',
 		'js/sortElements.js',
 		'js/jquery.growl.js',
+		'js/renderjson.js',
     ];
     public $depends = [
     ];

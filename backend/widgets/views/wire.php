@@ -75,7 +75,7 @@ jQuery(document).ready(function($){
 	 */
 	var lastDateReminder = null;
 	var opts = {
-		debug: false,
+		debug: true,
 		id: "gip-gip-wire ul",
 		// Websocket feeds
 		websocket: 'ws://localhost:8051/',
@@ -229,6 +229,8 @@ jQuery(document).ready(function($){
 			tagPills.append($('<span>').addClass('label').addClass('label-default').html(tags[idx])).append('&nbsp;');
 		}
 
+		var expjson = opts.debug ? $('<p>').css('margin-top', '10px').html(renderjson(message)) : '';
+
 		//materialadmin-based
 		$('<li>').addClass('timeline-inverted')
 			.append( $('<div>').addClass('timeline-circ').addClass('circ-xl').addClass('style-'+bs_color)
@@ -257,6 +259,7 @@ jQuery(document).ready(function($){
 							.append(
 								$('<span>').addClass('label').addClass('label-info').html('Published on '+moment(message.created_at).format('ddd D MMM YY H:mm'))
 							)
+							.append(expjson)
 						)
 					)
 				)
