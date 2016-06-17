@@ -31,7 +31,7 @@ class WireController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['index', 'search', 'wire', 'read', 'seed', 'get-metar', 'get-movements', 'get-table', 'get-delay', 'get-parking'],
+                        'actions' => ['index', 'search', 'wire', 'read', 'seed', 'get-metar-live', 'get-metar', 'get-movements', 'get-table', 'get-delay', 'get-parking'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -143,7 +143,7 @@ class WireController extends Controller
 	    return $result;
 	}
 
-	public static function actionGetMetar() {
+	public static function actionGetMetarLive() {
 		$errors = null;
 		$icao = 'EBLG';
 		$html = self::getHtml('http://weather.noaa.gov/pub/data/observations/metar/stations/'.strtoupper($icao).'.TXT');
@@ -156,6 +156,24 @@ class WireController extends Controller
         return Json::encode(['metar' => $metar, 'e' => $errors]);
 	}
 	
+
+	public function actionGetMetar() {
+		$around = Yii::$app->request->post('around');
+		$datetime = preg_replace("/[-:\s]/", "", $around);
+		$connection = Yii::$app->getDb();
+		$command = $connection->createCommand("select
+		       metar,
+			   '' as e
+		  from metar_eblg
+		 where utc < :around_datetime
+		 order by utc desc limit 1", [':around_datetime' => $datetime]);
+		$res = $command->queryAll();
+		Yii::$app->response->format = Response::FORMAT_JSON;
+        return Json::encode($res);
+	}
+	
+	
+
 	public function actionGetMovements() {
 		$around = Yii::$app->request->post('around');
 

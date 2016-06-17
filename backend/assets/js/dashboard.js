@@ -157,10 +157,18 @@
 
 	Dashboard.prototype.last_updated = function (msg, elem) {
 		var now = new Date();
+
+		var addZero = function (i) {
+		    if (i < 10) {
+		        i = "0" + i;
+		    }
+		    return i;
+		}
+		
 		if(opts.debug) {
 			console.log('Dashboard.prototype.last_updated: updated at '+now);
 		}
-		elem.find('.gip-footer').html('LAST UPDATED ' + now.getHours() + ':' + now.getMinutes() + ' L');
+		elem.find('.gip-footer').html('LAST UPDATED ' + addZero(now.getHours()) + ':' + addZero(now.getMinutes()) + ' L');
 	}
 
 	function get_giplet_id(msg) {

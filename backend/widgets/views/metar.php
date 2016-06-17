@@ -24,21 +24,21 @@ $widget_hndlr 	= strtoupper($widget->source.'_'.$widget->type);
 <script type="text/javascript">
 <?php $this->beginBlock('JS_UPDATEMETAR') ?>
 function init_metar() {
-	giplet = $('.metar');
+	var giplet = $('.metar');
 	$.get(
-		"wire/get-metar",
+		"wire/get-metar-live",
 		function (r) {
-			s = JSON.parse(r);
-			//console.log(s);
-			if(s.e != null) {
+			//console.log(r);
+			var ret = JSON.parse(r);
+			if(ret.e != null) {
 				giplet.find('.gip-body').html(s.errors);
 				giplet.find('.gip-footer').html(new Date());
 			} else {
-				t = s.metar;
-				//console.log(t);
-				u = metar_decode(t);
-				//console.log(u);
-				str = u.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+				var metar = ret.metar;
+				//console.log(metar);
+				var decoded_metar = metar_decode(metar);
+				//console.log(decoded_metar);
+				var str = decoded_metar.replace(/(?:\r\n|\r|\n)/g, '<br/>');
 				giplet.find('.gip-body').html(str);
 				giplet.find('.gip-footer').html('LAST UPDATED ' + moment().format('HH:mm')+ ' L');
 			}
@@ -47,21 +47,37 @@ function init_metar() {
 };
 init_metar();
 setInterval(init_metar, 10 * 60000); /* 10 minutes in msecs */
+
 jQuery(document).ready(function($){
 	var selector = "#" + "<?= $widget_class ?>";
 	/**
 	 *	GIP Message Handler: Handle plain messages
 	 */
 	$(selector).on('gip:message', function(event, msg) {
-		t = msg.body;
-		//console.log(t);
-		u = metar_decode(t);
-		//console.log(u);
-		str = u.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+		var payload = $.dashboard.get_payload(msg);
+		var decoded_metar = metar_decode(payload.metar);
+		var str = decoded_metar.replace(/(?:\r\n|\r|\n)/g, '<br/>');
 		$(this).find('.gip-body').html(str);
 		$.dashboard.last_updated(msg, $(this));
 		//$(this).find('.gip-footer').html('LAST UPDATED ' + moment().format('HH:mm')+ ' L');
 	});
+	
+	
+	$(selector).click(function() {
+		var delayed_time = moment($.dashboard.get_time());
+		// get scheduled flights (all positive numbers)
+		$.post(
+			"wire/get-metar",
+			{
+				'around': delayed_time.format('YYYY-MM-DD HH:mm')
+			},
+			function (r) {
+				var ret = JSON.parse(r);
+				$(selector).trigger('gip:message', {payload: JSON.stringify(ret[0])});
+			}
+		);
+	});
+
 
 });
 <?php $this->endBlock(); ?>
