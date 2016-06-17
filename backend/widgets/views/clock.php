@@ -59,9 +59,8 @@ jQuery(document).ready(function($){
 		var now = $.dashboard.get_time();
 		var str = '';
 		if(! $.dashboard.live()) {
-			str = 'REPLAY '+moment(now).format('DD MMM YY');
+			str = 'REPLAY ' + moment(now).format('DD MMM YY') + ' ';
 		}
-		str += ' ';
 		str += $(selector).hasClass("utc") ? 'U T C' : 'LOCAL';
 		$(this).find("[data-gip='note']").html(str);
 	});

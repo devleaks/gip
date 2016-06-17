@@ -16,6 +16,7 @@
 		id: "gip-gip-wire",
 		clock_id: "gip-gip-clock",
 		max_priority: 5,
+		replay_live: 10000,
 		begin_delimiter: '{{',
 		end_delimiter: '}}',
 		// Websocket feeds
@@ -97,6 +98,10 @@
 		$("#"+opts.clock_id).trigger('gip:change');
 	};
 	
+	Dashboard.prototype.set_replay_speed = function(speed) {
+		return _replay_speed = speed;
+	};
+	
 	Dashboard.prototype.get_time = function() {
 		return _replay_time;
 	};
@@ -111,7 +116,7 @@
 	
 	Dashboard.prototype.live = function() {
 		var now = new Date();
-		return Math.abs(_replay_time.getTime() - now.getTime()) < 2000;
+		return Math.abs(_replay_time.getTime() - now.getTime()) < defaults.replay_live;
 	};
 	
 	Dashboard.prototype.get_payload = function (msg) {

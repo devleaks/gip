@@ -101,14 +101,6 @@ div.timeline-circ.circ-xl.style-info {
 .marker:hover {
 	text-decoration: none;
 }
-
-#live_clock {
-	font-family: 'Open Sans',sans-serif;
-	overflow: hidden;
-	text-align: center;
-	font-size: 50px;
-	margin-top: 10px
-}
 .gip-table .gip-body,
 .metar .gip-body {
 	font-size: 10px;
