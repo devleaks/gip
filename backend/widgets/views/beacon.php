@@ -70,14 +70,10 @@ jQuery(document).ready(function($){
 	 *	GIP Message Handler: Handle plain messages
 	 */
 	$(selector).on('gip:message', function(event, msg) {
-		var payload = $.parseJSON(msg.body);
+		var payload = $.dashboard.get_payload(msg);
 		var mid = get_marker(msg, payload);
 		play_sound(payload.marker);
-		
 		blink(mid+" a.marker-"+payload.marker, payload.marker, 0);
-		if(msg.type.toLowerCase() == 'outer') {
-			$('#gip-gip-wire').trigger('gip:message', msg);
-		}
 	});
 
 	/**

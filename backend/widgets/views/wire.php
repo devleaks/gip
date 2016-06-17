@@ -19,7 +19,7 @@ $widget_hndlr 	= strtoupper($widget->source.'_'.$widget->type);
  * @var common\models\search\Wire $searchModel
  */
 ?>
-<div  id="<?= $widget_class ?>">
+<div  id="<?= $widget_class ?>" class="gip-growl">
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -311,6 +311,7 @@ jQuery(document).ready(function($){
 			$(this).prev().toggle();
 			return false;
 		});
+
 		if(['default' , 'error' , 'notice' , 'warning'].indexOf(bs_color) == -1) {
 			bs_color = 'default';
 		}

@@ -101,6 +101,10 @@
 		return _replay_time;
 	};
 	
+	Dashboard.prototype.get_debug = function() {
+		return opts.debug;
+	};
+	
 	Dashboard.prototype.tick = function() {
 		return _replay_time.setSeconds(_replay_time.getSeconds() + _replay_speed);
 	};
@@ -111,7 +115,13 @@
 	};
 	
 	Dashboard.prototype.get_payload = function (msg) {
-		return JSON.parse(msg.payload); // now payload can only be in payload attribute.
+		try { // may be payload was already parsed in normalize()
+			var ret = JSON.parse(msg.payload);
+			return ret; // replace JSON version with object
+		} catch(e) {
+			return msg.payload;
+		}
+		// return JSON.parse(msg.payload); // now payload can only be in payload attribute.
 		/* If payload can either be in body or payload, use following code:
 		if(opts.debug) {
 			console.log({code: 'Dashboard.prototype.get_payload', message: msg});
@@ -153,21 +163,10 @@
 		elem.find('.gip-footer').html('LAST UPDATED ' + now.getHours() + ':' + now.getMinutes() + ' L');
 	}
 
-	
-	
-	function makeSafeForCSS(name) {
-	    return name.replace(/[^a-z0-9]/g, function(s) {
-	        var c = s.charCodeAt(0);
-	        if (c == 32 || c == 45) return '-'; //added pma '-' is valid css class char
-	        if (c >= 65 && c <= 90) return '_' + s.toLowerCase();
-	        return '__' + ('000' + c.toString(16)).slice(-4);
-	    });
-	}
-	
 	function get_giplet_id(msg) {
-		var id = '#gip-' + msg.source.toLowerCase()+'-'+msg.type.toLowerCase();
+		var id = msg.source.toLowerCase()+'-'+msg.type.toLowerCase();
 		if(typeof msg.channel !== undefined) {
-			if((msg.channel !== null) && (msg.channel.length > 0)) {
+			if((msg.channel !== null) && (msg.channel!= '')) {
 				id += ('-'+msg.channel);
 			}
 		}
@@ -175,7 +174,7 @@
 			console.log(id);
 		}
 		// id.replace(/^[^a-z]+|[^\w:.-]+/gi, "");
-		return makeSafeForCSS(id);
+		return '#gip-' + id.replace(/^[^a-z]+|[^\w:.-]+/gi, "");
 	}
 	
 	function substitute_text(msg, text) {
@@ -256,7 +255,6 @@
 	
 	Dashboard.prototype.broadcast = function (msg) {
 		normalize(msg);
-		
 		//1. send message to giplet unless it is directed to the wire
 		if(msg.source.toLowerCase() != 'gip' || msg.type.toLowerCase() != 'wire') {
 			$(msg.target_id).trigger('gip:message', msg);
