@@ -158,42 +158,52 @@
 	function makeSafeForCSS(name) {
 	    return name.replace(/[^a-z0-9]/g, function(s) {
 	        var c = s.charCodeAt(0);
-	        if (c == 32 || c == 45) return '-';
+	        if (c == 32 || c == 45) return '-'; //added pma '-' is valid css class char
 	        if (c >= 65 && c <= 90) return '_' + s.toLowerCase();
 	        return '__' + ('000' + c.toString(16)).slice(-4);
 	    });
 	}
 	
 	function get_giplet_id(msg) {
-		var id = '#gip-' + makeSafeForCSS(msg.source.toLowerCase()+'-'+msg.type.toLowerCase());
+		var id = '#gip-' + msg.source.toLowerCase()+'-'+msg.type.toLowerCase();
 		if(typeof msg.channel !== undefined) {
-			if(msg.channel !== null) {
+			if((msg.channel !== null) && (msg.channel.length > 0)) {
 				id += ('-'+msg.channel);
 			}
 		}
 		if(opts.debug) {
 			console.log(id);
 		}
-		return id;
+		// id.replace(/^[^a-z]+|[^\w:.-]+/gi, "");
+		return makeSafeForCSS(id);
 	}
 	
 	function substitute_text(msg, text) {
-		var occurences = text.match(/{{([\.]*[^}].)+}}/g); // does not seems to work if we don't add the first . search
-		//console.log('Dashboard::substitute_text: original: '+text);
-		//console.log(msg);
-		console.log(occurences);
-		if(occurences !== null) {
-			for(var i = 0; i < occurences.length; i++) {
-				var varname = occurences[i].replace(/{{/,"").replace(/}}/,"");
+		var search = opts.begin_delimiter+'([^}]+)'+opts.end_delimiter;
+		var regexp = new RegExp(search, 'g');
+		var match;
+		var newtext = text;
+		//console.log('Dashboard::substitute: original: '+text,search,regexp,text.match(regexp));
+
+		while ((match = regexp.exec(text)) != null) {
+		    // matched text: match[0]
+		    // match start: match.index
+		    // capturing group n: match[n]
+			var varname = match[1];
+			console.log('Dashboard::varname: '+varname);
+			try {
 				var value = JSPath.apply(varname, msg);
 				console.log(varname+"="+value);
 				if(value != null) {
-					text = text.replace(new RegExp('{{'+varname+'}}', 'g'), value);
-				}
+					newtext = newtext.replace(new RegExp(opts.begin_delimiter+varname+opts.end_delimiter, 'g'), value);
+				}				
+			} catch (e) {
+				console.log('JSPath failed for '+varname, msg, e);			
 			}
 		}
-		console.log('Dashboard::substitute_text: substitued: '+text);
-		return text;
+				
+		//console.log('Dashboard::substitute_text: substitued: '+newtext);
+		return newtext;
 	}
 
 	function substitute(msg) { // both title and subject are searched for substitution

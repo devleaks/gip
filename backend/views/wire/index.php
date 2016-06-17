@@ -378,7 +378,13 @@ jQuery(document).ready(function($){
 	//main communication
 	$.dashboard.init({websocket: "<?= Yii::$app->params['websocket_server'] ?>", debug: false, max_priority: 6});
 
-	$.dashboard.set_time(new Date('2016-04-13T10:00:00'));
+	$.dashboard.set_time(new Date('2016-04-03T15:00:00'));
+	
+	$('#gip-aodb-movements').trigger('click');
+	$('#gip-aodb-arrival').trigger('click');
+	$('#gip-aodb-departure').trigger('click');
+	$('#gip-aodb-parking-occupancy').trigger('click');
+	$('#gip-aodb-delay-report').trigger('click');
 	
 	//open the lateral panel
 	$('.cd-btn').on('click', function(event){

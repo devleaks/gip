@@ -170,7 +170,7 @@ class WireController extends Controller
 		  from movement_eblg
 		 where least(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) < date_add(:around_datetime, interval :window hour)
 		   and greatest(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) > date_sub(:around_datetime, interval :window hour)
-		 group by sched
+		 group by movement_direction, sched
 		 order by sched", [':around_datetime' => $around, ':window' => $hours, ':bucket' => $bucket]);
 		$sched = $command->queryAll();
 		
@@ -249,7 +249,7 @@ class WireController extends Controller
 		from movement_eblg_delays
 		where actual < :around_datetime
 		group by iata_delay_code, iata_delay_description
-		order by delay desc", [':around_datetime' => $around]);
+		order by time desc", [':around_datetime' => $around]);
 		$res = $command->queryAll();
 		Yii::$app->response->format = Response::FORMAT_JSON;
         return Json::encode($res);

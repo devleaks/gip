@@ -61,8 +61,8 @@ jQuery(document).ready(function($){
 	});
 	
 	$(selector).click(function() {
-		delayed_time = moment($.dashboard.get_time());
-		what = $(this).find('.gip-header').html().substr(0,1);
+		var delayed_time = moment($.dashboard.get_time());
+		var what = $(this).find('.gip-header').html().substr(0,1);
 		// get scheduled flights (all positive numbers)
 		$.post(
 			"wire/get-table",
@@ -72,6 +72,7 @@ jQuery(document).ready(function($){
 			},
 			function (r) {
 				var s = JSON.parse(r);
+				//console.log(selector, r);
 				$(selector).trigger('gip:message', {payload: JSON.stringify(s)});
 			}
 		);

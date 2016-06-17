@@ -52,7 +52,7 @@ jQuery(document).ready(function($){
 	 *	GIP Change Handler
 	 */
 	$(selector).on('gip:change', function(event) {
-		$(selector).trigger('click');
+		//$(selector).trigger('click');
 	});
 	
 	$(selector).click(function() {
@@ -65,8 +65,8 @@ jQuery(document).ready(function($){
 				'around': delayed_time.format('YYYY-MM-DD HH:mm')
 			},
 			function (r) {
+				//console.log(selector, r);
 				var s = JSON.parse(r);
-				//console.log(s);
 
 				var sched_arr = new Array(), sched_dep = new Array();
 				var work = s.sched;

@@ -73,6 +73,7 @@ jQuery(document).ready(function($){
 				'around': delayed_time.format('YYYY-MM-DD HH:mm')
 			},
 			function (r) {
+				//console.log(selector, r);
 				var s = JSON.parse(r);
 				$(selector).trigger('gip:message', {payload: JSON.stringify(s)});
 			}
