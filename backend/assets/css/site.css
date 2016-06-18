@@ -184,23 +184,32 @@ ul.flight2 li:before {
     color: #999;
 }
 
-/* temporary adjustments ADL Jun'16 */
-div.weather.widget section.current span.temperature,
-div.weather.widget section.hourly div.hour span.temperature {
-	color: #9B9B9B;	
+/**/
+div.card {
+    text-align: center;
+	border: 1px dotted #ddd;
+/*  background-color: lightgrey;*/
 }
-div.weather.widget header.title h2.name {
-	color: #9B9B9B;	
-	text-align: left;
+div.card .drag {
+    display: none;
+    cursor: move;
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 2px;
+    color: #999;
 }
-/* end temporary adjustments ADL Jun'16 */
-/* code: css clocks */
-#cssclock { height: 135px; }
-#clockanalog { background: #012345 url("css-clocks/analog.gif") no-repeat 0 0; float: left; height: 100px; margin: 0; overflow: hidden; position: relative; width: 100px; }
-#clockanalog img { border: 0; left: 0px; position: absolute; top: 0px; }
-#clockdigital { background: #012345 url("css-clocks/digital.gif") no-repeat 162px 99px; float: right; height: 125px; margin: 0; overflow: hidden; padding: 0; position: relative; width: 243px; }
-#clockdigital div { background: #012345; height: 44px; position: absolute; width: 243px; }
-#clockdigital div:last-child { bottom: 0; }
-#clockdigital img { border: 0; display: block; height: 1000px; left: -776px; margin: 0; padding: 0; position: absolute; top: -433px; width: 1000px; }
 
+div.card:hover .drag {
+    display: block;
+}
 
+div.card .drag:before {
+    content: "\f047";
+}
+
+div.card .drag:hover {
+    background-color: #eee;
+    color: #999;
+}

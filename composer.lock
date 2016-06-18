@@ -2102,16 +2102,16 @@
         },
         {
             "name": "dmstr/yii2-db",
-            "version": "0.5.1",
+            "version": "0.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmstr/yii2-db.git",
-                "reference": "5522a46605af954f52c52ee93da8289c9ecad0bd"
+                "reference": "b2e5f421b4ae53cbfd5ab00a79c0f5b831dd8eae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmstr/yii2-db/zipball/5522a46605af954f52c52ee93da8289c9ecad0bd",
-                "reference": "5522a46605af954f52c52ee93da8289c9ecad0bd",
+                "url": "https://api.github.com/repos/dmstr/yii2-db/zipball/b2e5f421b4ae53cbfd5ab00a79c0f5b831dd8eae",
+                "reference": "b2e5f421b4ae53cbfd5ab00a79c0f5b831dd8eae",
                 "shasum": ""
             },
             "require": {
@@ -2143,7 +2143,7 @@
                 "extension",
                 "yii2"
             ],
-            "time": "2016-06-15 14:28:59"
+            "time": "2016-06-17 09:03:32"
         },
         {
             "name": "dmstr/yii2-helpers",
