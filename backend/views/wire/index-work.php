@@ -15,6 +15,7 @@ use backend\widgets\Wire;
 
 //use backend\assets\WireAsset;
 use backend\assets\DashboardAsset;
+use backend\assets\GridAsset;
 
 use devleaks\weather\Weather;
 
@@ -28,7 +29,10 @@ use yii\web\JsExpression;
 use yii\bootstrap\Alert;
 use yii\helpers\Html;
 
+fedemotta\gridstack\GridstackAsset::register($this);;
+
 $asset = DashboardAsset::register($this);
+
 
 // /@50.6231023,4.2940581
 // EBLG: 50.63639, 5.44278
@@ -68,9 +72,6 @@ $this->title = 'GIP Dashboard';
 		  -- TOP LINE
 		  --
 		  -->
-		<div class="row">
-
-			<div class="col-lg-12">
 				<?= News::widget([
 						'source' => 'gip',
 						'type'	=> 'news',
@@ -81,30 +82,18 @@ $this->title = 'GIP Dashboard';
 						]
 					]);
 				?>
-			</div>
-
-		</div>
-
-
-		<div class="row">
 
 		<!--
 		  -- LEFT COLUMN
 		  --
 		  -->
-		<div class="col-lg-2">
-			<div class="row">
-				<div class="col-lg-12">
 					<?= Clock::widget([
 						'source' => 'gip',
 						'type' => 'clock',
 						'color' => 'default-bright',
 						'title' => 'Liège Airport'
 					]) ?>
-				</div>
-			</div>
-			<!--div class="row">
-				<div class="col-lg-12">
+
 					<?php
 						if(isset(Yii::$app->params['FORECAST_APIKEY'])) {
 							echo '<div id="weather" class="card card-bordered style-default-bright "></div>';
@@ -127,21 +116,13 @@ $this->title = 'GIP Dashboard';
 							]);
 						}
 					?>
-				</div>
-			</div -->
-			<div class="row">
-				<div class="col-lg-12">
-					<?= Metar::widget([
+							<?= Metar::widget([
 							'source' => 'gip',
 							'type' => 'metar',
 							'location' => 'EBLG'
 						]);
 					?>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
-					<?= Indicator::widget([
+							<?= Indicator::widget([
 						'source'	=> 'aodb',
 						'type'		=> 'qfu',
 						'color'		=> 'primary',
@@ -149,37 +130,18 @@ $this->title = 'GIP Dashboard';
 						'footer'	=> 'L / R',
 						'body'		=> '23',
 						]) ?>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="cd-btn">
-					<?= Indicator::widget([
+							<?= Indicator::widget([
 						'source'	=> 'gip',
 						'type'		=> 'alert',
 						'color'		=> 'danger',
-						'header'	=> 'GIP',
+						'header'	=> '<span class="cd-btn">GIP</span>',
 						'footer'	=> 'Alerts',
 						'body'		=> '0',
 						]) ?>
-					</div>
-				</div>
-			</div>
-
-			
-			
-		</div><!-- end left column -->
-
 		<!--
 		  -- MAP
 		  --
 		  -->
-		<div class="col-lg-8">
-
-			<div class="row">
-				<div class="col-lg-12">
-					<!-- iframe id="flight-radar" src="http://www.flightradar24.com/simple_index.php?lat=50.63639&amp;lon=5.44278&amp;z=9&amp;airports=1" width="100%" height="800"></iframe -->
-					
 					<div class="card card-bordered style-default-bright">
 					<?php 
 
@@ -215,30 +177,18 @@ $this->title = 'GIP Dashboard';
 					// echo $leaflet->widget();
 					?>
 					</div>
-				</div>
-			</div>
-
-		</div><!-- end map -->
 	
 		<!--
 		  -- RIGHT COLUMN
 		  --
 		  -->
-		<div class="col-lg-2">
-			
-			<div class="row">
-				<div class="col-lg-12">
-					<?= Movement::widget([
+							<?= Movement::widget([
 						'source'	=> 'aodb',
 						'type'		=> 'movements',
 						'title'	=> 'MOVEMENTS',
 						'movements' => []
 					]) ?>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
-					<?= FlightTable::widget([
+							<?= FlightTable::widget([
 						'source'	=> 'aodb',
 						'type'		=> 'departure',
 						'title'	=> 'DEPARTURE',
@@ -253,11 +203,7 @@ $this->title = 'GIP Dashboard';
 							]
 						]
 					]) ?>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
-					<?= FlightTable::widget([
+							<?= FlightTable::widget([
 						'source'	=> 'aodb',
 						'type'		=> 'arrival',
 						'title'	=> 'ARRIVAL',
@@ -281,12 +227,7 @@ $this->title = 'GIP Dashboard';
 							]
 						]
 					]) ?>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="col-lg-12">			
-					<?= Parking::widget([
+							<?= Parking::widget([
 						'source'	=> 'aodb',
 						'type'		=> 'parking-occupancy',
 						'title'	=> 'PARKING',
@@ -295,12 +236,7 @@ $this->title = 'GIP Dashboard';
 							'freit' => ['busy' => 7, 'avail' => 16],
 						],
 					]) ?>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="col-lg-12">
-					<?= DelayTable::widget([
+							<?= DelayTable::widget([
 						'source'	=> 'aodb',
 						'type'		=> 'delay-report',
 						'title'	=> 'DELAYS',
@@ -308,12 +244,7 @@ $this->title = 'GIP Dashboard';
 							[ 'code' => '01', 'reason' => 'Weather', 'time' => '7870', 'percent' => '44 %'],
 						],
 					]) ?>
-				</div>
-			</div>
-						
-			<div class="row">
-				<div class="col-lg-12">
-					<?= Beacon::widget([
+							<?= Beacon::widget([
 						'source'	=> 'gip',
 						'type'		=> 'marker2',
 						'channel'	=> 1,
@@ -321,12 +252,7 @@ $this->title = 'GIP Dashboard';
 						'header'	=> 'INBOUND',
 						'footer'	=> '23 L',
 						]) ?>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="col-lg-12">
-					<?= Beacon::widget([
+									<?= Beacon::widget([
 						'source'	=> 'gip',
 						'type'		=> 'marker2',
 						'channel'	=> 2,
@@ -334,14 +260,6 @@ $this->title = 'GIP Dashboard';
 						'header'	=> 'INBOUND',
 						'footer'	=> '23 R',
 						]) ?>
-				</div>
-			</div>
-			
-		</div><!-- end right column -->
-		
-		
-	</div>
-	
 	</main>
 	
 	<!--
@@ -398,6 +316,13 @@ jQuery(document).ready(function($){
 			event.preventDefault();
 		}
 	});
+	
+	$('.cd-main-content .card').prepend( $('<span>').addClass('drag').addClass('fa') );
+	
+	$('.cd-main-content').gridstack({
+		itemClass: 'card'
+	});
+	
 });
 <?php $this->endBlock(); ?>
 </script>

@@ -13,26 +13,18 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class DashboardAsset extends AssetBundle
+class GridAsset extends AssetBundle
 {
     public $sourcePath = '@backend/assets';
 //	public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-		'css/cd-panel.css',
-		'css/cd-timeline.css',
-		'css/materialadmin.css',
-		'snd/',
-//		'css/waves.css'
+		'css/gridstack.css',
     ];
     public $js = [
-		'js/mustache.min.js',
-		'js/dashboard.js',
-		'js/jspath.js',
-//		'js/waves.js'
+		'js/gridstack.js',
     ];
     public $depends = [
-        'backend\assets\AppAsset',
-        'yii\bootstrap\BootstrapAsset',
+        'yii\web\JqueryAsset',
     ];
 }

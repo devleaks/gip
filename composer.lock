@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "72b84c1d617052b91a0f9c68cf447649",
-    "content-hash": "1fb45667efdac8aef98f1162adff7df5",
+    "hash": "36eca367bf452a2ee62454a0d339190f",
+    "content-hash": "6bf4e82a558223aef2150653bee420cf",
     "packages": [
         {
             "name": "2amigos/yii2-chartjs-widget",
@@ -440,16 +440,16 @@
         },
         {
             "name": "bower-asset/bootstrap3-dialog",
-            "version": "v1.35.1",
+            "version": "v1.35.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nakupanda/bootstrap3-dialog.git",
-                "reference": "d2a240e776951bcf61ecebc0c358a7db801ca931"
+                "reference": "49b786d4949bb02a22a9358d7d65f30e058c5438"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nakupanda/bootstrap3-dialog/zipball/d2a240e776951bcf61ecebc0c358a7db801ca931",
-                "reference": "d2a240e776951bcf61ecebc0c358a7db801ca931",
+                "url": "https://api.github.com/repos/nakupanda/bootstrap3-dialog/zipball/49b786d4949bb02a22a9358d7d65f30e058c5438",
+                "reference": "49b786d4949bb02a22a9358d7d65f30e058c5438",
                 "shasum": ""
             },
             "require": {
@@ -564,55 +564,32 @@
         },
         {
             "name": "bower-asset/drmonty-chosen",
-            "version": "1.5.1",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mrohnstock/chosen.git",
-                "reference": "932c3a5aca9c4f45b8c89ae5b77e72566b2e7f57"
+                "reference": "9e972317a1d1b758b09af8fbe61040c9d672b513"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mrohnstock/chosen/zipball/932c3a5aca9c4f45b8c89ae5b77e72566b2e7f57",
-                "reference": "932c3a5aca9c4f45b8c89ae5b77e72566b2e7f57",
+                "url": "https://api.github.com/repos/mrohnstock/chosen/zipball/9e972317a1d1b758b09af8fbe61040c9d672b513",
+                "reference": "9e972317a1d1b758b09af8fbe61040c9d672b513",
                 "shasum": ""
             },
-            "require": {
-                "bower-asset/jquery": ">=1.4.4"
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": "js/chosen.jquery.js",
-                "bower-asset-ignore": [
-                    "component.json",
-                    "package.json",
-                    "composer.json"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "Chosen is a library for making long, unwieldy select boxes more friendly.",
-            "keywords": [
-                "dropdown",
-                "form",
-                "input",
-                "multiselect",
-                "select",
-                "ui"
-            ]
+            "type": "bower-asset-library"
         },
         {
             "name": "bower-asset/fullcalendar",
-            "version": "v2.7.3",
+            "version": "v2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fullcalendar/fullcalendar.git",
-                "reference": "71c63881fc0af4750e1b34988d879a88d8e32ce9"
+                "reference": "69de615e3df29a8ff80f8c359f589dba798c401a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fullcalendar/fullcalendar/zipball/71c63881fc0af4750e1b34988d879a88d8e32ce9",
-                "reference": "71c63881fc0af4750e1b34988d879a88d8e32ce9",
+                "url": "https://api.github.com/repos/fullcalendar/fullcalendar/zipball/69de615e3df29a8ff80f8c359f589dba798c401a",
+                "reference": "69de615e3df29a8ff80f8c359f589dba798c401a",
                 "shasum": ""
             },
             "require": {
@@ -621,9 +598,9 @@
             },
             "require-dev": {
                 "bower-asset/bootstrap": "~3.2.0",
-                "bower-asset/jasmine-fixture": "~1.2.0",
-                "bower-asset/jasmine-jquery": "~2.0.3",
-                "bower-asset/jquery-mockjax": "~2.1.1",
+                "bower-asset/jasmine-fixture": "~2.0.0",
+                "bower-asset/jasmine-jquery": "~2.1.1",
+                "bower-asset/jquery-mockjax": "~2.2.0",
                 "bower-asset/jquery-simulate": "~1.0.1",
                 "bower-asset/jquery-ui": ">=1.11.1",
                 "bower-asset/moment-timezone": "~0.2.1"
@@ -1084,6 +1061,39 @@
                     "package.json"
                 ]
             }
+        },
+        {
+            "name": "bower-asset/mustache.js",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/janl/mustache.js.git",
+                "reference": "85b940801c3e511a2520b058849001f7a8584948"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/janl/mustache.js/zipball/85b940801c3e511a2520b058849001f7a8584948",
+                "reference": "85b940801c3e511a2520b058849001f7a8584948",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "mustache.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "test"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Logic-less {{mustache}} templates with JavaScript",
+            "keywords": [
+                "ejs",
+                "mustache",
+                "template",
+                "templates"
+            ]
         },
         {
             "name": "bower-asset/punycode",
@@ -2102,16 +2112,16 @@
         },
         {
             "name": "dmstr/yii2-db",
-            "version": "0.5.2",
+            "version": "0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmstr/yii2-db.git",
-                "reference": "b2e5f421b4ae53cbfd5ab00a79c0f5b831dd8eae"
+                "reference": "dd61c990569b5b43f7747f8e97a63f2b2d3cf8ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmstr/yii2-db/zipball/b2e5f421b4ae53cbfd5ab00a79c0f5b831dd8eae",
-                "reference": "b2e5f421b4ae53cbfd5ab00a79c0f5b831dd8eae",
+                "url": "https://api.github.com/repos/dmstr/yii2-db/zipball/dd61c990569b5b43f7747f8e97a63f2b2d3cf8ca",
+                "reference": "dd61c990569b5b43f7747f8e97a63f2b2d3cf8ca",
                 "shasum": ""
             },
             "require": {
@@ -2143,7 +2153,7 @@
                 "extension",
                 "yii2"
             ],
-            "time": "2016-06-17 09:03:32"
+            "time": "2016-06-25 22:44:23"
         },
         {
             "name": "dmstr/yii2-helpers",
@@ -2188,6 +2198,49 @@
                 "yii2"
             ],
             "time": "2016-05-10 17:16:40"
+        },
+        {
+            "name": "e-frank/yii2-requirejs",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/e-frank/yii2-requirejs.git",
+                "reference": "c257cb8d50aa0c02163af612639dec6dc07ebf83"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/e-frank/yii2-requirejs/zipball/c257cb8d50aa0c02163af612639dec6dc07ebf83",
+                "reference": "c257cb8d50aa0c02163af612639dec6dc07ebf83",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "x1\\requirejs\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Elmar Frank",
+                    "homepage": "http://yii.efrank.at/extension/require"
+                }
+            ],
+            "description": "Just loads require.js to keep it in one place.",
+            "keywords": [
+                "amd",
+                "require",
+                "require.js",
+                "requirejs",
+                "yii"
+            ],
+            "time": "2015-08-12 10:23:34"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -3022,17 +3075,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-detail-view.git",
-                "reference": "ed67fdb154e0c89c1f529f70bb8b4a0d3e028e26"
+                "reference": "65e626c0b55e7cca0db0886410771cd304c1fbd2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-detail-view/zipball/ed67fdb154e0c89c1f529f70bb8b4a0d3e028e26",
-                "reference": "ed67fdb154e0c89c1f529f70bb8b4a0d3e028e26",
+                "url": "https://api.github.com/repos/kartik-v/yii2-detail-view/zipball/65e626c0b55e7cca0db0886410771cd304c1fbd2",
+                "reference": "65e626c0b55e7cca0db0886410771cd304c1fbd2",
                 "shasum": ""
             },
             "require": {
                 "kartik-v/yii2-dialog": "~1.0",
-                "kartik-v/yii2-helpers": "~1.3.5",
+                "kartik-v/yii2-helpers": ">=1.3.5",
                 "kartik-v/yii2-krajee-base": "~1.7"
             },
             "type": "yii2-extension",
@@ -3068,7 +3121,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-06-14 13:50:00"
+            "time": "2016-06-22 01:29:56"
         },
         {
             "name": "kartik-v/yii2-dialog",
@@ -5016,12 +5069,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mootensai/yii2-enhanced-gii.git",
-                "reference": "79886de1d5119a4c7403cdb63e9292a9a953fc07"
+                "reference": "39d2082666fe1106721f31b504a00035d221dc73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mootensai/yii2-enhanced-gii/zipball/79886de1d5119a4c7403cdb63e9292a9a953fc07",
-                "reference": "79886de1d5119a4c7403cdb63e9292a9a953fc07",
+                "url": "https://api.github.com/repos/mootensai/yii2-enhanced-gii/zipball/39d2082666fe1106721f31b504a00035d221dc73",
+                "reference": "39d2082666fe1106721f31b504a00035d221dc73",
                 "shasum": ""
             },
             "require": {
@@ -5060,7 +5113,7 @@
                     "email": "jiwanndaru@gmail.com"
                 }
             ],
-            "description": "Generate Relational (has many) Models & CRUD. For nested : mootensai/yii2-enhanced-gii-nested",
+            "description": "Generate Relational (hasMany, hasOne, & belongsTo) Models & CRUD. For nested : mootensai/yii2-enhanced-gii-nested",
             "keywords": [
                 "Enhanced",
                 "gii",
@@ -5068,7 +5121,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2016-06-16 05:20:38"
+            "time": "2016-06-21 08:45:39"
         },
         {
             "name": "mootensai/yii2-jsblock",
@@ -5966,12 +6019,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SagemCassiopee/php-metar-decoder.git",
-                "reference": "36498f0062928274ddb0a70661aba8a21fa88a45"
+                "reference": "f0d17c6111f6f964310ea95f0d640fdff458eef2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SagemCassiopee/php-metar-decoder/zipball/36498f0062928274ddb0a70661aba8a21fa88a45",
-                "reference": "36498f0062928274ddb0a70661aba8a21fa88a45",
+                "url": "https://api.github.com/repos/SagemCassiopee/php-metar-decoder/zipball/f0d17c6111f6f964310ea95f0d640fdff458eef2",
+                "reference": "f0d17c6111f6f964310ea95f0d640fdff458eef2",
                 "shasum": ""
             },
             "require": {
@@ -5998,7 +6051,7 @@
                 }
             ],
             "description": "METAR weather observation decoder",
-            "time": "2016-05-10 18:41:06"
+            "time": "2016-06-21 19:51:05"
         },
         {
             "name": "sagem-cassiopee/php-taf-decoder",
@@ -7037,6 +7090,48 @@
             "time": "2015-05-08 14:58:16"
         },
         {
+            "name": "xfg/yii2-mustache.js",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xfg/yii2-mustache.js.git",
+                "reference": "eabc599700d8885f9b4e33b9bce5871c137b94bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xfg/yii2-mustache.js/zipball/eabc599700d8885f9b4e33b9bce5871c137b94bf",
+                "reference": "eabc599700d8885f9b4e33b9bce5871c137b94bf",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/mustache.js": "1.*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "xfg\\mustachejs\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "xfg",
+                    "email": "timofey.web@gmail.com"
+                }
+            ],
+            "description": "mustache.js for Yii2",
+            "keywords": [
+                "extension",
+                "mustache.js",
+                "yii2"
+            ],
+            "time": "2015-03-03 12:21:24"
+        },
+        {
             "name": "yii2mod/yii2-chosen-select",
             "version": "1.0",
             "source": {
@@ -7867,7 +7962,8 @@
         "romdim/yii2-bootstrap-material": 20,
         "sagem-cassiopee/php-metar-decoder": 20,
         "sagem-cassiopee/php-taf-decoder": 20,
-        "bburim/flot": 20
+        "bburim/flot": 20,
+        "e-frank/yii2-requirejs": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

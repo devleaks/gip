@@ -80,7 +80,7 @@ jQuery(document).ready(function($){
 	 */
 	$(selector).on('gip:message', function(event, msg) {
 		var payload = $.dashboard.get_payload(msg);
-		//console.log(payload);
+		//console.log(selector, JSON.stringify(payload));
 		if(payload) {
 			$.plot($('#gip-parking-pie'), [
 				{"color":"#8f8","label":"PAX Free","data":payload['pax']['avail']},
@@ -138,7 +138,7 @@ jQuery(document).ready(function($){
 					 		 busy:  Math.round( 100 * (offset['freit'] + s['freit']) / maxcap['freit']) }
 				};
 				var pl = JSON.stringify(p);
-				//console.log(selector, pl);
+				////console.log(selector, pl);
 				$(selector).trigger('gip:message', {payload: pl});
 			}
 		);

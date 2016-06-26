@@ -47,14 +47,25 @@ jQuery(document).ready(function($){
 	 */
 	$(selector).on('gip:message', function(event, msg) {
 		var payload = $.dashboard.get_payload(msg);
-		$(this).find('tbody tr').remove();
-		for (var i = 0; i < payload.length; i++) {
-			flight = payload[i];
+		if(payload.length > 1) {
+			$(this).find('tbody tr').remove();
+			for (var i = 0; i < payload.length; i++) {
+				flight = payload[i];
+				var tr = $('<tr>').data('gip-id', flight.registration);
+				for (var property in flight) {
+					if(property == "registration") continue;
+					tr.append( $('<td>').data('gip', property).html(flight[property]) );
+				}
+				$(this).find('tbody').append(tr);
+			}
+		} else { // one flight only: remove first in table, add this one at the end
+			flight = payload[0];
 			var tr = $('<tr>').data('gip-id', flight.registration);
 			for (var property in flight) {
 				if(property == "registration") continue;
 				tr.append( $('<td>').data('gip', property).html(flight[property]) );
 			}
+			$(this).find('tbody tr:first()').remove();
 			$(this).find('tbody').append(tr);
 		}
 		$.dashboard.last_updated(msg, $(this));
@@ -67,8 +78,9 @@ jQuery(document).ready(function($){
 		$.post(
 			"wire/get-table",
 			{
-				'around': delayed_time.format('YYYY-MM-DD HH:mm'),
-				'what' : what
+				'around': delayed_time.utc().format('YYYY-MM-DD HH:mm'),
+				'what' : what,
+				'count': 6
 			},
 			function (r) {
 				var s = JSON.parse(r);

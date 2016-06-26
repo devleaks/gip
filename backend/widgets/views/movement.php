@@ -62,10 +62,10 @@ jQuery(document).ready(function($){
 		$.post(
 			"wire/get-movements",
 			{
-				'around': delayed_time.format('YYYY-MM-DD HH:mm')
+				'around': delayed_time.utc().format('YYYY-MM-DD HH:mm')
 			},
 			function (r) {
-				//console.log(selector, r);
+				//console.log(selector, delayed_time.utc().format('YYYY-MM-DD HH:mm'), r);
 				var s = JSON.parse(r);
 
 				var sched_arr = new Array(), sched_dep = new Array();
@@ -148,12 +148,14 @@ jQuery(document).ready(function($){
 							timezone: 'browser'
 				        },
 				        legend: {
-				            show: true
+				            show: false
 				        }
 					}
 				);
 		    }
 		);
+		
+		$.dashboard.big_tick();
 	});
 	
 	$(selector).trigger('click');

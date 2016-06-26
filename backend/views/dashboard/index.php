@@ -27,10 +27,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'kartik\grid\ActionColumn',
 				'noWrap' => true,
 				'template' => '{render}',
+				'controller' => 'dashboard',
                 'buttons' => [
                 	'render' => function ($url, $model) {
                                     return Html::a('<span class="glyphicon glyphicon-picture"></span>',
-											Yii::$app->urlManager->createUrl(['view','id' => $model->id]),
+											Yii::$app->urlManager->createUrl(['dashboard/view','id' => $model->id]),
 											['title' => Yii::t('yii', 'Render')]
 									);
 								}

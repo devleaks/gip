@@ -31,7 +31,7 @@ class WireController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['index', 'search', 'wire', 'read', 'seed', 'get-metar-live', 'get-metar', 'get-movements', 'get-table', 'get-delay', 'get-parking'],
+                        'actions' => ['index', 'search', 'wire', 'read', 'seed', 'get-metar-live', 'get-metar', 'get-movements', 'get-table', 'get-delay', 'get-parking', 'test'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -75,6 +75,13 @@ class WireController extends Controller
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionTest()
+    {
+		$this->layout = 'wire';
+
+        return $this->render('test');
     }
 
 	public function actionRead() {
@@ -184,10 +191,14 @@ class WireController extends Controller
 		$command = $connection->createCommand("select
 		       movement_direction as dir,
 		       count(movement_direction) as count,
-		       :bucket * round(unix_timestamp(scheduled_time_of_departure)/:bucket) as sched
+		       :bucket * round(unix_timestamp(if(movement_direction = 'D', scheduled_time_of_departure, scheduled_time_of_arrival))/:bucket) as sched
 		  from movement_eblg
-		 where least(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) < date_add(:around_datetime, interval :window hour)
-		   and greatest(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) > date_sub(:around_datetime, interval :window hour)
+		 where least( if(movement_direction = 'D', scheduled_time_of_departure, scheduled_time_of_arrival),
+		              if(movement_direction = 'D', estim_time_of_departure, estim_time_of_arrival),
+					  if(movement_direction = 'D', actual_time_of_departure, actual_time_of_arrival)  ) < date_add(:around_datetime, interval 4 hour)
+		   and greatest( if(movement_direction = 'D', scheduled_time_of_departure, scheduled_time_of_arrival),
+					     if(movement_direction = 'D', estim_time_of_departure, estim_time_of_arrival),
+					  	 if(movement_direction = 'D', actual_time_of_departure, actual_time_of_arrival)  ) > date_sub(:around_datetime, interval 4 hour)
 		 group by movement_direction, sched
 		 order by sched", [':around_datetime' => $around, ':window' => $hours, ':bucket' => $bucket]);
 		$sched = $command->queryAll();
@@ -197,9 +208,13 @@ class WireController extends Controller
 			   count(movement_direction) as count,
 		       :bucket * round(unix_timestamp(scheduled_time_of_departure)/:bucket) as actual
 		  from movement_eblg
-		 where least(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) < date_add(:around_datetime, interval :window hour)
-		   and greatest(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) > date_sub(:around_datetime, interval :window hour)
-		   and actual_time_of_departure <= :around_datetime
+			 where least( if(movement_direction = 'D', scheduled_time_of_departure, scheduled_time_of_arrival),
+			              if(movement_direction = 'D', estim_time_of_departure, estim_time_of_arrival),
+						  if(movement_direction = 'D', actual_time_of_departure, actual_time_of_arrival)  ) < date_add(:around_datetime, interval 4 hour)
+			   and greatest( if(movement_direction = 'D', scheduled_time_of_departure, scheduled_time_of_arrival),
+						     if(movement_direction = 'D', estim_time_of_departure, estim_time_of_arrival),
+						  	 if(movement_direction = 'D', actual_time_of_departure, actual_time_of_arrival)  ) > date_sub(:around_datetime, interval 4 hour)
+		   and if(movement_direction = 'D', actual_time_of_departure, actual_time_of_arrival) <= :around_datetime
 		 group by movement_direction, actual
 		 order by actual", [':around_datetime' => $around, ':window' => $hours, ':bucket' => $bucket]);
 		$act = $command->queryAll();
@@ -209,9 +224,13 @@ class WireController extends Controller
 			   count(movement_direction) as count,
 		       :bucket * round(unix_timestamp(scheduled_time_of_departure)/:bucket) as planned
 		  from movement_eblg
-		 where least(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) < date_add(:around_datetime, interval :window hour)
-		   and greatest(scheduled_time_of_departure, estim_time_of_departure, actual_time_of_departure) > date_sub(:around_datetime, interval :window hour)
-		   and actual_time_of_departure > :around_datetime
+			 where least( if(movement_direction = 'D', scheduled_time_of_departure, scheduled_time_of_arrival),
+			              if(movement_direction = 'D', estim_time_of_departure, estim_time_of_arrival),
+						  if(movement_direction = 'D', actual_time_of_departure, actual_time_of_arrival)  ) < date_add(:around_datetime, interval 4 hour)
+			   and greatest( if(movement_direction = 'D', scheduled_time_of_departure, scheduled_time_of_arrival),
+						     if(movement_direction = 'D', estim_time_of_departure, estim_time_of_arrival),
+						  	 if(movement_direction = 'D', actual_time_of_departure, actual_time_of_arrival)  ) > date_sub(:around_datetime, interval 4 hour)
+		   and if(movement_direction = 'D', actual_time_of_departure, actual_time_of_arrival) > :around_datetime
 		 group by movement_direction, planned
 		 order by planned", [':around_datetime' => $around, ':window' => $hours, ':bucket' => $bucket]);
 		$plan = $command->queryAll();
@@ -229,12 +248,13 @@ class WireController extends Controller
 	    "estimated":"15:10",
 	    "actual":"-",
 	    "delay":"40"
-	  }
+	  }     FROM_UNIXTIME(600 * round(unix_timestamp(scheduled_time_of_departure)/600)) as datex
+	  
 	 */
 	public function actionGetTable() {
 		$around = Yii::$app->request->post('around');
 		$what = Yii::$app->request->post('what');
-		$size = 6;
+		$size = Yii::$app->request->post('count');
 		$what = strtolower($what);
 		$act = ($what == 'd') ? 'actual_time_of_departure' : 'actual_time_of_arrival';
 		$est = ($what == 'd') ? 'estim_time_of_departure' : 'estim_time_of_arrival';
@@ -250,7 +270,7 @@ class WireController extends Controller
 		  from movement_eblg
 		 where movement_direction = :what
 		   and ".$act." > :around_datetime
-		 order by ".$oby." limit ".$size, [':around_datetime' => $around, ':what' => $what]);
+		 order by ".$act." limit ".$size, [':around_datetime' => $around, ':what' => $what]);
 		$tab = $command->queryAll();
 		Yii::$app->response->format = Response::FORMAT_JSON;
         return Json::encode($tab);

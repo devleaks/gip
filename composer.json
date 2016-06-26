@@ -88,7 +88,9 @@
         "bburim/flot": "dev-master",
         "2amigos/yii2-leaflet-extension": "~1.0",
         "2amigos/yii2-chartjs-widget": "~2.0",
-        "devgroup/yii2-jsoneditor": "*"
+        "devgroup/yii2-jsoneditor": "*",
+        "xfg/yii2-mustache.js": "^1.0",
+        "e-frank/yii2-requirejs": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

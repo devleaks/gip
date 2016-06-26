@@ -3,6 +3,8 @@
  * 2016 Pierre M
  * License: MIT
  */
+
+
  
 (function($) {
 	"use strict";
@@ -114,6 +116,10 @@
 		return _replay_time.setSeconds(_replay_time.getSeconds() + _replay_speed);
 	};
 	
+	Dashboard.prototype.big_tick = function() {
+		return _replay_time.setSeconds(_replay_time.getSeconds() + 600);
+	};
+	
 	Dashboard.prototype.live = function() {
 		var now = new Date();
 		return Math.abs(_replay_time.getTime() - now.getTime()) < defaults.replay_live;
@@ -191,6 +197,10 @@
 	}
 	
 	function substitute_text(msg, text) {
+		return Mustache.render(text, msg);
+	}
+
+	function substitute_text2(msg, text) {
 		var search = opts.begin_delimiter+'([^}]+)'+opts.end_delimiter;
 		var regexp = new RegExp(search, 'g');
 		var match;
