@@ -197,35 +197,9 @@
 	}
 	
 	function substitute_text(msg, text) {
-		return Mustache.render(text, msg);
-	}
-
-	function substitute_text2(msg, text) {
-		var search = opts.begin_delimiter+'([^}]+)'+opts.end_delimiter;
-		var regexp = new RegExp(search, 'g');
-		var match;
-		var newtext = text;
-		//console.log('Dashboard::substitute: original: '+text,search,regexp,text.match(regexp));
-
-		while ((match = regexp.exec(text)) != null) {
-		    // matched text: match[0]
-		    // match start: match.index
-		    // capturing group n: match[n]
-			var varname = match[1];
-			console.log('Dashboard::varname: '+varname);
-			try {
-				var value = JSPath.apply(varname, msg);
-				console.log(varname+"="+value);
-				if(value != null) {
-					newtext = newtext.replace(new RegExp(opts.begin_delimiter+varname+opts.end_delimiter, 'g'), value);
-				}				
-			} catch (e) {
-				console.log('JSPath failed for '+varname, msg, e);			
-			}
-		}
-				
-		//console.log('Dashboard::substitute_text: substitued: '+newtext);
-		return newtext;
+		var str = Mustache.render(text, msg);
+		console.log(str);
+		return str;
 	}
 
 	function substitute(msg) { // both title and subject are searched for substitution

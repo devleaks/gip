@@ -186,7 +186,7 @@ ul.flight2 li:before {
 
 /**/
 div.card {
-    text-align: center;
+/*    text-align: center;*/
 	border: 1px dotted #ddd;
 /*  background-color: lightgrey;*/
 }
@@ -212,4 +212,7 @@ div.card .drag:before {
 div.card .drag:hover {
     background-color: #eee;
     color: #999;
+}
+pre.renderjson {
+	text-align: left;
 }
