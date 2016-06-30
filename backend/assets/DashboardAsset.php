@@ -22,6 +22,7 @@ class DashboardAsset extends AssetBundle
 		'css/cd-panel.css',
 		'css/cd-timeline.css',
 		'css/materialadmin.css',
+		'css/tsort.css',
 		'snd/',
 //		'css/waves.css'
     ];
@@ -29,6 +30,7 @@ class DashboardAsset extends AssetBundle
 		'js/mustache.min.js',
 		'js/dashboard.js',
 		'js/jspath.js',
+		'js/tsort.js',
 //		'js/waves.js'
     ];
     public $depends = [

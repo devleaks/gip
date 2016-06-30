@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "36eca367bf452a2ee62454a0d339190f",
-    "content-hash": "6bf4e82a558223aef2150653bee420cf",
+    "hash": "9ca86b81625310d412e1e71ee0653150",
+    "content-hash": "1effc183efd79a05d206bdabe21e9aeb",
     "packages": [
         {
             "name": "2amigos/yii2-chartjs-widget",
@@ -579,6 +579,36 @@
             "type": "bower-asset-library"
         },
         {
+            "name": "bower-asset/font-roboto",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/font-roboto.git",
+                "reference": "4455555b8c6fffbd18085c5f36707d76b0893d4f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/font-roboto/zipball/4455555b8c6fffbd18085c5f36707d76b0893d4f",
+                "reference": "4455555b8c6fffbd18085c5f36707d76b0893d4f",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "roboto.html",
+                "bower-asset-ignore": [
+                    "/.*"
+                ]
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "An HTML import for Roboto",
+            "keywords": [
+                "font",
+                "roboto"
+            ]
+        },
+        {
             "name": "bower-asset/fullcalendar",
             "version": "v2.8.0",
             "source": {
@@ -725,6 +755,1025 @@
                 "shasum": ""
             },
             "type": "bower-asset-library"
+        },
+        {
+            "name": "bower-asset/iron-a11y-announcer",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-a11y-announcer.git",
+                "reference": "5ce3eb8c4282bb53cd72e348858dc6be6b4c50b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-a11y-announcer/zipball/5ce3eb8c4282bb53cd72e348858dc6be6b4c50b9",
+                "reference": "5ce3eb8c4282bb53cd72e348858dc6be6b4c50b9",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=3.4.0,<4.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-a11y-announcer.html",
+                "bower-asset-ignore": []
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A singleton element that simplifies announcing text to screen readers.",
+            "keywords": [
+                "a11y",
+                "live",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-a11y-keys-behavior",
+            "version": "v1.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-a11y-keys-behavior.git",
+                "reference": "b6f935cf203b328651f96ac3d21979cac7c9c241"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-a11y-keys-behavior/zipball/b6f935cf203b328651f96ac3d21979cac7c9c241",
+                "reference": "b6f935cf203b328651f96ac3d21979cac7c9c241",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.2,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-a11y-keys-behavior.html",
+                "bower-asset-ignore": []
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A behavior that enables keybindings for greater a11y.",
+            "keywords": [
+                "a11y",
+                "input",
+                "polymer",
+                "web-component",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-ajax",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-ajax.git",
+                "reference": "9523d3768089f9a631bd32cb1650eac8d1be1a4b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-ajax/zipball/9523d3768089f9a631bd32cb1650eac8d1be1a4b",
+                "reference": "9523d3768089f9a631bd32cb1650eac8d1be1a4b",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/polymer": ">=1.0.0,<2.0.0",
+                "bower-asset/promise-polyfill": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-image": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-ajax.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Makes it easy to make ajax calls and parse the response",
+            "keywords": [
+                "ajax",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-autogrow-textarea",
+            "version": "v1.0.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-autogrow-textarea.git",
+                "reference": "86f8fd61b412bcea6bc7b8feaee9b24bc2ad48ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-autogrow-textarea/zipball/86f8fd61b412bcea6bc7b8feaee9b24bc2ad48ea",
+                "reference": "86f8fd61b412bcea6bc7b8feaee9b24bc2ad48ea",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-form-element-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-validatable-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-autogrow-textarea.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A textarea element that automatically grows with input",
+            "keywords": [
+                "input",
+                "polymer",
+                "textarea",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-behaviors",
+            "version": "v1.0.16",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-behaviors.git",
+                "reference": "161e67233c4776e32a275a719a000865ed309393"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-behaviors/zipball/161e67233c4776e32a275a719a000865ed309393",
+                "reference": "161e67233c4776e32a275a719a000865ed309393",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-a11y-keys-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.2.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-input": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.2,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "iron-button-state.html",
+                    "iron-control-state.html"
+                ],
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Provides a set of behaviors for the iron elements"
+        },
+        {
+            "name": "bower-asset/iron-checked-element-behavior",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-checked-element-behavior.git",
+                "reference": "cc30263ec2871ae8f8f944948f44299d3f3cdf0d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-checked-element-behavior/zipball/cc30263ec2871ae8f8f944948f44299d3f3cdf0d",
+                "reference": "cc30263ec2871ae8f8f944948f44299d3f3cdf0d",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-form-element-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-validatable-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": "*",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-checked-element-behavior.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Implements an element that has a checked attribute and can be added to a form",
+            "keywords": [
+                "behavior",
+                "iron",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-collapse",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-collapse.git",
+                "reference": "f9e64ea7731c43430f48d64dddb80166334122c7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-collapse/zipball/f9e64ea7731c43430f48d64dddb80166334122c7",
+                "reference": "f9e64ea7731c43430f48d64dddb80166334122c7",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-resizable-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.5.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-collapse.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Provides a collapsable container",
+            "keywords": [
+                "container",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-dropdown",
+            "version": "v1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-dropdown.git",
+                "reference": "fc5ce3d2ee6be97beef00b9456e6e06498408401"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-dropdown/zipball/fc5ce3d2ee6be97beef00b9456e6e06498408401",
+                "reference": "fc5ce3d2ee6be97beef00b9456e6e06498408401",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-a11y-keys-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-overlay-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-resizable-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/neon-animation": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-image": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-dropdown.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "An unstyled element that works similarly to a native browser select",
+            "keywords": [
+                "polymer",
+                "web-component",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-fit-behavior",
+            "version": "v1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-fit-behavior.git",
+                "reference": "ad54693c57aeb893407a4b5d843e36ee8178f72b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-fit-behavior/zipball/ad54693c57aeb893407a4b5d843e36ee8178f72b",
+                "reference": "ad54693c57aeb893407a4b5d843e36ee8178f72b",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-fit-behavior.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Fits an element inside another element",
+            "keywords": [
+                "behavior",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-flex-layout",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-flex-layout.git",
+                "reference": "6d88f29f3a7181daa2a5c7f678de44f0a0e6a717"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-flex-layout/zipball/6d88f29f3a7181daa2a5c7f678de44f0a0e6a717",
+                "reference": "6d88f29f3a7181daa2a5c7f678de44f0a0e6a717",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-flex-layout.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Provide flexbox-based layouts",
+            "keywords": [
+                "layout",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-form-element-behavior",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-form-element-behavior.git",
+                "reference": "cf9e09ded62daf3363852ce98260aaad1ed0fae1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-form-element-behavior/zipball/cf9e09ded62daf3363852ce98260aaad1ed0fae1",
+                "reference": "cf9e09ded62daf3363852ce98260aaad1ed0fae1",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=3.4.0,<4.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-form-element-behavior.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Enables a custom element to be included in an iron-form",
+            "keywords": [
+                "form",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-icon",
+            "version": "v1.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-icon.git",
+                "reference": "f36b38928849ef3853db727faa8c9ef104d611eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-icon/zipball/f36b38928849ef3853db727faa8c9ef104d611eb",
+                "reference": "f36b38928849ef3853db727faa8c9ef104d611eb",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-meta": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icons": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-iconset": ">=1.0.0,<2.0.0",
+                "bower-asset/promise-polyfill": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-icon.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "An element that supports displaying an icon",
+            "keywords": [
+                "icon",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-icons",
+            "version": "v1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-icons.git",
+                "reference": "c13869b57a9464dfc3a1f26e89858f8be37e7441"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-icons/zipball/c13869b57a9464dfc3a1f26e89858f8be37e7441",
+                "reference": "c13869b57a9464dfc3a1f26e89858f8be37e7441",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-icon": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-iconset-svg": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": "1.0.0",
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-meta": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.2,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-icons.html",
+                "bower-asset-ignore": [
+                    "util",
+                    "update-icons.sh"
+                ],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A set of icons for use with iron-icon",
+            "keywords": [
+                "icon",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-iconset-svg",
+            "version": "v1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-iconset-svg.git",
+                "reference": "ce9b2ea1f73d936cffdd05f3fe34b1f69d1d32db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-iconset-svg/zipball/ce9b2ea1f73d936cffdd05f3fe34b1f69d1d32db",
+                "reference": "ce9b2ea1f73d936cffdd05f3fe34b1f69d1d32db",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-meta": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icon": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.2,<2.0.0",
+                "bower-asset/promise-polyfill": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": "*",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-iconset-svg.html",
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Manages a set of svg icons",
+            "keywords": [
+                "icon",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-image",
+            "version": "v1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-image.git",
+                "reference": "ab4f710c21e34eb1a383da63b127920111804919"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-image/zipball/ab4f710c21e34eb1a383da63b127920111804919",
+                "reference": "ab4f710c21e34eb1a383da63b127920111804919",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.4,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-image.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "An image-displaying element with lots of convenient features",
+            "keywords": [
+                "media",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-input",
+            "version": "1.0.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-input.git",
+                "reference": "01d17407672ad8033ee447c9c7a65162f13c8f49"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-input/zipball/01d17407672ad8033ee447c9c7a65162f13c8f49",
+                "reference": "01d17407672ad8033ee447c9c7a65162f13c8f49",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-a11y-announcer": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-validatable-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-validator-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.2,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-input.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "An input element with data binding",
+            "keywords": [
+                "input",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-media-query",
+            "version": "v1.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-media-query.git",
+                "reference": "3f916be171af7a3e03eb019acdfea71055d3c744"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-media-query/zipball/3f916be171af7a3e03eb019acdfea71055d3c744",
+                "reference": "3f916be171af7a3e03eb019acdfea71055d3c744",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.2,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=3.4.0,<4.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-media-query.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Lets you bind to a CSS media query",
+            "keywords": [
+                "media",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-menu-behavior",
+            "version": "v1.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-menu-behavior.git",
+                "reference": "ea59e6ce5644d8f7a20c22f13f614ea60604a812"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-menu-behavior/zipball/ea59e6ce5644d8f7a20c22f13f614ea60604a812",
+                "reference": "ea59e6ce5644d8f7a20c22f13f614ea60604a812",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-a11y-keys-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-selector": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.2.4,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.2,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "iron-menu-behavior.html",
+                    "iron-menubar-behavior.html"
+                ],
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Provides accessible menu behavior",
+            "keywords": [
+                "behavior",
+                "menu",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-meta",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-meta.git",
+                "reference": "e171ee234b482219c9514e6f9551df48ef48bd9f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-meta/zipball/e171ee234b482219c9514e6f9551df48ef48bd9f",
+                "reference": "e171ee234b482219c9514e6f9551df48ef48bd9f",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.4,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": "*",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-meta.html",
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Useful for sharing information across a DOM tree",
+            "keywords": [
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-overlay-behavior",
+            "version": "v1.8.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-overlay-behavior.git",
+                "reference": "9d0fc18ed7b6a8d3e9ec244d20897e4803ec3201"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-overlay-behavior/zipball/9d0fc18ed7b6a8d3e9ec244d20897e4803ec3201",
+                "reference": "9d0fc18ed7b6a8d3e9ec244d20897e4803ec3201",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-a11y-keys-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-fit-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-resizable-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.2,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-overlay-behavior.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Provides a behavior for making an element an overlay",
+            "keywords": [
+                "behavior",
+                "overlay",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-range-behavior",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-range-behavior.git",
+                "reference": "645ffc6b39ae4fb0efd23b97016a9c4aac777978"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-range-behavior/zipball/645ffc6b39ae4fb0efd23b97016a9c4aac777978",
+                "reference": "645ffc6b39ae4fb0efd23b97016a9c4aac777978",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-input": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-range-behavior.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Provides a behavior for something with a minimum and maximum value",
+            "keywords": [
+                "behavior",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-resizable-behavior",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-resizable-behavior.git",
+                "reference": "dda1df6aaf452aedf3e52ff0cf69e72439452216"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-resizable-behavior/zipball/dda1df6aaf452aedf3e52ff0cf69e72439452216",
+                "reference": "dda1df6aaf452aedf3e52ff0cf69e72439452216",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-resizable-behavior.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Coordinates the flow of resizeable elements",
+            "keywords": [
+                "behavior",
+                "iron",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-selector",
+            "version": "v1.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-selector.git",
+                "reference": "18e8e12dcd9a4560de480562f65935feed334b86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-selector/zipball/18e8e12dcd9a4560de480562f65935feed334b86",
+                "reference": "18e8e12dcd9a4560de480562f65935feed334b86",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/polymer": ">=1.2.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.4,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-selector.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Manages a set of elements that can be selected",
+            "keywords": [
+                "polymer",
+                "selector",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/iron-validatable-behavior",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/iron-validatable-behavior.git",
+                "reference": "2ecd3f411e298733b29f1660f75cb9b03ea31d77"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/iron-validatable-behavior/zipball/2ecd3f411e298733b29f1660f75cb9b03ea31d77",
+                "reference": "2ecd3f411e298733b29f1660f75cb9b03ea31d77",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-meta": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-validator-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.4,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "iron-validatable-behavior.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Provides a behavior for an element that validates user input",
+            "keywords": [
+                "behavior",
+                "iron",
+                "polymer",
+                "web-components"
+            ]
         },
         {
             "name": "bower-asset/jquery",
@@ -902,6 +1951,48 @@
                 ]
             },
             "description": "JavaScript library for mobile-friendly interactive maps"
+        },
+        {
+            "name": "bower-asset/leaflet-map",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/leaflet-extras/leaflet-map.git",
+                "reference": "d90a2f6d83c150c71a2461b9eb662e3a5aa96622"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/leaflet-extras/leaflet-map/zipball/d90a2f6d83c150c71a2461b9eb662e3a5aa96622",
+                "reference": "d90a2f6d83c150c71a2461b9eb662e3a5aa96622",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/leaflet": ">=0.7.3,<0.8.0",
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "leaflet-map.html",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "demo.html",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "BSD 2-Clause"
+            ],
+            "description": "Leaflet map as web-component based on polymer",
+            "keywords": [
+                "leaflet",
+                "leafletjs",
+                "map",
+                "polymer",
+                "web-components"
+            ]
         },
         {
             "name": "bower-asset/local-storage-lite",
@@ -1096,6 +2187,1738 @@
             ]
         },
         {
+            "name": "bower-asset/neon-animation",
+            "version": "v1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/neon-animation.git",
+                "reference": "c50d51e62825f4aa53f10e93f746796a174af232"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/neon-animation/zipball/c50d51e62825f4aa53f10e93f746796a174af232",
+                "reference": "c50d51e62825f4aa53f10e93f746796a174af232",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-meta": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-resizable-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-selector": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0",
+                "bower-asset/web-animations-js": ">=2.2.0,<3.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icon": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icons": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-icon-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-item": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-toolbar": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "neon-animated-pages.html",
+                    "neon-animatable-behavior.html",
+                    "neon-animation-behavior.html",
+                    "neon-animation-runner-behavior.html",
+                    "neon-shared-element-animatable-behavior.html",
+                    "neon-shared-element-animation-behavior.html",
+                    "neon-animatable.html",
+                    "neon-animations.html"
+                ],
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A system for animating Polymer-based web components",
+            "keywords": [
+                "polymer",
+                "web-animations",
+                "web-component",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-badge",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-badge.git",
+                "reference": "22a1c93752f6384d0f0cc099ec1a087acbd2c55f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-badge/zipball/22a1c93752f6384d0f0cc099ec1a087acbd2c55f",
+                "reference": "22a1c93752f6384d0f0cc099ec1a087acbd2c55f",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-resizable-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-icon-button": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-badge.html",
+                "bower-asset-ignore": []
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Material design status message for elements",
+            "keywords": [
+                "badge",
+                "notification",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-behaviors",
+            "version": "v1.0.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-behaviors.git",
+                "reference": "e3c1ab0c72905b58fb4d9adc2921ea73b5c085a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-behaviors/zipball/e3c1ab0c72905b58fb4d9adc2921ea73b5c085a5",
+                "reference": "e3c1ab0c72905b58fb4d9adc2921ea73b5c085a5",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-checked-element-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-ripple": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.2.1,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-material": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "paper-button-behavior.html",
+                    "paper-checked-element-behavior.html",
+                    "paper-inky-focus-behavior.html"
+                ],
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Common behaviors across the paper elements",
+            "keywords": [
+                "behavior",
+                "paper",
+                "polymer",
+                "web-component",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-button",
+            "version": "v1.0.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-button.git",
+                "reference": "96c3a2661c355223d0b41e1d34126f9c62d544dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-button/zipball/96c3a2661c355223d0b41e1d34126f9c62d544dc",
+                "reference": "96c3a2661c355223d0b41e1d34126f9c62d544dc",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-material": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icon": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icons": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-button.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Material design button",
+            "keywords": [
+                "button",
+                "paper",
+                "polymer",
+                "web-component",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-card",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-card.git",
+                "reference": "c9c6da98004806f23f63c213b355e757db4c04ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-card/zipball/c9c6da98004806f23f63c213b355e757db4c04ba",
+                "reference": "c9c6da98004806f23f63c213b355e757db4c04ba",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-image": ">=1.2.0,<2.0.0",
+                "bower-asset/paper-material": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.1.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-collapse": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-checkbox": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-icon-button": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-card.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Material design piece of paper with unique related data",
+            "keywords": [
+                "card",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-checkbox",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-checkbox.git",
+                "reference": "79f6780db55f50d5ef6602e4f3ea6fd1e7f2abf2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-checkbox/zipball/79f6780db55f50d5ef6602e4f3ea6fd1e7f2abf2",
+                "reference": "79f6780db55f50d5ef6602e4f3ea6fd1e7f2abf2",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-checked-element-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-ripple": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.1.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-checkbox.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A material design checkbox",
+            "keywords": [
+                "checkbox",
+                "control",
+                "paper",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-dialog",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-dialog.git",
+                "reference": "53b099bed06bbbab7cb0f82c8209328c1a82aee6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-dialog/zipball/53b099bed06bbbab7cb0f82c8209328c1a82aee6",
+                "reference": "53b099bed06bbbab7cb0f82c8209328c1a82aee6",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/neon-animation": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-dialog-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-dialog-scrollable": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-dropdown-menu": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-item": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-menu": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-dialog.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A Material Design dialog",
+            "keywords": [
+                "dialog",
+                "overlay",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-dialog-behavior",
+            "version": "v1.2.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-dialog-behavior.git",
+                "reference": "decc77ca55c0381cf01d7409ddf1eb966543e84e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-dialog-behavior/zipball/decc77ca55c0381cf01d7409ddf1eb966543e84e",
+                "reference": "decc77ca55c0381cf01d7409ddf1eb966543e84e",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-overlay-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.1.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-dialog-scrollable": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-dropdown-menu": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-icon-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-item": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-listbox": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-dialog-behavior.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Implements a behavior used for material design dialogs",
+            "keywords": [
+                "behavior",
+                "dialog",
+                "overlay",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-dialog-scrollable",
+            "version": "v1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-dialog-scrollable.git",
+                "reference": "c55ce7ffb599ce088c67cd261a5c1083727f461f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-dialog-scrollable/zipball/c55ce7ffb599ce088c67cd261a5c1083727f461f",
+                "reference": "c55ce7ffb599ce088c67cd261a5c1083727f461f",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-dialog-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-dialog": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-dialog-scrollable.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A scrollable area used inside the material design dialog",
+            "keywords": [
+                "dialog",
+                "overlay",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-drawer-panel",
+            "version": "v1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-drawer-panel.git",
+                "reference": "d0f2c801380397e5d4334b273a2fef63099d4a2f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-drawer-panel/zipball/d0f2c801380397e5d4334b273a2fef63099d4a2f",
+                "reference": "d0f2c801380397e5d4334b273a2fef63099d4a2f",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-media-query": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-resizable-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-selector": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-drawer-panel.html",
+                "bower-asset-ignore": []
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A responsive drawer panel",
+            "keywords": [
+                "drawer",
+                "layout",
+                "polymer",
+                "responsive",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-dropdown-menu",
+            "version": "v1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-dropdown-menu.git",
+                "reference": "2e990c4b2a27529dead9d9ebcc5830f74379c63e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-dropdown-menu/zipball/2e990c4b2a27529dead9d9ebcc5830f74379c63e",
+                "reference": "2e990c4b2a27529dead9d9ebcc5830f74379c63e",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-a11y-keys-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-form-element-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icon": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-iconset-svg": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-validatable-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-input": ">=1.0.9,<2.0.0",
+                "bower-asset/paper-menu-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-ripple": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-item": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-listbox": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-tabs": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-dropdown-menu.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "An element that works similarly to a native browser select",
+            "keywords": [
+                "dropdown",
+                "polymer",
+                "select",
+                "web-component",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-elements",
+            "version": "v1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-elements.git",
+                "reference": "718dc9fb0c1ba6bd8baeb38d2bcb96d35cd350db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-elements/zipball/718dc9fb0c1ba6bd8baeb38d2bcb96d35cd350db",
+                "reference": "718dc9fb0c1ba6bd8baeb38d2bcb96d35cd350db",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/paper-badge": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-card": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-checkbox": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-dialog": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-dialog-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-dialog-scrollable": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-drawer-panel": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-dropdown-menu": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-fab": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-header-panel": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-icon-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-input": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-item": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-listbox": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-material": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-menu": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-menu-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-progress": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-radio-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-radio-group": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-ripple": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-scroll-header-panel": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-slider": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-spinner": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-tabs": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-toast": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-toggle-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-toolbar": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-tooltip": ">=1.0.0,<2.0.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-elements.html",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Paper elements are a set of visual elements that implement Google's Material Design.",
+            "keywords": [
+                "paper",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-fab",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-fab.git",
+                "reference": "691638ca9b922411926b916a592f01a5f25c1af8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-fab/zipball/691638ca9b922411926b916a592f01a5f25c1af8",
+                "reference": "691638ca9b922411926b916a592f01a5f25c1af8",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icon": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icons": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-material": ">=1.0.5,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-fab.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A material design floating action button",
+            "keywords": [
+                "button",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-header-panel",
+            "version": "v1.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-header-panel.git",
+                "reference": "3bf4e4f22eb12dd98039bad0eaaa942c2e869961"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-header-panel/zipball/3bf4e4f22eb12dd98039bad0eaaa942c2e869961",
+                "reference": "3bf4e4f22eb12dd98039bad0eaaa942c2e869961",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-header-panel.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A header and content wrapper for layout with headers",
+            "keywords": [
+                "layout",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-icon-button",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-icon-button.git",
+                "reference": "0a6c65f73765d6f6ae6cfe90ddc9905a2cf45f20"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-icon-button/zipball/0a6c65f73765d6f6ae6cfe90ddc9905a2cf45f20",
+                "reference": "0a6c65f73765d6f6ae6cfe90ddc9905a2cf45f20",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-icon": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icons": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "paper-icon-button.html",
+                    "paper-icon-button-light.html"
+                ],
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A material design icon button",
+            "keywords": [
+                "button",
+                "control",
+                "icon",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-input",
+            "version": "v1.1.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-input.git",
+                "reference": "6f43713e93e1f3f21593b7f231f53bc19289fc42"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-input/zipball/6f43713e93e1f3f21593b7f231f53bc19289fc42",
+                "reference": "6f43713e93e1f3f21593b7f231f53bc19289fc42",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-a11y-keys-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-autogrow-textarea": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-form-element-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-input": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.1.4,<2.0.0",
+                "bower-asset/polymer": ">=1.2.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icon": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-validator-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-icon-button": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "paper-input.html",
+                    "paper-textarea.html",
+                    "paper-input-behavior.html",
+                    "paper-input-container.html",
+                    "paper-input-error.html",
+                    "paper-input-addon-behavior.html",
+                    "paper-input-char-counter.html"
+                ],
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Material design text fields",
+            "keywords": [
+                "input",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-item",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-item.git",
+                "reference": "1eab91333b318ae19e315866575b2dddd38e6abc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-item/zipball/1eab91333b318ae19e315866575b2dddd38e6abc",
+                "reference": "1eab91333b318ae19e315866575b2dddd38e6abc",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icon": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icons": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-icon-button": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "paper-item.html",
+                    "paper-icon-item.html",
+                    "paper-item-body.html"
+                ],
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A material-design styled list item",
+            "keywords": [
+                "item",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-listbox",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-listbox.git",
+                "reference": "b0fde50f57db3e8e4926e9d046be9d3c159a2bff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-listbox/zipball/b0fde50f57db3e8e4926e9d046be9d3c159a2bff",
+                "reference": "b0fde50f57db3e8e4926e9d046be9d3c159a2bff",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-collapse": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-menu-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-item": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=3.4.0,<4.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "paper-listbox.html",
+                    "paper-sublistbox.html"
+                ],
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Implements an accessible material design listbox",
+            "keywords": [
+                "listbox",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-material",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-material.git",
+                "reference": "9932cec63cb814ab151125643d9edeb785f3f6c8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-material/zipball/9932cec63cb814ab151125643d9edeb785f3f6c8",
+                "reference": "9932cec63cb814ab151125643d9edeb785f3f6c8",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-material.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A material design container that looks like a lifted sheet of paper",
+            "keywords": [
+                "container",
+                "paper",
+                "polymer",
+                "web-component",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-menu",
+            "version": "v1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-menu.git",
+                "reference": "f31a1dbc5b594a84c8c01eca0f23f9bcb8f6ba76"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-menu/zipball/f31a1dbc5b594a84c8c01eca0f23f9bcb8f6ba76",
+                "reference": "f31a1dbc5b594a84c8c01eca0f23f9bcb8f6ba76",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-collapse": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-menu-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-item": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "paper-menu.html",
+                    "paper-submenu.html"
+                ],
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Implements an accessible material design menu",
+            "keywords": [
+                "menu",
+                "polymer",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-menu-button",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-menu-button.git",
+                "reference": "2d4d1cbdcfe260878e972e42d73ca5a3b7248cb9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-menu-button/zipball/2d4d1cbdcfe260878e972e42d73ca5a3b7248cb9",
+                "reference": "2d4d1cbdcfe260878e972e42d73ca5a3b7248cb9",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-a11y-keys-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-dropdown": ">=1.0.0,<2.0.0",
+                "bower-asset/neon-animation": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icon": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icons": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-image": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-icon-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-item": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-menu": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-menu-button.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A material design element that composes a trigger and a dropdown menu",
+            "keywords": [
+                "button",
+                "menu",
+                "polymer",
+                "web-component",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-progress",
+            "version": "v1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-progress.git",
+                "reference": "389e717d2e600bb44c6cb1537ee12b203b55fca1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-progress/zipball/389e717d2e600bb44c6cb1537ee12b203b55fca1",
+                "reference": "389e717d2e600bb44c6cb1537ee12b203b55fca1",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-range-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-button": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-progress.html",
+                "bower-asset-ignore": []
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A material design progress bar",
+            "keywords": [
+                "polymer",
+                "progress",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-radio-button",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-radio-button.git",
+                "reference": "d0839a28a638882f40216437d6878af0085d1df8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-radio-button/zipball/d0839a28a638882f40216437d6878af0085d1df8",
+                "reference": "d0839a28a638882f40216437d6878af0085d1df8",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-checked-element-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-flex-layout": "~1.3.0",
+                "bower-asset/paper-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.1.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-radio-button.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A material design radio button",
+            "keywords": [
+                "control",
+                "polymer",
+                "radio",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-radio-group",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-radio-group.git",
+                "reference": "1505d1a57fbeabcb779de3e9f0e9857acd8b5f13"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-radio-group/zipball/1505d1a57fbeabcb779de3e9f0e9857acd8b5f13",
+                "reference": "1505d1a57fbeabcb779de3e9f0e9857acd8b5f13",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-menu-behavior": ">=1.1.7,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-radio-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-radio-group.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A group of material design radio buttons",
+            "keywords": [
+                "control",
+                "polymer",
+                "radio",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-ripple",
+            "version": "v1.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-ripple.git",
+                "reference": "eb1c01cac162b7ce7e78760d5c0df61c9a5c2974"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-ripple/zipball/eb1c01cac162b7ce7e78760d5c0df61c9a5c2974",
+                "reference": "eb1c01cac162b7ce7e78760d5c0df61c9a5c2974",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-a11y-keys-behavior": ">=1.1.5,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icon": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icons": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-ripple.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Adds a material design ripple to any container",
+            "keywords": [
+                "polymer",
+                "ripple",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-scroll-header-panel",
+            "version": "v1.0.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-scroll-header-panel.git",
+                "reference": "9e264cc643fc36d5b35597d20623f504914ac04e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-scroll-header-panel/zipball/9e264cc643fc36d5b35597d20623f504914ac04e",
+                "reference": "9e264cc643fc36d5b35597d20623f504914ac04e",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-resizable-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icons": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-media-query": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-icon-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-input": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-toolbar": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-scroll-header-panel.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A header bar with scrolling behavior",
+            "keywords": [
+                "layout",
+                "polymer",
+                "responsive",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-slider",
+            "version": "v1.0.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-slider.git",
+                "reference": "855e3ed20d12b4545175317536adca7897928537"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-slider/zipball/855e3ed20d12b4545175317536adca7897928537",
+                "reference": "855e3ed20d12b4545175317536adca7897928537",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-a11y-keys-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-form-element-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-input": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-progress": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-slider.html",
+                "bower-asset-ignore": []
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A material design-style slider",
+            "keywords": [
+                "control",
+                "polymer",
+                "slider",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-spinner",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-spinner.git",
+                "reference": "66dc50a940aa9a3a067137defe1712aa85de6f35"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-spinner/zipball/66dc50a940aa9a3a067137defe1712aa85de6f35",
+                "reference": "66dc50a940aa9a3a067137defe1712aa85de6f35",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "paper-spinner.html",
+                    "paper-spinner-lite.html"
+                ],
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A material design spinner",
+            "keywords": [
+                "loading",
+                "polymer",
+                "spinner",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-styles",
+            "version": "v1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-styles.git",
+                "reference": "885bbd74db88dab4fb5dc229cdf994c55fb2b31b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-styles/zipball/885bbd74db88dab4fb5dc229cdf994c55fb2b31b",
+                "reference": "885bbd74db88dab4fb5dc229cdf994c55fb2b31b",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/font-roboto": ">=1.0.1,<2.0.0",
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-styles.html",
+                "bower-asset-ignore": [
+                    "/.*"
+                ]
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Common (global) styles for Material Design elements.",
+            "keywords": [
+                "polymer",
+                "style",
+                "web-component"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-tabs",
+            "version": "v1.6.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-tabs.git",
+                "reference": "fc3df3875f97cbcee8cfa8f4895d86a4fd2925c7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-tabs/zipball/fc3df3875f97cbcee8cfa8f4895d86a4fd2925c7",
+                "reference": "fc3df3875f97cbcee8cfa8f4895d86a4fd2925c7",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icon": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-iconset-svg": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-menu-behavior": ">=1.1.0,<2.0.0",
+                "bower-asset/iron-resizable-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-icon-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-pages": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-toolbar": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-tabs.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Material design tabs",
+            "keywords": [
+                "control",
+                "polymer",
+                "tabs",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-toast",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-toast.git",
+                "reference": "f20ce41a3b4a81a9d277d1ed33f1621cf3e42ec0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-toast/zipball/f20ce41a3b4a81a9d277d1ed33f1621cf3e42ec0",
+                "reference": "f20ce41a3b4a81a9d277d1ed33f1621cf3e42ec0",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-a11y-announcer": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-fit-behavior": ">=1.1.0,<2.0.0",
+                "bower-asset/iron-overlay-behavior": ">=1.0.9,<2.0.0",
+                "bower-asset/polymer": ">=1.5.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-button": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-toast.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A material design notification toast",
+            "keywords": [
+                "notification",
+                "polymer",
+                "toast",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-toggle-button",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-toggle-button.git",
+                "reference": "18d90a3e164fcac6bd985fdaeba771873b1bc5df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-toggle-button/zipball/18d90a3e164fcac6bd985fdaeba771873b1bc5df",
+                "reference": "18d90a3e164fcac6bd985fdaeba771873b1bc5df",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-checked-element-behavior": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-behaviors": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.1.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-toggle-button.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A material design toggle button control",
+            "keywords": [
+                "control",
+                "polymer",
+                "toggle",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-toolbar",
+            "version": "v1.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-toolbar.git",
+                "reference": "39b8ad381bd4ba7834ed8f30a938b49810b9204f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-toolbar/zipball/39b8ad381bd4ba7834ed8f30a938b49810b9204f",
+                "reference": "39b8ad381bd4ba7834ed8f30a938b49810b9204f",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/iron-flex-layout": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.1.0,<2.0.0",
+                "bower-asset/polymer": ">=1.2.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-icons": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-icon-button": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-progress": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-toolbar.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "A material design toolbar that is easily customizable",
+            "keywords": [
+                "layout",
+                "polymer",
+                "toolbar",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/paper-tooltip",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerElements/paper-tooltip.git",
+                "reference": "6be894127678900f6e506b56fc9622ab768c03aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerElements/paper-tooltip/zipball/6be894127678900f6e506b56fc9622ab768c03aa",
+                "reference": "6be894127678900f6e506b56fc9622ab768c03aa",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/neon-animation": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-styles": ">=1.0.0,<2.0.0",
+                "bower-asset/polymer": ">=1.1.0,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/iron-component-page": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-demo-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/iron-test-helpers": ">=1.0.0,<2.0.0",
+                "bower-asset/paper-icon-button": ">=1.0.0,<2.0.0",
+                "bower-asset/test-fixture": ">=1.0.0,<2.0.0",
+                "bower-asset/web-component-tester": ">=4.0.0,<5.0.0",
+                "bower-asset/webcomponentsjs": ">=0.7.0,<0.8.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "paper-tooltip.html",
+                "bower-asset-ignore": [],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ],
+            "description": "Material design tooltip popup for content",
+            "keywords": [
+                "polymer",
+                "tooltip",
+                "web-components"
+            ]
+        },
+        {
+            "name": "bower-asset/polymer",
+            "version": "v1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Polymer/polymer.git",
+                "reference": "ce5b9fb2d8aa03c698410e2e55cffcfa0b788a3a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Polymer/polymer/zipball/ce5b9fb2d8aa03c698410e2e55cffcfa0b788a3a",
+                "reference": "ce5b9fb2d8aa03c698410e2e55cffcfa0b788a3a",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/webcomponentsjs": ">=0.7.20,<0.8.0"
+            },
+            "require-dev": {
+                "bower-asset/web-component-tester": "*"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "polymer.html",
+                    "polymer-mini.html",
+                    "polymer-micro.html"
+                ],
+                "bower-asset-ignore": [
+                    "/.*",
+                    "/test/",
+                    "/util/",
+                    "/explainer/",
+                    "gulpfile.js",
+                    "PRIMER.md",
+                    "CONTRIBUTING.md",
+                    "CHANGELOG.md"
+                ],
+                "bower-asset-private": true
+            },
+            "license": [
+                "http://polymer.github.io/LICENSE.txt"
+            ]
+        },
+        {
+            "name": "bower-asset/promise-polyfill",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PolymerLabs/promise-polyfill.git",
+                "reference": "2ef7dada161cae30e69ffff918485c57121d4b88"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PolymerLabs/promise-polyfill/zipball/2ef7dada161cae30e69ffff918485c57121d4b88",
+                "reference": "2ef7dada161cae30e69ffff918485c57121d4b88",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/polymer": ">=1.0.0,<2.0.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "Promise.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Lightweight promise polyfill for the browser and node. A+ Compliant.",
+            "keywords": [
+                "es6",
+                "html5",
+                "polyfill",
+                "promise"
+            ]
+        },
+        {
             "name": "bower-asset/punycode",
             "version": "v1.3.2",
             "source": {
@@ -1190,6 +4013,79 @@
                 "widget"
             ],
             "time": "2016-01-22 17:17:28"
+        },
+        {
+            "name": "bower-asset/web-animations-js",
+            "version": "2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/web-animations/web-animations-js.git",
+                "reference": "45d8e40300e82ff02ccfbbc78c89500de0f5616f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/web-animations/web-animations-js/zipball/45d8e40300e82ff02ccfbbc78c89500de0f5616f",
+                "reference": "45d8e40300e82ff02ccfbbc78c89500de0f5616f",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "web-animations.min.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "templates",
+                    "test",
+                    "src",
+                    "Gruntfile.js",
+                    "package.json",
+                    "target-config.js",
+                    "target-loader.js",
+                    "web-animations.dev.html",
+                    "web-animations.dev.js",
+                    "web-animations-next.dev.html",
+                    "web-animations-next.dev.js",
+                    "web-animations-next-lite.dev.html",
+                    "web-animations-next-lite.dev.js"
+                ]
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "JavaScript implementation of the Web Animations API",
+            "keywords": [
+                "animations",
+                "polyfill"
+            ]
+        },
+        {
+            "name": "bower-asset/webcomponentsjs",
+            "version": "v0.7.22",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webcomponents/webcomponentsjs.git",
+                "reference": "50f9751f8e638301603aebb33ba9f1e90d2b0d32"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webcomponents/webcomponentsjs/zipball/50f9751f8e638301603aebb33ba9f1e90d2b0d32",
+                "reference": "50f9751f8e638301603aebb33ba9f1e90d2b0d32",
+                "shasum": ""
+            },
+            "require-dev": {
+                "bower-asset/web-component-tester": ">=4.0.1,<5.0.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "webcomponents.js",
+                "bower-asset-ignore": []
+            },
+            "license": [
+                "BSD"
+            ],
+            "keywords": [
+                "webcomponents"
+            ]
         },
         {
             "name": "bower-asset/yii2-pjax",
@@ -1609,16 +4505,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "1.1.2",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "b2cf67b1a575d7e648c742be2454339232ef32b2"
+                "reference": "30ab6f1c1753267d181839142fafe022313c3c9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/b2cf67b1a575d7e648c742be2454339232ef32b2",
-                "reference": "b2cf67b1a575d7e648c742be2454339232ef32b2",
+                "url": "https://api.github.com/repos/composer/composer/zipball/30ab6f1c1753267d181839142fafe022313c3c9a",
+                "reference": "30ab6f1c1753267d181839142fafe022313c3c9a",
                 "shasum": ""
             },
             "require": {
@@ -1682,7 +4578,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2016-05-31 18:48:12"
+            "time": "2016-06-26 14:42:08"
         },
         {
             "name": "composer/semver",
@@ -2112,16 +5008,16 @@
         },
         {
             "name": "dmstr/yii2-db",
-            "version": "0.7.0",
+            "version": "0.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmstr/yii2-db.git",
-                "reference": "dd61c990569b5b43f7747f8e97a63f2b2d3cf8ca"
+                "reference": "672c222c18aa76e8d36b397b1f39c012e78c313a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmstr/yii2-db/zipball/dd61c990569b5b43f7747f8e97a63f2b2d3cf8ca",
-                "reference": "dd61c990569b5b43f7747f8e97a63f2b2d3cf8ca",
+                "url": "https://api.github.com/repos/dmstr/yii2-db/zipball/672c222c18aa76e8d36b397b1f39c012e78c313a",
+                "reference": "672c222c18aa76e8d36b397b1f39c012e78c313a",
                 "shasum": ""
             },
             "require": {
@@ -2153,7 +5049,7 @@
                 "extension",
                 "yii2"
             ],
-            "time": "2016-06-25 22:44:23"
+            "time": "2016-06-28 14:53:19"
         },
         {
             "name": "dmstr/yii2-helpers",
@@ -5069,12 +7965,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mootensai/yii2-enhanced-gii.git",
-                "reference": "39d2082666fe1106721f31b504a00035d221dc73"
+                "reference": "ac3a61bce8ce709ca5e6cffb49728dca254627cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mootensai/yii2-enhanced-gii/zipball/39d2082666fe1106721f31b504a00035d221dc73",
-                "reference": "39d2082666fe1106721f31b504a00035d221dc73",
+                "url": "https://api.github.com/repos/mootensai/yii2-enhanced-gii/zipball/ac3a61bce8ce709ca5e6cffb49728dca254627cb",
+                "reference": "ac3a61bce8ce709ca5e6cffb49728dca254627cb",
                 "shasum": ""
             },
             "require": {
@@ -5121,7 +8017,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2016-06-21 08:45:39"
+            "time": "2016-06-28 08:49:04"
         },
         {
             "name": "mootensai/yii2-jsblock",

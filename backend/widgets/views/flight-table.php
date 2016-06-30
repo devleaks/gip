@@ -9,11 +9,11 @@ $widget_hndlr 	= strtoupper($widget->source.'_'.$widget->type);
 	<span class="gip-header"><?= $widget->title ?></span><br/>
 	<div class="gip-body" data-gip="value">
 		
-		<table class="table table-striped no-margin">
+		<table class="table table-striped no-margin tableSorter">
 			<thead>
 				<tr>
 					<th>Fl.#</th>
-					<th>Dest</th>
+					<th>Apt</th>
 					<th>Sched</th>
 					<th>Est</th>
 				</tr>
@@ -45,6 +45,12 @@ jQuery(document).ready(function($){
 	/**
 	 *	GIP Message Handler: Handle plain messages
 	 */
+	$('table.tableSorter').tableSort( {
+			sortBy: ['text', 'text', 'numeric', 'numeric'],
+			animation: 'slide',
+			speed: 500
+	} );		
+			
 	$(selector).on('gip:message', function(event, msg) {
 		var payload = $.dashboard.get_payload(msg);
 		if(payload.length > 1) {

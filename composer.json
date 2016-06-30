@@ -90,7 +90,11 @@
         "2amigos/yii2-chartjs-widget": "~2.0",
         "devgroup/yii2-jsoneditor": "*",
         "xfg/yii2-mustache.js": "^1.0",
-        "e-frank/yii2-requirejs": "dev-master"
+        "e-frank/yii2-requirejs": "dev-master",
+        "bower-asset/leaflet-map": "^1.2",
+        "bower-asset/iron-ajax": "^1.2",
+        "bower-asset/paper-elements": "^1.0",
+        "bower-asset/promise-polyfill": "1.0.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

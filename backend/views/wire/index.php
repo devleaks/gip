@@ -165,9 +165,16 @@ $this->title = 'GIP Dashboard';
 					</div>
 				</div>
 			</div>
+			
+			
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card card-bordered style-default-bright ">
+						<img src="<?= $asset->baseUrl.'/images/gip-comm.png' ?>" width="100%">
+					</div>
+				</div>
+			</div>
 
-			
-			
 		</div><!-- end left column -->
 
 		<!--
@@ -178,42 +185,12 @@ $this->title = 'GIP Dashboard';
 
 			<div class="row">
 				<div class="col-lg-12">
-					<!-- iframe id="flight-radar" src="http://www.flightradar24.com/simple_index.php?lat=50.63639&amp;lon=5.44278&amp;z=9&amp;airports=1" width="100%" height="800"></iframe -->
-					
 					<div class="card card-bordered style-default-bright">
-					<?php 
-
-					// first lets setup the center of our map
-					$center = new LatLng(['lat' => $liege['lat'], 'lng' => $liege['lon']]);
-
-					// now lets create a marker that we are going to place on our map
-					$marker = new Marker(['latLng' => $center, 'popupContent' => 'Hi!']);
-
-					// The Tile Layer (very important)
-					$tileLayer = new TileLayer([
-					   'urlTemplate' => 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-					    'clientOptions' => [
-					        'attribution' => '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-					    ]
-					]);
-
-					// now our component and we are going to configure it
-					$leaflet = new LeafLet([
-					    'center' => $center, // set the center
-						'zoom' => (rand(0, 1) == 1 ? 8 : 15) //15=close, 8=about 150km around
-					]);
-					// Different layers can be added to our map using the `addLayer` function.
-					$leaflet->addLayer($marker)      // add the marker
-					        ->addLayer($tileLayer);  // add the tile layer
-
-					// finally render the widget
-					echo Map::widget([
-						'leafLet' => $leaflet,
-						'height' => '900',
-					]);
-					// we could also do
-					// echo $leaflet->widget();
-					?>
+					<?= $this->render('_mapc', [
+							'center' => $liege,
+							'zoom' => (rand(0, 1) == 1 ? 8 : 15), //15=close, 8=about 150km around
+							'height' => 900,
+						]) ?> 
 					</div>
 				</div>
 			</div>
@@ -226,6 +203,14 @@ $this->title = 'GIP Dashboard';
 		  -->
 		<div class="col-lg-2">
 			
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card card-bordered style-default-bright ">
+						<img src="<?= $asset->baseUrl.'/images/liege.png' ?>" width="100%" style="padding: 4px;">
+					</div>
+				</div>
+			</div>
+
 			<div class="row">
 				<div class="col-lg-12">
 					<?= Movement::widget([
@@ -350,7 +335,7 @@ $this->title = 'GIP Dashboard';
 	  -->
 	<div class="cd-panel from-right">
 		<header class="cd-panel-header">
-			<h1>GIP ALERTS</h1>
+			<h1><img src="<?= $asset->baseUrl.'/images/gip.png' ?>" height="40px" style="padding-right: 20px;">GIP ALERTS</h1>
 			<a href="#0" class="cd-panel-close">Close</a>
 		</header>
 

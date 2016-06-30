@@ -226,7 +226,7 @@ html, body {
   left: 20px;
   height: 3px;
   width: 20px;
-  background-color: #424f5c;
+  background-color: #db2004;
   /* this fixes a bug where pseudo elements are slighty off position */
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
