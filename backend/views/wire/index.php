@@ -186,7 +186,7 @@ $this->title = 'GIP Dashboard';
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="card card-bordered style-default-bright">
-					<?= $this->render('_mapc', [
+					<?= $this->render('_mapj', [
 							'center' => $liege,
 							'zoom' => (rand(0, 1) == 1 ? 8 : 15), //15=close, 8=about 150km around
 							'height' => 900,

@@ -113,7 +113,7 @@ function indent($json) {
 				'attribute' => 'source_id',
 				'items' => Type::forClass(Wire::className().':source'),
             	'type'=> DetailView::INPUT_DROPDOWN_LIST,
-				'value' => $model->type ? $model->type->display_name : '',
+				'value' => $model->source ? $model->source->display_name : '',
 			],
            	[
 				'attribute' => 'type_id',

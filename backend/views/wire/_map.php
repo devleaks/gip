@@ -17,6 +17,9 @@ $mapCenter = new LatLng(['lat' => $center['lat'], 'lng' => $center['lon']]);
 $marker = new Marker(['latLng' => $mapCenter, 'popupContent' => 'Hi!']);
 
 // The Tile Layer (very important)
+/*
+https://api.mapbox.com/styles/v1/pmareschal/ciq2b8y34004mcqm702io07os/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicG1hcmVzY2hhbCIsImEiOiJjaWZmYjhwN3cwMGpudGVseDI3c214czgyIn0.z3SZzxcqSANBIACOMWDfbQ
+*/
 $tileLayer = new TileLayer([
    'urlTemplate' => 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
     'clientOptions' => [

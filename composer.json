@@ -94,7 +94,9 @@
         "bower-asset/leaflet-map": "^1.2",
         "bower-asset/iron-ajax": "^1.2",
         "bower-asset/paper-elements": "^1.0",
-        "bower-asset/promise-polyfill": "1.0.0"
+        "bower-asset/promise-polyfill": "1.0.0",
+        "bower-asset/mapbox.js": "^2.4",
+        "perspectivain/yii2-mapbox-leaflet-helper": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
