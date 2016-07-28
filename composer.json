@@ -96,7 +96,9 @@
         "bower-asset/paper-elements": "^1.0",
         "bower-asset/promise-polyfill": "1.0.0",
         "bower-asset/mapbox.js": "^2.4",
-        "perspectivain/yii2-mapbox-leaflet-helper": "dev-master"
+        "perspectivain/yii2-mapbox-leaflet-helper": "dev-master",
+        "bower-asset/gridmanager.js": "^0.3.1",
+        "bower-asset/dynatable": "^0.3.1"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

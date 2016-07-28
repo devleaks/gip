@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d179bbee9b6f2e6b93f43bc17e28c20e",
-    "content-hash": "be16c6086f1935261c595d8b78dc0751",
+    "hash": "7107f597e7443faac10bbdea26dd7b1a",
+    "content-hash": "2d55848fa4b22e2172ba120d2338e7a3",
     "packages": [
         {
             "name": "2amigos/yii2-chartjs-widget",
@@ -338,20 +338,20 @@
         },
         {
             "name": "bower-asset/bootstrap",
-            "version": "v3.3.5",
+            "version": "v3.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "16b48259a62f576e52c903c476bd42b90ab22482"
+                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/16b48259a62f576e52c903c476bd42b90ab22482",
-                "reference": "16b48259a62f576e52c903c476bd42b90ab22482",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/0b9c4a4007c44201dce9a6cc1a38407005c26c86",
+                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86",
                 "shasum": ""
             },
             "require": {
-                "bower-asset/jquery": ">=1.9.1"
+                "bower-asset/jquery": ">=1.9.1,<=3"
             },
             "type": "bower-asset-library",
             "extra": {
@@ -387,25 +387,30 @@
         },
         {
             "name": "bower-asset/bootstrap-material-design",
-            "version": "0.1.5",
+            "version": "v0.5.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FezVrasta/bootstrap-material-design.git",
-                "reference": "0c6f8f3e9d48adef6add4fa3454f587324d2f2ab"
+                "reference": "6625d42cc2f591ea7bc05ea0f95a2d091c3a1865"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FezVrasta/bootstrap-material-design/zipball/0c6f8f3e9d48adef6add4fa3454f587324d2f2ab",
-                "reference": "0c6f8f3e9d48adef6add4fa3454f587324d2f2ab",
+                "url": "https://api.github.com/repos/FezVrasta/bootstrap-material-design/zipball/6625d42cc2f591ea7bc05ea0f95a2d091c3a1865",
+                "reference": "6625d42cc2f591ea7bc05ea0f95a2d091c3a1865",
                 "shasum": ""
+            },
+            "require": {
+                "bower-asset/bootstrap": "~3.3.6",
+                "bower-asset/bootstrap-sass": "~3.3.6",
+                "bower-asset/jquery": ">=2.2.0,<3.0.0"
             },
             "type": "bower-asset-library",
             "extra": {
                 "bower-asset-main": [
-                    "dist/css/material.min.css",
-                    "dist/js/material.min.js",
-                    "dist/css/ripples.min.css",
-                    "dist/js/ripples.min.js"
+                    "dist/css/bootstrap-material-design.css",
+                    "dist/js/material.js",
+                    "dist/css/ripples.css",
+                    "dist/js/ripples.js"
                 ],
                 "bower-asset-ignore": [
                     "test",
@@ -436,6 +441,50 @@
                 "google",
                 "material",
                 "theme"
+            ]
+        },
+        {
+            "name": "bower-asset/bootstrap-sass",
+            "version": "v3.3.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/bootstrap-sass.git",
+                "reference": "5d6b2ebba0c2a5885ce2f0e01e9218db3d3b5e47"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/bootstrap-sass/zipball/5d6b2ebba0c2a5885ce2f0e01e9218db3d3b5e47",
+                "reference": "5d6b2ebba0c2a5885ce2f0e01e9218db3d3b5e47",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.9.1,<=3"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "assets/stylesheets/_bootstrap.scss",
+                    "assets/javascripts/bootstrap.js"
+                ],
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "lib",
+                    "tasks",
+                    "templates",
+                    "test",
+                    "*.gemspec",
+                    "Rakefile",
+                    "Gemfile"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "bootstrap-sass is a Sass-powered version of Bootstrap 3, ready to drop right into your Sass powered applications.",
+            "keywords": [
+                "bootstrap",
+                "sass",
+                "twbs"
             ]
         },
         {
@@ -585,6 +634,52 @@
             "type": "bower-asset-library"
         },
         {
+            "name": "bower-asset/dynatable",
+            "version": "v0.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alfajango/jquery-dynatable.git",
+                "reference": "dd1a0361d6e75c9edd88db07bbb4d8688a665b49"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alfajango/jquery-dynatable/zipball/dd1a0361d6e75c9edd88db07bbb4d8688a665b49",
+                "reference": "dd1a0361d6e75c9edd88db07bbb4d8688a665b49",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.6"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "jquery.dynatable.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "CONTRIBUTING.md",
+                    "node_modules",
+                    "vendor",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                {
+                    "name": "AGPL",
+                    "url": "http://www.dynatable.com/license"
+                },
+                {
+                    "name": "Proprietary License",
+                    "url": "http://www.dynatable.com/license"
+                }
+            ],
+            "description": "A funner, semantic, HTML5+JSON, interactive table plugin.",
+            "keywords": [
+                "datatables",
+                "dynamic",
+                "table"
+            ]
+        },
+        {
             "name": "bower-asset/font-roboto",
             "version": "v1.0.1",
             "source": {
@@ -700,6 +795,30 @@
                 "html5"
             ],
             "time": "2016-06-15 16:57:08"
+        },
+        {
+            "name": "bower-asset/gridmanager.js",
+            "version": "0.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/neokoenig/jQuery-gridmanager.git",
+                "reference": "9aefade61f3c6b4d56a70c3d47add92dfb05d204"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/neokoenig/jQuery-gridmanager/zipball/9aefade61f3c6b4d56a70c3d47add92dfb05d204",
+                "reference": "9aefade61f3c6b4d56a70c3d47add92dfb05d204",
+                "shasum": ""
+            },
+            "require-dev": {
+                "bower-asset/bootstrap": "~3.2.0",
+                "bower-asset/ckeditor": "~4.4.3",
+                "bower-asset/foundation": "~5.3.1",
+                "bower-asset/jquery": "~2.1.1",
+                "bower-asset/jquery-ui": "~1.11.0",
+                "bower-asset/qunit": "~1.12.0"
+            },
+            "type": "bower-asset-library"
         },
         {
             "name": "bower-asset/gridstack",
@@ -2034,16 +2153,16 @@
         },
         {
             "name": "bower-asset/lodash",
-            "version": "4.13.1",
+            "version": "4.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lodash/lodash.git",
-                "reference": "40ac55acb6a6966274929b33e071bfd73f8f5bd3"
+                "reference": "7a42a9dee2ccc4bf3875f5fa48ea435ad5654188"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lodash/lodash/zipball/40ac55acb6a6966274929b33e071bfd73f8f5bd3",
-                "reference": "40ac55acb6a6966274929b33e071bfd73f8f5bd3",
+                "url": "https://api.github.com/repos/lodash/lodash/zipball/7a42a9dee2ccc4bf3875f5fa48ea435ad5654188",
+                "reference": "7a42a9dee2ccc4bf3875f5fa48ea435ad5654188",
                 "shasum": ""
             },
             "type": "bower-asset-library"
@@ -4949,16 +5068,16 @@
         },
         {
             "name": "dmstr/yii2-adminlte-asset",
-            "version": "2.3.2",
+            "version": "2.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmstr/yii2-adminlte-asset.git",
-                "reference": "38a42688b836e256285765a7fd2f1cbe739d40d2"
+                "reference": "a1330f2f678d66d8ce2f8acb6fb9ce60a4614c60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmstr/yii2-adminlte-asset/zipball/38a42688b836e256285765a7fd2f1cbe739d40d2",
-                "reference": "38a42688b836e256285765a7fd2f1cbe739d40d2",
+                "url": "https://api.github.com/repos/dmstr/yii2-adminlte-asset/zipball/a1330f2f678d66d8ce2f8acb6fb9ce60a4614c60",
+                "reference": "a1330f2f678d66d8ce2f8acb6fb9ce60a4614c60",
                 "shasum": ""
             },
             "require": {
@@ -4993,13 +5112,19 @@
                     "email": "et.coder@gmail.com"
                 }
             ],
-            "description": "Backend theme for Yii2 Framework",
+            "description": "AdminLTE backend theme asset bundle for Yii 2.0 Framework",
             "keywords": [
                 "AdminLTE",
+                "admin",
+                "asset",
+                "backend",
+                "css",
                 "extension",
+                "less",
+                "theme",
                 "yii2"
             ],
-            "time": "2016-07-13 07:44:30"
+            "time": "2016-07-28 03:57:05"
         },
         {
             "name": "dmstr/yii2-bootstrap",
@@ -8153,16 +8278,16 @@
         },
         {
             "name": "mootensai/yii2-relation-trait",
-            "version": "1.1.3",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mootensai/yii2-relation-trait.git",
-                "reference": "0cecc6a99aec95d816e82b60e1a9532524cfde30"
+                "reference": "b41ca3a5a14b0e995eb4b8cdb87dab8e1775ed11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mootensai/yii2-relation-trait/zipball/0cecc6a99aec95d816e82b60e1a9532524cfde30",
-                "reference": "0cecc6a99aec95d816e82b60e1a9532524cfde30",
+                "url": "https://api.github.com/repos/mootensai/yii2-relation-trait/zipball/b41ca3a5a14b0e995eb4b8cdb87dab8e1775ed11",
+                "reference": "b41ca3a5a14b0e995eb4b8cdb87dab8e1775ed11",
                 "shasum": ""
             },
             "require": {
@@ -8199,7 +8324,7 @@
                 "transaction",
                 "yii2"
             ],
-            "time": "2016-06-11 04:43:11"
+            "time": "2016-07-08 09:29:26"
         },
         {
             "name": "mootensai/yii2-uuid-behavior",

@@ -42,6 +42,17 @@ class DashboardController extends Controller
     }
 
     /**
+     * Displays a single Background model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDesign($id)
+    {
+        $model = $this->findModel($id);
+        return $this->render('design', ['model' => $model]);
+    }
+
+    /**
      * Finds the Background model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
@@ -72,6 +83,29 @@ class DashboardController extends Controller
         return Json::encode(['error' => 'Giplet not found']);
 	}
 
+	/**
+	 * Add access rules if needed for getMessage
+	 */
+    public function actionGetGiplets() {
+		$giplets = [];
+		foreach(Giplet::find()->orderBy('name')
+							->each() as $model) {
+			$giplets[] = [
+				'id' => $model->id,
+				'name' => $model->name,
+				'displayName' => $model->display_name,
+				'type' => $model->type->display_name,
+			];
+		}
+		Yii::$app->response->format = Response::FORMAT_JSON;
+        return Json::encode($giplets);
+    }
 
+
+	public function actionSaveLayout($id) {
+        $model = $this->findModel($id);
+		$content = Yii::$app->request->post('content');
+		Yii::trace($content, 'DashboardController::actionSaveLayout');
+	}
 
 }
