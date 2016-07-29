@@ -6,6 +6,10 @@ use Yii;
 use common\models\Dashboard;
 use common\models\search\Dashboard as DashboardSearch;
 use common\models\DashboardGiplet;
+use common\models\Giplet;
+
+use yii\web\Response;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -135,6 +139,47 @@ class DashboardController extends Controller
 			Yii::$app->session->setFlash('danger', Yii::t('gip', 'Could not add giplet.'));
             return $this->redirect(Yii::$app->request->referrer);
         }
+	}
+
+    /**
+     * Displays a single Background model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDesign($id)
+    {
+        $model = $this->findModel($id);
+        return $this->render('design', ['model' => $model]);
+    }
+
+	/**
+	 * Add access rules if needed for getMessage
+	 */
+    public function actionGetGiplets() {
+		$giplets = [];
+		foreach(Giplet::find()->orderBy('name')
+							->each() as $model) {
+			$giplets[] = [
+				'id' => $model->id,
+				'name' => $model->name,
+				'displayName' => $model->display_name,
+				'type' => $model->type->display_name,
+			];
+		}
+		Yii::$app->response->format = Response::FORMAT_JSON;
+        return Json::encode($giplets);
+    }
+
+
+	public function actionSaveLayout($id) {
+        $model = $this->findModel($id);
+		$content = Yii::$app->request->post('content');
+		if($content != '') {
+			$model->layout = $content;
+			$model->save();
+			// return success::model saved
+		}
+		// return warning or error::model not saved
 	}
 
 

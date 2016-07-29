@@ -30,6 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
         	'display_name',
             'description',
+			[
+		        'attribute' => 'layout',
+				'format' => 'raw',
+				'value' => Html::a('<span class="glyphicon glyphicon-pencil"></span> '.Yii::t('yii', 'Edit'),
+									['design','id' => $model->id],
+									['title' => Yii::t('yii', 'Modify layout'), 'target' => '_blank']
+				)
+			],
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],

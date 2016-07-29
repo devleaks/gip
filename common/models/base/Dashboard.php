@@ -3,7 +3,6 @@
 namespace common\models\base;
 
 use Yii;
-use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
@@ -14,7 +13,7 @@ use yii\behaviors\BlameableBehavior;
  * @property string $name
  * @property string $display_name
  * @property string $description
- * @property string $row_desc
+ * @property string $layout
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_by
@@ -24,6 +23,8 @@ use yii\behaviors\BlameableBehavior;
  */
 class Dashboard extends \yii\db\ActiveRecord
 {
+    use \mootensai\relation\RelationTrait;
+
     /**
      * @inheritdoc
      */
@@ -31,9 +32,10 @@ class Dashboard extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'display_name'], 'required'],
+            [['layout'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['created_by', 'updated_by'], 'integer'],
-            [['name', 'display_name', 'row_desc'], 'string', 'max' => 40],
+            [['name', 'display_name'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
             [['name'], 'unique'],
             [['display_name'], 'unique']
@@ -58,10 +60,10 @@ class Dashboard extends \yii\db\ActiveRecord
             'name' => Yii::t('gip', 'Name'),
             'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
-            'row_desc' => Yii::t('gip', 'Row Desc'),
+            'layout' => Yii::t('gip', 'Layout'),
         ];
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -69,7 +71,7 @@ class Dashboard extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\common\models\DashboardGiplet::className(), ['dashboard_id' => 'id']);
     }
-
+    
 /**
      * @inheritdoc
      * @return type mixed
@@ -77,13 +79,13 @@ class Dashboard extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            [
+            'timestamp' => [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'created_at',
                 'updatedAtAttribute' => 'updated_at',
                 'value' => new \yii\db\Expression('NOW()'),
             ],
-            [
+            'blameable' => [
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => 'updated_by',

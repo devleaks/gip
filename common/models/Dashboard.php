@@ -10,13 +10,22 @@ use \common\models\base\Dashboard as BaseDashboard;
  */
 class Dashboard extends BaseDashboard
 {
-
     /**
-     * @return \yii\db\ActiveQuery
+     * @inheritdoc
      */
-    public function getGiplets()
+    public function rules()
     {
-	    return $this->hasMany(Giplet::className(), ['id' => 'giplet_id'])->viaTable(DashboardGiplet::tableName(), ['dashboard_id' => 'id']);
+        return array_replace_recursive(parent::rules(),
+	    [
+            [['name', 'display_name'], 'required'],
+            [['layout'], 'string'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['created_by', 'updated_by'], 'integer'],
+            [['name', 'display_name'], 'string', 'max' => 40],
+            [['description'], 'string', 'max' => 2000],
+            [['name'], 'unique'],
+            [['display_name'], 'unique']
+        ]);
     }
-
+	
 }

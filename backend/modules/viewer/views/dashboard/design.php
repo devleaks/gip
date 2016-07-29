@@ -10,7 +10,7 @@ use yii\helpers\Html;
  */
 
 $this->title = $model->display_name;
-$this->params['breadcrumbs'][] = Yii::t('gip', 'Dashboard Design');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Dashboards'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 DashboardDesignAsset::register($this);
 
@@ -44,7 +44,7 @@ DashboardDesignAsset::register($this);
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 	
-	<div id="gridcanvas"></div>
+	<div id="gridcanvas"><?= $model->layout ?></div>
 
 </div>
 <script type="text/javascript">
