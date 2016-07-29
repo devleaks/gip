@@ -216,3 +216,21 @@ div.card .drag:hover {
 pre.renderjson {
 	text-align: left;
 }
+/* dashboard editor */
+div#gridcanvas div.giplet,
+.kv-attribute div.giplet,
+.kv-form-attribute div.giplet {
+	border: 1px dashed #db2004;
+	color: #db2004;
+	text-align: center;
+	font-weight: bolder;
+}
+th a, th a:hover, th a:active {
+	color: inherit;
+}
+button.label.label-primary.add-giplet {
+	border-style: none;
+}
+.dynatable-active-page {
+	background: #3c8dbc;
+}

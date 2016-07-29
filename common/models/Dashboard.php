@@ -28,4 +28,12 @@ class Dashboard extends BaseDashboard
         ]);
     }
 	
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGiplets()
+    {
+	    return $this->hasMany(Giplet::className(), ['id' => 'giplet_id'])->viaTable('dashboard_giplet', ['dashboard_id' => 'id']);
+    }
+    
 }

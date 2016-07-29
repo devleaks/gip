@@ -32,10 +32,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'description',
 			[
 		        'attribute' => 'layout',
+				'displayOnly' => true,
 				'format' => 'raw',
-				'value' => Html::a('<span class="glyphicon glyphicon-pencil"></span> '.Yii::t('yii', 'Edit'),
+				'value' => $model->layout.'<hr/>'.
+							Html::a('<span class="glyphicon glyphicon-pencil"></span> '.Yii::t('yii', 'Edit Layout'),
 									['design','id' => $model->id],
-									['title' => Yii::t('yii', 'Modify layout'), 'target' => '_blank']
+									['title' => Yii::t('yii', 'Modify layout in separate window')]
 				)
 			],
         ],

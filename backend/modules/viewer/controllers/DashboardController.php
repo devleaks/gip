@@ -155,15 +155,17 @@ class DashboardController extends Controller
 	/**
 	 * Add access rules if needed for getMessage
 	 */
-    public function actionGetGiplets() {
+    public function actionGetGiplets($id) {
+        $model = $this->findModel($id);
+	
 		$giplets = [];
-		foreach(Giplet::find()->orderBy('name')
-							->each() as $model) {
+		foreach($model->getGiplets()->orderBy('name')->each() as $model) {
 			$giplets[] = [
 				'id' => $model->id,
 				'name' => $model->name,
 				'displayName' => $model->display_name,
 				'type' => $model->type->display_name,
+				'typeId' => $model->type->name,
 			];
 		}
 		Yii::$app->response->format = Response::FORMAT_JSON;

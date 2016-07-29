@@ -9,9 +9,10 @@ use yii\helpers\Html;
  * @var common\models\search\Dashboard $searchModel
  */
 
-$this->title = $model->display_name;
+$this->title = $model->display_name . ' — ' . Yii::t('gip', 'Edit Layout');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Dashboards'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => $model->display_name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = Yii::t('gip', 'Edit Layout');
 DashboardDesignAsset::register($this);
 
 ?>
@@ -52,71 +53,82 @@ DashboardDesignAsset::register($this);
 
 var GIPLETS = null;
 
-var curr_div = null, curr_giplet = null;
+var curr_div = null;
 
-function select_giplet(container, btnElem) {
+function addGiplet(giplet_id) {
+	console.log('adding giplet id '+giplet_id);
+	var getGiplet = function(id) {
+		for(var i = 0; i < GIPLETS.length; i++) {
+			if(GIPLETS[i]['id'] == id)
+				return GIPLETS[i];
+		} // else not found:
+		return null;
+	};	
+	var giplet = getGiplet(giplet_id);
+	if(giplet != null) { // if giplet found		
+	    $(('.gm-tools:last'),curr_div)
+			.before(elem = $('<div>')
+				.addClass('gm-editable-region gm-content-draggable')
+				.append( $('<div>').addClass('gm-controls-element')
+					.append( $('<a>').addClass('gm-move fa fa-arrows')
+						.attr('href', '#')
+						.attr('title', 'Move')
+					)
+					.append( $('<a>').addClass('gm-delete fa fa-times')
+						.attr('href', '#')
+						.attr('title', 'Delete')
+					)
+				)
+				.append( $('<div>')
+					.addClass('gm-content')
+					.append(// begin GIPlet markup
+						$('<div>')
+							.attr('id', "giplet-"+giplet['name'].toLowerCase()) // should call standard sanitize function
+							.data('giplet-name', giplet['name'])
+							.data('giplet-type', giplet['typeId'])
+							.addClass('giplet')
+							.html( $('<p>').html(giplet['displayName']+' ('+giplet['type']+')' ) )
+					)		// end GIPlet markup
+				)
+			)
+			.before('<!--/gm-editable-region-->')
+			.prev()
+			.before('<!--gm-editable-region-->');
+		curr_div = null;
+	}
+}
+
+
+function gridmanager_select_giplet(container, btnElem) { // function must be lower case letter only.
 	curr_div = container;
 	$('#gipletmodal').modal('show');
 }
 
-function addGipletToTable(rowIndex, record, columns, cellWriter) {
-  var str;
-  str = '<tr><td>'+record.displayName+'</td><td>'+record.type+'</td>'+
-		'<td><button type="button" class="label label-primary add-giplet" data-giplet="'+record.id+'" data-dismiss="modal">Select</button></td></tr>';
-  return str;
-}
-
-function getGiplet(id) {
-	for(var i = 0; i < GIPLETS.length; i++) {
-		if(GIPLETS[i]['id'] == id)
-			return GIPLETS[i];
-	} // else not found:
-	return null;
-}
-
-function addGiplet() {
-	var cTagOpen = '<!--gm-giplet-region-->',
-        cTagClose = '<!--/gm-giplet-region-->',
-        elem = null,
-		gm = $.gridmanager;
-    $(('.gm-tools:last'),curr_div)
-		.before(elem = $('<div>')
-		.addClass('gm-editable-region gm-content-draggable')
-		.append('<div class="gm-controls-element"> <a class="gm-move fa fa-arrows" href="#" title="Move"></a> <a class="gm-delete fa fa-times" href="#" title="Delete"></a> </div>'
-+'<div class="gm-content"><div id="giplet-'+curr_giplet['name'].toLowerCase()+'" class="giplet"><p>'+curr_giplet['displayName']+' ('+curr_giplet['type']+')</p></div></div>')).before(cTagClose).prev().before(cTagOpen);
-
-	curr_div = null;
-	curr_giplet = null;
-}
-/**
-<!--gm-giplet-region-->
-<div class="gm-giplet-region gm-content-draggable">
-	<div class="gm-controls-element">
-	<a class="gm-move fa fa-arrows" href="#" title="Move"></a>
-	<a class="gm-delete fa fa-times" href="#" title="Delete"></a>
-	</div>
-	<div class="gm-content">
-		<p>GIPlet Name</p>
-	</div>
-</div>
-<!--gm-giplet-region-->
-**/
 jQuery(document).ready(function($){
+	var gridcanvas = "#gridcanvas";
 	
-	$("#gridcanvas").gridmanager({
+	var gm = $(gridcanvas).gridmanager({
 	    customControls: {
-	        global_col: [{ callback: select_giplet, loc: 'top' , btnLabel: ' Add a GIPlet', iconClass: 'fa fa-plane' }]
+	        global_col: [{
+				callback: gridmanager_select_giplet,
+				btnLabel: ' Add a GIPlet...',
+				title: 'Add a GIPlet to this zone',
+				iconClass: 'fa fa-plane'
+			}]
 	    },
 		colSelectEnabled: false,
-		editableRegionEnabled: false,
+		editableRegionEnabled: true, // must be on to append/remove editing elements
 		colCustomClasses: [],
 		rowCustomClasses: [],
 		remoteURL: 'save-layout?id='+<?=$model->id?>,
 	    debug : 1
-    });
+    }).data('gridmanager');
 
 	$.ajax({
 		url: 'get-giplets',
+		data: {
+			id: <?=$model->id?>
+		},
 		success: function(data) {
 			GIPLETS = JSON.parse(data);
 			
@@ -125,17 +137,15 @@ jQuery(document).ready(function($){
 					records: GIPLETS
 				},
 				writers: {
-				    _rowWriter: addGipletToTable
-				},
+				    _rowWriter: function (rowIndex, record, columns, cellWriter) {
+						return '<tr><td>'+record.displayName+'</td><td>'+record.type+'</td>'
+							  +'<td><button type="button" class="label label-primary add-giplet" data-giplet="'+record.id+'" data-dismiss="modal">Select</button></td></tr>';;
+					}
+				}
 			});			  
 			
 			$(".add-giplet").click(function() {
-				giplet_id = $(this).data('giplet');
-				curr_giplet = getGiplet(giplet_id)
-				
-				console.log('adding giplet id '+giplet_id);
-				console.log(curr_giplet);
-				addGiplet();
+				addGiplet($(this).data('giplet'));
 			});
 
 			console.log(GIPLETS);
@@ -144,10 +154,6 @@ jQuery(document).ready(function($){
 			console.log(e);
 		}
 	});
-	
-	
-	
-
 	
 });
 
