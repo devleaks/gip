@@ -5046,7 +5046,6 @@
         <overviewPanelHidden><![CDATA[0]]></overviewPanelHidden>
         <pageBoundariesVisible><![CDATA[0]]></pageBoundariesVisible>
         <PageGridVisible><![CDATA[1]]></PageGridVisible>
-<<<<<<< HEAD
         <RightSidebarWidth><![CDATA[1327.000000]]></RightSidebarWidth>
         <sidebarIndex><![CDATA[5]]></sidebarIndex>
         <snapToGrid><![CDATA[1]]></snapToGrid>
@@ -5057,18 +5056,6 @@
         <windowLocationY><![CDATA[310.000000]]></windowLocationY>
         <windowScrollOrigin><![CDATA[{9, 995}]]></windowScrollOrigin>
         <windowWidth><![CDATA[1604.000000]]></windowWidth>
-=======
-        <RightSidebarWidth><![CDATA[1457.000000]]></RightSidebarWidth>
-        <sidebarIndex><![CDATA[1]]></sidebarIndex>
-        <snapToGrid><![CDATA[1]]></snapToGrid>
-        <SourceSidebarWidth><![CDATA[312.000000]]></SourceSidebarWidth>
-        <uid><![CDATA[E5818989-9506-4B01-B94A-D27BEDD111DB]]></uid>
-        <windowHeight><![CDATA[767.000000]]></windowHeight>
-        <windowLocationX><![CDATA[50.000000]]></windowLocationX>
-        <windowLocationY><![CDATA[223.000000]]></windowLocationY>
-        <windowScrollOrigin><![CDATA[{21, 2202}]]></windowScrollOrigin>
-        <windowWidth><![CDATA[1458.000000]]></windowWidth>
->>>>>>> origin/master
     </SQLDocumentInfo>
     <AllowsIndexRenamingOnInsert><![CDATA[1]]></AllowsIndexRenamingOnInsert>
     <containerName><![CDATA[model controller orginal container]]></containerName>
