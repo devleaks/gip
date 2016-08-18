@@ -8,6 +8,7 @@ use common\models\search\Dashboard as DashboardSearch;
 use common\models\DashboardGiplet;
 use common\models\Giplet;
 
+use yii\filters\AccessControl;
 use yii\web\Response;
 use yii\helpers\Json;
 use yii\web\Controller;
@@ -152,6 +153,18 @@ class DashboardController extends Controller
         return $this->render('design', ['model' => $model]);
     }
 
+    /**
+     * Displays a single Background model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionRender($id)
+    {
+		$this->layout = '/wire';
+        $model = $this->findModel($id);
+        return $this->render('render', ['model' => $model]);
+    }
+
 	/**
 	 * Add access rules if needed for getMessage
 	 */
@@ -166,6 +179,7 @@ class DashboardController extends Controller
 				'displayName' => $model->display_name,
 				'type' => $model->type->display_name,
 				'typeId' => $model->type->name,
+				'tag' => $model->type->element_name,
 			];
 		}
 		Yii::$app->response->format = Response::FORMAT_JSON;

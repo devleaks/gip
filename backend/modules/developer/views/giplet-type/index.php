@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         	'display_name',
             'description',
+            'element_name',
 
             [
                 'class' => 'kartik\grid\ActionColumn',

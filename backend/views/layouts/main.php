@@ -16,11 +16,10 @@ if (Yii::$app->controller->action->id === 'login') {
     );
 } else {
 
-	/*if(Yii::$app->user->isGuest)
-	    echo Yii::$app->getResponse()->redirectt(['/user/security/login']);
+	if(Yii::$app->user->isGuest)
+		return Yii::$app->getResponse()->redirect(['/user/security/login']);
 	else if(!in_array(Yii::$app->user->identity->role, ['admin', 'scorer', 'starter']))
-	    echo Yii::$app->getResponse()->redirect(['/user/security/login']);
-	*/
+	 	return Yii::$app->getResponse()->redirect(['/user/security/login']);
 
     if (class_exists('backend\assets\AppAsset')) {
         backend\assets\AppAsset::register($this);
@@ -68,4 +67,5 @@ if (Yii::$app->controller->action->id === 'login') {
     </body>
     </html>
     <?php $this->endPage() ?>
+
 <?php } ?>

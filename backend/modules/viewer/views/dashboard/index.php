@@ -27,15 +27,22 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => 'kartik\grid\ActionColumn',
 				'noWrap' => true,
-				'template' => '{view} {update} {delete} {render}',
+				'template' => '{view} {update} {delete} {render} {test}',
                 'buttons' => [
                 	'update' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['/viewer/dashboard/view','id' => $model->id,'edit'=>'t']), [
-                                                    'title' => Yii::t('yii', 'Edit'),
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>',
+													Yii::$app->urlManager->createUrl(['/viewer/dashboard/view','id' => $model->id,'edit'=>'t']),
+													['title' => Yii::t('yii', 'Edit'),
                                                   ]);},
                 	'render' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-picture"></span>', Yii::$app->urlManager->createUrl(['/dashboard/view','id' => $model->id]), [
-                                                    'title' => Yii::t('yii', 'Render'),
+                                    return Html::a('<span class="glyphicon glyphicon-picture"></span>',
+													Yii::$app->urlManager->createUrl(['/viewer/dashboard/render','id' => $model->id]),
+													['title' => Yii::t('yii', 'Render'),
+                                                  ]);},
+                	'test' => function ($url, $model) {
+                                    return Html::a('<span class="glyphicon glyphicon-play-circle"></span>',
+													Yii::$app->urlManager->createUrl(['/dashboard/view','id' => $model->id]),
+													['title' => Yii::t('yii', 'Test'),
                                                   ]);}
                 ],
             ],

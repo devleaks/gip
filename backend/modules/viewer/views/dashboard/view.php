@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	<?php
 			$dataProvider = new ActiveDataProvider([
-				'query' => $model->getDashboardGiplets(),
+				'query' => $model->getDashboardGiplets()->orderBy('position'),
 			]);
 	        echo $this->render('../dashboard-giplet/_list', [
 	            'dataProvider' => $dataProvider,

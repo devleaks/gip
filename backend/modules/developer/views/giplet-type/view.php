@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
         	'display_name',
             'description',
+			'element_name',
 			'factory'
         ],
         'deleteOptions'=>[

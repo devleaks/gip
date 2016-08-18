@@ -3,7 +3,6 @@
 namespace common\models\base;
 
 use Yii;
-use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
@@ -19,9 +18,9 @@ use yii\behaviors\BlameableBehavior;
  * @property integer $created_by
  * @property integer $updated_by
  * @property string $factory
+ * @property string $element_name
  *
  * @property \common\models\Giplet[] $giplets
- * @property \common\models\Giplet1[] $giplet1s
  */
 class GipletType extends \yii\db\ActiveRecord
 {
@@ -34,7 +33,7 @@ class GipletType extends \yii\db\ActiveRecord
             [['name', 'display_name'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
             [['created_by', 'updated_by'], 'integer'],
-            [['name', 'display_name'], 'string', 'max' => 40],
+            [['name', 'display_name', 'element_name'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
             [['factory'], 'string', 'max' => 80],
             [['name'], 'unique'],
@@ -61,9 +60,10 @@ class GipletType extends \yii\db\ActiveRecord
             'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
             'factory' => Yii::t('gip', 'Factory'),
+            'element_name' => Yii::t('gip', 'Element Name'),
         ];
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -71,15 +71,7 @@ class GipletType extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\common\models\Giplet::className(), ['giplet_type_id' => 'id']);
     }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getGiplet1s()
-    {
-        return $this->hasMany(\common\models\Giplet1::className(), ['giplet_type_id' => 'id']);
-    }
-
+    
 /**
      * @inheritdoc
      * @return type mixed
@@ -87,13 +79,13 @@ class GipletType extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            [
+            'timestamp' => [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'created_at',
                 'updatedAtAttribute' => 'updated_at',
                 'value' => new \yii\db\Expression('NOW()'),
             ],
-            [
+            'blameable' => [
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => 'updated_by',

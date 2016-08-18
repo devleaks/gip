@@ -19,6 +19,7 @@ use yii\widgets\Pjax;
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn'],
 
+        	'position',
 			[
 				'attribute' => 'giplet.display_name',
 				'label' => Yii::t('gip', 'Giplet Name'),

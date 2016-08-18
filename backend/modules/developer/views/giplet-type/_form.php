@@ -27,6 +27,8 @@ use kartik\datecontrol\DateControl;
 
             'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
 
+            'element_name'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Element Name...', 'maxlength'=>40]],
+
             'factory'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Factory Class...', 'maxlength'=>2000]],
 
         ]
