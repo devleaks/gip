@@ -82,22 +82,10 @@ function addGiplet(giplet_id) {
 				.append( $('<div>')
 					.addClass('gm-content')
 					.append(// begin GIPlet markup
-						/*
-						$('<div>')
-							.attr('id', "giplet-"+giplet['name'].toLowerCase()) // should call standard sanitize function
-							.data('giplet-name', giplet['name'])
-							.data('giplet-type', giplet['typeId'])
+						$("<giplet-"+giplet['typeId']+">")
+							.attr('data-name', giplet['name'])
 							.addClass('giplet')
 							.html( $('<p>').html(giplet['displayName']+' ('+giplet['type']+')' ) )
-						*/
-						$('<div>')
-							.addClass('giplet')
-							.append( // wrap polymer elements into regular div for gridmanager
-							$('<gip-'+giplet['tag']+'>')
-								.attr('id', "giplet-"+giplet['name']) // should call standard sanitize function
-								.data('giplet-type', giplet['typeId'])
-								.html( $('<p>').html(giplet['displayName']+' ('+giplet['type']+')' ) )
-						)
 					)		// end GIPlet markup
 				)
 			)

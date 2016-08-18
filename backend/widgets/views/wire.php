@@ -89,6 +89,7 @@ jQuery(document).ready(function($){
 		// More
 		numWords: 50,
 		dateReminder: 3, // minutes
+		growl_level: 3,	// above this priority, messages are growled.
 		ellipsestext: '<i class="fa fa-ellipsis-h"></i>',
 		moretext: '<i class="fa fa-angle-double-right"></i>',
 		lesstext: '<i class="fa fa-angle-double-left"></i>',
@@ -315,7 +316,7 @@ jQuery(document).ready(function($){
 		if(['default' , 'error' , 'notice' , 'warning'].indexOf(bs_color) == -1) {
 			bs_color = 'default';
 		}
-		if($(selector).hasClass('gip-growl'))
+		if(message.priority >= opts.growl_level)
 			$.growl({ title: message.subject, message: message.body, style: bs_color });
 	});
 

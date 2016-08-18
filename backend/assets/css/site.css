@@ -217,9 +217,9 @@ pre.renderjson {
 	text-align: left;
 }
 /* dashboard editor */
-div#gridcanvas div.giplet,
-.kv-attribute div.giplet,
-.kv-form-attribute div.giplet {
+div#gridcanvas .giplet,
+.kv-attribute .giplet,
+.kv-form-attribute .giplet {
 	border: 1px dashed #db2004;
 	color: #db2004;
 	text-align: center;
