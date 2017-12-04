@@ -93,7 +93,10 @@ if(defined('YII_DEBUG')) {
         <!-- /.search form -->
         <?= dmstr\widgets\Menu::widget(
             [
-                'options' => ['class' => 'sidebar-menu'],
+                'options' => [
+					'class' => 'sidebar-menu',
+				    'data-widget' => 'tree'
+				],
                 'items' => $items,
             ]
         ) ?>
