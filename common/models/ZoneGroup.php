@@ -14,8 +14,8 @@ class ZoneGroup extends BaseZoneGroup
 
 
 	public function getZones() {
-		if($this->zone_type != '') {
-			return Zone::find()->where(['zone_type' => $this->zone_type]);
+		if($this->type_id != '') {
+			return Zone::find()->where(['type_id' => $this->type_id]);
 		} else {
 		    return $this->hasMany(Zone::className(), ['id' => 'zone_id'])->viaTable('zone_zone_group', ['zone_group_id' => 'id']);
 		}

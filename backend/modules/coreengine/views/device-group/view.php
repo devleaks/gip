@@ -1,5 +1,6 @@
 <?php
 
+use common\models\Type;
 use common\models\Device;
 use common\models\DisplayStatusType;
 
@@ -33,9 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
         	'display_name',
             'description',
 	        [
-	            'attribute'=>'device_type',
+	            'attribute'=>'type_id',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => [''=>'']+Device::getDeviceTypes(),
+				'items' => [''=>'']+Type::forClass(Device::className()),
+				'value' => (isset($model->type_id) && intval($model->type_id) > 0)? $model->type->display_name : '',
+				'label' => Yii::t('app', 'Type')
 	        ],
 	        [
 	            'attribute'=>'display_status_type_id',

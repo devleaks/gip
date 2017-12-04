@@ -1,6 +1,7 @@
 <?php
 
 use common\models\Device;
+use common\models\Type;
 
 use yii\helpers\Html;
 use kartik\detail\DetailView;
@@ -31,9 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
         	'display_name',
             'description',
 	        [
-	            'attribute'=>'device_type',
+	            'attribute'=>'type_id',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => [''=>'']+Device::getDeviceTypes(),
+				'items' => [''=>'']+Type::forClass($model::className()),
+				'value' => (isset($model->type_id) && intval($model->type_id) > 0)? $model->type->display_name : '',
+				'label' => Yii::t('app', 'Type')
 	        ],
         ],
         'deleteOptions'=>[

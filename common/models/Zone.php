@@ -17,4 +17,19 @@ class Zone extends BaseZone
 		}
 		return $zt;
 	}
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getType()
+    {
+        return $this->hasOne(\common\models\Type::className(), ['id' => 'type_id']);
+    }
+
+	public function fields() {
+		$fields = parent::fields();
+		if(isset($fields['id'])) unset ($fields['id']);
+		$fields[] = 'type';
+		return $fields;
+	}
 }

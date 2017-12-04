@@ -152,13 +152,15 @@ class WireController extends Controller
 
 	public static function actionGetMetarLive() {
 		$errors = null;
+		/*
 		$icao = 'EBLG';
 		$html = self::getHtml('http://weather.noaa.gov/pub/data/observations/metar/stations/'.strtoupper($icao).'.TXT');
 		Yii::trace('Got '.$html, 'Metar::update');
 		$metar = rtrim(substr($html, strpos($html, $icao)));
 		if(! $metar) {
 			$errors = 'Metar parsing error';
-		}
+		}*/
+		$metar = 'EBLG 180950Z 27004KT 250V310 9999 SCT007 BKN017 16/14 Q1013 NOSIG';
 		Yii::$app->response->format = Response::FORMAT_JSON;
         return Json::encode(['metar' => $metar, 'e' => $errors]);
 	}

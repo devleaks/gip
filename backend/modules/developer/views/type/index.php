@@ -3,6 +3,7 @@
 use common\models\Type;
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use kartik\grid\GridView;
 use kartik\icons\Icon;
 use yii\widgets\Pjax;
@@ -62,11 +63,19 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => 'kartik\grid\ActionColumn',
 				'noWrap' => true,
+				'template' => '{view} {update} {duplicate} {delete}',
                 'buttons' => [
                 'update' => function ($url, $model) {
                                     return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['developer/type/view','id' => $model->id,'edit'=>'t']), [
                                                     'title' => Yii::t('yii', 'Edit'),
-                                                  ]);}
+                                                  ]);
+									},
+		        'duplicate' => function ($url, $model) {
+		                    	return Html::a('<span class="glyphicon glyphicon-duplicate"></span>',
+										Url::To(['duplicate','id' => $model->id]),
+										['title' => Yii::t('yii', 'Duplicate')]);
+							}
+												
 
                 ],
             ],

@@ -1,5 +1,6 @@
 <?php
 
+use common\models\Type;
 use common\models\Zone;
 
 use yii\helpers\Html;
@@ -30,7 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
         	'display_name',
             'description',
-            'zone_type',
+	        [
+	            'attribute'=>'type_id',
+				'type' => DetailView::INPUT_DROPDOWN_LIST,
+				'items' => [''=>'']+Type::forClass($model::className()),
+				'value' => (isset($model->type_id) && intval($model->type_id) > 0)? $model->type->display_name : '',
+				'label' => Yii::t('app', 'Type')
+	        ],
             'zone_dimension',
             'geometry',
         ],

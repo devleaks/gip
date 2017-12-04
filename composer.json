@@ -39,7 +39,27 @@
         "yiisoft/yii2-swiftmailer": "*",
 		"yiisoft/yii2-apidoc": "*",
         "yiisoft/yii2-jui": "~2.0@dev",
-        "composer/composer": "~1.0@dev",
+        "2amigos/yii2-chartjs-widget": "~2.0",
+		"2amigos/yii2-gallery-widget": "*",
+        "2amigos/yii2-leaflet-extension": "~1.0",
+        "bburim/flot": "dev-master",
+		"bower-asset/chardin.js": "*",
+        "bower-asset/dynatable": "^0.3.1",
+        "bower-asset/gridmanager.js": "^0.3.1",
+        "bower-asset/leaflet-map": "^1.2",
+        "bower-asset/mapbox.js": "^2.4",
+        "bower-asset/weather-widget": "*",
+        "brandonwamboldt/utilphp": "1.0.*",
+        "dektrium/yii2-user": "*",
+        "devgroup/yii2-jsoneditor": "*",
+        "devleaks/yii2-sieve": "*",
+        "devleaks/yii2-weather": "dev-master",
+        "dmstr/yii2-adminlte-asset": "2.*",
+        "e-frank/yii2-requirejs": "dev-master",
+        "fedemotta/yii2-gridstack": "*",
+        "fedemotta/yii2-gridster": "*",
+        "insolita/yii2-iconpicker": "1.0.0",
+        "insolita/yii2-migration-generator": "*",
 		"kartik-v/yii2-builder": "dev-master",
 		"kartik-v/yii2-date-range": "*",
 		"kartik-v/yii2-datecontrol": "dev-master",
@@ -50,74 +70,53 @@
 		"kartik-v/yii2-mpdf": "dev-master",
         "kartik-v/yii2-popover-x": "*",
 		"kartik-v/yii2-slider": "*",
-		"kartik-v/yii2-widget-datepicker": "*",
         "kartik-v/yii2-widget-colorinput": "*",
+		"kartik-v/yii2-widget-datepicker": "*",
 		"kartik-v/yii2-widgets": "dev-master",
-        "mootensai/yii2-enhanced-gii": "dev-master",
-        "schmunk42/yii2-giiant": "*",
-		"bower-asset/chardin.js": "*",
-		"mdmsoft/yii2-ar-behaviors": "*",
-        "dektrium/yii2-user": "*",
-        "dmstr/yii2-adminlte-asset": "2.*",
-        "raoul2000/yii2-bootswatch-asset": "*",
-        "fedemotta/yii2-gridstack": "*",
-		"2amigos/yii2-gallery-widget": "*",
+        "kop/yii2-scroll-pager": "dev-master",
+        "macgyer/yii2-materializecss": "*",
         "machour/yii2-sparkline": "*",
+		"mdmsoft/yii2-ar-behaviors": "*",
 		"miloschuman/yii2-highcharts-widget": "*",
+        "mootensai/yii2-enhanced-gii": "dev-master",
+        "morozovsk/websocket-examples": "^1.1",
+        "morozovsk/yii2-websocket": "^1.0",
+        "perspectivain/yii2-mapbox-leaflet-helper": "dev-master",
         "philippfrenzel/yii2fullcalendar": "*",
+        "raoul2000/yii2-bootswatch-asset": "*",
+        "romdim/yii2-bootstrap-material": "dev-master",
+        "sagem-cassiopee/php-metar-decoder": "dev-master",
+        "sagem-cassiopee/php-taf-decoder": "dev-master",
+        "schmunk42/yii2-giiant": "*",
+        "textalk/websocket": "^1.2",
         "vova07/yii2-imperavi-widget": "*",
         "warrence/yii2-kartikgii": "dev-master",
+        "xfg/yii2-mustache.js": "^1.0",
         "yii2mod/yii2-chosen-select": "*",
         "yii2mod/yii2-selectize": "*",
         "yurkinx/yii2-image": "dev-master",
-        "insolita/yii2-iconpicker": "1.0.0",
-        "kop/yii2-scroll-pager": "dev-master",
-        "insolita/yii2-migration-generator": "*",
-        "devleaks/yii2-sieve": "*",
-        "devleaks/yii2-weather": "dev-master",
-        "bower-asset/weather-widget": "*",
-        "morozovsk/yii2-websocket": "^1.0",
-        "morozovsk/websocket-examples": "^1.1",
-        "fedemotta/yii2-gridster": "*",
-        "romdim/yii2-bootstrap-material": "dev-master",
-        "macgyer/yii2-materializecss": "*",
-        "sagem-cassiopee/php-metar-decoder": "dev-master",
-        "sagem-cassiopee/php-taf-decoder": "dev-master",
-        "brandonwamboldt/utilphp": "1.0.*",
-        "textalk/websocket": "^1.2",
-        "bburim/flot": "dev-master",
-        "2amigos/yii2-leaflet-extension": "~1.0",
-        "2amigos/yii2-chartjs-widget": "~2.0",
-        "devgroup/yii2-jsoneditor": "*",
-        "xfg/yii2-mustache.js": "^1.0",
-        "e-frank/yii2-requirejs": "dev-master",
-        "bower-asset/leaflet-map": "^1.2",
-        "bower-asset/mapbox.js": "^2.4",
-        "perspectivain/yii2-mapbox-leaflet-helper": "dev-master",
-        "bower-asset/gridmanager.js": "^0.3.1",
-        "bower-asset/dynatable": "^0.3.1"
+        "composer/composer": "~1.0@dev"
     },
     "require-dev": {
-        "yiisoft/yii2-codeception": "*",
         "yiisoft/yii2-debug": "*",
         "yiisoft/yii2-gii": "*",
         "yiisoft/yii2-faker": "*",
 		"jamband/yii2-schemadump": "*"
     },
     "config": {
-        "process-timeout": 1800
-    },
-    "extra": {
-	    "asset-repositories": [
-	         {
-	             "name": "bower-asset/eventemitter",
-	             "type": "bower-vcs",
-	             "url": "git://github.com/Olical/EventEmitter.git"
-	         }
-	     ],
-        "asset-installer-paths": {
-            "npm-asset-library": "vendor/npm",
-            "bower-asset-library": "vendor/bower"
-        }
+        "process-timeout": 1800,
+		"fxp-asset": {
+			"installer-paths": {
+	            "npm-asset-library": "vendor/npm",
+	            "bower-asset-library": "vendor/bower"
+	        },
+			"repositories": [
+		         {
+		             "name": "bower-asset/eventemitter",
+		             "type": "bower-vcs",
+		             "url": "git://github.com/Olical/EventEmitter.git"
+		         }
+		     ]
+		}
     }
 }

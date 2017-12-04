@@ -13,8 +13,8 @@ class DeviceGroup extends BaseDeviceGroup
 	use \common\behaviors\ListAll;
 	
 	public function getDevices() {
-		if($this->device_type != '') {
-			return Device::find()->where(['device_type' => $this->device_type]);
+		if($this->type_id != '') {
+			return Device::find()->where(['type_id' => $this->type_id]);
 		} else {
 		    return $this->hasMany(Device::className(), ['id' => 'device_id'])->viaTable('device_device_group', ['device_group_id' => 'id']);
 		}
@@ -37,5 +37,15 @@ class DeviceGroup extends BaseDeviceGroup
 			return $ddg->delete();
 		}
 		return false;
+	}
+	
+	public function fields() {
+		$fields = parent::fields();
+		if(isset($fields['id'])) unset ($fields['id']);
+		return $fields;
+	}
+
+	public function extraFields() {
+		return ['devices','type'];
 	}
 }

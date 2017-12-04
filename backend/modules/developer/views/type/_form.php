@@ -17,8 +17,8 @@ use kartik\widgets\ColorInput
 
 <div class="type-form">
 
-    <?php $form = ActiveForm::begin(['type'=>ActiveForm::TYPE_HORIZONTAL]); echo Form::widget([
-
+    <?php $form = ActiveForm::begin(['type'=>ActiveForm::TYPE_HORIZONTAL,'action' => 'create']);
+	echo Form::widget([
         'model' => $model,
         'form' => $form,
         'columns' => 1,

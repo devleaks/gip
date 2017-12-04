@@ -47,8 +47,8 @@ abstract class Zone extends \yii\db\ActiveRecord
         return [
             [['name', 'zone_dimension'], 'required'],
             [['zone_dimension', 'geometry'], 'string'],
-            [['created_at', 'updated_at'], 'safe'],
-            [['created_by', 'updated_by'], 'integer'],
+            [['type_id', 'created_at', 'updated_at'], 'safe'],
+            [['type_id', 'created_by', 'updated_by'], 'integer'],
             [['name', 'zone_type'], 'string', 'max' => 40],
             [['display_name'], 'string', 'max' => 80],
             [['display_name'], 'unique'],

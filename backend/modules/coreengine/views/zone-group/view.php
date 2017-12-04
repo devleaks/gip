@@ -1,5 +1,6 @@
 <?php
 
+use common\models\Type;
 use common\models\Zone;
 use common\models\DisplayStatusType;
 
@@ -33,9 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
         	'display_name',
             'description',
 	        [
-	            'attribute'=>'zone_type',
+	            'attribute'=>'type_id',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
-				'items' => [''=>'']+Zone::getZoneTypes(),
+				'items' => [''=>'']+Type::forClass(Zone::className()),
+				'value' => (isset($model->type_id) && intval($model->type_id) > 0)? $model->type->display_name : '',
+				'label' => Yii::t('app', 'Type')
 	        ],
 	        [
 	            'attribute'=>'display_status_type_id',

@@ -1,6 +1,9 @@
 <?php
 
+use common\models\Type;
+
 use yii\helpers\Html;
+use yii\helpers\Url;
 use kartik\grid\GridView;
 use kartik\icons\Icon;
 use yii\widgets\Pjax;
@@ -61,8 +64,17 @@ $this->params['breadcrumbs'][] = $this->title;
 	        ],
 			//            'stroke_width', 
 			//            'stroke_style', 
+			[
+				'label' => Yii::t('gip', 'Fill pattern'),
+				'format' => 'raw',
+				'value' => function ($model, $key, $index, $widget) {
+						$pattern = intval($model->fill_pattern) > 0 ? Type::findOne($model->fill_pattern)->name : '';
+						$color = $model->fill_color ? $model->fill_color : '#888888';
+						return '<div class="css_pattern"><div style="width: 40px; height: 40px; float:left; color: '.$color.'" class="pattern-swatch '.$pattern.'"></div></div>';
+           		}
+			],
 	        [
-				'label' => Yii::t('gip', 'Fill'),
+				'label' => Yii::t('gip', 'Fill Color'),
 				'width' => '70px',
 				'attribute' => 'fill_color',
 				'filter' => false,
@@ -72,17 +84,21 @@ $this->params['breadcrumbs'][] = $this->title;
 				'format' => 'raw',
 				'hAlign' => GridView::ALIGN_CENTER,
 	        ],
-//            'fill_pattern', 
-
             [
                 'class' => 'kartik\grid\ActionColumn',
 				'noWrap' => true,
+				'template' => '{view} {update} {duplicate} {delete}',
                 'buttons' => [
-                'update' => function ($url, $model) {
-                                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['developer/style/view','id' => $model->id,'edit'=>'t']), [
-                                                    'title' => Yii::t('yii', 'Edit'),
-                                ]);
-							}
+	                'update' => function ($url, $model) {
+	                                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['developer/style/view','id' => $model->id,'edit'=>'t']), [
+	                                                    'title' => Yii::t('yii', 'Edit'),
+	                                ]);
+								},
+			        'duplicate' => function ($url, $model) {
+			                    	return Html::a('<span class="glyphicon glyphicon-duplicate"></span>',
+											Url::To(['duplicate','id' => $model->id]),
+											['title' => Yii::t('yii', 'Duplicate')]);
+								}
                 ],
             ],
         ],

@@ -32,6 +32,8 @@ $asset = DashboardAsset::register($this);
 
 // /@50.6231023,4.2940581
 // EBLG: 50.63639, 5.44278
+// In $yii/console: start yiiwebsocket/start wire
+
 $liege = [
 	'lat' => 50.63639,
 	'lon' => 5.44278

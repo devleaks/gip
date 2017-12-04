@@ -40,8 +40,8 @@ abstract class Device extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['created_at', 'updated_at'], 'safe'],
-            [['created_by', 'updated_by'], 'integer'],
+            [['type_id', 'created_at', 'updated_at'], 'safe'],
+            [['type_id', 'created_by', 'updated_by'], 'integer'],
             [['name'], 'string', 'max' => 160],
             [['description'], 'string', 'max' => 2000],
             [['device_type'], 'string', 'max' => 40],

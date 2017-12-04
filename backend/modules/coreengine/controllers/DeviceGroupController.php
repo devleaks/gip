@@ -159,6 +159,20 @@ class DeviceGroupController extends Controller
         }
     }
 
+    /**
+     * Displays a single DeviceGroup model and its Devices.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionTojson($id)
+    {
+    	$model = $this->findModel($id);
+
+		Yii::$app->response->format = Response::FORMAT_JSON;
+		
+        return $model->toArray();
+    }
+
     private function doAction($group_id, $action)
     {
         $post = Yii::$app->request->post();

@@ -28,12 +28,18 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => 'kartik\grid\ActionColumn',
 				'noWrap' => true,
+				'template' => '{tojson} {view} {update} {delete}',
                 'buttons' => [
-                'update' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['coreengine/device-group/view','id' => $model->id,'edit'=>'t']), [
-                                                    'title' => Yii::t('yii', 'Edit'),
-                                                  ]);}
-
+	                'update' => function ($url, $model) {
+	                            	return Html::a('<span class="glyphicon glyphicon-pencil"></span>',
+											Yii::$app->urlManager->createUrl(['coreengine/device-group/view','id' => $model->id,'edit'=>'t']),
+											['title' => Yii::t('yii', 'Edit')]);
+								},
+	                'tojson' => function ($url, $model) {
+	                            	return Html::a('<span class="glyphicon glyphicon-download-alt"></span>',
+											Yii::$app->urlManager->createUrl(['coreengine/device-group/tojson','id' => $model->id]),
+											['title' => Yii::t('yii', 'Export')]);
+								}
                 ],
             ],
         ],
