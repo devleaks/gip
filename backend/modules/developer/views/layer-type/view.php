@@ -1,5 +1,8 @@
 <?php
 
+use common\models\LayerType;
+use common\models\Type;
+
 use yii\helpers\Html;
 use yii\data\ActiveDataProvider;
 use kartik\detail\DetailView;
@@ -29,6 +32,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'display_name',
             'description',
+            [
+				'attribute' => 'type_id',
+				'items' => Type::forClass(LayerType::className()),
+            	'type'=> DetailView::INPUT_DROPDOWN_LIST,
+				'value' => $model->type_id ? $model->type->display_name : '',
+				'label' => Yii::t('app', 'Layer Type')
+			],
+        	[
+				'attribute' => 'factory',
+				'label' => Yii::t('app', 'Layer Factory')
+			],
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],

@@ -20,8 +20,12 @@ use yii\widgets\Pjax;
 
             'display_name',
             'description',
-            'style_id',
-
+ 			[
+				'attribute' => 'style_id',
+	            'value' => function ($model, $key, $index, $widget) {
+							return $model->style_id ? $model->style->display_name : '';
+	            		},
+			],
             [
                 'class' => 'kartik\grid\ActionColumn',
 				'noWrap' => true,

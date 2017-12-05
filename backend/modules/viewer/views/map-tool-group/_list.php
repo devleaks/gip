@@ -21,10 +21,6 @@ use yii\widgets\Pjax;
 
         	'display_name',
             'description',
-			[
-				'attribute' => 'name',
-				'label' => Yii::t('gip', 'Tool Group'),
-			],
 
             [
                 'class' => 'kartik\grid\ActionColumn',

@@ -8118,16 +8118,16 @@
         },
         {
             "name": "vova07/yii2-imperavi-widget",
-            "version": "1.3.2",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vova07/yii2-imperavi-widget.git",
-                "reference": "28afbfd4071532542afbf4f74872f51235f5c701"
+                "reference": "c1d8b4a40aa9e5ae8f34d4c20304ed75121d466d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vova07/yii2-imperavi-widget/zipball/28afbfd4071532542afbf4f74872f51235f5c701",
-                "reference": "28afbfd4071532542afbf4f74872f51235f5c701",
+                "url": "https://api.github.com/repos/vova07/yii2-imperavi-widget/zipball/c1d8b4a40aa9e5ae8f34d4c20304ed75121d466d",
+                "reference": "c1d8b4a40aa9e5ae8f34d4c20304ed75121d466d",
                 "shasum": ""
             },
             "require": {
@@ -8141,7 +8141,8 @@
             "type": "yii2-extension",
             "autoload": {
                 "psr-4": {
-                    "vova07\\imperavi\\": "src"
+                    "vova07\\imperavi\\": "src",
+                    "vova07\\imperavi\\tests\\": "tests"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -8168,7 +8169,7 @@
                 "yii 2",
                 "yii2"
             ],
-            "time": "2017-12-02T17:47:56+00:00"
+            "time": "2017-12-04T21:46:13+00:00"
         },
         {
             "name": "warrence/yii2-kartikgii",

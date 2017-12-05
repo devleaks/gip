@@ -16,7 +16,7 @@ class Device extends DeviceModel
     {
         return [
             [['id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'display_name', 'description', 'device_type', 'created_at', 'updated_at'], 'safe'],
+            [['name', 'display_name', 'description', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -48,8 +48,7 @@ class Device extends DeviceModel
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'display_name', $this->display_name])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'device_type', $this->device_type]);
+            ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

@@ -51,39 +51,17 @@ $this->params['breadcrumbs'][] = $this->title;
 				'format' => 'raw',
 				'hAlign' => GridView::ALIGN_CENTER,
 	        ],
-	        [
-				'label' => Yii::t('gip', 'Stroke'),
-				'width' => '70px',
-				'attribute' => 'stroke_color',
-				'filter' => false,
-	            'value' => function ($model, $key, $index, $widget) {
-							return "<span class='badge' style='background-color: {$model->stroke_color}'> </span>";
-	            		},
-				'format' => 'raw',
-				'hAlign' => GridView::ALIGN_CENTER,
-	        ],
-			//            'stroke_width', 
-			//            'stroke_style', 
 			[
-				'label' => Yii::t('gip', 'Fill pattern'),
+				'label' => Yii::t('gip', 'Stroke and Fill'),
 				'format' => 'raw',
 				'value' => function ($model, $key, $index, $widget) {
 						$pattern = intval($model->fill_pattern) > 0 ? Type::findOne($model->fill_pattern)->name : '';
 						$color = $model->fill_color ? $model->fill_color : '#888888';
-						return '<div class="css_pattern"><div style="width: 40px; height: 40px; float:left; color: '.$color.'" class="pattern-swatch '.$pattern.'"></div></div>';
-           		}
-			],
-	        [
-				'label' => Yii::t('gip', 'Fill Color'),
-				'width' => '70px',
-				'attribute' => 'fill_color',
-				'filter' => false,
-	            'value' => function ($model, $key, $index, $widget) {
-							return "<span class='badge' style='background-color: {$model->fill_color}'> </span>";
-	            		},
-				'format' => 'raw',
+						return '<div class="css_pattern"><div style="width: 40px; height: 40px; float:left; color: '.$color.'" class="pattern-swatch '.$pattern.'"></div></div>'
+						     . " <span class='badge' style='float:right; background-color: {$model->fill_color}'> </span>";
+           		},
 				'hAlign' => GridView::ALIGN_CENTER,
-	        ],
+			],
             [
                 'class' => 'kartik\grid\ActionColumn',
 				'noWrap' => true,

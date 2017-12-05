@@ -12,7 +12,6 @@ use Yii;
  * @property integer $id
  * @property string $name
  * @property string $description
- * @property string $device_type
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_by
@@ -44,7 +43,6 @@ abstract class Device extends \yii\db\ActiveRecord
             [['type_id', 'created_by', 'updated_by'], 'integer'],
             [['name'], 'string', 'max' => 160],
             [['description'], 'string', 'max' => 2000],
-            [['device_type'], 'string', 'max' => 40],
             [['name'], 'unique']
         ];
     }
@@ -59,7 +57,6 @@ abstract class Device extends \yii\db\ActiveRecord
             'name' => Yii::t('gip', 'Name'),
             'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
-            'device_type' => Yii::t('gip', 'Device Type'),
             'created_at' => Yii::t('gip', 'Created At'),
             'updated_at' => Yii::t('gip', 'Updated At'),
             'created_by' => Yii::t('gip', 'Created By'),

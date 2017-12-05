@@ -32,11 +32,6 @@ use kartik\datecontrol\DateControl;
 
         	'layer_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Layer Type...'], 'items' => ArrayHelper::map(LayerType::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name')],
 
-            'theme'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Theme...', 'maxlength'=>40]],
-
-            'highlight'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Highlight...', 'maxlength'=>80]],
-
-            'icon'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Icon...', 'maxlength'=>40]],
         ]
 
     ]);

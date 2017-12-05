@@ -1,5 +1,8 @@
 <?php
 
+use common\models\Style;
+
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
@@ -9,7 +12,7 @@ use kartik\datecontrol\DateControl;
  * @var common\models\DisplayStatus $model
  */
 
-$this->title = $model->name;
+$this->title = $model->display_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Display Statuses'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->displayStatusType->display_name, 'url' => ['display-status-type/view', 'id' => $model->display_status_type_id]];
 $this->params['breadcrumbs'][] = $this->title;
@@ -29,7 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'display_name',
             'description',
-            'style_id',
+	        [
+	            'attribute'=>'style_id',
+				'type' => DetailView::INPUT_DROPDOWN_LIST,
+				'items' => [''=>'']+ArrayHelper::map(Style::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
+				'value' => (isset($model->style_id) && intval($model->style_id) > 0)? $model->style->display_name : '',
+				'label' => Yii::t('app', 'Style')
+	        ],
             [
                 'attribute'=>'created_at',
                 'format'=>['date',(isset(Yii::$app->modules['datecontrol']['displaySettings']['date'])) ? Yii::$app->modules['datecontrol']['displaySettings']['date'] : 'd-m-Y'],

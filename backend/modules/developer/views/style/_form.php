@@ -46,11 +46,9 @@ use kartik\widgets\ColorInput
 		 ]
 ],
 
-'glyph_size'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Font Size...', 'maxlength'=>10]],
-
 'stroke_width'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Stroke Width...']],
 
-'stroke_style'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Type...', 'maxlength'=>40], 'items' => Type::forClass(Style::STROKE_TYPES)],
+'stroke_style'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Type...', 'maxlength'=>40], 'items' => [''=>''] + Type::forClass(Style::STROKE_TYPES)],
 
 'stroke_color'=>['type'=> Form::INPUT_WIDGET,
 		 'widgetClass' => ColorInput::className(),
@@ -59,7 +57,7 @@ use kartik\widgets\ColorInput
 		 ]
 ],
 
-'fill_pattern'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Type...', 'maxlength'=>40], 'items' => Type::forClass(Style::FILL_PATTERNS)],
+'fill_pattern'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Type...', 'maxlength'=>40], 'items' => [''=>''] + Type::forClass(Style::FILL_PATTERNS)],
 
 'fill_color'=>['type'=> Form::INPUT_WIDGET,
 		 'widgetClass' => ColorInput::className(),

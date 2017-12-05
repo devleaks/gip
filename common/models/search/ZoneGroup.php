@@ -16,7 +16,7 @@ class ZoneGroup extends ZoneGroupModel
     {
         return [
             [['id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'display_name', 'description', 'zone_group_type', 'schema_name', 'table_name', 'unique_id_column', 'geometry_column', 'where_clause', 'zone_type', 'created_at', 'updated_at'], 'safe'],
+            [['name', 'display_name', 'description', 'zone_group_type', 'schema_name', 'table_name', 'unique_id_column', 'geometry_column', 'where_clause', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -54,8 +54,7 @@ class ZoneGroup extends ZoneGroupModel
             ->andFilterWhere(['like', 'table_name', $this->table_name])
             ->andFilterWhere(['like', 'unique_id_column', $this->unique_id_column])
             ->andFilterWhere(['like', 'geometry_column', $this->geometry_column])
-            ->andFilterWhere(['like', 'where_clause', $this->where_clause])
-            ->andFilterWhere(['like', 'zone_type', $this->zone_type]);
+            ->andFilterWhere(['like', 'where_clause', $this->where_clause]);
 
         return $dataProvider;
     }

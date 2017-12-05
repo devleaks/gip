@@ -39,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'items' => Type::forClass(Type::className()),
             	'type'=> DetailView::INPUT_DROPDOWN_LIST,
 				'value' => $model->type ? $model->type->display_name : '',
+				'label' => Yii::t('app', 'Base Type')
 			],
             [
 				'attribute' => 'icon',

@@ -25,7 +25,6 @@ use yii\behaviors\BlameableBehavior;
  * @property string $fill_color
  * @property string $font_name
  * @property string $font_size
- * @property string $glyph_size
  *
  * @property \common\models\DisplayStatus[] $displayStatuses
  * @property \common\models\Type[] $types
@@ -44,7 +43,6 @@ class Style extends \yii\db\ActiveRecord
             [['name', 'display_name'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
             [['created_by', 'updated_by', 'stroke_width'], 'integer'],
-            [['glyph_size'], 'number'],
             [['name', 'display_name', 'glyph', 'stroke_style', 'stroke_color', 'fill_pattern', 'fill_color', 'font_size'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
             [['font_name'], 'string', 'max' => 200],
@@ -78,8 +76,7 @@ class Style extends \yii\db\ActiveRecord
             'fill_pattern' => Yii::t('gip', 'Fill Pattern'),
             'fill_color' => Yii::t('gip', 'Fill Color'),
             'font_name' => Yii::t('gip', 'Font Name'),
-            'font_size' => Yii::t('gip', 'Font Size'),
-            'glyph_size' => Yii::t('gip', 'Glyph Size'),
+            'font_size' => Yii::t('gip', 'Font Size')
         ];
     }
 

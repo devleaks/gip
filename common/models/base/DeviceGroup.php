@@ -16,7 +16,6 @@ use yii\behaviors\BlameableBehavior;
  * @property string $description
  * @property integer $display_status_type_id
  * @property string $group_type
- * @property string $device_type
  * @property integer $type_id
  * @property string $created_at
  * @property string $updated_at
@@ -40,7 +39,7 @@ class DeviceGroup extends \yii\db\ActiveRecord
             [['display_status_type_id', 'type_id', 'created_by', 'updated_by'], 'integer'],
             [['group_type'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'display_name', 'device_type'], 'string', 'max' => 40],
+            [['name', 'display_name'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
             [['name'], 'unique'],
             [['display_name'], 'unique']
@@ -67,7 +66,6 @@ class DeviceGroup extends \yii\db\ActiveRecord
             'description' => Yii::t('gip', 'Description'),
             'display_status_type_id' => Yii::t('gip', 'Display Status Type ID'),
             'group_type' => Yii::t('gip', 'Group Type'),
-            'device_type' => Yii::t('gip', 'Device Type'),
             'type_id' => Yii::t('gip', 'Type ID'),
         ];
     }

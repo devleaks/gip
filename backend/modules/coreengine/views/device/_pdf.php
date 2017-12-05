@@ -24,8 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
     $gridColumn = [
         ['attribute' => 'id', 'hidden' => true],
         'name',
-        'description',
-        'device_type',
+        'description'
     ];
     echo DetailView::widget([
         'model' => $model,

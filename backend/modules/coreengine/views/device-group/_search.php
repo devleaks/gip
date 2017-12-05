@@ -23,8 +23,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'group_type') ?>
 
-    <?= $form->field($model, 'device_type') ?>
-
     <?= $form->field($model, 'description') ?>
 
     <?php // echo $form->field($model, 'created_at') ?>

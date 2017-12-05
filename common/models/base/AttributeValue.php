@@ -42,8 +42,8 @@ abstract class AttributeValue extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['attribute_id', 'entity_id', 'entity_type'], 'required'],
-            [['attribute_id', 'entity_id', 'created_by', 'updated_by'], 'integer'],
+            [['entity_attribute_id', 'entity_id', 'entity_type'], 'required'],
+            [['entity_attribute_id', 'entity_id', 'created_by', 'updated_by'], 'integer'],
             [['value_number'], 'number'],
             [['value_date', 'created_at', 'updated_at'], 'safe'],
             [['entity_type'], 'string', 'max' => 200],
@@ -58,7 +58,7 @@ abstract class AttributeValue extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('gip', 'ID'),
-            'attribute_id' => Yii::t('gip', 'Attribute'),
+        	'entity_attribute_id' => Yii::t('gip', 'Entity Type Attribute'),
             'entity_id' => Yii::t('gip', 'Entity'),
             'entity_type' => Yii::t('gip', 'Entity Type'),
             'value_text' => Yii::t('gip', 'Value Text'),
@@ -76,7 +76,7 @@ abstract class AttributeValue extends \yii\db\ActiveRecord
      */
     public function getEntityAttribute()
     {
-        return $this->hasOne(\common\models\Attribute::className(), ['id' => 'attribute_id']);
+        return $this->hasOne(\common\models\EntityAttribute::className(), ['id' => 'entity_attribute_id']);
     }
 
 

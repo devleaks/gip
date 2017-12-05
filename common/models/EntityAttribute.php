@@ -26,4 +26,13 @@ class EntityAttribute extends BaseEntityAttribute
 		return Inflector::camel2id(StringHelper::basename($this->entity_type));
 	}
 
+    /**
+     * @return \yii\db\ActiveQuery
+     * RENAMED FROM getAttribute because of conflict with Yii2 ActiveRecord model
+     */
+    public function getEntityAttribute()
+    {
+        return $this->hasOne(\common\models\Attribute::className(), ['id' => 'attribute_id']);
+    }
+
 }

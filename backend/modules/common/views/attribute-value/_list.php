@@ -22,12 +22,12 @@ use yii\widgets\Pjax;
         'dataProvider' => $dataProvider,
 		'form' => $form,
         'attributes' => [
-	        'attribute_id' => [
-				'label' => Yii::t('gip', 'Attribute'),
+	        'entity_attribute_id' => [
+				'label' => Yii::t('gip', 'Entity Attribute'),
 	            'type' => TabularForm::INPUT_STATIC, 
 	            'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT],
 				'value' => function ($model, $key, $index, $widget) {
-							return $model->entityAttribute->name;
+							return $model->getEntityAttribute()->one()->getEntityAttribute()->one()->display_name;
 	            		},
 	        ],
 		    'value_text' => [

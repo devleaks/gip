@@ -35,12 +35,11 @@ class Layer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'theme'], 'required'],
+            [['name'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
             [['created_by', 'updated_by', 'layer_type_id'], 'integer'],
-            [['name', 'icon', 'display_name', 'status'], 'string', 'max' => 40],
+            [['name', 'display_name', 'status'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
-            [['theme', 'highlight'], 'string', 'max' => 80],
             [['name'], 'unique']
         ];
     }
@@ -63,9 +62,6 @@ class Layer extends \yii\db\ActiveRecord
             'name' => Yii::t('gip', 'Name'),
             'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
-            'theme' => Yii::t('gip', 'Theme'),
-            'highlight' => Yii::t('gip', 'Highlight'),
-            'icon' => Yii::t('gip', 'Icon'),
             'layer_type_id' => Yii::t('gip', 'Layer Type'),
             'display_name' => Yii::t('gip', 'Display Name'),
             'status' => Yii::t('gip', 'Status'),

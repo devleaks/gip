@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         	'display_name',
             'description',
 			[
-				'attribute' => 'zone_type',
+				'attribute' => 'type_id',
 				'filter' => Zone::getZoneTypes(),
 			],
 			[

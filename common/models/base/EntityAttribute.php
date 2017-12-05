@@ -70,15 +70,4 @@ abstract class EntityAttribute extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getEntityAttribute()
-    {
-        return $this->hasOne(\common\models\Attribute::className(), ['id' => 'attribute_id']);
-    }
-
-
-
-
 }

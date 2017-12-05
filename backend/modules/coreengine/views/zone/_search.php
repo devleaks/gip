@@ -23,8 +23,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description') ?>
 
-    <?= $form->field($model, 'zone_type') ?>
-
     <?= $form->field($model, 'zone_dimension') ?>
 
     <?php // echo $form->field($model, 'geometry') ?>

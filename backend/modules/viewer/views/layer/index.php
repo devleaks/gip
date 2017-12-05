@@ -30,10 +30,6 @@ $this->params['breadcrumbs'][] = $this->title;
 							return $model->layerType->display_name;
 	            		},
 			],
-            'theme', 
-            'highlight', 
-            'icon', 
-
             [
                 'class' => 'kartik\grid\ActionColumn',
 				'noWrap' => true,

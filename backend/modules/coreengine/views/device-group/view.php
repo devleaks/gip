@@ -45,6 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
 				'items' => [''=>'']+DisplayStatusType::getList(),
 				'value' => $model->displayStatusType ? $model->displayStatusType->display_name : '',
+				'label' => Yii::t('app', 'Display Statuses')
 	        ],
         ],
         'deleteOptions'=>[
@@ -57,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'enableEditMode'=>true,
     ]) ?>
 
-	<?php 	if($model->device_type == '') {
+	<?php 	if($model->type_id == '') {
 				echo $this->render('../group/group', [
 					'model'		=> $model,
 		            'outgroup'  => $outgroup,

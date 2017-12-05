@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         	'display_name',
             'description',
 			[
-				'attribute' => 'device_type',
+				'attribute' => 'type_id',
 				'label' => Yii::t('gip', 'Dynamic Group'),
 			],
             [

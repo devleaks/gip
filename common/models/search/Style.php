@@ -15,8 +15,8 @@ class Style extends StyleModel
     public function rules()
     {
         return [
-            [['id', 'created_by', 'updated_by', 'stroke_width'], 'integer'],
-            [['name', 'display_name', 'description', 'created_at', 'updated_at', 'fontname', 'glyph', 'stroke_style', 'stroke_color', 'fill_pattern', 'fill_color'], 'safe'],
+            [['id', 'created_by', 'updated_by'], 'integer'],
+            [['name', 'display_name', 'description', 'created_at', 'updated_at', 'fontname', 'glyph', 'stroke_width', 'stroke_style', 'stroke_color', 'fill_pattern', 'fill_color'], 'safe'],
         ];
     }
 

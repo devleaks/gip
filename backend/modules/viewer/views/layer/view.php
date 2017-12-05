@@ -33,9 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
         	'display_name',
             'description',
-            'theme',
-            'highlight',
-            'icon',
 	        [
 	            'attribute'=>'layer_type_id',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,

@@ -22,12 +22,24 @@ class AttributeValue extends BaseAttributeValue
 	        ], parent::attributeLabels());
 	    }
 
+		public function getValue() {
+			if($this->value_date != '') return $this->value_date;
+			if($this->value_number != '') return $this->value_number;
+			if($this->value_text != '') return $this->value_text;
+			return '';
+		}
+
+		public function getName() {
+			return $this->entityAttribute->entityAttribute->name;
+		}
 
 		public function getListOfValues() {
 			if($ea = $this->getEntityAttribute()->one()) {
-				if($at = $ea->getAttributeType()->one()) {
-					if($lv = $at->getListOfValues()->one()) {
-						return $lv->getValues();
+				if($aa = $ea->getEntityAttribute()->one()) {
+					if($at = $aa->getAttributeType()->one()) {
+						if($lv = $at->getListOfValues()->one()) {
+							return $lv->getValues();
+						}
 					}
 				}
 			}

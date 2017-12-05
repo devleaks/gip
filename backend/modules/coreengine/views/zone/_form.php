@@ -27,7 +27,7 @@ use kartik\datecontrol\DateControl;
 
         	'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
 
-            'zone_type'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Zone Type...', 'maxlength'=>40]],
+            'type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Display Status Type...'], 'items' => [''=>'']+Zone::getZoneTypes()],
 
             'zone_dimension'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Zone Dimensions...'], 'items' => ['2D' => '2D', '3D' => '3D']],
 

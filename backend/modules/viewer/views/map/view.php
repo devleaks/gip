@@ -42,16 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	<?php
 			$dataProvider = new ActiveDataProvider([
-				'query' => $model->getBackgrounds(),
-			]);
-	        echo $this->render('../map-background/_list', [
-	            'dataProvider' => $dataProvider,
-				'map' => $model,
-	        ]);
-	?>
-
-	<?php
-			$dataProvider = new ActiveDataProvider([
 				'query' => $model->getLayers(),
 			]);
 	        echo $this->render('../map-layer/_list', [

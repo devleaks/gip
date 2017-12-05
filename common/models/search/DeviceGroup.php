@@ -16,7 +16,7 @@ class DeviceGroup extends DeviceGroupModel
     {
         return [
             [['id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'group_type', 'device_type', 'description', 'created_at', 'updated_at'], 'safe'],
+            [['name', 'group_type', 'description', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -48,7 +48,6 @@ class DeviceGroup extends DeviceGroupModel
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'group_type', $this->group_type])
-            ->andFilterWhere(['like', 'device_type', $this->device_type])
             ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;

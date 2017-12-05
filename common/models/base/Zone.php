@@ -12,7 +12,6 @@ use Yii;
  * @property integer $id
  * @property string $name
  * @property string $description
- * @property string $zone_type
  * @property string $zone_dimension
  * @property resource $geometry
  * @property string $created_at
@@ -49,7 +48,7 @@ abstract class Zone extends \yii\db\ActiveRecord
             [['zone_dimension', 'geometry'], 'string'],
             [['type_id', 'created_at', 'updated_at'], 'safe'],
             [['type_id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'zone_type'], 'string', 'max' => 40],
+            [['name'], 'string', 'max' => 40],
             [['display_name'], 'string', 'max' => 80],
             [['display_name'], 'unique'],
             [['description'], 'string', 'max' => 2000],
@@ -72,7 +71,6 @@ abstract class Zone extends \yii\db\ActiveRecord
             'name' => Yii::t('gip', 'Name'),
             'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
-            'zone_type' => Yii::t('gip', 'Zone Type'),
             'zone_dimension' => Yii::t('gip', 'Zone Dimension'),
             'geometry' => Yii::t('gip', 'Geometry'),
             'created_at' => Yii::t('gip', 'Created At'),

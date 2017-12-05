@@ -16,7 +16,7 @@ class Zone extends ZoneModel
     {
         return [
             [['id', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'display_name', 'description', 'zone_type', 'zone_dimension', 'geometry', 'created_at', 'updated_at'], 'safe'],
+            [['name', 'display_name', 'description', 'zone_dimension', 'geometry', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -49,7 +49,6 @@ class Zone extends ZoneModel
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'display_name', $this->display_name])
             ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'zone_type', $this->zone_type])
             ->andFilterWhere(['like', 'zone_dimension', $this->zone_dimension])
             ->andFilterWhere(['like', 'geometry', $this->geometry]);
 

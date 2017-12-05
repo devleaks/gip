@@ -30,22 +30,9 @@ use kartik\datecontrol\DateControl;
 
         	'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
 
-            'zone_type'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Zone Type for Dynamic Group...'], 'items' => [''=>'']+Zone::getZoneTypes()],
+            'type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Display Status Type...'], 'items' => [''=>'']+Zone::getZoneTypes()],
 
 			'display_status_type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Display Status Type...'], 'items' => [''=>'']+DisplayStatusType::getList()],
-/*
-            'zone_group_type'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Zone Group Type...']],
-
-            'schema_name'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Schema Name...', 'maxlength'=>80]],
-
-            'table_name'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Table Name...', 'maxlength'=>80]],
-
-            'unique_id_column'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Unique Id Column...', 'maxlength'=>80]],
-
-            'geometry_column'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Geometry Column...', 'maxlength'=>80]],
-
-            'where_clause'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Where Clause...', 'maxlength'=>4000]],
-*/
         ]
 
     ]);

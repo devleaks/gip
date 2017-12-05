@@ -16,7 +16,7 @@ use insolita\iconpicker\Iconpicker;
  * @var common\models\Style $model
  */
 
-$this->title = $model->name;
+$this->title = $model->display_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('gip', 'Styles'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

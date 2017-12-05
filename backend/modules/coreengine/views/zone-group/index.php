@@ -23,11 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
         	'display_name',
             'description',
-            'zone_type', 
-            'table_name', 
-//            'unique_id_column', 
-//            'geometry_column', 
-//            'where_clause', 
 
             [
                 'class' => 'kartik\grid\ActionColumn',

@@ -32,14 +32,19 @@ echo $gridstack->beginWidget($gridstack_widget);
 	<?php endif; ?>
 	<?php
 		if($widget = $giplet->gipletType->factory) {
+			// 1. Add attribute values
+			$giplet_attrvals = $giplet->getAttributeValues();
+			// 2. Pass parameters
 			$giplet_params = [];
 			if($giplet->parameters) { // params are in format name=value,name=value
 				foreach(explode(',', $giplet->parameters) as $nv) {
 					$d = explode('=', str_replace("'", "", str_replace('"', '', $nv)));
+					Yii::trace('adding '.$giplet->id.' AV '.$d[0].':'.$d[1], 'Dashboard::_giplet-in-gridstack');
 					$giplet_params[$d[0]] = $d[1];
 				}
 			}
-			echo $giplet->gipletType->factory::widget($giplet_params);
+			$giplet_attrvals['parameters'] = $giplet_attrvals;
+			echo $giplet->gipletType->factory::widget(['data' => $giplet_attrvals]);
 		} else {
 			echo Yii::t('gip', '{0} has no widget.', $giplet->name);
 		}

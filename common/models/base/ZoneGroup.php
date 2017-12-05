@@ -16,7 +16,6 @@ use yii\behaviors\BlameableBehavior;
  * @property string $description
  * @property integer $display_status_type_id
  * @property string $zone_group_type
- * @property string $zone_type
  * @property integer $type_id
  * @property string $schema_name
  * @property string $table_name
@@ -44,7 +43,7 @@ class ZoneGroup extends \yii\db\ActiveRecord
             [['display_status_type_id', 'type_id', 'created_by', 'updated_by'], 'integer'],
             [['zone_group_type'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'display_name', 'zone_type'], 'string', 'max' => 40],
+            [['name', 'display_name'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
             [['schema_name', 'table_name', 'unique_id_column', 'geometry_column'], 'string', 'max' => 80],
             [['where_clause'], 'string', 'max' => 4000],
@@ -73,7 +72,6 @@ class ZoneGroup extends \yii\db\ActiveRecord
             'description' => Yii::t('gip', 'Description'),
             'display_status_type_id' => Yii::t('gip', 'Display Status Type ID'),
             'zone_group_type' => Yii::t('gip', 'Zone Group Type'),
-            'zone_type' => Yii::t('gip', 'Zone Type'),
             'type_id' => Yii::t('gip', 'Type ID'),
             'schema_name' => Yii::t('gip', 'Schema Name'),
             'table_name' => Yii::t('gip', 'Table Name'),

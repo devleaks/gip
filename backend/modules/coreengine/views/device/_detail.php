@@ -21,8 +21,7 @@ use kartik\grid\GridView;
     $gridColumn = [
         ['attribute' => 'id', 'hidden' => true],
         'name',
-        'description',
-        'device_type',
+        'description'
     ];
     echo DetailView::widget([
         'model' => $model,
