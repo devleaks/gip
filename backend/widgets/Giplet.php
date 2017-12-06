@@ -11,6 +11,9 @@ use Yii;
 use yii\bootstrap\Widget;
 
 class Giplet extends Widget { // class should be abstract
+	/** Giplet Content */
+	public $data;
+	
 	/** Message's source */
 	public $source;
 	

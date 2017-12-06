@@ -3,7 +3,6 @@
 namespace common\models\base;
 
 use Yii;
-use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
@@ -22,6 +21,7 @@ use yii\behaviors\BlameableBehavior;
  * @property string $unique_id_column
  * @property string $geometry_column
  * @property string $where_clause
+ * @property string $status
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_by
@@ -33,6 +33,22 @@ use yii\behaviors\BlameableBehavior;
  */
 class ZoneGroup extends \yii\db\ActiveRecord
 {
+    use \mootensai\relation\RelationTrait;
+
+
+    /**
+    * This function helps \mootensai\relation\RelationTrait runs faster
+    * @return array relation names of this model
+    */
+    public function relationNames()
+    {
+        return [
+            'displayStatusType',
+            'type',
+            'zoneZoneGroups'
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -43,7 +59,7 @@ class ZoneGroup extends \yii\db\ActiveRecord
             [['display_status_type_id', 'type_id', 'created_by', 'updated_by'], 'integer'],
             [['zone_group_type'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'display_name'], 'string', 'max' => 40],
+            [['name', 'display_name', 'status'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
             [['schema_name', 'table_name', 'unique_id_column', 'geometry_column'], 'string', 'max' => 80],
             [['where_clause'], 'string', 'max' => 4000],
@@ -51,7 +67,7 @@ class ZoneGroup extends \yii\db\ActiveRecord
             [['display_name'], 'unique']
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -66,21 +82,22 @@ class ZoneGroup extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('gip', 'ID'),
-            'name' => Yii::t('gip', 'Name'),
-            'display_name' => Yii::t('gip', 'Display Name'),
-            'description' => Yii::t('gip', 'Description'),
-            'display_status_type_id' => Yii::t('gip', 'Display Status Type ID'),
-            'zone_group_type' => Yii::t('gip', 'Zone Group Type'),
-            'type_id' => Yii::t('gip', 'Type ID'),
-            'schema_name' => Yii::t('gip', 'Schema Name'),
-            'table_name' => Yii::t('gip', 'Table Name'),
-            'unique_id_column' => Yii::t('gip', 'Unique Id Column'),
-            'geometry_column' => Yii::t('gip', 'Geometry Column'),
-            'where_clause' => Yii::t('gip', 'Where Clause'),
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'display_name' => Yii::t('app', 'Display Name'),
+            'description' => Yii::t('app', 'Description'),
+            'display_status_type_id' => Yii::t('app', 'Display Status Type ID'),
+            'zone_group_type' => Yii::t('app', 'Zone Group Type'),
+            'type_id' => Yii::t('app', 'Type ID'),
+            'schema_name' => Yii::t('app', 'Schema Name'),
+            'table_name' => Yii::t('app', 'Table Name'),
+            'unique_id_column' => Yii::t('app', 'Unique Id Column'),
+            'geometry_column' => Yii::t('app', 'Geometry Column'),
+            'where_clause' => Yii::t('app', 'Where Clause'),
+            'status' => Yii::t('app', 'Status'),
         ];
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -88,7 +105,7 @@ class ZoneGroup extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\common\models\DisplayStatusType::className(), ['id' => 'display_status_type_id']);
     }
-
+        
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -96,7 +113,7 @@ class ZoneGroup extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\common\models\Type::className(), ['id' => 'type_id']);
     }
-
+        
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -104,27 +121,28 @@ class ZoneGroup extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\common\models\ZoneZoneGroup::className(), ['zone_group_id' => 'id']);
     }
-
-/**
+    
+    /**
      * @inheritdoc
-     * @return type mixed
-     */ 
+     * @return array mixed
+     */
     public function behaviors()
     {
         return [
-            [
+            'timestamp' => [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'created_at',
                 'updatedAtAttribute' => 'updated_at',
                 'value' => new \yii\db\Expression('NOW()'),
             ],
-            [
+            'blameable' => [
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => 'updated_by',
             ],
         ];
     }
+
 
     /**
      * @inheritdoc

@@ -17,6 +17,9 @@ use yii\helpers\Json;
  */
 class Indicator extends \yii\bootstrap\Widget
 {
+	/** Giplet Content */
+	public $data;
+	
     public $color = 'aqua';
     public $colorBG = false;
 	public $title = 'Title';

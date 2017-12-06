@@ -15,6 +15,9 @@ use yii\helpers\ArrayHelper;
  */
 class Metar extends \yii\bootstrap\Widget
 {
+	/** Giplet Content */
+	public $data;
+	
 	const METAR_URL = 'http://weather.noaa.gov/pub/data/observations/metar/stations/XXXX.TXT';
 
     public $location = 'EBBR';

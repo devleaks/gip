@@ -41,12 +41,10 @@
         "yiisoft/yii2-jui": "~2.0@dev",
         "2amigos/yii2-chartjs-widget": "~2.0",
 		"2amigos/yii2-gallery-widget": "*",
-        "2amigos/yii2-leaflet-extension": "~1.0",
         "bburim/flot": "dev-master",
 		"bower-asset/chardin.js": "*",
         "bower-asset/dynatable": "^0.3.1",
         "bower-asset/gridmanager.js": "^0.3.1",
-        "bower-asset/leaflet-map": "^1.2",
         "bower-asset/mapbox.js": "^2.4",
         "bower-asset/weather-widget": "*",
         "brandonwamboldt/utilphp": "1.0.*",
@@ -81,7 +79,6 @@
         "mootensai/yii2-enhanced-gii": "dev-master",
         "morozovsk/websocket-examples": "^1.1",
         "morozovsk/yii2-websocket": "^1.0",
-        "perspectivain/yii2-mapbox-leaflet-helper": "dev-master",
         "philippfrenzel/yii2fullcalendar": "*",
         "raoul2000/yii2-bootswatch-asset": "*",
         "romdim/yii2-bootstrap-material": "dev-master",
@@ -95,7 +92,8 @@
         "yii2mod/yii2-chosen-select": "*",
         "yii2mod/yii2-selectize": "*",
         "yurkinx/yii2-image": "dev-master",
-        "composer/composer": "~1.0@dev"
+        "composer/composer": "~1.0@dev",
+        "2amigos/yii2-leaflet-extension": "^1.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

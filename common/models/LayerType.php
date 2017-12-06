@@ -14,6 +14,9 @@ class LayerType extends BaseLayerType
 {
 	use AttributeBehavior;
 
+	const TYPE_BASE = 'base';
+	const TYPE_OVERLAY = 'overlay';
+
     /**
      * @inheritdoc
      */

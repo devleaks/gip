@@ -11,6 +11,13 @@ use backend\models\CaptureImport;
  */
 class Zone extends BaseZone
 {
+    /**
+    * ENUM field values
+    */
+    const ZONE_DIMENSION_2D = '2D';
+    const ZONE_DIMENSION_3D = '3D';
+    var $enum_labels = false;
+
 	public static function getZoneTypes() {
 		return Type::forClass(Zone::className());
 	}
@@ -44,4 +51,20 @@ class Zone extends BaseZone
 		}
 		return null;			
 	}
+	
+	public function export() {
+		$e = [];
+		$e['type'] = 'Feature';
+		$e['properties'] = $this->toArray(['id','name','display_name','description','type_id','status','created_at','updated_at','created_by','updated_by']);
+		
+		if($this->geojson != '') {
+			$g = json_decode($this->geojson);
+			$e['geometry'] = isset($g->geometry) ? $g->geometry : $g;
+		}
+		//Yii::trace(print_r($e, true), 'Device::export');
+		//Yii::trace(json_encode($e, JSON_PRETTY_PRINT), 'Device::export');
+
+		return $e;
+ 	}
+
 }

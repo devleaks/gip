@@ -10,16 +10,17 @@ MapAsset::register($this);
 $widget_class 	= strtolower('gip-'.$widget->source.'-'.$widget->type);
 $widget_hndlr 	= strtoupper($widget->source.'_'.$widget->type);
 ?>
-
-<div id="<?= $widget_class ?>"
-	 class="card card-bordered gip-map"
->
-	<div class="sidebar-map <?= $widget->name ?>" id="<?= $widget->id ?>"></div>
-</div>
+<div></div>
 <?php
 	if($widget->leaflet) {
-		echo \dosamigos\leaflet\widgets\Map::widget(['leafLet' => $widget->leaflet]);
+		echo \dosamigos\leaflet\widgets\Map::widget([
+			'leafLet' => $widget->leaflet,
+			'options' => [
+				'style' => 'height: 700px',
+				'class' => 'sidebar-map oscars'
+			]
+		]);
 	} else {
-		echo "Could not generate Leaflet";
+		echo "Could not generate Leaflet map.";
 	}
  ?>

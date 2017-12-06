@@ -59,4 +59,16 @@ class ZoneGroup extends BaseZoneGroup
 		}
 		return $group;
 	}
+	
+	public function export() {
+		$g = [];
+		$g['type'] = 'FeatureCollection';
+		$g['properties'] = $this->toArray(['id','name','display_name','description','type_id','status','created_at','updated_at','created_by','updated_by']);;
+		$g['features'] = [];
+		foreach($this->getZones()->each() as $e) {
+			$g['features'][] = $e->export();
+		}
+		return $g;
+ 	}
+	
 }

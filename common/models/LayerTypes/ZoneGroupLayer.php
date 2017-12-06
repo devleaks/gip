@@ -2,6 +2,7 @@
 
 namespace common\models\LayerTypes;
 
+use common\models\ZoneGroup as ZoneGroupModel;
 use common\models\leaflet\ZoneGroup;
 use dosamigos\leaflet\layers\GeoJson;
 
@@ -14,12 +15,15 @@ class ZoneGroupLayer extends Layer
 {
 
 	public function getRepresentation() {
-		return new GeoJson([
-			'data' => [
-				"type" => "MultiPoint",
-				"coordinates" => [[50.62250,5.41630], [50.65655,5.47567]]
-			]
-		]);
+		$parameters = $this->layer->getAttributeValues();
+		
+		$gname = $parameters['ZONE_GROUP'];
+		$g = ZoneGroupModel::findOne(['display_name' => $gname]);
+		$e  = $g->export();
+
+		//Yii::trace(json_encode($e, JSON_PRETTY_PRINT), 'ZoneGroupLayer::getRepresentation');
+		
+		return new ZoneGroup(['data' => $e]);
 	}
 	
 }

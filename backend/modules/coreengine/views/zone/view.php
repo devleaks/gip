@@ -38,7 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
 				'value' => (isset($model->type_id) && intval($model->type_id) > 0)? $model->type->display_name : '',
 				'label' => Yii::t('app', 'Type')
 	        ],
-            'zone_dimension',
+	        [
+	            'attribute'=>'zone_dimension',
+				'type' => DetailView::INPUT_DROPDOWN_LIST,
+				'items' => ['2D' => '2D', '3D' => '3D'],
+	        ],
             'geometry',
         ],
         'deleteOptions'=>[

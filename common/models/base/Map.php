@@ -3,7 +3,6 @@
 namespace common\models\base;
 
 use Yii;
-use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
@@ -12,34 +11,52 @@ use yii\behaviors\BlameableBehavior;
  *
  * @property integer $id
  * @property string $name
+ * @property string $display_name
+ * @property string $center
+ * @property string $zoom
  * @property string $description
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_by
  * @property integer $updated_by
- * @property string $display_name
  *
- * @property \common\models\MapBackground[] $mapBackgrounds
  * @property \common\models\MapLayer[] $mapLayers
- * @property \common\models\MapTool[] $mapTools
+ * @property \common\models\MapToolGroup[] $mapToolGroups
  */
 class Map extends \yii\db\ActiveRecord
 {
+    use \mootensai\relation\RelationTrait;
+
+
+    /**
+    * This function helps \mootensai\relation\RelationTrait runs faster
+    * @return array relation names of this model
+    */
+    public function relationNames()
+    {
+        return [
+            'mapLayers',
+            'mapToolGroups'
+        ];
+    }
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'display_name'], 'required'],
+            [['zoom'], 'number'],
             [['created_at', 'updated_at'], 'safe'],
             [['created_by', 'updated_by'], 'integer'],
-            [['name', 'display_name'], 'string', 'max' => 40],
+            [['name', 'display_name', 'center'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
-            [['name'], 'unique']
+            [['name'], 'unique'],
+            [['display_name'], 'unique']
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -54,22 +71,15 @@ class Map extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('gip', 'ID'),
-            'name' => Yii::t('gip', 'Name'),
-            'display_name' => Yii::t('gip', 'Display Name'),
-            'description' => Yii::t('gip', 'Description'),
-            'display_name' => Yii::t('gip', 'Display Name'),
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'display_name' => Yii::t('app', 'Display Name'),
+            'center' => Yii::t('app', 'Center'),
+            'zoom' => Yii::t('app', 'Zoom'),
+            'description' => Yii::t('app', 'Description'),
         ];
     }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getMapBackgrounds()
-    {
-        return $this->hasMany(\common\models\MapBackground::className(), ['map_id' => 'id']);
-    }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -77,35 +87,36 @@ class Map extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\common\models\MapLayer::className(), ['map_id' => 'id']);
     }
-
+        
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMapTools()
+    public function getMapToolGroups()
     {
-        return $this->hasMany(\common\models\MapTool::className(), ['map_id' => 'id']);
+        return $this->hasMany(\common\models\MapToolGroup::className(), ['map_id' => 'id']);
     }
-
-/**
+    
+    /**
      * @inheritdoc
-     * @return type mixed
-     */ 
+     * @return array mixed
+     */
     public function behaviors()
     {
         return [
-            [
+            'timestamp' => [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'created_at',
                 'updatedAtAttribute' => 'updated_at',
                 'value' => new \yii\db\Expression('NOW()'),
             ],
-            [
+            'blameable' => [
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => 'updated_by',
             ],
         ];
     }
+
 
     /**
      * @inheritdoc

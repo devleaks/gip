@@ -3,11 +3,11 @@
 namespace common\models\query;
 
 /**
- * This is the ActiveQuery class for [[\common\models\query\DeviceGroup]].
+ * This is the ActiveQuery class for [[\common\models\query\Zone]].
  *
- * @see \common\models\query\DeviceGroup
+ * @see \common\models\query\Zone
  */
-class DeviceGroupQuery extends \yii\db\ActiveQuery
+class ZoneQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -17,7 +17,7 @@ class DeviceGroupQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\query\DeviceGroup[]|array
+     * @return \common\models\query\Zone[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class DeviceGroupQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\query\DeviceGroup|array|null
+     * @return \common\models\query\Zone|array|null
      */
     public function one($db = null)
     {

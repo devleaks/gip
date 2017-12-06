@@ -17,7 +17,9 @@ use yii\helpers\Json;
  */
 class RandomChart extends \yii\bootstrap\Widget
 {
-
+	/** Giplet Content */
+	public $data;
+	
 	public function run() {		
         return $this->render('highcharts', [
             'widget' => $this,

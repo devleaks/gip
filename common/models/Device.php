@@ -41,4 +41,20 @@ class Device extends BaseDevice
 		}
 		return null;			
 	}
+	
+	public function export() {
+		$e = [];
+		$e['type'] = 'Feature';
+		$e['properties'] = $this->toArray(['id','name','display_name','description','type_id','status','created_at','updated_at','created_by','updated_by']);
+		
+		if($this->geojson != '') {
+			$g = json_decode($this->geojson);
+			$e['geometry'] = isset($g->geometry) ? $g->geometry : $g;
+		}
+		//Yii::trace(print_r($e, true), 'Device::export');
+		//Yii::trace(json_encode($e, JSON_PRETTY_PRINT), 'Device::export');
+
+		return $e;
+ 	}
+	
 }
