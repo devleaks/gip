@@ -5,8 +5,11 @@ namespace backend\modules\coreengine\controllers;
 use Yii;
 use common\models\Device;
 use common\models\search\Device as DeviceSearch;
+use backend\models\CaptureImport;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
 
 /**
@@ -70,6 +73,29 @@ class DeviceController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    /**
+     * Creates a new Device model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionImport()
+    {
+        $model = new CaptureImport;
+
+        if (Yii::$app->request->isPost) {
+			$model->load(Yii::$app->request->post());
+			$model->file = UploadedFile::getInstance($model, 'file');
+			$feedback = $model->doImport();
+            return $this->render('import_result', [
+                'model' => $model, 'content' => $feedback
+            ]);
+        } else {
+            return $this->render('import', [
                 'model' => $model,
             ]);
         }

@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use \common\models\base\DeviceGroup as BaseDeviceGroup;
+use backend\models\CaptureImport;
 
 /**
  * This is the model class for table "device_group".
@@ -26,8 +27,9 @@ class DeviceGroup extends BaseDeviceGroup
 				'device_id' => $device->id,
 				'device_group_id' => $this->id,
 			]);
+			Yii::trace('errors '.print_r($ddg->errors, true), 'DeviceGroup::add');
 			$ddg->save();
-			//Yii::trace('errors '.print_r($model->errors, true), 'DeviceGroup::add');
+			return true;
 		}
 		return false;
 	}
@@ -47,5 +49,23 @@ class DeviceGroup extends BaseDeviceGroup
 
 	public function extraFields() {
 		return ['devices','type'];
+	}
+	
+	public static function import($geojson) {
+		if($geojson->type != "FeatureCollection" || count($geojson->features) < 1)
+			return null;
+		$group = new DeviceGroup();
+		$group = CaptureImport::featureAttributes($group, $geojson);
+
+		$group->save();
+		$group->refresh();
+		foreach($geojson->features as $feature) {
+			if($feature->geometry->type == "Point") {
+				if($device = Device::import($feature)) {
+					$group->add($device);
+				}
+			}
+		}
+		return $group;
 	}
 }
