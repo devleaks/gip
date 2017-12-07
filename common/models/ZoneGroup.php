@@ -42,7 +42,7 @@ class ZoneGroup extends BaseZoneGroup
 		return false;
 	}
 
-	public static function import($geojson) {
+	public static function fromGeoJson($geojson) {
 		if($geojson->type != "FeatureCollection" || count($geojson->features) < 1)
 			return null;
 		$group = new ZoneGroup();
@@ -60,13 +60,13 @@ class ZoneGroup extends BaseZoneGroup
 		return $group;
 	}
 	
-	public function export() {
+	public function toGeoJson() {
 		$g = [];
 		$g['type'] = 'FeatureCollection';
 		$g['properties'] = $this->toArray(['id','name','display_name','description','type_id','status','created_at','updated_at','created_by','updated_by']);;
 		$g['features'] = [];
 		foreach($this->getZones()->each() as $e) {
-			$g['features'][] = $e->export();
+			$g['features'][] = $e->toGeoJson();
 		}
 		return $g;
  	}

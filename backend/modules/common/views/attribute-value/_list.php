@@ -41,16 +41,21 @@ use yii\widgets\Pjax;
 		        		}
 				},
 			],
-/*			<input type="text" id="attributevalue-5-value_text" class="form-control" name="AttributeValue[5][value_text]">
-            'value_text' => [
-            	'type' => TabularForm::INPUT_TEXT,
-			],
-*/
             'value_number' => [
             	'type' => TabularForm::INPUT_TEXT,
+            	'columnOptions'=>['width'=>'170px']
 			],
             'value_date' => [
-            	'type' => TabularForm::INPUT_TEXT,
+            	'type' => TabularForm::INPUT_WIDGET,
+				'widgetClass'=>\kartik\widgets\DateTimePicker::classname(), 
+	            'options'=> [ 
+                    'pluginOptions'=>[
+                        'format'=>'dd-mm-yyyy HH:i',
+                        'todayHighlight'=>true, 
+                        'autoclose'=>true
+                    ]
+                ],
+	            'columnOptions'=>['width'=>'270px']
 			],
         ],
 		'gridSettings' => [

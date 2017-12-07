@@ -23,7 +23,11 @@ use kartik\datecontrol\DateControl;
         'columns' => 1,
         'attributes' => [
 
-'display_status_type_id'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Display Status Type ID...'], 'options'=>['readonly' => true]],
+'display_status_type_id'=>[
+	'type'=> Form::INPUT_TEXT,
+	'options'=>['readonly' => true],
+	'value' => $model->displayStatusType->display_name
+],
 
 'name'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Name...', 'maxlength'=>40]],
 

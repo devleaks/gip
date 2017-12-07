@@ -23,7 +23,7 @@ class Map extends Giplet {
 	
 	public function run() {
 		$this->id = $this->id ? $this->id : 'map';
-		if($map = BaseMap::findOne(['display_name'=>$this->data['MAP']])) {
+		if($map = BaseMap::findOne(['name'=>$this->data['MAP']])) {
 			$this->leaflet = $map->getLeaflet();
 		}
 		

@@ -89,14 +89,14 @@ class CaptureImport extends Model
 
 		if($geojson = json_decode($content)) {
 			if($geojson->type == "FeatureCollection") {  // FeatureCollection
-				if($this->what != self::TYPE_ZONE && ($group = DeviceGroup::import($geojson))) {
+				if($this->what != self::TYPE_ZONE && ($group = DeviceGroup::fromGeoJson($geojson))) {
 					$feedback .= 'Imported devices in group '.$group->name.'(';
 					foreach($group->getDevices()->each() as $device) {
 						$feedback .= $device->name.',';
 					}
 					$feedback .= ')';
 				}
-				if($this->what != self::TYPE_DEVICE && ($group = ZoneGroup::import($geojson))) {
+				if($this->what != self::TYPE_DEVICE && ($group = ZoneGroup::fromGeoJson($geojson))) {
 					$feedback .= 'Imported zones in group '.$group->name.'(';
 					foreach($group->getZones()->each() as $zone) {
 						$feedback .= $zone->name.',';
@@ -105,17 +105,17 @@ class CaptureImport extends Model
 				}
 			} else if($geojson->type == "Feature") { // Single Feature
 				if($this->what != self::TYPE_ZONE && $geojson->geometry->type == "Point") {
-					$feature = Device::import($geojson);
+					$feature = Device::fromGeoJson($geojson);
 					$feedback .= 'Imported device feature '.$feature->name;
 				} else if($this->what != self::TYPE_DEVICE && in_array($geojson->geometry->type, ["Polygon","MultiPolygon"])) {
-					$feature = Zone::import($geojson);
+					$feature = Zone::fromGeoJson($geojson);
 					$feedback .= 'Imported zone feature '.$feature->name;
 				}
 			} else if($this->what != self::TYPE_ZONE && $geojson->type == "Point") { // Simple geometry
-				$zone = Device::import($geojson);
+				$zone = Device::fromGeoJson($geojson);
 				$feedback .= 'Imported '.$zone->name;
 			} else if($this->what != self::TYPE_DEVICE && in_array($geojson->type, ["Polygon","MultiPolygon"])) {
-				$zone = Zone::import($geojson);
+				$zone = Zone::fromGeoJson($geojson);
 				$feedback .= 'Imported '.$zone->name;
 			}
 		} else {

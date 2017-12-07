@@ -39,26 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
 				'value' => (isset($model->style_id) && intval($model->style_id) > 0)? $model->style->display_name : '',
 				'label' => Yii::t('app', 'Style')
 	        ],
-            [
-                'attribute'=>'created_at',
-                'format'=>['date',(isset(Yii::$app->modules['datecontrol']['displaySettings']['date'])) ? Yii::$app->modules['datecontrol']['displaySettings']['date'] : 'd-m-Y'],
-                'displayOnly'=>true,
-            ],
-            [
-                'attribute'=>'updated_at',
-                'format'=>['date',(isset(Yii::$app->modules['datecontrol']['displaySettings']['date'])) ? Yii::$app->modules['datecontrol']['displaySettings']['date'] : 'd-m-Y'],
-                'displayOnly'=>true,
-            ],
-            [
-                'attribute'=>'created_by',
-                'format'=>['date',(isset(Yii::$app->modules['datecontrol']['displaySettings']['date'])) ? Yii::$app->modules['datecontrol']['displaySettings']['date'] : 'd-m-Y'],
-                'displayOnly'=>true,
-            ],
-            [
-                'attribute'=>'updated_by',
-                'format'=>['date',(isset(Yii::$app->modules['datecontrol']['displaySettings']['date'])) ? Yii::$app->modules['datecontrol']['displaySettings']['date'] : 'd-m-Y'],
-                'displayOnly'=>true,
-            ],
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],

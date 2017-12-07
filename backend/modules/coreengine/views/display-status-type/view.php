@@ -30,26 +30,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'display_name',
             'description',
-            [
-                'attribute'=>'created_at',
-                'format'=>['date',(isset(Yii::$app->modules['datecontrol']['displaySettings']['date'])) ? Yii::$app->modules['datecontrol']['displaySettings']['date'] : 'd-m-Y'],
-                'displayOnly'=>true,
-            ],
-            [
-                'attribute'=>'updated_at',
-                'format'=>['date',(isset(Yii::$app->modules['datecontrol']['displaySettings']['date'])) ? Yii::$app->modules['datecontrol']['displaySettings']['date'] : 'd-m-Y'],
-                'displayOnly'=>true,
-            ],
-            [
-                'attribute'=>'created_by',
-                'format'=>['date',(isset(Yii::$app->modules['datecontrol']['displaySettings']['date'])) ? Yii::$app->modules['datecontrol']['displaySettings']['date'] : 'd-m-Y'],
-                'displayOnly'=>true,
-            ],
-            [
-                'attribute'=>'updated_by',
-                'format'=>['date',(isset(Yii::$app->modules['datecontrol']['displaySettings']['date'])) ? Yii::$app->modules['datecontrol']['displaySettings']['date'] : 'd-m-Y'],
-                'displayOnly'=>true,
-            ],
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],

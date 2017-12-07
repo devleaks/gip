@@ -30,7 +30,7 @@ class Device extends BaseDevice
 		return $fields;
 	}
 
-	public static function import($geojson) {
+	public static function fromGeoJson($geojson) {
 		if(in_array($geojson->type, ["Feature","Point"])) {
 			$device = new Device();
 			$device = CaptureImport::featureAttributes($device, $geojson);
@@ -42,7 +42,7 @@ class Device extends BaseDevice
 		return null;			
 	}
 	
-	public function export() {
+	public function toGeoJson() {
 		$e = [];
 		$e['type'] = 'Feature';
 		$e['properties'] = $this->toArray(['id','name','display_name','description','type_id','status','created_at','updated_at','created_by','updated_by']);
@@ -50,6 +50,11 @@ class Device extends BaseDevice
 		if($this->geojson != '') {
 			$g = json_decode($this->geojson);
 			$e['geometry'] = isset($g->geometry) ? $g->geometry : $g;
+		} else { // supply default geometry to validate geojson
+			$e['geometry'] = [
+				'type' => "Point",
+				'coordinates' => [0, 0]
+			];
 		}
 		//Yii::trace(print_r($e, true), 'Device::export');
 		//Yii::trace(json_encode($e, JSON_PRETTY_PRINT), 'Device::export');

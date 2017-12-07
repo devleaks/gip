@@ -27,7 +27,7 @@ class ListOfValues extends BaseListOfValues
 		}
 		$ret = [];
 		foreach($q->each() as $value) {
-			$ret[$value['name']] = $value['name'];
+			$ret[$value['id']] = $value['name'];
 		}
 		return $ret;
 	}

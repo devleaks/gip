@@ -1,0 +1,2 @@
+WKT,name,display_name,type,display_type,display_status,group_name,group_display_name,status,style
+"POLYGON ((5.46380996704102 50.646072586322,5.46269416809082 50.6454330763902,5.46376705169678 50.6448343783529,5.46481847763062 50.6454058630086,5.46380996704102 50.646072586322))",POL,POL,POL,POL,ALERT,POL,POL,ACTIVE,"{ ""color"": ""rgb(220,60,110)"", ""opacity"": 0.800000, ""weight"": 1, ""fillColor"": ""rgb(100,100,100)"", ""fillOpacity"": 0.400000 }"

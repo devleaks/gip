@@ -12847,25 +12847,25 @@ L.Oscars.Util = (function () {
 	// Adds a layer to the supplied control layer. If the device/zone groups has a "grouping category", places it in,
 	// otherwise, uses generic Devices/Zones groups.
 	addLayerToControlLayer: function(featureCollection, layer) {
-		var layer_group_display_name, display_name, name;
-		if(featureCollection.type == "FeatureCollection") {
-			var type = "Devices";
-			if(featureCollection.features.length > 0) {
-				type = (featureCollection.features[0].geometry.type == "Point") ? "Devices" : "Zones";
-			}
-			layer_group_display_name = isSet(featureCollection.properties) && isSet(featureCollection.properties.layer_group_display_name) ? featureCollection.properties.layer_group_display_name : type;
-			display_name = featureCollection.properties.display_name;
-			name = featureCollection.properties.name;
-		} else if (Array.isArray(featureCollection) && featureCollection.length > 0) { // collections of features gets the name of the type of the first element
-			layer_group_display_name = (featureCollection[0].geometry.type == "Point") ? "Devices" : "Zones";
-			display_name = isSet(featureCollection[0].properties.display_type) ? featureCollection[0].properties.display_type : featureCollection[0].properties.type;
-			name = isSet(featureCollection[0].properties.group_name) ? featureCollection[0].properties.group_name : null;
-		} else { // layers from one element gets the name from that element
-			layer_group_display_name = (featureCollection.geometry.type == "Point") ? "Devices" : "Zones";
-			display_name = featureCollection.properties.display_name;
-			name = featureCollection.properties.name;
-		}
 		if(_layerControl) {
+			var layer_group_display_name, display_name, name;
+			if(featureCollection.type == "FeatureCollection") {
+				var type = "Devices";
+				if(featureCollection.features.length > 0) {
+					type = (featureCollection.features[0].geometry.type == "Point") ? "Devices" : "Zones";
+				}
+				layer_group_display_name = isSet(featureCollection.properties) && isSet(featureCollection.properties.layer_group_display_name) ? featureCollection.properties.layer_group_display_name : type;
+				display_name = featureCollection.properties.display_name;
+				name = featureCollection.properties.name;
+			} else if (Array.isArray(featureCollection) && featureCollection.length > 0) { // collections of features gets the name of the type of the first element
+				layer_group_display_name = (featureCollection[0].geometry.type == "Point") ? "Devices" : "Zones";
+				display_name = isSet(featureCollection[0].properties.display_type) ? featureCollection[0].properties.display_type : featureCollection[0].properties.type;
+				name = isSet(featureCollection[0].properties.group_name) ? featureCollection[0].properties.group_name : null;
+			} else { // layers from one element gets the name from that element
+				layer_group_display_name = (featureCollection.geometry.type == "Point") ? "Devices" : "Zones";
+				display_name = featureCollection.properties.display_name;
+				name = featureCollection.properties.name;
+			}
 			_layerControl.addGipOverlay(layer, display_name, layer_group_display_name);
 			if(name) {
 				//console.log('L.Oscars.Util::addLayerToControlLayer: Info - Adding', name);
