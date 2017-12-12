@@ -1131,16 +1131,16 @@
         },
         {
             "name": "bower-asset/moment",
-            "version": "2.19.3",
+            "version": "2.19.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moment/moment.git",
-                "reference": "4caa268356434f3ae9b5041985d62a0e8c246c78"
+                "reference": "fea48bb69eda8c0459915d6aa66a910a4d43a55b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moment/moment/zipball/4caa268356434f3ae9b5041985d62a0e8c246c78",
-                "reference": "4caa268356434f3ae9b5041985d62a0e8c246c78",
+                "url": "https://api.github.com/repos/moment/moment/zipball/fea48bb69eda8c0459915d6aa66a910a4d43a55b",
+                "reference": "fea48bb69eda8c0459915d6aa66a910a4d43a55b",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -1171,7 +1171,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2017-11-29T16:10:14+00:00"
+            "time": "2017-12-11T01:04:52+00:00"
         },
         {
             "name": "bower-asset/mustache.js",
@@ -2852,16 +2852,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v2.8.3",
+            "version": "v2.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "d9ec9b848cbf930c31dea3693d34dbd8b9c95295"
+                "reference": "454ddbe65da6a9297446f442bad244e8a99a9a38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/d9ec9b848cbf930c31dea3693d34dbd8b9c95295",
-                "reference": "d9ec9b848cbf930c31dea3693d34dbd8b9c95295",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/454ddbe65da6a9297446f442bad244e8a99a9a38",
+                "reference": "454ddbe65da6a9297446f442bad244e8a99a9a38",
                 "shasum": ""
             },
             "require": {
@@ -2888,7 +2888,8 @@
             "require-dev": {
                 "johnkary/phpunit-speedtrap": "^1.1 || ^2.0@dev",
                 "justinrainbow/json-schema": "^5.0",
-                "php-coveralls/php-coveralls": "^1.0.2",
+                "mikey179/vfsstream": "^1.6",
+                "php-coveralls/php-coveralls": "^2.0",
                 "php-cs-fixer/accessible-object": "^1.0",
                 "phpunit/phpunit": "^5.7.23 || ^6.4.3",
                 "symfony/phpunit-bridge": "^3.2.2 || ^4.0"
@@ -2928,7 +2929,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2017-11-26T20:45:16+00:00"
+            "time": "2017-12-08T16:36:20+00:00"
         },
         {
             "name": "gecko-packages/gecko-php-unit",
@@ -6792,12 +6793,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SafranCassiopee/php-metar-decoder.git",
-                "reference": "fa2a94e7a351d13eff6a52a9f30474917a85ff51"
+                "reference": "deec26033609fc6411221bab352b6035817065ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SafranCassiopee/php-metar-decoder/zipball/fa2a94e7a351d13eff6a52a9f30474917a85ff51",
-                "reference": "fa2a94e7a351d13eff6a52a9f30474917a85ff51",
+                "url": "https://api.github.com/repos/SafranCassiopee/php-metar-decoder/zipball/deec26033609fc6411221bab352b6035817065ab",
+                "reference": "deec26033609fc6411221bab352b6035817065ab",
                 "shasum": ""
             },
             "require": {
@@ -6824,7 +6825,7 @@
                 }
             ],
             "description": "METAR weather observation decoder",
-            "time": "2016-10-12T04:51:34+00:00"
+            "time": "2017-12-08T10:54:42+00:00"
         },
         {
             "name": "sagem-cassiopee/php-taf-decoder",
@@ -7958,16 +7959,16 @@
         },
         {
             "name": "vova07/yii2-imperavi-widget",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vova07/yii2-imperavi-widget.git",
-                "reference": "c1d8b4a40aa9e5ae8f34d4c20304ed75121d466d"
+                "reference": "5d5ecb2badf2c2d55fd791d73d801c67d5fd188d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vova07/yii2-imperavi-widget/zipball/c1d8b4a40aa9e5ae8f34d4c20304ed75121d466d",
-                "reference": "c1d8b4a40aa9e5ae8f34d4c20304ed75121d466d",
+                "url": "https://api.github.com/repos/vova07/yii2-imperavi-widget/zipball/5d5ecb2badf2c2d55fd791d73d801c67d5fd188d",
+                "reference": "5d5ecb2badf2c2d55fd791d73d801c67d5fd188d",
                 "shasum": ""
             },
             "require": {
@@ -8009,7 +8010,7 @@
                 "yii 2",
                 "yii2"
             ],
-            "time": "2017-12-04T21:46:13+00:00"
+            "time": "2017-12-09T20:29:38+00:00"
         },
         {
             "name": "warrence/yii2-kartikgii",

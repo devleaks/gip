@@ -9,10 +9,12 @@ class MapAsset extends AssetBundle
     public $sourcePath = '@common/assets';
     public $baseUrl = '@web';
     public $css = [
-		'css/map.css',
+		'css/L-addons.css',
+		'css/L-oscars.css',
 		'fonts'
     ];
     public $js = [
+		'js/L-addons.js',
 		'js/L-oscars-util.js',
 		'js/L-oscars-device-group.js',
 		'js/L-oscars-zone-group.js',

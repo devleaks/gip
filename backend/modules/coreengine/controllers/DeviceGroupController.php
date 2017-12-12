@@ -170,7 +170,7 @@ class DeviceGroupController extends Controller
 
 		Yii::$app->response->format = Response::FORMAT_JSON;
 		
-        return $model->toArray();
+        return $model->toGeoJson();
     }
 
     private function doAction($group_id, $action)

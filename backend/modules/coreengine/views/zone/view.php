@@ -42,6 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	            'attribute'=>'zone_dimension',
 				'type' => DetailView::INPUT_DROPDOWN_LIST,
 				'items' => ['2D' => '2D', '3D' => '3D'],
+				'label' => Yii::t('app', 'Dimensions')
 	        ],
             'geometry',
         ],

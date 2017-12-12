@@ -66,23 +66,28 @@ class Map extends BaseMap
 		$ll = explode(',', $this->center);
 		$center = new LatLng(['lat' => $ll[0], 'lng' => $ll[1]]);
 		$leaflet = new LeafLet([
-		    'center' => $center, // set the center
+		    'center' => $center,
 			'zoom' => $this->zoom
 		]);
-		$leaflet->appendJs('L.Oscars.Util.prepareMap(map, {"id": "w2"});');
+		$js = 'L.Oscars.Util.prepareMap(map, {'
+			.'id: "w2",'
+			.'layerControlOptions: { useGrouped: true, groupCheckboxes: true, collapsed: false },'
+			.'center: ['.$ll[0].', '.$ll[1].']'
+			.'});';
+		$leaflet->appendJs($js);
 
 		foreach($this->getBaseLayers()->each() as $layer) {
-			//$c .= 'console.log("adding '.$layer->name.'");';
 			$factory = $layer->getFactory();		
 			$r = $factory->getRepresentation();
 			if($first) {
+				$c .= 'console.log("adding '.$layer->name.'");';
 				$leaflet->addLayer($r);
 				$first = false;
 			}
 		}
 
 		foreach($this->getOverlayLayers()->each() as $layer) {
-			//$c .= 'console.log("adding '.$layer->name.'");';
+			$c .= 'console.log("adding '.$layer->name.'");';
 			$factory = $layer->getFactory();		
 			$r = $factory->getRepresentation();
 			$leaflet->addLayer($r);	

@@ -23,10 +23,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
         	'display_name',
             'description',
-			[
-				'attribute' => 'type_id',
+	        [
+	            'attribute'=>'type_id',
 				'filter' => Zone::getZoneTypes(),
-			],
+				'value' => function ($model, $key, $index, $widget) {
+							return (isset($model->type_id) && intval($model->type_id) > 0)? $model->type->display_name : '';
+	            		   },
+	        ],
 			[
 				'attribute' => 'zone_dimension',
 				'filter' => ['2D' => '2D', '3D' => '3D'],

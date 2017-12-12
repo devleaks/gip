@@ -104,7 +104,7 @@
   border-bottom-left-radius: 100% 50%;
   border-bottom-right-radius: 0%;
 }
-.sidebar {
+.sidebar-V2 {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -113,12 +113,12 @@
   z-index: 2000;
 }
 
-.sidebar.collapsed {
+.sidebar-V2.collapsed {
   width: 40px;
 }
 
 @media (min-width: 768px) {
-  .sidebar {
+  .sidebar-V2 {
     top: 10px;
     bottom: 10px;
     transition: width 500ms;
@@ -126,19 +126,19 @@
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-  .sidebar {
+  .sidebar-V2 {
     width: 305px;
   }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-  .sidebar {
+  .sidebar-V2 {
     width: 390px;
   }
 }
 
 @media (min-width: 1200px) {
-  .sidebar {
+  .sidebar-V2 {
     width: 460px;
   }
 }
@@ -257,7 +257,7 @@
   right: 40px;
 }
 
-.sidebar.collapsed > .sidebar-content {
+.sidebar-V2.collapsed > .sidebar-content {
   overflow-y: hidden;
 }
 
@@ -342,21 +342,21 @@
   }
 }
 
-.sidebar {
+.sidebar-V2 {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
 }
 
-.sidebar.leaflet-touch {
+.sidebar-V2.leaflet-touch {
   box-shadow: none;
   border-right: 2px solid rgba(0, 0, 0, 0.2);
 }
 
 @media (min-width: 768px) {
-  .sidebar {
+  .sidebar-V2 {
     border-radius: 4px;
   }
 
-  .sidebar.leaflet-touch {
+  .sidebar-V2.leaflet-touch {
     border: 2px solid rgba(0, 0, 0, 0.2);
   }
 }

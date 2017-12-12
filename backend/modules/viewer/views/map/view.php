@@ -28,6 +28,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
         	'display_name',
             'description',
+			'center',
+	        [
+	            'attribute'=>'zoom',
+				'type' => DetailView::INPUT_SPIN,
+				'widgetOptions' => [
+				    'pluginOptions' => [
+				        'initval' => 12.00,
+				        'min' => 0,
+				        'max' => 19,
+				        'step' => 0.1,
+				        'decimals' => 2,
+				        'boostat' => 1,
+				        'maxboostedstep' => 2,
+				    ]
+				]		
+	        ]
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],

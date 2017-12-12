@@ -11,7 +11,7 @@ use yii\base\Component;
 class GipLayer extends Layer
 {
 	const TYPE_DEVICE = 'DEVICE_GROUP';
-	const TYPE_ZONE = 'ZONE_GROUP';
+	const TYPE_ZONE   = 'ZONE_GROUP';
 	
 	public $group_type;
 	public $group_name;
@@ -36,14 +36,16 @@ class GipLayer extends Layer
 	
 	public function getRepresentation() {
 		$e  = $this->toGeoJson();
-		//Yii::trace(json_encode($e, JSON_PRETTY_PRINT), 'GipLayer::getRepresentation');		
+		//Yii::trace($this->group_name.'='.json_encode($e, JSON_PRETTY_PRINT), 'GipLayer::getRepresentation');		
 		return new $this->layerModel(['data' => $e]);
 	}
 	
 	protected function trsty($style_arr, $style) {
-		foreach($style->attributes as $a) {
-			if(!isset($style_arr[$a])) {
-				$style_arr[$a] = $style->$a;
+		if($style) {
+			foreach($style->attributes as $a) {
+				if(!isset($style_arr[$a])) {
+					$style_arr[$a] = $style->$a;
+				}
 			}
 		}
 		return $style_arr;

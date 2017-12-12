@@ -52,7 +52,7 @@ class ZoneGroup extends BaseZoneGroup
 		$group->refresh();
 		foreach($geojson->features as $feature) {
 			if(in_array($feature->geometry->type, ["Polygon","MultiPolygon"])) {
-				if($zone = Zone::import($feature)) {
+				if($zone = Zone::fromGeoJson($feature)) {
 					$group->add($zone);
 				}
 			}

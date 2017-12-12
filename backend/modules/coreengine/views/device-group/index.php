@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                'tojson' => function ($url, $model) {
 	                            	return Html::a('<span class="glyphicon glyphicon-download-alt"></span>',
 											Yii::$app->urlManager->createUrl(['coreengine/device-group/tojson','id' => $model->id]),
-											['title' => Yii::t('yii', 'Export')]);
+											['title' => Yii::t('yii', 'To GeoJSON')]);
 								}
                 ],
             ],

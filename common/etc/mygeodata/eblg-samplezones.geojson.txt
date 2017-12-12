@@ -1,0 +1,181 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "name": "TRACK_NORTH",
+        "display_name": "Piste nord",
+        "type": "TRACK"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            5.453606843948364,
+            50.64609979931754
+          ],
+          [
+            5.430153608322143,
+            50.63127318567048
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "name": "TRACK_SOUTH",
+        "display_name": "Piste sud",
+        "type": "TRACK"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            5.427364110946655,
+            50.62683585973076
+          ],
+          [
+            5.4649901390075675,
+            50.65056931993842
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#555555",
+        "fill-opacity": 0.5,
+        "name": "TNT",
+        "display_name": "TNT Hub",
+        "type": "BUILDING"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              5.451536178588867,
+              50.637948802626724
+            ],
+            [
+              5.446815490722656,
+              50.63496836908646
+            ],
+            [
+              5.447877645492554,
+              50.63429468326438
+            ],
+            [
+              5.452598333358765,
+              50.63726835499671
+            ],
+            [
+              5.451536178588867,
+              50.637948802626724
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#555555",
+        "fill-opacity": 0.5,
+        "name": "PARKING_NORTH",
+        "display_name": "Parking nord",
+        "type": "PARKINGAREA"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              5.433940887451172,
+              50.638397892666035
+            ],
+            [
+              5.430164337158203,
+              50.63605713384144
+            ],
+            [
+              5.424692630767822,
+              50.63477783266147
+            ],
+            [
+              5.425465106964111,
+              50.633321564475466
+            ],
+            [
+              5.431430339813232,
+              50.63469617395718
+            ],
+            [
+              5.435636043548584,
+              50.637295573091066
+            ],
+            [
+              5.433940887451172,
+              50.638397892666035
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#555555",
+        "fill-opacity": 0.5,
+        "name": "MAINTERMINAL",
+        "display_name": "Terminal Passagers",
+        "type": "BUILDING"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              5.461288690567017,
+              50.643888692048534
+            ],
+            [
+              5.460108518600464,
+              50.64314709738765
+            ],
+            [
+              5.460848808288574,
+              50.64268444524899
+            ],
+            [
+              5.462007522583008,
+              50.64341924357674
+            ],
+            [
+              5.461288690567017,
+              50.643888692048534
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

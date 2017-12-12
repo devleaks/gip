@@ -61,7 +61,7 @@ class DeviceGroup extends BaseDeviceGroup
 		$group->refresh();
 		foreach($geojson->features as $feature) {
 			if($feature->geometry->type == "Point") {
-				if($device = Device::import($feature)) {
+				if($device = Device::fromGeoJson($feature)) {
 					$group->add($device);
 				}
 			}

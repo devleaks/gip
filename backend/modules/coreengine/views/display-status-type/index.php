@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="display-status-type-index">
 
-    <?php Pjax::begin(); echo GridView::widget([
+    <?php echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -28,10 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'kartik\grid\ActionColumn',
 				'noWrap' => true,
                 'buttons' => [
-                'update' => function ($url, $model) {
-                                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Yii::$app->urlManager->createUrl(['coreengine/display-status-type/view','id' => $model->id,'edit'=>'t']), [
-                                                    'title' => Yii::t('yii', 'Edit'),
-                                ]);
+				'update' => function ($url, $model) {
+								return Html::a('<span class="glyphicon glyphicon-pencil"></span>',
+											Yii::$app->urlManager->createUrl([
+												'coreengine/display-status-type/view',
+												'id' => $model->id,'edit'=>'t'
+											]), ['title' => Yii::t('yii', 'Edit'),]);
 							}
                 ],
             ],
@@ -47,6 +49,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'after'=>Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset List', ['index'], ['class' => 'btn btn-info']),
             'showFooter'=>false
         ],
-    ]); Pjax::end(); ?>
+    ]); ?>
 
 </div>

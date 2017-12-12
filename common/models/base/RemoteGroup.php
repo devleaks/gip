@@ -7,29 +7,28 @@ use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
 /**
- * This is the base model class for table "device_group".
+ * This is the base model class for table "remote_group".
  *
  * @property integer $id
  * @property string $name
  * @property string $display_name
  * @property string $description
- * @property integer $display_status_type_id
- * @property string $group_type
  * @property integer $type_id
- * @property string $status
+ * @property string $schema_name
+ * @property string $table_name
+ * @property string $unique_id_column
+ * @property string $geometry_column
+ * @property string $where_clause
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_by
  * @property integer $updated_by
- * @property integer $remote_group_id
  *
- * @property \common\models\DeviceDeviceGroup[] $deviceDeviceGroups
- * @property \common\models\RemoteGroup $remoteGroup
+ * @property \common\models\DeviceGroup[] $deviceGroups
  * @property \common\models\Type $type
- * @property \common\models\DisplayStatusType $displayStatusType
- * @property \common\models\Rule[] $rules
+ * @property \common\models\ZoneGroup[] $zoneGroups
  */
-class DeviceGroup extends \yii\db\ActiveRecord
+class RemoteGroup extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
 
@@ -41,11 +40,9 @@ class DeviceGroup extends \yii\db\ActiveRecord
     public function relationNames()
     {
         return [
-            'deviceDeviceGroups',
-            'remoteGroup',
+            'deviceGroups',
             'type',
-            'displayStatusType',
-            'rules'
+            'zoneGroups'
         ];
     }
 
@@ -56,11 +53,12 @@ class DeviceGroup extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'display_name'], 'required'],
-            [['display_status_type_id', 'type_id', 'created_by', 'updated_by', 'remote_group_id'], 'integer'],
-            [['group_type'], 'string'],
+            [['type_id', 'created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'display_name', 'status'], 'string', 'max' => 40],
+            [['name', 'display_name'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
+            [['schema_name', 'table_name', 'unique_id_column', 'geometry_column'], 'string', 'max' => 80],
+            [['where_clause'], 'string', 'max' => 4000],
             [['name'], 'unique'],
             [['display_name'], 'unique']
         ];
@@ -71,7 +69,7 @@ class DeviceGroup extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'device_group';
+        return 'remote_group';
     }
 
     /**
@@ -84,28 +82,21 @@ class DeviceGroup extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'display_name' => Yii::t('app', 'Display Name'),
             'description' => Yii::t('app', 'Description'),
-            'display_status_type_id' => Yii::t('app', 'Display Status Type ID'),
-            'group_type' => Yii::t('app', 'Group Type'),
             'type_id' => Yii::t('app', 'Type ID'),
-            'status' => Yii::t('app', 'Status'),
-            'remote_group_id' => Yii::t('app', 'Remote Group ID'),
+            'schema_name' => Yii::t('app', 'Schema Name'),
+            'table_name' => Yii::t('app', 'Table Name'),
+            'unique_id_column' => Yii::t('app', 'Unique Id Column'),
+            'geometry_column' => Yii::t('app', 'Geometry Column'),
+            'where_clause' => Yii::t('app', 'Where Clause'),
         ];
     }
     
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDeviceDeviceGroups()
+    public function getDeviceGroups()
     {
-        return $this->hasMany(\common\models\DeviceDeviceGroup::className(), ['device_group_id' => 'id']);
-    }
-        
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRemoteGroup()
-    {
-        return $this->hasOne(\common\models\RemoteGroup::className(), ['id' => 'remote_group_id']);
+        return $this->hasMany(\common\models\DeviceGroup::className(), ['remote_group_id' => 'id']);
     }
         
     /**
@@ -119,17 +110,9 @@ class DeviceGroup extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDisplayStatusType()
+    public function getZoneGroups()
     {
-        return $this->hasOne(\common\models\DisplayStatusType::className(), ['id' => 'display_status_type_id']);
-    }
-        
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRules()
-    {
-        return $this->hasMany(\common\models\Rule::className(), ['device_group_id' => 'id']);
+        return $this->hasMany(\common\models\ZoneGroup::className(), ['remote_group_id' => 'id']);
     }
     
     /**
@@ -156,10 +139,10 @@ class DeviceGroup extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \common\models\query\DeviceGroupQuery the active query used by this AR class.
+     * @return \common\models\query\RemoteGroupQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\DeviceGroupQuery(get_called_class());
+        return new \common\models\query\RemoteGroupQuery(get_called_class());
     }
 }

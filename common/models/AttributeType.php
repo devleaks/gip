@@ -17,10 +17,11 @@ class AttributeType extends BaseAttributeType
 	// Core Types							# Stored in:
 	const DATA_TYPE_ARRAY   = 'Array';		# varchar2, clob
 	const DATA_TYPE_BOOLEAN = 'Boolean';	# varchar2, number
-	const DATA_TYPE_INTEGER = 'Integer';	# number
+	const DATA_TYPE_INTEGER = 'Integer';	# number, timestamp?
 	const DATA_TYPE_NUMBER  = 'Number';		# number
 	const DATA_TYPE_OBJECT  = 'Object';		# varchar2, clob
 	const DATA_TYPE_STRING  = 'String';		# varchar2, clob
+	const DATA_TYPE_DATE    = 'Date';		# date, datetime, timestamp?
 
 	/** Extra Types / Derived Types
 	const DATA_TYPE_FLOAT   = 'Float';
