@@ -1,5 +1,6 @@
 <?php
 
+use common\models\Style;
 use common\models\Type;
 
 use yii\helpers\Html;
@@ -24,30 +25,15 @@ use kartik\widgets\ColorInput
         'columns' => 1,
         'attributes' => [
 
+            'type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Type...', 'maxlength'=>40], 'items' => Type::forClass(Type::className())],
+
             'name'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Name...', 'maxlength'=>40]],
 
         	'display_name'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Display Name...', 'maxlength'=>80]],
 
             'description'=>['type'=> Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Description...', 'maxlength'=>2000]],
 
-            'type_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Type...', 'maxlength'=>40], 'items' => Type::forClass(Type::className())],
-
-            'icon'=>['type'=> Form::INPUT_WIDGET,
-					 'widgetClass' => Iconpicker::className(),
-					 'options' => [
-						'rows' => 6,
-						'columns' => 8,
-						'iconset'=> 'fontawesome',
-						'options'=>['placeholder'=>'Enter Icon...', 'maxlength'=>40]
-					 ]
-			],
-
-            'color'=>['type'=> Form::INPUT_WIDGET,
-					 'widgetClass' => ColorInput::className(),
-					 'options' => [
-						'options'=>['maxlength'=>40]
-					 ]
-			],
+			'style_id'=>['type'=> Form::INPUT_DROPDOWN_LIST, 'options'=>['placeholder'=>'Enter Style Name...'], 'items' => Style::getList()],
 
         ]
 

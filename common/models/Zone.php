@@ -55,7 +55,19 @@ class Zone extends BaseZone
 	public function toGeoJson() {
 		$e = [];
 		$e['type'] = 'Feature';
-		$e['properties'] = $this->toArray(['id','name','display_name','description','type_id','status','created_at','updated_at','created_by','updated_by']);
+		$e['properties'] = $this->toArray(['name','display_name','description','status','created_at','updated_at']);
+		
+		if($this->type_id > 0) {
+			$e['properties']['type'] = Type::findOne($this->type_id)->toJson();
+		}
+		
+		if($this->created_by > 0) {
+			$e['properties']['created_by'] = User::findOne($this->created_by)->toJson();
+		}
+		
+		if($this->updated_by > 0) {
+			$e['properties']['updated_by'] = User::findOne($this->updated_by)->toJson();
+		}
 		
 		if($this->geojson != '') {
 			$g = json_decode($this->geojson);

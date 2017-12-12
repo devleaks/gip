@@ -1,7 +1,9 @@
 <?php
 
+use common\models\Style;
 use common\models\Type;
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\data\ActiveDataProvider;
 use kartik\detail\DetailView;
@@ -31,9 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'type'=>DetailView::TYPE_INFO,
         ],
         'attributes' => [
-            'name',
-        	'display_name',
-            'description',
             [
 				'attribute' => 'type_id',
 				'items' => Type::forClass(Type::className()),
@@ -41,25 +40,16 @@ $this->params['breadcrumbs'][] = $this->title;
 				'value' => $model->type ? $model->type->display_name : '',
 				'label' => Yii::t('app', 'Base Type')
 			],
-            [
-				'attribute' => 'icon',
-				'value' => Icon::show(str_replace('fa-', '', $model->icon)),
-				'format' => 'raw',
-            	'type'=> DetailView::INPUT_WIDGET,
-				'widgetOptions' => [
-					'class' => Iconpicker::className(),
-					'rows' => 6,
-					'columns' => 8,
-					'iconset'=> 'fontawesome',
-				],
-			],
-			[
-                'attribute' => 'color', 
-                'format' => 'raw', 
-                'value' => "<span class='badge' style='background-color: {$model->color}'> </span>  <code>" . $model->color . '</code>',
-                'type'=> DetailView::INPUT_COLOR,
-                'valueColOptions' => ['style'=>'width:30%'], 
-            ],
+            'name',
+        	'display_name',
+            'description',
+	        [
+	            'attribute'=>'style_id',
+				'type' => DetailView::INPUT_DROPDOWN_LIST,
+				'items' => [''=>'']+ArrayHelper::map(Style::find()->orderBy('display_name')->asArray()->all(), 'id', 'display_name'),
+				'value' => (isset($model->style_id) && intval($model->style_id) > 0)? $model->style->display_name : '',
+				'label' => Yii::t('app', 'Style')
+	        ],
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],

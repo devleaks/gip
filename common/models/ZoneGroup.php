@@ -61,14 +61,30 @@ class ZoneGroup extends BaseZoneGroup
 	}
 	
 	public function toGeoJson() {
-		$g = [];
-		$g['type'] = 'FeatureCollection';
-		$g['properties'] = $this->toArray(['id','name','display_name','description','type_id','status','created_at','updated_at','created_by','updated_by']);;
-		$g['features'] = [];
-		foreach($this->getZones()->each() as $e) {
-			$g['features'][] = $e->toGeoJson();
+		$e = [];
+		$e['type'] = 'FeatureCollection';
+		$e['properties'] = $this->toArray(['name','display_name','description','status','created_at','updated_at']);;
+
+		if($this->type_id > 0) {
+			$e['properties']['type'] = Type::findOne($this->type_id)->toJson();
 		}
-		return $g;
+		
+		if($this->created_by > 0) {
+			$e['properties']['created_by'] = User::findOne($this->created_by)->toJson();
+		}
+		
+		if($this->updated_by > 0) {
+			$e['properties']['updated_by'] = User::findOne($this->updated_by)->toJson();
+		}
+		
+		$e['features'] = [];
+		foreach($this->getZones()->each() as $z) {
+			$f = $z->toGeoJson();
+			$f['group_name'] = $this->name;
+			$f['group_display_name'] = $this->display_name;
+			$e['features'][] = $f;
+		}
+		return $e;
  	}
 	
 }

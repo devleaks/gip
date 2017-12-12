@@ -29,6 +29,17 @@ $this->params['breadcrumbs'][] = $this->title;
 	        'name',
 	        'description',
 	        [
+				'label' => Yii::t('gip', 'Style'),
+				'width' => '70px',
+				'attribute' => 'glyph',
+				'filter' => false,
+	            'value' => function ($model, $key, $index, $widget) {
+							return $model->style_id > 0 ? $model->style->getHtml() : '';
+	            		},
+				'format' => 'raw',
+				'hAlign' => GridView::ALIGN_CENTER,
+	        ],
+	        [
 				'label' => Yii::t('gip', 'Entity'),
 				'attribute' => 'type_id',
 				'filter' => Type::forClass(Type::className()),
@@ -36,30 +47,6 @@ $this->params['breadcrumbs'][] = $this->title;
 							return $model->type->name;
 	            		},
 			],
-	        [
-				'label' => Yii::t('gip', 'Icon & Color'),
-				'width' => '70px',
-				'attribute' => 'icon',
-				'filter' => false,
-	            'value' => function ($model, $key, $index, $widget) {
-							if($model->icon)
-								return Icon::show(str_replace('fa-', '', $model->icon), ['style' => 'color:'.$model->color]);
-							else
-								return "<span class='badge' style='background-color: {$model->color}'> </span>";
-	            		},
-				'format' => 'raw',
-				'hAlign' => GridView::ALIGN_CENTER,
-	        ],/*
-			[
-			    'attribute'=>'color',
-			    'value'=>function ($model, $key, $index, $widget) {
-			        return "<span class='badge' style='background-color: {$model->color}'> </span>";
-			    },
-			    'width'=>'8%',
-			    'vAlign'=>'middle',
-			    'format'=>'raw',
-				'filter' => false,
-			],*/
             [
                 'class' => 'kartik\grid\ActionColumn',
 				'noWrap' => true,

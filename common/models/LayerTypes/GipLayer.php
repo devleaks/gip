@@ -2,6 +2,9 @@
 
 namespace common\models\LayerTypes;
 
+use common\models\Type;
+use common\models\DisplayStatus;
+
 use Yii;
 use yii\base\Component;
 
@@ -16,6 +19,7 @@ class GipLayer extends Layer
 	public $group_type;
 	public $group_name;
 	public $groupModel;
+	public $modelName;
 	public $layerModel;
 
 	
@@ -36,13 +40,23 @@ class GipLayer extends Layer
 	
 	public function getRepresentation() {
 		$e  = $this->toGeoJson();
+		if(isset($e['features']) && count($e['features']) > 0) {
+			$sf = [];
+			foreach($e['features'] as $f) {
+				if($s = $this->style(isset($f['properties']) ? $f['properties'] : null, 'TEST')) {
+					$f['properties']['_style'] = $s;
+					Yii::trace($f['properties']['name'].'=styled='.json_encode($f, JSON_PRETTY_PRINT), 'GipLayer::getRepresentation');		
+				}
+			}
+		}
 		//Yii::trace($this->group_name.'='.json_encode($e, JSON_PRETTY_PRINT), 'GipLayer::getRepresentation');		
 		return new $this->layerModel(['data' => $e]);
 	}
 	
+	// cascade style
 	protected function trsty($style_arr, $style) {
 		if($style) {
-			foreach($style->attributes as $a) {
+			foreach(array_keys($style->attributes) as $a) {
 				if(!isset($style_arr[$a])) {
 					$style_arr[$a] = $style->$a;
 				}
@@ -51,76 +65,53 @@ class GipLayer extends Layer
 		return $style_arr;
 	}
 	
-	public function style($object, $display_status_name) {
-		$s = null; $style = [];
+	public function style($object, $display_status_name = null) {
+		if(! $object) return;
+
+		$style = [];
 		
 		$g = $this->getGroup();
 		
-		if($g->display_status_type_id > 0) {
-			if($object->type_id > 0 && $object->status && $display_status_name) {
-				$s = Style::find()
-					->andWhere(['type_id' => $object->type_id])
-					->andWhere(['status'  => $object->status])
-					->andWhere(['name' => $display_status_name])
-					->andWhere(['display_status_type_id' => $g->display_status_type_id])
-					->one();
-				$style = $this->trsty($style, $s);
+		$dspst = isset($object['display_status']) ? $object['display_status'] : $display_status_name;
+		
+		// feature is in a group with dedicated display_status_type
+		if($g->display_status_type_id > 0 && $dspst) {
+			if($ds = DisplayStatus::find()->where(['display_status_type_id' => $g->display_status_type_id,
+												   'name' => $dspst])->one()) {
+				$style['_templates'] = $g->getDisplayStatusType()->toArray(['text_label','text_popup','text_sidebar','text_link','text_url']);
+				$style = $this->trsty($style, $ds->style);
+			} else {
+				Yii::trace($object['name'].' display status '.$dspst.' not found', 'GipLayer::style');		
 			}
-			if($object->type_id > 0 && $object->status) {
-				$s = Style::find()
-					->andWhere(['type_id' => $object->type_id])
-					->andWhere(['status'  => $object->status])
-					->andWhere(['display_status_type_id' => $g->display_status_type_id])
-					->one();
-				$style = $this->trsty($style, $s);
-			}
-			if($object->type_id < 1 && $display_status_name) {
-				$s = Style::find()
-					->andWhere(['status'  => $object->status])
-					->andWhere(['name' => $display_status_name])
-					->andWhere(['display_status_type_id' => $g->display_status_type_id])
-					->one();
-				$style = $this->trsty($style, $s);
-			}
-			if($object->type_id < 1) {
-				$s = Style::find()
-					->andWhere(['status'  => $object->status])
-					->andWhere(['display_status_type_id' => $g->display_status_type_id])
-					->one();
-				$style = $this->trsty($style, $s);
-			}		
+		} else {
+			Yii::trace($object['name'].' no display status '.json_encode($object, JSON_PRETTY_PRINT), 'GipLayer::style');		
 		}
 
-		if($object->type_id > 0 && $object->status && $display_status_name) {
-			$s = Style::find()
-				->andWhere(['type_id' => $object->type_id])
-				->andWhere(['status'  => $object->status])
-				->andWhere(['name' => $display_status_name])
-				->one();
-			$style = $this->trsty($style, $s);
-		}
-		if($object->type_id > 0 && $object->status) {
-			$s = Style::find()
-				->andWhere(['type_id' => $object->type_id])
-				->andWhere(['status'  => $object->status])
-				->one();
-			$style = $this->trsty($style, $s);
-		}
-		if($object->type_id < 1 && $display_status_name) {
-			$s = Style::find()
-				->andWhere(['status'  => $object->status])
-				->andWhere(['name' => $display_status_name])
-				->one();
-			$style = $this->trsty($style, $s);
-		}
-		if($object->type_id < 1) {
-			$s = Style::find()
-				->andWhere(['status'  => $object->status])
-				->one();
-			$style = $this->trsty($style, $s);
+		// get generic style for GIP status
+		if(isset($object['status'])) {
+			if($t = Type::find()->where(['type_id' => Type::findOne(['name' => $this->modelName.':status'])->id,
+										 'name'    => $object['status']])->one()) {
+				$style = $this->trsty($style, $t->style);
+			} else {
+				Yii::trace($object['name'].' status '.$object['status'].' not found', 'GipLayer::style');		
+			}
+		} else {
+			Yii::trace($object['name'].' no status '.json_encode($object, JSON_PRETTY_PRINT), 'GipLayer::style');		
 		}
 
-		return $style;
+		// get generic style for type
+		if(isset($object['type'])) {
+			if($t = Type::findOne(['name' => $object['type']['name']])) {
+				$style = $this->trsty($style, $t->style);
+			} else {
+				Yii::trace($object['name'].' type not found', 'GipLayer::style');		
+			}
+		} else {
+			Yii::trace($object['name'].' no type '.json_encode($object, JSON_PRETTY_PRINT), 'GipLayer::style');		
+		}
+
+
+		return count($style) > 0 ? $style : null;
 	}
 	
 }

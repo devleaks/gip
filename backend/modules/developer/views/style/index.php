@@ -45,8 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'attribute' => 'glyph',
 				'filter' => false,
 	            'value' => function ($model, $key, $index, $widget) {
-							return $model->glyph ? Icon::show(str_replace('fa-', '', $model->glyph), ['style' => 'color:'.$model->stroke_color])
-												: "<span class='badge' style='background-color: {$model->stroke_color}'> </span>";
+							return $model->getHtml();
 	            		},
 				'format' => 'raw',
 				'hAlign' => GridView::ALIGN_CENTER,

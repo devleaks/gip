@@ -14,8 +14,6 @@ use yii\behaviors\BlameableBehavior;
  * @property string $name
  * @property string $display_name
  * @property string $description
- * @property string $icon
- * @property string $color
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_by
@@ -47,7 +45,7 @@ class Type extends \yii\db\ActiveRecord
             [['type_id', 'name', 'display_name'], 'required'],
             [['type_id', 'created_by', 'updated_by', 'style_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'display_name', 'icon', 'color'], 'string', 'max' => 40],
+            [['name', 'display_name'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
             [['name'], 'unique'],
             [['display_name'], 'unique']
@@ -73,8 +71,6 @@ class Type extends \yii\db\ActiveRecord
             'name' => Yii::t('gip', 'Name'),
             'display_name' => Yii::t('gip', 'Display Name'),
             'description' => Yii::t('gip', 'Description'),
-            'icon' => Yii::t('gip', 'Icon'),
-            'color' => Yii::t('gip', 'Color'),
             'style_id' => Yii::t('gip', 'Style ID'),
         ];
     }

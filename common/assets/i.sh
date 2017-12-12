@@ -1,0 +1,9 @@
+composer require npm-asset/leaflet-pulse-icon
+composer require npm-asset/leaflet-sidebar-v2
+composer require npm-asset/leaflet-piechart
+composer require npm-asset/beautifymarker
+composer require npm-asset/leaflet-search
+composer require npm-asset/line-awesome
+composer require npm-asset/leaflet-canvasicon
+composer remove bower-asset/leaflet-groupedlayercontrol
+composer remove npm-asset/leaflet-groupedlayercontrol

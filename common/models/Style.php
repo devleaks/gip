@@ -6,6 +6,8 @@ use Yii;
 use \common\models\base\Style as BaseStyle;
 use \common\behaviors\ListAll;
 
+use kartik\icons\Icon;
+
 /**
  * This is the model class for table "style".
  */
@@ -33,6 +35,13 @@ class Style extends BaseStyle
             [['name'], 'unique'],
             [['display_name'], 'unique']
         ]);
+    }
+
+	public function getHtml() {
+		return $this->glyph ?
+			Icon::show(str_replace('fa-', '', $this->glyph), ['style' => 'color:'.$this->stroke_color])
+			:
+			"<span class='badge' style='background-color: {$this->stroke_color}'> </span>";
     }
 	
 }

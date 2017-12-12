@@ -84,6 +84,14 @@ class User extends \dektrium\user\models\User
 		return $this->default_profile_picture;
 	}
 	
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSocialAccounts()
+    {
+        return $this->hasMany(\common\models\SocialAccount::className(), ['user_id' => 'id']);
+    }
+
 	/**
 	 * Checks whether a user has a role.
 	 */
@@ -97,5 +105,18 @@ class User extends \dektrium\user\models\User
 	public function isAdmin() {
 		return $this->isA(self::ROLE_ADMIN);
 	}
+	
+	public function toJson() {
+		$j = $this->toArray(['username','email','role']);
+		$j['profile'] = Profile::findOne($this->id)->toJson();
+		if($this->getSocialAccounts()->exists()) {
+			$j['profile']['social_accounts'] = [];
+			foreach($this->getSocialAccounts()->each() as $sa) {
+				$j['profile']['social_accounts'][] = $sa->toJson();
+			}
+		}
+		return $j;
+ 	}
+	
 
 }

@@ -69,19 +69,13 @@ class Map extends BaseMap
 		    'center' => $center,
 			'zoom' => $this->zoom
 		]);
-		$js = 'L.Oscars.Util.prepareMap(map, {'
-			.'id: "w2",'
-			.'layerControlOptions: { useGrouped: true, groupCheckboxes: true, collapsed: false },'
-			.'center: ['.$ll[0].', '.$ll[1].']'
-			.'});';
-		$leaflet->appendJs($js);
 
 		foreach($this->getBaseLayers()->each() as $layer) {
 			$factory = $layer->getFactory();		
 			$r = $factory->getRepresentation();
 			if($first) {
-				$c .= 'console.log("adding '.$layer->name.'");';
-				$leaflet->addLayer($r);
+				$c .= 'console.log("setting tile layer '.$layer->name.'");';
+				$leaflet->setTileLayer($r);
 				$first = false;
 			}
 		}
@@ -93,7 +87,7 @@ class Map extends BaseMap
 			$leaflet->addLayer($r);	
 		}
 
-		$leaflet->appendJs($c);
+//		$leaflet->appendJs($c);
 		
 		return $leaflet;
 	}

@@ -10,6 +10,8 @@ use \common\models\base\DisplayStatusType as BaseDisplayStatusType;
  */
 class DisplayStatusType extends BaseDisplayStatusType
 {
+	const DEFAULT = 'GENERIC';
+	
 	use \common\behaviors\ListAll;
 
     /**

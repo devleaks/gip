@@ -13,6 +13,7 @@ class ZoneGroupLayer extends GipLayer
 	public function init() {
 		$this->group_type = self::TYPE_ZONE;
 		$this->groupModel = 'common\models\ZoneGroup';
+		$this->modelName = 'common\models\Zone';
 		$this->layerModel = 'common\models\leaflet\ZoneGroup';
 		parent::init();
 	}

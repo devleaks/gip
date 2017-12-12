@@ -22,4 +22,12 @@ class Type extends BaseType
 			}
 			return [];
 		}
+
+		public function toJson() {
+			$j = $this->toArray(['name','display_name','description']);
+			if(isset($j['id'])) unset($j['id']);
+			if($this->id != $this->type_id) $j['type'] = Type::findOne($this->type_id)->toJson();
+			return $j;
+	 	}
+
 }

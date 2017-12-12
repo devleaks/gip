@@ -1,0 +1,1 @@
+Files in this folder are not available neither from bower nor from npm repositories.

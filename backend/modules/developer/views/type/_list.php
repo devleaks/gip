@@ -23,30 +23,6 @@ use yii\widgets\Pjax;
         	'display_name',
 	        'name',
 	        'description',
-	        [
-				'label' => Yii::t('gip', 'Icon & Color'),
-				'width' => '70px',
-				'attribute' => 'icon',
-				'filter' => false,
-	            'value' => function ($model, $key, $index, $widget) {
-							if($model->icon)
-								return Icon::show(str_replace('fa-', '', $model->icon), ['style' => 'color:'.$model->color]);
-							else
-								return "<span class='badge' style='background-color: {$model->color}'> </span>";
-	            		},
-				'format' => 'raw',
-				'hAlign' => GridView::ALIGN_CENTER,
-	        ],/*
-			[
-			    'attribute'=>'color',
-			    'value'=>function ($model, $key, $index, $widget) {
-			        return "<span class='badge' style='background-color: {$model->color}'> </span>";
-			    },
-			    'width'=>'8%',
-			    'vAlign'=>'middle',
-			    'format'=>'raw',
-				'filter' => false,
-			],*/
             [
                 'class' => 'kartik\grid\ActionColumn',
 				'noWrap' => true,

@@ -17,6 +17,7 @@ use yii\behaviors\BlameableBehavior;
  * @property string $geometry
  * @property string $geojson
  * @property string $status
+ * @property string $display_status
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_by
@@ -53,7 +54,7 @@ class Device extends \yii\db\ActiveRecord
             [['geometry', 'geojson'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 160],
-            [['display_name', 'status'], 'string', 'max' => 40],
+            [['display_name', 'status', 'display_status'], 'string', 'max' => 40],
             [['description'], 'string', 'max' => 2000],
             [['name'], 'unique'],
             [['display_name'], 'unique']
@@ -82,6 +83,7 @@ class Device extends \yii\db\ActiveRecord
             'geometry' => Yii::t('app', 'Geometry'),
             'geojson' => Yii::t('app', 'Geojson'),
             'status' => Yii::t('app', 'Status'),
+            'display_status' => Yii::t('app', 'Display Status'),
         ];
     }
     

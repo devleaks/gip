@@ -13,7 +13,7 @@ $widget_hndlr 	= strtoupper($widget->source.'_'.$widget->type);
 <div></div>
 <?php
 	if($widget->leaflet) {
-		echo \dosamigos\leaflet\widgets\Map::widget([
+		echo common\widgets\PreparedMap::widget([
 			'leafLet' => $widget->leaflet,
 			'options' => [
 				'style' => 'height: 700px',
