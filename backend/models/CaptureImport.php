@@ -82,7 +82,17 @@ class CaptureImport extends Model
 		
 		return $model;
 	}
+	
+	public static function isJson($string) {
+		json_decode($string);
+		return (json_last_error() == JSON_ERROR_NONE);
+	}
 
+	// return either new object created from GeoJSON or return existing object found by name attribute.
+	public static function import($s, $c) {
+		return CaptureImport::isJson($s) ? $c::fromGeoJson($s) : $c::findOne(['name' => $s]);
+	}
+	
 	public function doImport() {
 		$feedback = 'Feedback: Import: '.$this->what.'. ';
 		$content = file_get_contents($this->file->tempName);

@@ -6,6 +6,7 @@ use common\models\Zone;
 use yii\helpers\Html;
 use kartik\detail\DetailView;
 use kartik\datecontrol\DateControl;
+use devgroup\jsoneditor\Jsoneditor;
 
 /**
  * @var yii\web\View $this
@@ -44,7 +45,23 @@ $this->params['breadcrumbs'][] = $this->title;
 				'items' => ['2D' => '2D', '3D' => '3D'],
 				'label' => Yii::t('app', 'Dimensions')
 	        ],
-            'geometry',
+	        [
+				'attribute' => 'geojson',
+	        	'type'=> DetailView::INPUT_WIDGET,
+				'format' => 'raw',
+				'value' => '<pre>'.json_encode(json_decode($model->geojson), JSON_PRETTY_PRINT).'</pre>',
+				'widgetOptions' => [
+					'class' => Jsoneditor::className(),
+					'options' => [
+				        'editorOptions' => [
+				            'modes' => ['code', 'form', 'text', 'tree', 'view'], // available modes
+				            'mode' => 'tree', // current mode
+				        ],
+						'attribute' => 'geojson',
+				        'options' => [], // html options
+				    ],
+				],
+			],
         ],
         'deleteOptions'=>[
             'url'=>['delete', 'id' => $model->id],

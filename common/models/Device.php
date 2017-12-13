@@ -30,6 +30,14 @@ class Device extends BaseDevice
 		return $fields;
 	}
 
+	// return either new object created from GeoJSON or return existing object found by name attribute.
+	public static function import($s) {
+		return 	CaptureImport::isJson($s) ?
+				Device::fromGeoJson($s)
+				:
+				Device::findOne(['name' => $s]);
+	}
+	
 	public static function fromGeoJson($geojson) {
 		if(in_array($geojson->type, ["Feature","Point"])) {
 			$device = new Device();

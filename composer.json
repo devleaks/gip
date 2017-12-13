@@ -93,7 +93,9 @@
         "yii2mod/yii2-selectize": "*",
         "yurkinx/yii2-image": "dev-master",
         "composer/composer": "~1.0@dev",
-        "2amigos/yii2-leaflet-extension": "^1.1"
+        "2amigos/yii2-leaflet-extension": "^1.1",
+        "jmikola/geojson": "^1.0",
+        "davidjeddy/yii2-leaflet-draw-plugin": "^0.1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

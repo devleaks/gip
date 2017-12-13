@@ -26,6 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
 			[
 				'attribute' => 'type_id',
 				'filter' => Device::getDeviceTypes(),
+	            'value' => function ($model, $key, $index, $widget) {
+							return $model->type ? $model->type->name : '';
+	            		},
 			],
             [
                 'class' => 'kartik\grid\ActionColumn',

@@ -52,12 +52,24 @@ class GipLayer extends Layer
 		//Yii::trace($this->group_name.'='.json_encode($e, JSON_PRETTY_PRINT), 'GipLayer::getRepresentation');		
 		return new $this->layerModel(['data' => $e]);
 	}
-	
+
+/* Name correspondance
+ * -------------------
+Leaflet Style					GIP Style
+"markerColor": "rgb(0,0,255)",	stroke_color
+"weight": 1,					stroke_width
+"opacity": 0.8,					stroke_color(alpha)
+"fillColor": "rgb(0,255,0)",	fill_color
+"fillOpacity": 0.4,				fill_color(alpha)
+"markerSymbol": "plane",		glyph
+"markerRotationOffset": -45		glyph_rotation_offset
+*/
+
 	// cascade style
 	protected function trsty($style_arr, $style) {
 		if($style) {
 			foreach(array_keys($style->attributes) as $a) {
-				if(!isset($style_arr[$a])) {
+				if(!isset($style_arr[$a]) && $style_arr[$a] != '' && $style_arr[$a] != null) {
 					$style_arr[$a] = $style->$a;
 				}
 			}
