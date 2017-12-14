@@ -94,7 +94,7 @@ class CaptureImport extends Model
 	}
 	
 	public function doImport() {
-		$feedback = 'Feedback: Import: '.$this->what.'. ';
+		$feedback = 'Feedback: '; // Import: '.$this->what.'. ';
 		$content = file_get_contents($this->file->tempName);
 
 		if($geojson = json_decode($content)) {
@@ -104,14 +104,14 @@ class CaptureImport extends Model
 					foreach($group->getDevices()->each() as $device) {
 						$feedback .= $device->name.',';
 					}
-					$feedback .= ')';
+					$feedback = rtrim($feedback, ',') . ')';
 				}
 				if($this->what != self::TYPE_DEVICE && ($group = ZoneGroup::fromGeoJson($geojson))) {
 					$feedback .= 'Imported zones in group '.$group->name.'(';
 					foreach($group->getZones()->each() as $zone) {
 						$feedback .= $zone->name.',';
 					}
-					$feedback .= ')';
+					$feedback = rtrim($feedback, ',') . ')';
 				}
 			} else if($geojson->type == "Feature") { // Single Feature
 				if($this->what != self::TYPE_ZONE && $geojson->geometry->type == "Point") {

@@ -41,8 +41,14 @@ class Zone extends BaseZone
 		if(in_array($geojson->type, ["Feature","Point"])) {
 			$zone = new Zone();
 			$zone = CaptureImport::featureAttributes($zone, $geojson);
+			
+			if($ze = Zone::findOne(['name' => $zone->name])) {
+				// zone already exists
+				return null;				
+			}
 
-			$first_coord = ($geojson->type == "Feature") ? $geojson->geometry->coordinates[0] : $geojson->coordinates[0];
+			// for polygons, geometry: [   [  [0,0],[0,1],[1,0],[0,0]  ]  ]
+			$first_coord = ($geojson->type == "Feature") ? $geojson->geometry->coordinates[0][0][0] : $geojson->coordinates[0][0][0];
 			$zone->zone_dimension = (count($first_coord) == 3) ? Zone::ZONE_DIMENSION_3D : Zone::ZONE_DIMENSION_2D;
 			
 			$zone->save();

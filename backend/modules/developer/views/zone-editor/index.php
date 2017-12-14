@@ -6,23 +6,26 @@ use \dosamigos\leaflet\layers\TileLayer;
 use \dosamigos\leaflet\LeafLet;
 use \davidjeddy\leaflet\plugins\draw\Draw;
 
+use yii\web\JsExpression;
+
 $this->title = Yii::t('gip', 'Zone Editor');
 $this->params['breadcrumbs'][] = $this->title;
 
 
 $this->registerCss('#export {
 	position: absolute;
-	top:190px;
-	right:24px;
+	top:240px;
+	right:25px;
 	z-index:1000;
 	background:white;
-	color:black;
+	color:green;
 	padding:6px;
-	border-radius:4px;
 	font-family: "Helvetica Neue";
 	cursor: pointer;
 	font-size:16px;
 	text-decoration:none;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+	border-radius: 4px;
 }');
 
     // The Tile Layer (very important)
@@ -59,7 +62,21 @@ $this->registerCss('#export {
         	"polyline" => false,
             "circle" => false,
             "rectangle" => false
-        ]
+        ],
+		"edit" => [
+		      'featureGroup' => new JsExpression('drawnItems'),
+		      'buffer' => [
+		        'replace_polylines' => false,
+		        'separate_buffer' => true,
+		        'buffer_style' => [
+		          'renderer' => 'renderer',
+		          'color' => 'black',
+		          'weight' => 5,
+		          'fillOpacity' => 0,
+		          'dashArray' => '5, 20'
+		        ]
+		      ]
+		    ]
     ];
 
     // Different layers can be added to our map using the `addLayer` function.

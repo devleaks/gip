@@ -225,3 +225,9 @@ h1.sidebar-header.eblg {
 .eblg.la:hover {
 	color: #0e64ae;
 }
+.leaflet-control-layers {
+	text-align: left;
+}
+.leaflet-control-layers-group label {
+	font-weight: normal;
+}

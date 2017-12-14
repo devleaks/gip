@@ -32,10 +32,7 @@ class Device extends BaseDevice
 
 	// return either new object created from GeoJSON or return existing object found by name attribute.
 	public static function import($s) {
-		return 	CaptureImport::isJson($s) ?
-				Device::fromGeoJson($s)
-				:
-				Device::findOne(['name' => $s]);
+		return 	CaptureImport::import($s, Device::className());
 	}
 	
 	public static function fromGeoJson($geojson) {
@@ -43,6 +40,10 @@ class Device extends BaseDevice
 			$device = new Device();
 			$device = CaptureImport::featureAttributes($device, $geojson);
 	
+			if($de = Device::findOne(['name' => $device->name])) {
+				// device already exists
+				return null;				
+			}// may be should update geojson of existing device?
 			$device->save();
 			$device->refresh();
 			return $device;
